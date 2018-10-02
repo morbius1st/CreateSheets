@@ -1,0 +1,31 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml.dll" #>
+<#@ assembly name="Microsoft.Build.dll"#>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ output extension=".cs" #>
+<#  string test = "\"" + "SharedResources" + ".";
+	string me = "\"" + Host.ResolveAssemblyReference("$(AssemblyName)") + ".";
+	if (!me.Equals(test)) {
+		var path = Host.ResolvePath("..\\..\\SharedResources\\Resources\\AppStrings.Designer.cs");
+		// scan through the xml file
+		foreach (string line1 in File.ReadLines(path)) {
+
+			string line = line1;
+		
+			int p = line.IndexOf(test);
+		
+			if (p > -1) {
+				line = line.Substring(0, p) 
+				+ me 
+				+ line.Substring(p + test.Length);
+			}
+
+			WriteLine(line); 
+		}
+	} #>

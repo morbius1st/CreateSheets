@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<!-- <AddIn Type="Command"> -->
+		<!-- <Text>CreateSheets</Text> -->
+		<!-- <Description>Create New Sheets</Description> -->
+		<!-- <Assembly>CreateSheets.dll</Assembly> -->
+		<!-- <FullClassName>CreateSheets.Command</FullClassName> -->
+		<!-- <ClientId>1C44626A-283E-45DB-A017-7F23504AFF90</ClientId> -->
+		<!-- <VendorId>CSTU</VendorId> -->
+		<!-- <VendorDescription>CyberStudio</VendorDescription> -->
+		<!-- <VisibilityMode>NotVisibleInFamily</VisibilityMode> -->
+	<!-- </AddIn> -->
+	<AddIn Type="Application">
+		<Name>Application CreateSheets</Name>
+		<Description>Create New Sheets</Description>
+		<Assembly>CreateSheets2018.dll</Assembly>
+		<FullClassName>SharedCode.ApplicationRibbon</FullClassName>
+		<ClientId>22F4EF93-0751-4EA7-9ADC-402B6397E07A</ClientId>
+		<VendorId>CSTU</VendorId>
+		<VendorDescription>CyberStudio</VendorDescription>
+	</AddIn>
+</RevitAddIns>

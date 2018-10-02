@@ -1,0 +1,118 @@
+﻿
+using System.Reflection;
+using System.Windows.Forms;
+using Autodesk.Revit.UI;
+using SharedCode.Resources;
+
+using static UtilityLibrary.MessageUtilities2;
+
+
+// v 3.0.0.0	Adjust to duplicate views when needed
+// v 3.0.2.0	Adjust to make dependent views when applies (2017: works  | 2018: works)
+
+// this is the code to add a ribbon tab / panel / button
+namespace SharedCode
+{
+
+
+	class ApplicationRibbon : IExternalApplication
+	{
+
+		public Result OnStartup(UIControlledApplication app)
+		{
+
+			try
+			{
+				// this will always use the add-ins tab - don't need to make the tab first
+				RibbonPanel m_RibbonPanel = app.CreateRibbonPanel(AppStrings.R_UiPanelName);
+
+				// create a button for the 'copy sheet' command
+				if (!AddPushButton(m_RibbonPanel, LocalResMgr.AppName, 
+					AppStrings.R_ButtonNameTop + nl + AppStrings.R_ButtonNameBott,
+					AppStrings.R_ButtonImage16,
+					AppStrings.R_ButtonImage32,
+					Assembly.GetExecutingAssembly().Location, 
+					LocalResMgr.Command, AppStrings.R_CommandDescription))
+				
+				{
+					// creating the pushbutton failed
+					MessageBox.Show(AppStrings.R_ErrMakeButtonFailTitle, AppStrings.R_ErrMakeButtonFailDesc,
+						MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+					return Result.Failed;
+				}
+
+				return Result.Succeeded;
+			}
+			catch
+			{
+
+				return Result.Failed;
+			}
+		} // end OnStartup
+
+		public Result OnShutdown(UIControlledApplication a)
+		{
+			try
+			{
+				// begin code here
+				return Result.Succeeded;
+			}
+			catch
+			{
+				return Result.Failed;
+			}
+		} // end OnShutdown
+
+		// method to add a pushbutton to the ribbon
+		private bool AddPushButton(RibbonPanel Panel, string ButtonName,
+			string ButtonText, string Image16, string Image32,
+			string dllPath, string dllClass, string ToolTip)
+		{
+			try
+			{
+				PushButtonData m_pdData = new PushButtonData(ButtonName,
+					ButtonText, dllPath, dllClass);
+				// if we have a path for a small image, try to load the image
+				if (Image16.Length != 0)
+				{
+					try
+					{
+						// load the image
+						m_pdData.Image = ShUtil.GetBitmapImage(Image16);
+					}
+					catch
+					{
+						// could not locate the image
+					}
+				}
+
+				// if have a path for a large image, try to load the image
+				if (Image32.Length != 0)
+				{
+					try
+					{
+						// load the image
+						m_pdData.LargeImage = ShUtil.GetBitmapImage(Image32);
+					}
+					catch
+					{
+						// could not locate the image
+					}
+				}
+
+				// set the tooltip
+				m_pdData.ToolTip = ToolTip;
+
+				// add it to the panel
+				PushButton m_pb = Panel.AddItem(m_pdData) as PushButton;
+
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
+	}
+}

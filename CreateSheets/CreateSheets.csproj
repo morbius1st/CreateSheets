@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{10E1D72E-5A1D-4EE7-A890-FF0F8E486682}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CreateSheets</RootNamespace>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Cre2017Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CREATESHEETS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2017\Revit.exe</StartProgram>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Cre2017Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>CREATESHEETS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2017\Revit.exe</StartProgram>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Cre2018Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CREATESHEETS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2018\Revit.exe</StartProgram>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Cre2018Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;CREATESHEETS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2018\Revit.exe</StartProgram>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration) == 'Cre2017Debug' OR $(Configuration) == 'Cre2017Release'">
+    <AssemblyName>CreateSheets2017</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration) == 'Cre2018Debug' OR $(Configuration) == 'Cre2018Release'">
+    <AssemblyName>CreateSheets2018</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="envdte, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="envdte80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RevitAPI, Version=18.0.0.0, Culture=neutral, processorArchitecture=AMD64" Condition="$(Configuration)== 'Cre2018Debug' OR $(Configuration) == 'Cre2018Release'">
+      <HintPath>C:\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI, Version=18.0.0.0, Culture=neutral, processorArchitecture=AMD64" Condition="$(Configuration)== 'Cre2018Debug' OR $(Configuration) == 'Cre2018Release'">
+      <HintPath>C:\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedResources\Resources\AppStrings.Designer.cs">
+      <Link>Resources\AppStrings.Designer.cs</Link>
+    </Compile>
+    <Compile Include="FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Command.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ErrorReport.xaml.cs">
+      <DependentUpon>ErrorReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Strings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LocalResourceMgr.cs" />
+    <Compile Include="FormSelViewSheet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelViewSheet.Designer.cs">
+      <DependentUpon>FormSelViewSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SxUiMgr.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.fr.resx">
+      <Link>Resources\AppStrings.fr.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.resx">
+      <Link>Resources\AppStrings.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelViewSheet.resx">
+      <DependentUpon>FormSelViewSheet.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\CreateSheets_32.png" />
+    <EmbeddedResource Include="Resources\CreateSheets_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AO-LOGO-Bar-Sm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Other\CreateSheets2017.addin" />
+    <Content Include="Other\CreateSheets2018.addin" />
+    <Content Include="Resources\CreateSheetsLogo.png" />
+    <Content Include="Resources\ResourceDesigner.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ResourceDesigner.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\ErrorReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
+  <Import Project="..\SharedLibrary\SharedLibrary.projitems" Label="Shared" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterClean">
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Cre2017Debug (copy /y "$(ProjectDir)Other\CreateSheets2017.addin" "$(AppData)\Autodesk\REVIT\Addins\2017")
+if $(ConfigurationName) == Cre2017Debug (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017\CreateSheets2017.dll")
+if $(ConfigurationName) == Cre2017Release (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017\CreateSheets2017.dll")
+
+if $(ConfigurationName) == Cre2018Debug (copy /y "$(ProjectDir)Other\CreateSheets2018.addin" "$(AppData)\Autodesk\REVIT\Addins\2018")
+if $(ConfigurationName) == Cre2018Debug (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2018\CreateSheets2018.dll")
+if $(ConfigurationName) == Cre2018Release (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2018\CreateSheets2018.dll")</PostBuildEvent>
+  </PropertyGroup>
+</Project>
+<!-- <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2014\CreateSheets.addin" /> -->
+<!-- <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2014\CreateSheets.dll" /> -->

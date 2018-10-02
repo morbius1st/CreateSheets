@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="R_Command" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="R_NamespacePrefixSubject" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="R_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="R_ShtOpCurSampleShtName" xml:space="preserve">
+    <value>Sample Sheet Name</value>
+  </data>
+  <data name="R_AppStrings" xml:space="preserve">
+    <value>This is from App Strings</value>
+  </data>
+  <data name="R_ButtonImage16" xml:space="preserve">
+    <value>DuplicateSheets_16.png</value>
+  </data>
+  <data name="R_ButtonImage32" xml:space="preserve">
+    <value>DuplicateSheets_32.png</value>
+  </data>
+  <data name="R_ButtonNameBott" xml:space="preserve">
+    <value>Sheets</value>
+  </data>
+  <data name="R_ButtonNameTop" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="R_CommandDescription" xml:space="preserve">
+    <value>Duplicate Existing Sheet</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello 1</value>
+  </data>
+  <data name="R_HelpCreateSheets" xml:space="preserve">
+    <value>This option will create new empty sheets using the title block indicated and using the "New Sheet Options".
+
+To create new sheet:
+1.  Select "Create New Sheets" from the list of Operations
+2.  (Optional): Change the "New Sheet Options"
+3.  (Optional): Indicate the number of copies (maximum is 99)
+4.  (Optional): Choose a title block to use for the new sheets.
+    or choose &lt;no titleblock&gt;
+
+Select OK to create the new sheets.
+Select cancel to not create the new sheets and exit.
+
+The a new sheet is created one or more times.  The new sheets will be given a sheet number and name based on the "New Sheet Options."
+
+Undo is supported.  All sheets created in a single operation will be removed with a single undo.</value>
+  </data>
+  <data name="R_HelpDuplicateSheet" xml:space="preserve">
+    <value>This option will duplicate an existing sheet and all of the elements contained on the sheet, within the limitations set by Revit®.  That is, any element that can only occur once on a sheet (e.g. floor plan view) will not be copied - the other elements are copied to a location matching the orignial location.  Also, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original. 
+
+If the current view is a sheet, the sheet is pre-selected as the sheet to be duplicated.
+
+To duplicate a sheet:
+1.  (Optional): Open a sheet view
+2.  Select "Duplicate Sheet" from the list of Operations
+3.  (Optional): Set the "New Sheet Options"
+4.  Select a sheet to be duplicated
+5.  (Optional): Indicate the number of copies (maximum is 99)
+6.  (Optional): Choose a title block to use for the new sheets.
+     The default is the same title block from the sheet 
+     being duplicated
+
+Select OK to duplicate the sheet.
+Select cancel to not duplicate the sheet and exit.
+
+The selected sheet is duplicated one or more times.  The duplicates will be given a sheet number and name based on the "New Sheet Options."
+
+The sheet's parameters, including custom parameters, from the original sheet are duplicated.
+
+Undo is supported.  All sheets duplicated in a single operation will be removed with a single undo.</value>
+  </data>
+  <data name="R_HelpDuplicateSheetAndViews" xml:space="preserve">
+    <value>This option is identical to the "Duplicate Sheet" option except that views restricted to placement on a single sheet will be copied, with detailing, and the view copy will be placed on the newly duplicated sheet.  Again, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original.
+
+If the current view is a sheet, the sheet is pre-selected as the sheet to be duplicated.
+
+To duplicate a sheet and views:
+1.  (Optional): Open a sheet view
+2.  Select "Duplicate Sheet and Views" from the list of Operations
+3.  (Optional): Set the "New Sheet Options"
+4.  (Optional): Set the "New View Name Options"
+5.  Select a sheet to be duplicated
+6.  (Optional): Indicate the number of copies (maximum is 99)
+7.  (Optional): Choose a title block to use for the new sheets.
+     The default is the same title block from the sheet 
+     being duplicated
+
+Select OK to duplicate the sheet and views.
+Select cancel to not duplicate the sheet and exit.
+
+The selected sheet and views will be duplicated one or more times.  The duplicate sheet(s) will be given a sheet number and name based on the "New Sheet Options."  The duplicated views will be given a name based on the "New View Name Options."
+
+The sheet's parameters, including custom parameters, from the original sheet are duplicated.
+
+Undo is supported.  All sheets duplicated in a single operation will be removed with a single undo.</value>
+  </data>
+  <data name="R_ErrMakeButtonFailDesc" xml:space="preserve">
+    <value>Duplicate Sheet Warning</value>
+  </data>
+  <data name="R_ErrMakeButtonFailTitle" xml:space="preserve">
+    <value>Failed to Add Button!</value>
+  </data>
+  <data name="R_UiPanelName" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="R_UiTabName" xml:space="preserve">
+    <value>Not Used</value>
+  </data>
+  <data name="R_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="R_AddSpaces" xml:space="preserve">
+    <value>Add Space(s)</value>
+  </data>
+  <data name="R_AlphaSuffix" xml:space="preserve">
+    <value>Alpha Suffix</value>
+  </data>
+  <data name="R_AvailSheets" xml:space="preserve">
+    <value>Available Sheets</value>
+    <comment>in sheet list</comment>
+  </data>
+  <data name="R_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="R_Copies" xml:space="preserve">
+    <value>Copies</value>
+    <comment>in operation options</comment>
+  </data>
+  <data name="R_CreateSheet" xml:space="preserve">
+    <value>Create Empty Sheets</value>
+  </data>
+  <data name="R_DivChars" xml:space="preserve">
+    <value>Divider Characters</value>
+  </data>
+  <data name="R_DupSheet" xml:space="preserve">
+    <value>Duplicate Sheet</value>
+  </data>
+  <data name="R_DupSheetAndViews" xml:space="preserve">
+    <value>Duplicate Sheet and Views</value>
+  </data>
+  <data name="R_Example" xml:space="preserve">
+    <value>Example</value>
+  </data>
+  <data name="R_FromCurrent" xml:space="preserve">
+    <value>From Current</value>
+  </data>
+  <data name="R_GroupChars" xml:space="preserve">
+    <value>Grouping Characters</value>
+  </data>
+  <data name="R_IncSheetName" xml:space="preserve">
+    <value>Increment Sheet Name</value>
+  </data>
+  <data name="R_NewShtNameFormat" xml:space="preserve">
+    <value>New Sheet Name Format</value>
+  </data>
+  <data name="R_None" xml:space="preserve">
+    <value>No Added Characters</value>
+  </data>
+  <data name="R_NoSuffix" xml:space="preserve">
+    <value>No Suffix</value>
+  </data>
+  <data name="R_NewShtNumFormat" xml:space="preserve">
+    <value>New Sheet Number Format</value>
+  </data>
+  <data name="R_NumericSuffix" xml:space="preserve">
+    <value>Numeric Suffix</value>
+  </data>
+  <data name="R_NumFmt" xml:space="preserve">
+    <value>Number Format</value>
+  </data>
+  <data name="R_NumPrefix" xml:space="preserve">
+    <value>Number Prefix</value>
+  </data>
+  <data name="R_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="R_Operation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="R_OtherSuffix" xml:space="preserve">
+    <value>Other Suffix</value>
+  </data>
+  <data name="R_PerSettings" xml:space="preserve">
+    <value>Per Settings</value>
+  </data>
+  <data name="R_Sample" xml:space="preserve">
+    <value>Floor Plan</value>
+  </data>
+  <data name="R_SepGroup" xml:space="preserve">
+    <value>Separation / Grouping Characters</value>
+  </data>
+  <data name="R_SheetName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>in sheet list</comment>
+  </data>
+  <data name="R_SheetNum" xml:space="preserve">
+    <value>Sheet Number</value>
+    <comment>in sheet list</comment>
+  </data>
+  <data name="R_SheetOpts" xml:space="preserve">
+    <value>New Sheet Options</value>
+  </data>
+  <data name="R_UseThisTtlBlk" xml:space="preserve">
+    <value>Use this Title Block for new sheets</value>
+    <comment>in operation options</comment>
+  </data>
+  <data name="R_ViewOpts" xml:space="preserve">
+    <value>New View Name Options</value>
+  </data>
+  <data name="R_WindowTitleSelView" xml:space="preserve">
+    <value>Duplicate Sheets</value>
+  </data>
+  <data name="R_SuffixNumNumeric1" xml:space="preserve">
+    <value>0</value>
+    <comment>Number suffix: One digit</comment>
+  </data>
+  <data name="R_SuffixNumNumeric2" xml:space="preserve">
+    <value>00</value>
+    <comment>Number suffix: Two digit</comment>
+  </data>
+  <data name="R_SuffixNumNumeric3" xml:space="preserve">
+    <value>000</value>
+    <comment>Number suffix: Three digit</comment>
+  </data>
+  <data name="R_SuffixNumNumeric4" xml:space="preserve">
+    <value>0000</value>
+    <comment>Number suffix: Four Digit</comment>
+  </data>
+  <data name="R_SuffixNumNumeric5" xml:space="preserve">
+    <value>00000</value>
+    <comment>Number suffix: Five Digit</comment>
+  </data>
+  <data name="R_NewSheetPrefix" xml:space="preserve">
+    <value>New Sheet</value>
+  </data>
+  <data name="R_DivNone" xml:space="preserve">
+    <value>None</value>
+    <comment>No Divider</comment>
+  </data>
+  <data name="R_DivSpace" xml:space="preserve">
+    <value>Space:  ' '</value>
+    <comment>Space</comment>
+  </data>
+  <data name="R_DivPeriod" xml:space="preserve">
+    <value>Period:  .</value>
+    <comment>Period</comment>
+  </data>
+  <data name="R_DivDash" xml:space="preserve">
+    <value>Dash:  -</value>
+    <comment>Dash</comment>
+  </data>
+  <data name="R_DivCustom" xml:space="preserve">
+    <value>Custom: [?]</value>
+    <comment>Custom</comment>
+  </data>
+  <data name="R_ShtOpCurExample" xml:space="preserve">
+    <value>Example</value>
+  </data>
+  <data name="R_ShtOpCurOrigShtName" xml:space="preserve">
+    <value>Current
+Sheet Name</value>
+  </data>
+  <data name="R_ShtOpCurOrigShtNum" xml:space="preserve">
+    <value>Current
+Sheet Number</value>
+  </data>
+  <data name="R_ShtOpCurSample" xml:space="preserve">
+    <value>Sample</value>
+  </data>
+  <data name="R_ShtOpCurSampleShtNum" xml:space="preserve">
+    <value>A01.01-00</value>
+  </data>
+  <data name="R_SuffixNumAlphaLc" xml:space="preserve">
+    <value>a | b | ... | ab | etc</value>
+    <comment>Number suffix: Alpha, Lower Case</comment>
+  </data>
+  <data name="R_SuffixNumAlphaUc" xml:space="preserve">
+    <value>A | B | ... | AB | etc</value>
+    <comment>Number suffix: Alpha, Upper Case</comment>
+  </data>
+  <data name="R_SuffixNameCopy1" xml:space="preserve">
+    <value>Copy 1 | Copy 2 | etc</value>
+    <comment>Name suffix: Copy + Number</comment>
+  </data>
+  <data name="R_SuffixNameCopyA" xml:space="preserve">
+    <value>Copy A | Copy B | etc</value>
+    <comment>Name suffix: Copy + Alpha, Upper Case</comment>
+  </data>
+  <data name="R_SuffixNameNone" xml:space="preserve">
+    <value>None</value>
+    <comment>Name suffix: No Suffix</comment>
+  </data>
+  <data name="R_ShtOpSetCkBx" xml:space="preserve">
+    <value>Checkbox</value>
+  </data>
+  <data name="R_ShtOpSetNumPrefix" xml:space="preserve">
+    <value>.X-</value>
+  </data>
+  <data name="R_SuffixNameAlphaLc" xml:space="preserve">
+    <value>a | b | ... | ab | etc</value>
+    <comment>Name suffix: Alpha, Lower Case</comment>
+  </data>
+  <data name="R_SuffixNameAlphaUc" xml:space="preserve">
+    <value>A | B | ... | AB | etc</value>
+    <comment>Name suffix: Alpha, Upper Case</comment>
+  </data>
+  <data name="R_SuffixNameCustom" xml:space="preserve">
+    <value>Custom: [?]</value>
+    <comment>Name suffix: Custom</comment>
+  </data>
+  <data name="R_SuffixNameNumeric" xml:space="preserve">
+    <value>1 | 2 | ... | etc</value>
+    <comment>Name suffix: Numeric</comment>
+  </data>
+  <data name="R_EnterSuffix" xml:space="preserve">
+    <value>Suffix</value>
+  </data>
+  <data name="R_NewShtFmtTitleDivChars" xml:space="preserve">
+    <value>Divider Chars</value>
+  </data>
+  <data name="R_NewShtFmtTitleOrig" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="R_NewShtFmtTitleSuffix" xml:space="preserve">
+    <value>Suffix</value>
+  </data>
+  <data name="R_ShtOpCurSampleSequence" xml:space="preserve">
+    <value>Sequence #</value>
+  </data>
+  <data name="R_WindowTitleDivChars" xml:space="preserve">
+    <value>Custom Divider Characters</value>
+  </data>
+  <data name="R_EnterDivChars" xml:space="preserve">
+    <value>Divider Characters</value>
+  </data>
+  <data name="R_CharacterInvalid" xml:space="preserve">
+    <value>Invalid Character Entered</value>
+  </data>
+  <data name="R_CharactersInvalid" xml:space="preserve">
+    <value>Invalid characters:</value>
+  </data>
+  <data name="R_WindowTitleSuffix" xml:space="preserve">
+    <value>Custom Suffix</value>
+  </data>
+  <data name="R_OpOptions" xml:space="preserve">
+    <value>Operation Options</value>
+    <comment>in operation options as group box title</comment>
+  </data>
+  <data name="R_OneClickRestore" xml:space="preserve">
+    <value>Restore 
+One Click</value>
+  </data>
+  <data name="R_OneClickSave" xml:space="preserve">
+    <value>Save As 
+One Click</value>
+  </data>
+  <data name="R_SavedRestore" xml:space="preserve">
+    <value>Restore Saved
+Settings</value>
+  </data>
+  <data name="R_Proceed" xml:space="preserve">
+    <value>Proceed</value>
+  </data>
+  <data name="R_TBlkFromSelSheet" xml:space="preserve">
+    <value>&lt;From Selected Sheet&gt;</value>
+  </data>
+  <data name="R_TBlkNone" xml:space="preserve">
+    <value>&lt;no titleblock&gt;</value>
+  </data>
+  <data name="R_ErrCreateSheetFailDesc" xml:space="preserve">
+    <value>Failed to Create the Sheet</value>
+  </data>
+  <data name="R_ErrDupSheetFailDesc" xml:space="preserve">
+    <value>Duplicate Sheet failed\nReason: </value>
+  </data>
+  <data name="R_ErrError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="R_ErrSelectSheetFailDesc" xml:space="preserve">
+    <value>A sheet is not selected\n\nPlease select a sheet to proceed</value>
+  </data>
+  <data name="R_ErrSelShtMainInst" xml:space="preserve">
+    <value>A Sheet Must Be Selected</value>
+  </data>
+  <data name="R_ErrSelShtMainCont" xml:space="preserve">
+    <value>In order to create a new sheet, an existing sheet\nmust be selected.  Please select a sheet or select cancel.</value>
+  </data>
+  <data name="R_FormatSheetNumberUndef" xml:space="preserve">
+    <value>undefined</value>
+  </data>
+  <data name="R_ErrCannotProceed" xml:space="preserve">
+    <value>A serious and unexpected error occurred and I cannot continue.</value>
+  </data>
+  <data name="R_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="R_WindowTitleErrorReport" xml:space="preserve">
+    <value>Error Report</value>
+  </data>
+  <data name="R_ErrEmailTo" xml:space="preserve">
+    <value>Please email this information to:</value>
+  </data>
+  <data name="R_EmailAddress" xml:space="preserve">
+    <value>jeff@cyberstudioapps.com</value>
+  </data>
+  <data name="R_UseSheetParameters" xml:space="preserve">
+    <value>Use parameters from existing sheet</value>
+  </data>
+  <data name="R_Make" xml:space="preserve">
+    <value>Make</value>
+  </data>
+  <data name="R_CannotNameSheet" xml:space="preserve">
+    <value>Cannot derive sheet name</value>
+  </data>
+</root>

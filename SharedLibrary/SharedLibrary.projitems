@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>76028afe-7c9d-4d01-9c7f-6e5890087d89</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedLibrary</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+  <Compile Include="$(MSBuildThisFileDirectory)..\..\LibraryRevit\LibraryRevit\RevitLibrary.cs" >
+	<Link>RevitLibrary.cs</Link>
+  </Compile>
+  <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\CsUtilities.cs" >
+	<Link>CsUtilities.cs</Link>
+  </Compile>
+  <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\MessageUtilities.cs" >
+	<Link>MessageUtilities.cs</Link>
+  </Compile>
+  <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\SettingsMgr.cs" >
+	<Link>SettingsMgr.cs</Link>
+  </Compile>
+  </ItemGroup>
+</Project>

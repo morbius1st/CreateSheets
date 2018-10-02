@@ -1,0 +1,14 @@
+"This option will create new empty sheets using the title block " +
+"indicated and using the \"New Sheet Options\"." + "\n" + "\n" +
+"To create new sheet:" + "\n" +
+"1.  Select \"Create New Sheets\" from the list of Operations" + "\n" +
+"2.  (Optional): Change the \"New Sheet Options\"" + "\n" +
+"3.  (Optional): Indicate the number of copies (maximum is 99)" + "\n" +
+"4.  (Optional): Choose a title block to use for the new sheets." + "\n" +
+"     or choose <no titleblock>" + "\n" + "\n" +
+"Select OK to create the new sheets." + "\n" +
+"Select cancel to not create the new sheets and exit." + "\n" + "\n" +
+"The a new sheet is created one or more times.  The new sheets will be given a " +
+"sheet number and name based on the \"New Sheet Options.\"" + "\n" + "\n" +
+"Undo is supported.  All sheets created in a single operation will be removed " +
+"with a single undo.";

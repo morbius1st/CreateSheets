@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="R_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="R_AddSpaces" xml:space="preserve">
+    <value>Add Space(s)</value>
+  </data>
+  <data name="R_AlphaSuffix" xml:space="preserve">
+    <value>Alpha Suffix</value>
+  </data>
+  <data name="R_AvailSheets" xml:space="preserve">
+    <value>Available Sheets</value>
+    <comment>in sheet list</comment>
+  </data>
+  <data name="R_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="R_Copies" xml:space="preserve">
+    <value>Copies</value>
+    <comment>in operation options</comment>
+  </data>
+  <data name="R_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="R_CreateSheet" xml:space="preserve">
+    <value>Create Empty Sheets</value>
+  </data>
+  <data name="R_DivChars" xml:space="preserve">
+    <value>Divider Characters</value>
+  </data>
+  <data name="R_DupSheet" xml:space="preserve">
+    <value>Duplicate Sheet</value>
+  </data>
+  <data name="R_DupSheetAndViews" xml:space="preserve">
+    <value>Duplicate Sheet and Views</value>
+  </data>
+  <data name="R_Example" xml:space="preserve">
+    <value>Example</value>
+  </data>
+  <data name="R_FromCurrent" xml:space="preserve">
+    <value>From Current</value>
+  </data>
+  <data name="R_GroupChars" xml:space="preserve">
+    <value>Grouping Characters</value>
+  </data>
+  <data name="R_IncSheetName" xml:space="preserve">
+    <value>Increment Sheet Name</value>
+  </data>
+  <data name="R_NewShtNameFormat" xml:space="preserve">
+    <value>New Sheet Name Format</value>
+  </data>
+  <data name="R_None" xml:space="preserve">
+    <value>No Added Characters</value>
+  </data>
+  <data name="R_NoSuffix" xml:space="preserve">
+    <value>No Suffix</value>
+  </data>
+  <data name="R_NewShtNumFormat" xml:space="preserve">
+    <value>New Sheet Number Format</value>
+  </data>
+  <data name="R_NumericSuffix" xml:space="preserve">
+    <value>Numeric Suffix</value>
+  </data>
+  <data name="R_NumFmt" xml:space="preserve">
+    <value>Number Format</value>
+  </data>
+  <data name="R_NumPrefix" xml:space="preserve">
+    <value>Number Prefix</value>
+  </data>
+  <data name="R_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="R_Operation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="R_OtherSuffix" xml:space="preserve">
+    <value>Other Suffix</value>
+  </data>
+  <data name="R_PerSettings" xml:space="preserve">
+    <value>Per Settings</value>
+  </data>
+  <data name="R_Sample" xml:space="preserve">
+    <value>Floor Plan</value>
+  </data>
+  <data name="R_SepGroup" xml:space="preserve">
+    <value>Separation / Grouping Characters</value>
+  </data>
+  <data name="R_SheetName" xml:space="preserve">
+    <value>Sheet Name</value>
+    <comment>in sheet list</comment>
+  </data>
+  <data name="R_SheetNum" xml:space="preserve">
+    <value>Sheet Number</value>
+    <comment>in sheet list</comment>
+  </data>
+  <data name="R_SheetOpts" xml:space="preserve">
+    <value>New Sheet Options</value>
+  </data>
+  <data name="R_UseThisTtlBlk" xml:space="preserve">
+    <value>New Title Block</value>
+    <comment>in operation options</comment>
+  </data>
+  <data name="R_ViewOpts" xml:space="preserve">
+    <value>New View Name Options</value>
+  </data>
+  <data name="R_WindowTitleSelView" xml:space="preserve">
+    <value>Duplicate Sheets</value>
+  </data>
+  <data name="R_SuffixNumNumeric1" xml:space="preserve">
+    <value>0</value>
+    <comment>Number suffix: One digit</comment>
+  </data>
+  <data name="R_SuffixNumNumeric2" xml:space="preserve">
+    <value>00</value>
+    <comment>Number suffix: Two digit</comment>
+  </data>
+  <data name="R_SuffixNumNumeric3" xml:space="preserve">
+    <value>000</value>
+    <comment>Number suffix: Three digit</comment>
+  </data>
+  <data name="R_SuffixNumNumeric4" xml:space="preserve">
+    <value>0000</value>
+    <comment>Number suffix: Four Digit</comment>
+  </data>
+  <data name="R_SuffixNumNumeric5" xml:space="preserve">
+    <value>00000</value>
+    <comment>Number suffix: Five Digit</comment>
+  </data>
+  <data name="R_NewSheetPrefix" xml:space="preserve">
+    <value>New Sheet</value>
+  </data>
+  <data name="R_Zx" xml:space="preserve">
+    <value>End of file</value>
+  </data>
+  <data name="R_DivNone" xml:space="preserve">
+    <value>None</value>
+    <comment>No Divider</comment>
+  </data>
+  <data name="R_DivSpace" xml:space="preserve">
+    <value>Space:  ' '</value>
+    <comment>Space</comment>
+  </data>
+  <data name="R_DivPeriod" xml:space="preserve">
+    <value>Period:  .</value>
+    <comment>Period</comment>
+  </data>
+  <data name="R_DivDash" xml:space="preserve">
+    <value>Dash:  -</value>
+    <comment>Dash</comment>
+  </data>
+  <data name="R_DivCustom" xml:space="preserve">
+    <value>Custom: [?]</value>
+    <comment>Custom</comment>
+  </data>
+  <data name="R_ShtOpCurExample" xml:space="preserve">
+    <value>Example</value>
+  </data>
+  <data name="R_ShtOpCurOrigShtName" xml:space="preserve">
+    <value>Current
+Sheet Name</value>
+  </data>
+  <data name="R_ShtOpCurOrigShtNum" xml:space="preserve">
+    <value>Current
+Sheet Number</value>
+  </data>
+  <data name="R_ShtOpCurSample" xml:space="preserve">
+    <value>Sample</value>
+  </data>
+  <data name="R_ShtOpCurSampleShtName" xml:space="preserve">
+    <value>Sample Sheet Name</value>
+  </data>
+  <data name="R_ShtOpCurSampleShtNum" xml:space="preserve">
+    <value>A01.01-00</value>
+  </data>
+  <data name="R_SuffixNumAlphaLc" xml:space="preserve">
+    <value>a | b | ... | ab | etc</value>
+    <comment>Number suffix: Alpha, Lower Case</comment>
+  </data>
+  <data name="R_SuffixNumAlphaUc" xml:space="preserve">
+    <value>A | B | ... | AB | etc</value>
+    <comment>Number suffix: Alpha, Upper Case</comment>
+  </data>
+  <data name="R_SuffixNameCopy1" xml:space="preserve">
+    <value>Copy 1 | Copy 2 | etc</value>
+    <comment>Name suffix: Copy + Number</comment>
+  </data>
+  <data name="R_SuffixNameCopyA" xml:space="preserve">
+    <value>Copy A | Copy B | etc</value>
+    <comment>Name suffix: Copy + Alpha, Upper Case</comment>
+  </data>
+  <data name="R_SuffixNameNone" xml:space="preserve">
+    <value>None</value>
+    <comment>Name suffix: No Suffix</comment>
+  </data>
+  <data name="R_ShtOpSetCkBx" xml:space="preserve">
+    <value>Checkbox</value>
+  </data>
+  <data name="R_ShtOpSetNumPrefix" xml:space="preserve">
+    <value>.X-</value>
+  </data>
+  <data name="R_SuffixNameAlphaLc" xml:space="preserve">
+    <value>a | b | ... | ab | etc</value>
+    <comment>Name suffix: Alpha, Lower Case</comment>
+  </data>
+  <data name="R_SuffixNameAlphaUc" xml:space="preserve">
+    <value>A | B | ... | AB | etc</value>
+    <comment>Name suffix: Alpha, Upper Case</comment>
+  </data>
+  <data name="R_SuffixNameCustom" xml:space="preserve">
+    <value>Custom: [?]</value>
+    <comment>Name suffix: Custom</comment>
+  </data>
+  <data name="R_SuffixNameNumeric" xml:space="preserve">
+    <value>1 | 2 | ... | etc</value>
+    <comment>Name suffix: Numeric</comment>
+  </data>
+  <data name="R_EnterSuffix" xml:space="preserve">
+    <value>Suffix</value>
+  </data>
+  <data name="R_NewShtFmtTitleDivChars" xml:space="preserve">
+    <value>Divider Chars</value>
+  </data>
+  <data name="R_NewShtFmtTitleOrig" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="R_NewShtFmtTitleSuffix" xml:space="preserve">
+    <value>Suffix</value>
+  </data>
+  <data name="R_ShtOpCurSampleSequence" xml:space="preserve">
+    <value>Sequence #</value>
+  </data>
+  <data name="R_WindowTitleDivChars" xml:space="preserve">
+    <value>Custom Divider Characters</value>
+  </data>
+  <data name="R_EnterDivChars" xml:space="preserve">
+    <value>Divider Characters</value>
+  </data>
+  <data name="R_CharacterInvalid" xml:space="preserve">
+    <value>Invalid Character Entered</value>
+  </data>
+  <data name="R_CharactersInvalid" xml:space="preserve">
+    <value>Invalid characters:</value>
+  </data>
+  <data name="R_WindowTitleSuffix" xml:space="preserve">
+    <value>Custom Suffix</value>
+  </data>
+  <data name="R_OpOptions" xml:space="preserve">
+    <value>Operation Options</value>
+    <comment>in operation options as group box title</comment>
+  </data>
+  <data name="R_OneClickRestore" xml:space="preserve">
+    <value>Restore 
+One Click</value>
+  </data>
+  <data name="R_OneClickSave" xml:space="preserve">
+    <value>Save As 
+One Click</value>
+  </data>
+  <data name="R_SavedRestore" xml:space="preserve">
+    <value>Restore Saved
+Settings</value>
+  </data>
+  <data name="R_Proceed" xml:space="preserve">
+    <value>Proceed</value>
+  </data>
+</root>

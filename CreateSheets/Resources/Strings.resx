@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="R_ButtonNameBott" xml:space="preserve">
+    <value>Sheets</value>
+  </data>
+  <data name="R_ButtonNameTop" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="R_CommandDescription" xml:space="preserve">
+    <value>Duplicate Existing Sheet</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="R_HelpCreateSheets" xml:space="preserve">
+    <value>This option will create new empty sheets using the title block indicated and using the "New Sheet Options".
+
+To create new sheet:
+1.  Select "Create New Sheets" from the list of Operations
+2.  (Optional): Change the "New Sheet Options"
+3.  (Optional): Indicate the number of copies (maximum is 99)
+4.  (Optional): Choose a title block to use for the new sheets.
+    or choose &lt;no titleblock&gt;
+
+Select OK to create the new sheets.
+Select cancel to not create the new sheets and exit.
+
+The a new sheet is created one or more times.  The new sheets will be given a sheet number and name based on the "New Sheet Options."
+
+Undo is supported.  All sheets created in a single operation will be removed with a single undo.</value>
+  </data>
+  <data name="R_HelpDuplicateSheet" xml:space="preserve">
+    <value>This option will duplicate an existing sheet and all of the elements contained on the sheet, within the limitations set by Revit®.  That is, any element that can only occur once on a sheet (e.g. floor plan view) will not be copied - the other elements are copied to a location matching the orignial location.  Also, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original. 
+
+If the current view is a sheet, the sheet is pre-selected as the sheet to be duplicated.
+
+To duplicate a sheet:
+1.  (Optional): Open a sheet view
+2.  Select "Duplicate Sheet" from the list of Operations
+3.  (Optional): Set the "New Sheet Options"
+4.  Select a sheet to be duplicated
+5.  (Optional): Indicate the number of copies (maximum is 99)
+6.  (Optional): Choose a title block to use for the new sheets.
+     The default is the same title block from the sheet 
+     being duplicated
+
+Select OK to duplicate the sheet.
+Select cancel to not duplicate the sheet and exit.
+
+The selected sheet is duplicated one or more times.  The duplicates will be given a sheet number and name based on the "New Sheet Options."
+
+The sheet's parameters, including custom parameters, from the original sheet are duplicated.
+
+Undo is supported.  All sheets duplicated in a single operation will be removed with a single undo.</value>
+  </data>
+  <data name="R_HelpDuplicateSheetAndViews" xml:space="preserve">
+    <value>This option is identical to the "Duplicate Sheet" option except that views restricted to placement on a single sheet will be copied, with detailing, and the view copy will be placed on the newly duplicated sheet.  Again, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original.
+
+If the current view is a sheet, the sheet is pre-selected as the sheet to be duplicated.
+
+To duplicate a sheet and views:
+1.  (Optional): Open a sheet view
+2.  Select "Duplicate Sheet and Views" from the list of Operations
+3.  (Optional): Set the "New Sheet Options"
+4.  (Optional): Set the "New View Name Options"
+5.  Select a sheet to be duplicated
+6.  (Optional): Indicate the number of copies (maximum is 99)
+7.  (Optional): Choose a title block to use for the new sheets.
+     The default is the same title block from the sheet 
+     being duplicated
+
+Select OK to duplicate the sheet and views.
+Select cancel to not duplicate the sheet and exit.
+
+The selected sheet and views will be duplicated one or more times.  The duplicate sheet(s) will be given a sheet number and name based on the "New Sheet Options."  The duplicated views will be given a name based on the "New View Name Options."
+
+The sheet's parameters, including custom parameters, from the original sheet are duplicated.
+
+Undo is supported.  All sheets duplicated in a single operation will be removed with a single undo.</value>
+  </data>
+  <data name="R_MsgButtonFailDesc" xml:space="preserve">
+    <value>Duplicate Sheet Warning</value>
+  </data>
+  <data name="R_MsgButtonFailTitle" xml:space="preserve">
+    <value>Failed to Add Button!</value>
+  </data>
+  <data name="R_PanelName" xml:space="preserve">
+    <value>AO Tools</value>
+  </data>
+  <data name="R_TabName" xml:space="preserve">
+    <value>AO Tools</value>
+  </data>
+</root>

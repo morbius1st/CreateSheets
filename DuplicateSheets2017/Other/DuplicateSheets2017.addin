@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+<!--  <AddIn Type="Command">-->
+<!--    <Text>Command DuplicateSheets2017</Text>-->
+<!--    <Description>Some description for DuplicateSheets2017</Description>-->
+<!--    <Assembly>DuplicateSheets2017.dll</Assembly>-->
+<!--    <FullClassName>DuplicateSheets2017.Command</FullClassName>-->
+<!--    <ClientId>72f8e51e-d8ed-42bf-8668-b77020aaa88e</ClientId>-->
+<!--    <VendorId>com.typepad.thebuildingcoder</VendorId>-->
+<!--    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>-->
+<!--  </AddIn>-->
+  <AddIn Type="Application">
+    <Name>Application DuplicateSheets</Name>
+    <Description>Create and Duplicate Sheets</Description>
+    <Assembly>DuplicateSheets2017.dll</Assembly>
+    <FullClassName>SharedCode.ApplicationRibbon</FullClassName>
+    <ClientId>48bff096-3281-493e-9362-1c84a1cc41de</ClientId>
+    <VendorId>CSTU</VendorId>
+    <VendorDescription>CyberStudio</VendorDescription>
+  </AddIn>
+</RevitAddIns>
