@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using SharedCode.Resources;
-using SharedResources;
 using View = Autodesk.Revit.DB.View;
 
 using static UtilityLibrary.MessageUtilities2;
@@ -38,7 +36,7 @@ namespace SharedCode
 		// save the list of ViewSheets
 		private static FilteredElementCollector _vs;
 
-		private bool _copySingleSheetViews;
+//		private bool _copySingleSheetViews;
 
 		// a list of all sheet numbers - lower case
 		private string[] _sheetNumberList;
@@ -145,86 +143,6 @@ namespace SharedCode
 #endif
 
 
-//		#region + Create Empty SheetsDebugInfo1DebugInfo1
-//
-//		/// <summary>
-//		/// create 1 or more empty sheets depending on 'copies'
-//		/// </summary>
-//		/// <param name="nsf"></param>
-//		//		public void CreateEmptySheets(string tbName, int copies, string strShtNumPrefix, 
-//		//			string strShtNumFormat, string strShtNamePrefix, bool incSheetName)
-//		//		public void CreateEmptySheets(string tbName, int copies)
-//		//		{
-//		//			this.SheetNumPrefix = strShtNumPrefix;
-//		//			this.SheetNumFormat = strShtNumFormat;
-//		//			this.SheetNamePrefix = strShtNamePrefix;
-//		public bool CreateEmptySheets(NewSheetFormat nsf)
-//		{
-//			if (nsf.TitleBlockName == null) return false;
-//			//string message;
-//			string shtNumber = null;
-//			string shtName = null;
-//
-//			int shtNumIdx = 0;
-//
-//			// create sheets one at a time for the number of copies to be made
-//			for (int i = 1; i <= nsf.Copies; i++)
-//			{
-//
-//				switch (nsf.NewSheetOption)
-//				{
-//				case RbNewShtOptions.PerSettings:
-//					{
-//						// determine a valid sheet number index
-//						shtNumIdx = FindNextSheetNumber(shtNumIdx);
-//						// format the sheet number
-//						shtNumber = FormatSheetNumber(shtNumIdx);
-//						// at this point we have a valid sheet number
-//						// create a sheet name
-//						// note the the sheet number index may not equal the
-//						// sheet name index
-//						shtName = nsf.SheetFormatPerSetting.SheetNamePrefix;
-//
-//						if (nsf.SheetFormatPerSetting.IncSheetName)
-//						{
-//							shtName += " " + i.ToString(cbi.FindTitleByCode(nsf.SheetFormatPerSetting.CbxSelItem[(int)CbxType.SET_NUMSUFX]));
-//						}
-//
-//						break;
-//					}
-//				case RbNewShtOptions.FromCurrent:
-//					{
-//						break;
-//					}
-//				}
-//
-//				// create a sheet based on the above 
-//				try
-//				{
-////					CreateOneEmptySheet(shtNumber, shtName, nsf.TitleBlockName, nsf.UseParameters);
-//					CreateOneEmptySheet(shtNumber, shtName, nsf.TitleBlockName, false);
-//
-//					// refresh the list of sheet numbers after making
-//					// a new sheet
-//					GetAllSheetNumbers();
-//				}
-//				catch (Exception e)
-//				{
-//					MessageBox.Show(e.Message,
-//						LocalResMgr.AppName,
-//						MessageBoxButtons.OK,
-//						MessageBoxIcon.Error,
-//						MessageBoxDefaultButton.Button1);
-//					break;
-//				}
-//				// go again depending on copies
-//			}
-//
-//			return true;
-//		}
-//
-//		#endregion
-
 		#region + Create One Sheet
 
 		// create a single blank sheet with a title block - if
@@ -256,121 +174,13 @@ namespace SharedCode
 
 			if (nsf.UseParameters && nsf.SelectedSheet.SheetView != null)
 			{
-				CopyParameters(nsf.SelectedSheet.SheetView, vsDestinationSheet);
+				CopyParameters(nsf.SelectedViewSheet, vsDestinationSheet);
 			}
 
 			return vsDestinationSheet;
 		}
-//
-//		/// <summary>
-//		/// Create a new empty sheet (ViewSheet)
-//		/// </summary>
-//		/// <param name="shtNumber">The new sheet number</param>
-//		/// <param name="shtName">The new sheet name</param>
-//		/// <param name="tbName">The title block for the new sheet</param>
-//		/// <returns>a reference to the new viewsheet</returns>
-//		public ViewSheet CreateOneEmptySheet(string shtNumber, string shtName, string tbName, bool copyParameters)
-//		{
-//
-//			ViewSheet vsDestinationSheet;
-//
-//			ElementId tbId = ElementId.InvalidElementId;
-//
-//			if (tbName != null)
-//			{
-//				tbId = GetTitleBlockFs(tbName).Id;
-//			}
-//
-//			// create a sheet
-//			vsDestinationSheet = ViewSheet.Create(_doc, tbId);
-//
-//			if (vsDestinationSheet == null)
-//			{
-//				throw new Exception(AppStrings.R_ErrCreateSheetFailDesc);
-//			}
-//
-//			// give the new sheet a number and name
-//			vsDestinationSheet.SheetNumber = shtNumber;
-//			vsDestinationSheet.Name        = shtName;
-//
-//			return vsDestinationSheet;
-//
-//		}
-//
+
 		#endregion
-
-
-//		#region + Duplicate Sheet
-//
-//		/// <summary>
-//
-//		/// duplicate a sheet 1 or more times depending on 'copies'
-//		/// </summary>
-//		/// <param name="vs">The ViewSheet to copy</param>
-//		/// <param name="tbName">The Name of the Title Block to use for the new sheets</param>
-//		/// <param name="copies">The number of copies to make</param>
-//		//		public void DuplicateSheet(ViewSheet vs, string tbName, int copies, string strShtNumPrefix, 
-//		//			string strShtNumFormat, string strShtNamePrefix, bool incSheetName, bool copySingleSheetViews)
-//		public void DuplicateSheet(ViewSheet vs, string tbName, int copies, bool copySingleSheetViews)
-//		{
-////			this.SheetNumPrefix = strShtNumPrefix;
-////			this.SheetNumFormat = strShtNumFormat;
-////			this.SheetNamePrefix = strShtNamePrefix;
-//
-//			_copySingleSheetViews = copySingleSheetViews;
-//
-//			string shtNumber;
-//			string shtName;
-//
-//			int shtNumIdx = 0;
-//
-//			// need to duplicate the sheets, one at a time, for the number of copies
-//			for (int i = 1; i <= copies; i++)
-//			{
-//				// determine a valid sheet number index
-//				shtNumIdx = FindNextSheetNumber(shtNumIdx);
-//
-//				// format the sheet number
-//				shtNumber = FormatSheetNumber(shtNumIdx);
-//
-//				// at thie point we have a valid sheet number
-//				// create a sheet name
-//				// note the the sheet number index may not equal the
-//				// sheet name index
-//				shtName = SheetNamePrefix;
-//
-//				if (SheetNameIncrement)
-//				{
-//					shtName += " " + i.ToString(SheetNumFormat);
-//				}
-//				
-//				try
-//				{
-//					DuplicateOneSheet(shtNumber, shtName, tbName, vs);
-//
-//					// refresh the list of sheet numbers after
-//					// creating a new sheet
-//					GetAllSheetNumbers();
-//
-//				}
-//				catch (Exception e)
-//				{
-//					MessageBox.Show(e.Message,
-//						LocalResMgr.AppName,
-//						MessageBoxButtons.OK,
-//						MessageBoxIcon.Error,
-//						MessageBoxDefaultButton.Button1);
-//
-//					throw;
-//				}
-//
-//
-//
-//			}
-//
-//		}
-//
-//		#endregion
 
 		#region + Duplicate One Sheet
 
@@ -406,13 +216,7 @@ namespace SharedCode
 
 			// first, get a collection of elements that exist on the source sheet
 			FilteredElementCollector colViewSheet = 
-				new FilteredElementCollector(_doc, nsf.SelectedSheet.SheetView.Id);
-
-
-			FilteredElementCollector test =
-				new FilteredElementCollector(_doc).OfCategory(BuiltInCategory.OST_ViewportLabel);
-
-
+				new FilteredElementCollector(_doc, (nsf.SelectedViewSheet).Id);
 
 			// prepare for the elements to "copy" and "paste"
 			ICollection<ElementId> copyIds = new List<ElementId>();
@@ -423,35 +227,12 @@ namespace SharedCode
 				// in order to copy detail lines directly onto the sheet, we need to 
 				// setup a SketchPlane on the "blank" sheet
 
-//				XYZ ptStart = new XYZ(0, 0, 0);
-//				XYZ ptEnd   = new XYZ(3, 3, 0);
-//
-//				// create a "line" between these points
-//				Line line = Line.CreateBound(ptStart, ptEnd);
-//
-//				XYZ ptOrigin = new XYZ(0, 0, 0);
-//				XYZ ptNormal = new XYZ(1, 1, 0);
-//
-//				// create a new "plane"
-//				Plane plane = Plane.CreateByNormalAndOrigin(ptNormal, ptOrigin);
-//
-//				// create a new sketchplane in the document
-//				SketchPlane sketch = SketchPlane.Create(_doc, plane);
-//
-//				// create a detail "line" in the destination ViewSheet - this creates the new SketchPlane
-//				// in the ViewSheet
-//				DetailLine tempDetailLine = _doc.Create.NewDetailCurve(vsDestinationSheet, line) as DetailLine;
-//
-//				// the detail line created was just to create the SketchPlane in the ViewSheet
-//				// it was temporary - now delete the temporary line
-//				_doc.Delete(tempDetailLine.Id);
-
-
 				SketchPlane sketch = CreateSketchPlane(vsDestinationSheet);
-
 
 				List<Viewport> vpList       = new List<Viewport>(10);
 				List<Viewport> vpListNoCopy = new List<Viewport>(10);
+
+				copyIds.Clear();
 
 				// the ViewSheet has been setup to copy / paste or duplicate the elements
 				// held by the ViewSheet - with the exceptions that ViewPorts cannot be copied
@@ -465,31 +246,6 @@ namespace SharedCode
 					if (sourceElem.Category.Id == _cats.get_Item(BuiltInCategory.OST_TitleBlocks).Id)
 					{
 						ConfigureNewTitleBlock(sourceElem, vsDestinationSheet);
-
-//						// relocate the new title block to match the location of the original
-//						// title block - get the Instance of the new title block
-//						FamilyInstance tbInstance = GetTitleBlockFiFromSheet(vsDestinationSheet);
-//
-//						// if the Instance is null - there is no title block to move
-//						// skip this part
-//						if (tbInstance != null)
-//						{
-//							// get the location of the original title block
-//							LocationPoint locSource = el.Location as LocationPoint;
-//
-//							// get the location of the new title block
-//							LocationPoint locDestination = tbInstance.Location as LocationPoint;
-//
-//							// calculate the move vector
-//							XYZ xyzVector = new XYZ(locSource.Point.X - locDestination.Point.X,
-//								locSource.Point.Y                     - locDestination.Point.Y, 0);
-//
-//							// move the title block - if this fails - don't care
-//							tbInstance.Location.Move(xyzVector);
-//
-//							// copy the titleblock's parameters
-//							CopyParameters(el, _doc.GetElement(tbInstance.Id));
-//						}
 						continue;
 					}
 
@@ -510,13 +266,14 @@ namespace SharedCode
 						continue;
 					}
 
-					// continue with not viewport items
-					copyIds.Clear();
+					// process a not viewport items
 					copyIds.Add(sourceElem.Id);
+				}
 
-					// perform the actual "copy" of the ViewSheet element from the source to the destination
-					// 1 element at a time
-					ElementTransformUtils.CopyElements(nsf.SelectedSheet.SheetView, copyIds, vsDestinationSheet,
+				// preform the actual copy of the elements
+				if (copyIds.Count > 0)
+				{
+					ElementTransformUtils.CopyElements((ViewSheet) nsf.SelectedSheet.SheetView, copyIds, vsDestinationSheet,
 						Transform.Identity, new CopyPasteOptions());
 				}
 
@@ -1012,7 +769,7 @@ namespace SharedCode
 
 			if (nsf.TitleBlockName.Equals(AppStrings.R_TBlkFromSelSheet))
 			{
-				result = GetTitleBlockFromSheet(nsf.SelectedSheet.SheetView);
+				result = GetTitleBlockFromSheet(nsf.SelectedViewSheet);
 			}
 			else if (nsf.TitleBlockName.Equals(AppStrings.R_TBlkNone))
 			{

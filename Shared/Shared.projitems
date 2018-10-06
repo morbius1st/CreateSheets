@@ -14,8 +14,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ShData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShDBMgr.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShNewSheetMgr.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ShSheetData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShIdeMgr.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShSheetData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShSheetDataList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShUtil.cs" />
   </ItemGroup>
 </Project>

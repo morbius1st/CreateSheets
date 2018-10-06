@@ -234,9 +234,9 @@ namespace SharedCode.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Create Empty Sheets.
         /// </summary>
-        public static string R_CreateSheet {
+        public static string R_CreateSheets {
             get {
-                return ResourceManager.GetString("R_CreateSheet", resourceCulture);
+                return ResourceManager.GetString("R_CreateSheets", resourceCulture);
             }
         }
         
@@ -487,13 +487,22 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Empty Sheets.
+        /// </summary>
+        public static string R_HelpCreateSheetsTitle {
+            get {
+                return ResourceManager.GetString("R_HelpCreateSheetsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This option will duplicate an existing sheet and all of the elements contained on the sheet, within the limitations set by Revit®.  That is, any element that can only occur once on a sheet (e.g. floor plan view) will not be copied - the other elements are copied to a location matching the orignial location.  Also, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original. 
         ///
         ///If the current view is a sheet, the sheet is pre-selected as the sheet to  [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string R_HelpDuplicateSheet {
+        public static string R_HelpDupSheet {
             get {
-                return ResourceManager.GetString("R_HelpDuplicateSheet", resourceCulture);
+                return ResourceManager.GetString("R_HelpDupSheet", resourceCulture);
             }
         }
         
@@ -506,9 +515,171 @@ namespace SharedCode.Resources {
         ///1.  (Optional): Open a sheet view
         ///2.  Select [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string R_HelpDuplicateSheetAndViews {
+        public static string R_HelpDupSheetAndViews {
             get {
-                return ResourceManager.GetString("R_HelpDuplicateSheetAndViews", resourceCulture);
+                return ResourceManager.GetString("R_HelpDupSheetAndViews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Sheet and Views.
+        /// </summary>
+        public static string R_HelpDupSheetAndViewsTitle {
+            get {
+                return ResourceManager.GetString("R_HelpDupSheetAndViewsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Sheet.
+        /// </summary>
+        public static string R_HelpDupSheetTitle {
+            get {
+                return ResourceManager.GetString("R_HelpDupSheetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Current Help.
+        /// </summary>
+        public static string R_HelpFromCurr {
+            get {
+                return ResourceManager.GetString("R_HelpFromCurr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Current Name Format Help.
+        /// </summary>
+        public static string R_HelpFromCurrNameFmt {
+            get {
+                return ResourceManager.GetString("R_HelpFromCurrNameFmt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Current Name Format.
+        /// </summary>
+        public static string R_HelpFromCurrNameFmtTitle {
+            get {
+                return ResourceManager.GetString("R_HelpFromCurrNameFmtTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Current Number Format Help.
+        /// </summary>
+        public static string R_HelpFromCurrNumFmt {
+            get {
+                return ResourceManager.GetString("R_HelpFromCurrNumFmt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Current Number Format.
+        /// </summary>
+        public static string R_HelpFromCurrNumFmtTitle {
+            get {
+                return ResourceManager.GetString("R_HelpFromCurrNumFmtTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Current.
+        /// </summary>
+        public static string R_HelpFromCurrTitle {
+            get {
+                return ResourceManager.GetString("R_HelpFromCurrTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Settings Help.
+        /// </summary>
+        public static string R_HelpPerSetg {
+            get {
+                return ResourceManager.GetString("R_HelpPerSetg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Settings Name Format Help.
+        /// </summary>
+        public static string R_HelpPerSetgNameFmt {
+            get {
+                return ResourceManager.GetString("R_HelpPerSetgNameFmt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Settings Name Format.
+        /// </summary>
+        public static string R_HelpPerSetgNameFmtTitle {
+            get {
+                return ResourceManager.GetString("R_HelpPerSetgNameFmtTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Settings Number Format Help.
+        /// </summary>
+        public static string R_HelpPerSetgNumFmt {
+            get {
+                return ResourceManager.GetString("R_HelpPerSetgNumFmt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Settings Number Format.
+        /// </summary>
+        public static string R_HelpPerSetgNumFmtTitle {
+            get {
+                return ResourceManager.GetString("R_HelpPerSetgNumFmtTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Settings.
+        /// </summary>
+        public static string R_HelpPerSetgTitle {
+            get {
+                return ResourceManager.GetString("R_HelpPerSetgTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Re-use exiting parameters help.
+        /// </summary>
+        public static string R_HelpUseParams {
+            get {
+                return ResourceManager.GetString("R_HelpUseParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Re-use exiting parameters.
+        /// </summary>
+        public static string R_HelpUseParamsTitle {
+            get {
+                return ResourceManager.GetString("R_HelpUseParamsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use this title block help.
+        /// </summary>
+        public static string R_HelpUseThisTblk {
+            get {
+                return ResourceManager.GetString("R_HelpUseThisTblk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use this title block.
+        /// </summary>
+        public static string R_HelpUseThisTblkTitle {
+            get {
+                return ResourceManager.GetString("R_HelpUseThisTblkTitle", resourceCulture);
             }
         }
         

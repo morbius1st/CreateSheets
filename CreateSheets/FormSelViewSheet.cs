@@ -355,14 +355,14 @@ namespace CreateSheets
 		{
 //			showHelpMessage(Properties.Resources.HelpDuplicateSheet, "Duplicate Sheet");
 
-			TaskDialog.Show("Duplicate Sheet", AppStrings.R_HelpDuplicateSheet);
+			TaskDialog.Show("Duplicate Sheet", AppStrings.R_HelpDupSheet);
 		}
 
 		private void btnHelpDupSheetsAndViews_Click(object sender, EventArgs e)
 		{
 //			showHelpMessage(Properties.Resources.HelpDuplicateSheetAndViews, "Duplicate Sheet and Views");
 
-			TaskDialog.Show("Duplicate Sheet and Views", AppStrings.R_HelpDuplicateSheetAndViews);
+			TaskDialog.Show("Duplicate Sheet and Views", AppStrings.R_HelpDupSheetAndViews);
 		}
 
 		private void btnCreateSheetHelp_Click(object sender, EventArgs e)

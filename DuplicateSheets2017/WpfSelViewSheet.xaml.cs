@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using Autodesk.Revit.DB;
 using ComboBox = System.Windows.Controls.ComboBox;
 using Autodesk.Revit.UI;
@@ -15,10 +16,8 @@ using static SharedCode.CbxItemCode;
 using SharedCode;
 using SharedCode.Resources;
 using SharedResources;
-using static SharedCode.SheetDataList;
+using static SharedCode.ShSheetDataList;
 using static SharedCode.ShNewSheetMgr;
-
-
 
 using Binding = System.Windows.Data.Binding;
 
@@ -54,7 +53,6 @@ namespace DuplicateSheets2017
 
 		private int _copies;
 		private bool _initalized;
-		
 
 		public SharedCode.ShData shData = new SharedCode.ShData();
 
@@ -857,6 +855,15 @@ namespace DuplicateSheets2017
 
 		// *******************  control routines ************************ //
 
+
+		private void winSelViewSheet_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			if (e.Key == Key.F1)
+			{
+				System.Diagnostics.Process.Start(@"http://www.cyberstudioapps.com/index.html");
+			}
+		}
+
 		private void btnProceed_Click(object sender, RoutedEventArgs e)
 		{
 			// save the current settings first
@@ -893,11 +900,6 @@ namespace DuplicateSheets2017
 			DialogResult = true;
 
 		}
-//
-//		private void btnCancel_Click(object sender, RoutedEventArgs e)
-//		{
-//			DialogResult = false;
-//		}
 
 		// save the one click settings
 		private void btnOneClickSave_Click(object sender, RoutedEventArgs e)
@@ -935,6 +937,13 @@ namespace DuplicateSheets2017
 			SaveSettings();
 		}
 
+		public void btnHelp_Click(object sender, RoutedEventArgs e)
+		{
+			string resource = (string) ((Button) sender).Tag;
+
+			ShUtil.ShowHelpMessage(resource);
+
+		}
 
 		private void cbxCurNumDvChars_DropDownClosed(object sender, EventArgs e)
 		{

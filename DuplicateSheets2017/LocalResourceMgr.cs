@@ -1,12 +1,8 @@
 ﻿#region Using directives
 
-using DuplicateSheets2017.Resources;
-using SharedResources;
 using static DuplicateSheets2017.Resources.AppLocalStrings;
-using static SharedCode.ShUtil;
 
-
-
+using Autodesk.Revit.DB;
 
 #endregion
 

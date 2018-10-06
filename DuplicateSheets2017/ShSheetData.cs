@@ -14,18 +14,18 @@ using Autodesk.Revit.DB;
 // created:  8/15/2018 10:15:06 PM
 
 
-namespace SharedCode
+namespace DuplicateSheets2017
 {
 	public class SheetData : INotifyPropertyChanged, 
 		IComparable<SheetData>, IComparer<SheetData>
 	{
 		private string _sheetNumber = String.Empty;
 		private string _sheetName = String.Empty;
-		private object _sheetView = null;
+		private ViewSheet _sheetView = null;
 
 		public SheetData() {}
 
-		public SheetData(string number, string name, object view)
+		public SheetData(string number, string name, ViewSheet view)
 		{
 			SheetNumber = number;
 			SheetName = name;
@@ -58,7 +58,7 @@ namespace SharedCode
 			}
 		}
 
-		public object SheetView
+		public ViewSheet SheetView
 		{
 			get => _sheetView;
 			set

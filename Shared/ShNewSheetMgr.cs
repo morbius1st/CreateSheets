@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 using Autodesk.Revit.DB;
 using SharedCode.Resources;
 using static SharedCode.CbxItemCode;
-
-
-
 
 namespace SharedCode
 {
@@ -242,10 +237,11 @@ namespace SharedCode
 
 		public int Copies;
 		public string TitleBlockName;
-		public SheetData SelectedSheet;
 		public string newSheetNumber;
 		public string newSheetName;
-//		public ViewSheet vs;
+		public ViewSheet SelectedViewSheet;
+		public string SelectedShtName;
+		public string SelecedShtNumber;
 
 		[DataMember (Order = 1)]
 		public OperOpType OperationOption { get; set; } = OperOpType.DupSheetAndViews;
@@ -265,6 +261,17 @@ namespace SharedCode
 		public NewSheetFormat(bool defined)
 		{
 			Defined = defined;
+		}
+
+		public SheetData SelectedSheet
+		{
+			get { return new SheetData(SelecedShtNumber, SelectedShtName, SelectedViewSheet); }
+			set
+			{
+				SelectedViewSheet = (ViewSheet) value.SheetView;
+				SelecedShtNumber = value.SheetNumber;
+				SelectedShtName = value.SheetName;
+			}
 		}
 	}
 

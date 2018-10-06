@@ -8,6 +8,8 @@ namespace SharedCode
 {
 	public class ShData
 	{
+		public static int test = 0;
+
 		public string[] CustomLabel =
 		{
 			R_EnterDivChars, // num div chars
@@ -22,6 +24,24 @@ namespace SharedCode
 			R_WindowTitleDivChars,
 			R_WindowTitleSuffix
 		};
+	}
+
+	public static class ShConst
+	{
+		public const string HELP_DUP_VIEWS_AND_SHEETS	= "Help 01";
+		public const string HELP_DUP_SHEETS             = "Help 02";
+		public const string HELP_CREATE_SHEETS          = "Help 03";
+
+		public const string HELP_PER_SETTINGS           = "Help 11";
+		public const string HELP_NEW_NUM_FMT_PER_SETG   = "Help 12";
+		public const string HELP_NEW_NAME_FMT_PER_SETG  = "Help 13";
+		
+		public const string HELP_FROM_CURRENT           = "Help 21";
+		public const string HELP_NEW_NUM_FMT_FROM_CURR  = "Help 22";
+		public const string HELP_NEW_NAME_FMT_FROM_CURR = "Help 23";
+
+		public const string HELP_USE_THIS_TBLK          = "Help 51";
+		public const string HELP_USE_PARAMS             = "Help 52";
 	}
 
 	public enum RbNewShtOptions

@@ -167,7 +167,7 @@ The a new sheet is created one or more times.  The new sheets will be given a sh
 
 Undo is supported.  All sheets created in a single operation will be removed with a single undo.</value>
   </data>
-  <data name="R_HelpDuplicateSheet" xml:space="preserve">
+  <data name="R_HelpDupSheet" xml:space="preserve">
     <value>This option will duplicate an existing sheet and all of the elements contained on the sheet, within the limitations set by Revit®.  That is, any element that can only occur once on a sheet (e.g. floor plan view) will not be copied - the other elements are copied to a location matching the orignial location.  Also, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original. 
 
 If the current view is a sheet, the sheet is pre-selected as the sheet to be duplicated.
@@ -191,7 +191,7 @@ The sheet's parameters, including custom parameters, from the original sheet are
 
 Undo is supported.  All sheets duplicated in a single operation will be removed with a single undo.</value>
   </data>
-  <data name="R_HelpDuplicateSheetAndViews" xml:space="preserve">
+  <data name="R_HelpDupSheetAndViews" xml:space="preserve">
     <value>This option is identical to the "Duplicate Sheet" option except that views restricted to placement on a single sheet will be copied, with detailing, and the view copy will be placed on the newly duplicated sheet.  Again, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original.
 
 If the current view is a sheet, the sheet is pre-selected as the sheet to be duplicated.
@@ -248,22 +248,22 @@ Undo is supported.  All sheets duplicated in a single operation will be removed 
     <value>Copies</value>
     <comment>in operation options</comment>
   </data>
-  <data name="R_CreateSheet" xml:space="preserve">
+  <data name="R_HelpCreateSheetsTitle" xml:space="preserve">
     <value>Create Empty Sheets</value>
   </data>
   <data name="R_DivChars" xml:space="preserve">
     <value>Divider Characters</value>
   </data>
-  <data name="R_DupSheet" xml:space="preserve">
+  <data name="R_HelpDupSheetTitle" xml:space="preserve">
     <value>Duplicate Sheet</value>
   </data>
-  <data name="R_DupSheetAndViews" xml:space="preserve">
+  <data name="R_HelpDupSheetAndViewsTitle" xml:space="preserve">
     <value>Duplicate Sheet and Views</value>
   </data>
   <data name="R_Example" xml:space="preserve">
     <value>Example</value>
   </data>
-  <data name="R_FromCurrent" xml:space="preserve">
+  <data name="R_HelpFromCurrTitle" xml:space="preserve">
     <value>From Current</value>
   </data>
   <data name="R_GroupChars" xml:space="preserve">
@@ -302,7 +302,7 @@ Undo is supported.  All sheets duplicated in a single operation will be removed 
   <data name="R_OtherSuffix" xml:space="preserve">
     <value>Other Suffix</value>
   </data>
-  <data name="R_PerSettings" xml:space="preserve">
+  <data name="R_HelpPerSetgTitle" xml:space="preserve">
     <value>Per Settings</value>
   </data>
   <data name="R_Sample" xml:space="preserve">
@@ -533,5 +533,62 @@ Settings</value>
   </data>
   <data name="R_CannotNameSheet" xml:space="preserve">
     <value>Cannot derive sheet name</value>
+  </data>
+  <data name="R_HelpPerSetg" xml:space="preserve">
+    <value>Per Settings Help</value>
+  </data>
+  <data name="R_HelpPerSetgNumFmtTitle" xml:space="preserve">
+    <value>Per Settings Number Format</value>
+  </data>
+  <data name="R_HelpPerSetgNumFmt" xml:space="preserve">
+    <value>Per Settings Number Format Help</value>
+  </data>
+  <data name="R_HelpPerSetgNameFmtTitle" xml:space="preserve">
+    <value>Per Settings Name Format</value>
+  </data>
+  <data name="R_HelpPerSetgNameFmt" xml:space="preserve">
+    <value>Per Settings Name Format Help</value>
+  </data>
+  <data name="R_HelpFromCurr" xml:space="preserve">
+    <value>From Current Help</value>
+  </data>
+  <data name="R_HelpFromCurrNumFmtTitle" xml:space="preserve">
+    <value>From Current Number Format</value>
+  </data>
+  <data name="R_HelpFromCurrNumFmt" xml:space="preserve">
+    <value>From Current Number Format Help</value>
+  </data>
+  <data name="R_HelpFromCurrNameFmtTitle" xml:space="preserve">
+    <value>From Current Name Format</value>
+  </data>
+  <data name="R_HelpFromCurrNameFmt" xml:space="preserve">
+    <value>From Current Name Format Help</value>
+  </data>
+  <data name="R_HelpUseThisTblkTitle" xml:space="preserve">
+    <value>Use this title block</value>
+  </data>
+  <data name="R_HelpUseThisTblk" xml:space="preserve">
+    <value>Use this title block help</value>
+  </data>
+  <data name="R_HelpUseParamsTitle" xml:space="preserve">
+    <value>Re-use exiting parameters</value>
+  </data>
+  <data name="R_HelpUseParams" xml:space="preserve">
+    <value>Re-use exiting parameters help</value>
+  </data>
+  <data name="R_CreateSheets" xml:space="preserve">
+    <value>Create Empty Sheets</value>
+  </data>
+  <data name="R_DupSheet" xml:space="preserve">
+    <value>Duplicate Sheet</value>
+  </data>
+  <data name="R_DupSheetAndViews" xml:space="preserve">
+    <value>Duplicate Sheet and Views</value>
+  </data>
+  <data name="R_FromCurrent" xml:space="preserve">
+    <value>From Current</value>
+  </data>
+  <data name="R_PerSettings" xml:space="preserve">
+    <value>Per Settings</value>
   </data>
 </root>
