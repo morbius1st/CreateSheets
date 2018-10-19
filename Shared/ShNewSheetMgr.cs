@@ -1,25 +1,25 @@
 ﻿using System;
-using System.Runtime.Serialization;
-using Autodesk.Revit.DB;
 using SharedCode.Resources;
-using static SharedCode.CbxItemCode;
+using static SharedCode.ShNamePartItemCode;
 
 namespace SharedCode
 {
 	public static class ShNewSheetMgr 
 	{
+		private static ShNamePartItemsTables npit = ShNamePartItemsTables.Instance;
+
 
 		// format a sheet number
 
 		// per settings
-		public static string FormatShtNumber(string prefix, string format, int seq)
+		public static string FormatShtNumber(string prefix, ShNamePartItemCode code, int seq)
 		{
-			return prefix + seq.ToString(format);
+			return prefix + FormatPsSeq(code, seq);
 		}
 
 		// for from current
-		public static string FormatShtNumber( string origShtNum,
-			CbxItemCode divCode, string customDivider, CbxItemCode suffixCode,
+		public static string FormatShtNumber(string origShtNum,
+			ShNamePartItemCode divCode, string customDivider, ShNamePartItemCode suffixCode,
 			int seq)
 		{
 			string divider = customDivider;
@@ -34,13 +34,14 @@ namespace SharedCode
 		// format a sheet name
 
 		// per settings
-		public static string FormatShtName(string name, bool inc, int seq)
+		public static string FormatShtName(string name, bool inc, 
+			ShNamePartItemCode code, int seq)
 		{
 			string result = name;
 
 			if (inc)
 			{
-				result += " " + seq;
+				result += " " + FormatPsSeq(code, seq);
 			}
 
 			return result;
@@ -48,8 +49,8 @@ namespace SharedCode
 
 		// for from current
 		public static string FormatShtName(  string origShtName,
-			CbxItemCode divCode,
-			string customDivider, CbxItemCode suffixCode, string customSuffix,
+			ShNamePartItemCode divCode,
+			string customDivider, ShNamePartItemCode suffixCode, string customSuffix,
 			int seq)
 		{
 			if (suffixCode == C_SX_NAMNONE) return origShtName;
@@ -67,7 +68,15 @@ namespace SharedCode
 
 		#region + Utilities
 
-		private static string GetNameSuffix(CbxItemCode suffixCode, int suffixSequence)
+		private static string FormatPsSeq(ShNamePartItemCode code, int seq)
+		{
+			return seq.ToString(npit.FindTitleByCode(code));
+		}
+
+
+
+
+		private static string GetNameSuffix(ShNamePartItemCode suffixCode, int suffixSequence)
 		{
 
 			string result = AppStrings.R_ErrError;
@@ -109,7 +118,7 @@ namespace SharedCode
 			return result;
 		}
 
-		private static string GetNumSuffix(CbxItemCode suffixCode, int suffixSequence)
+		private static string GetNumSuffix(ShNamePartItemCode suffixCode, int suffixSequence)
 		{
 			string result = AppStrings.R_ErrError;
 			int    i      = 1;
@@ -180,7 +189,7 @@ namespace SharedCode
 			return result;
 		}
 
-		public static string GetLetteerCodeSerial(int sequence, char start)
+		public static string GetLetterCodeSerial(int sequence, char start)
 		{
 			string result = "";
 			int    qty    = sequence / 26 + 1;
@@ -194,7 +203,7 @@ namespace SharedCode
 			return result;
 		}
 
-		private static string GetDivider(CbxItemCode divCode)
+		private static string GetDivider(ShNamePartItemCode divCode)
 		{
 			string result = "-" + AppStrings.R_ErrError + "-";
 
@@ -226,101 +235,5 @@ namespace SharedCode
 		}
 
 		#endregion
-	}
-
-	//	[DataContract(Namespace = "sample/name/space", Name = "NewSheetFormatSettings")]
-	[DataContract (Namespace = "")]
-	public class NewSheetFormat
-	{
-		[DataMember]
-		public bool Defined { get; set; } = false;
-
-		public int Copies;
-		public string TitleBlockName;
-		public string newSheetNumber;
-		public string newSheetName;
-		public ViewSheet SelectedViewSheet;
-		public string SelectedShtName;
-		public string SelecedShtNumber;
-
-		[DataMember (Order = 1)]
-		public OperOpType OperationOption { get; set; } = OperOpType.DupSheetAndViews;
-
-		[DataMember(Order = 2)]
-		public RbNewShtOptions NewSheetOption { get; set; } = RbNewShtOptions.FromCurrent;
-
-		[DataMember(Order = 3)]
-		public bool UseParameters { get; set; } = true;
-
-		[DataMember]
-		public ShtFmtFrmCurrent SheetFormatFrmCurrent { get; set; } = new ShtFmtFrmCurrent();
-
-		[DataMember]
-		public ShtFmtPerSetting SheetFormatPerSetting { get; set; } = new ShtFmtPerSetting();
-
-		public NewSheetFormat(bool defined)
-		{
-			Defined = defined;
-		}
-
-		public SheetData SelectedSheet
-		{
-			get { return new SheetData(SelecedShtNumber, SelectedShtName, SelectedViewSheet); }
-			set
-			{
-				SelectedViewSheet = (ViewSheet) value.SheetView;
-				SelecedShtNumber = value.SheetNumber;
-				SelectedShtName = value.SheetName;
-			}
-		}
-	}
-
-	[DataContract(Namespace = "")]
-	public class ShtFmtSample
-	{
-		[DataMember]
-		public int Sequence { get; set; } = 1;
-
-		[DataMember]
-		public string SampleSheetNumber { get; set; } = AppStrings.R_ShtOpCurSampleShtNum;
-
-		[DataMember]
-		public string SampleSheetName { get; set; }  = AppStrings.R_ShtOpCurSampleShtName;
-	}
-
-//	[DataContract(Namespace = "")]
-	public class ShtFmtFrmCurrent : CbxInfo
-	{
-//		[DataMember]
-		public CbxItemCode[] CbxSelItem { get; set; } = { C_DV_PERIOD, C_SX_NUMNUM2, C_DV_PERIOD, C_SX_NAMCOPY1 };
-
-//		[DataMember]
-		public string[] CustomText { get; set; } = { "", "", "", "" };
-	}
-
-	[DataContract(Namespace = "")]
-	public class ShtFmtPerSetting : CbxInfo
-	{
-		[DataMember]
-		public string NumberPrefix { get; set; } = ".X-";
-
-		[DataMember]
-		public string SheetNamePrefix { get; set; } = AppStrings.R_SheetName;
-
-		[DataMember]
-		public bool IncSheetName { get; set; } = false;
-
-		[DataMember]
-		public CbxItemCode[] CbxSelItem { get; set; } = { S_SX_NUMNUM1 };
-
-		[DataMember]
-		public string[] CustomText { get; set; } = { "" };
-	}
-
-	
-	public interface CbxInfo
-	{
-		CbxItemCode[] CbxSelItem { get; set; }
-		string[] CustomText { get; set; }
 	}
 }

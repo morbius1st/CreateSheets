@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using DuplicateSheets2017.Resources;
+﻿using System.Runtime.Serialization;
+using Autodesk.Revit.UI;
 using UtilityLibrary;
 
 using static DuplicateSheets2017.Command;
 
 using SharedCode;
-using static SharedCode.CbxItemCode;
 
 namespace DuplicateSheets2017
 {
@@ -50,8 +46,8 @@ namespace DuplicateSheets2017
 			copy.NewSheetOption = orig.NewSheetOption;
 //			copy.UseParameters = orig.UseParameters;
 
-			copy.SheetFormatFrmCurrent = orig.SheetFormatFrmCurrent.Clone();
-			copy.SheetFormatPerSetting = orig.SheetFormatPerSetting.Clone();
+			copy.SheetFormatFc = orig.SheetFormatFc.Clone();
+			copy.SheetFormatPs = orig.SheetFormatPs.Clone();
 
 			return copy;
 		}
@@ -64,9 +60,9 @@ namespace DuplicateSheets2017
 			copy.NumberPrefix = orig.NumberPrefix;
 			copy.SheetNamePrefix = orig.SheetNamePrefix;
 
-			for (var i = 0; i < orig.CbxSelItem.Length; i++)
+			for (var i = 0; i < orig.NamePartSelItem.Length; i++)
 			{
-				copy.CbxSelItem[i] = orig.CbxSelItem[i];
+				copy.NamePartSelItem[i] = orig.NamePartSelItem[i];
 			}
 
 			for (var i = 0; i < orig.CustomText.Length; i++)
@@ -81,9 +77,9 @@ namespace DuplicateSheets2017
 		{
 			ShtFmtFrmCurrent copy = new ShtFmtFrmCurrent();
 
-			for (var i = 0; i < orig.CbxSelItem.Length; i++)
+			for (var i = 0; i < orig.NamePartSelItem.Length; i++)
 			{
-				copy.CbxSelItem[i] = orig.CbxSelItem[i];
+				copy.NamePartSelItem[i] = orig.NamePartSelItem[i];
 			}
 
 			for (var i = 0; i < orig.CustomText.Length; i++)
@@ -130,6 +126,8 @@ namespace DuplicateSheets2017
 		private void SetDefaultValues()
 		{
 			FileVersion = "2.0";
+
+			UIApplication u = _uiapp;
 
 			WinLocMainWin =
 				new WinLocation(_uiapp.MainWindowExtents.Top + 20,
@@ -201,13 +199,13 @@ namespace DuplicateSheets2017
 //		public OperOpType OperationOption { get; set; } = OperOpType.DupSheetAndViews;
 //
 //		[DataMember]
-//		public RbNewShtOptions NewSheetOption { get; set; } = RbNewShtOptions.FromCurrent;
+//		public NewShtOptions NewSheetOption { get; set; } = NewShtOptions.FromCurrent;
 //
 //		[DataMember]
-//		public ShtFmtFrmCurrent SheetFormatFrmCurrent { get; set; } = new ShtFmtFrmCurrent();
+//		public ShtFmtFrmCurrent SheetFormatFc { get; set; } = new ShtFmtFrmCurrent();
 //		
 //		[DataMember]
-//		public ShtFmtPerSetting SheetFormatPerSetting { get; set; } = new ShtFmtPerSetting();
+//		public ShtFmtPerSetting SheetFormatPs { get; set; } = new ShtFmtPerSetting();
 //
 //		public NewSheetFormat(bool defined)
 //		{

@@ -19,17 +19,21 @@ namespace DuplicateSheets2017
 	
 		public string CustomText { get; private set; } = null;
 
-		private static readonly string InvalidChars = AppStrings.R_CharactersInvalid
-				+ nl + RvtIdentifiers.INVALID_NAME_CHARACTERS;
+		private string InvalidChars;
 
-		public WpfCustomText(string currCustDivChars, string titleText, string labelText)
+//		private static readonly string InvalidChars = AppStrings.R_CharactersInvalid
+//				+ nl + RvtIdentifiers.INVALID_NAME_CHARACTERS;
+
+		public WpfCustomText(string currCustDivChars, 
+			string titleText, string labelText, 
+			string invalidCharactersTitle, 
+			string invalidCharacters)
 		{
 			SetWinLocation();
 
 			InitializeComponent();
 
 			this.Title = titleText;
-
 
 			lblCustom.Content = labelText;
 			tbCustomText.Focus();
@@ -40,6 +44,8 @@ namespace DuplicateSheets2017
 				tbCustomText.CaretIndex = currCustDivChars.Length;
 
 			}
+
+			InvalidChars = invalidCharactersTitle + nl + invalidCharacters;
 
 			tbInvalidChar.Text = InvalidChars;
 		}
@@ -68,7 +74,7 @@ namespace DuplicateSheets2017
 		{
 			// is the character just entered bad
 			if (!ValidateChar(e.Text[0], 
-				RvtIdentifiers.INVALID_NAME_CHARACTERS))
+				RvtIdentifiers.INVALID_NAME_CHARS_ARRAY))
 			{
 				// bad
 				e.Handled = true;

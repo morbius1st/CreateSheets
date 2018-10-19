@@ -76,6 +76,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedResources\About.xaml.cs">
+      <Link>Resources\About.xaml.cs</Link>
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\SharedResources\ErrorReport.xaml.cs">
       <Link>Resources\ErrorReport.xaml.cs</Link>
       <DependentUpon>ErrorReport.xaml</DependentUpon>
@@ -118,15 +122,28 @@
     <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_32.png">
       <Link>Resources\DuplicateSheets_32.png</Link>
     </EmbeddedResource>
+    <Resource Include="..\SharedResources\Resources\CyberStudio Icon.png">
+      <Link>Resources\CyberStudio Icon.png</Link>
+    </Resource>
+    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1-Click_16.png">
+      <Link>Resources\DuplicateSheets_1-Click_16.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1-Click_32.png">
+      <Link>Resources\DuplicateSheets_1-Click_32.png</Link>
+    </EmbeddedResource>
     <Content Include="Other\DuplicateSheets2017.addin" />
     <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.resx">
       <LogicalName>SharedResources.Resources.AppStrings.resources</LogicalName>
       <Link>Resources\AppStrings.resx</Link>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\CyberStudio Logo - Narrow.png" />
     <EmbeddedResource Include="Resources\DuplicateSheetsLogo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="..\SharedResources\About.xaml">
+      <Link>Resources\About.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\SharedResources\ErrorReport.xaml">
       <Link>Resources\ErrorReport.xaml</Link>
       <Generator>MSBuild:Compile</Generator>

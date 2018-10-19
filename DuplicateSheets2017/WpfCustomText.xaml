@@ -150,7 +150,7 @@
     <Label
       Grid.Column="0"
       x:Name="lblCustom"
-      Content="Custom"
+      Content="{x:Static res:AppStrings.R_EnterDivChars}"
       Height="{DynamicResource lblHeightStd}"
       Style="{DynamicResource lblStyleStd}"
       Margin="10,12,10,0"

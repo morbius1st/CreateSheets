@@ -37,7 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Resources\ResourceDesigner.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppStrings.fr.resx" />
@@ -48,6 +47,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ErrorReport.xaml.cs">
       <DependentUpon>ErrorReport.xaml</DependentUpon>
     </Compile>
@@ -81,6 +83,10 @@
     <EmbeddedResource Include="Resources\DuplicateSheets_32.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ErrorReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,7 +97,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Image1.png" />
+    <Resource Include="Resources\CyberStudio Logo - Narrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

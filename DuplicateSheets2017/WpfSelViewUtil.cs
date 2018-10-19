@@ -5,7 +5,7 @@ using DuplicateSheets2017.Resources;
 
 using SharedCode;
 using SharedResources;
-using static SharedCode.CbxItemCode;
+using static SharedCode.ShNamePartItemCode;
 
 namespace DuplicateSheets2017
 {

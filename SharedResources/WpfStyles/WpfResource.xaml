@@ -4,11 +4,21 @@
   >
 
   <Color
+    x:Key="dk_Gray">#FF1C1C1C</Color>
+  <Color
     x:Key="lt_Gray">#FFDDDDDD</Color>
+  <Color
+    x:Key="med_Cyan">#33B5E5</Color>
 
+  <SolidColorBrush
+    x:Key="dkGray"
+    Color="{StaticResource dk_Gray}" />
   <SolidColorBrush
     x:Key="ltGray"
     Color="{StaticResource lt_Gray}" />
+  <SolidColorBrush
+    x:Key="medCyan"
+    Color="{StaticResource med_Cyan}" />
 
   <!--#region +Styles -->
 

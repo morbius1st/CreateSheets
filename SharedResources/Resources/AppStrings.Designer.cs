@@ -124,11 +124,29 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DuplicateSheets_1-Click_16.png.
+        /// </summary>
+        public static string R_ButtonImage16_1Click {
+            get {
+                return ResourceManager.GetString("R_ButtonImage16_1Click", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DuplicateSheets_32.png.
         /// </summary>
         public static string R_ButtonImage32 {
             get {
                 return ResourceManager.GetString("R_ButtonImage32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DuplicateSheets_1-Click_32.png.
+        /// </summary>
+        public static string R_ButtonImage32_1Click {
+            get {
+                return ResourceManager.GetString("R_ButtonImage32_1Click", resourceCulture);
             }
         }
         
@@ -142,11 +160,29 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shts 1-Click.
+        /// </summary>
+        public static string R_ButtonNameBott_1Click {
+            get {
+                return ResourceManager.GetString("R_ButtonNameBott_1Click", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
         public static string R_ButtonNameTop {
             get {
                 return ResourceManager.GetString("R_ButtonNameTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate.
+        /// </summary>
+        public static string R_ButtonNameTop_1Click {
+            get {
+                return ResourceManager.GetString("R_ButtonNameTop_1Click", resourceCulture);
             }
         }
         
@@ -205,11 +241,29 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duplicate Existing Sheet.
+        ///   Looks up a localized string similar to Command_1Click.
+        /// </summary>
+        public static string R_Command_1Click {
+            get {
+                return ResourceManager.GetString("R_Command_1Click", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Sheets.
         /// </summary>
         public static string R_CommandDescription {
             get {
                 return ResourceManager.GetString("R_CommandDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dup Shts 1 Click.
+        /// </summary>
+        public static string R_CommandDescription_1Click {
+            get {
+                return ResourceManager.GetString("R_CommandDescription_1Click", resourceCulture);
             }
         }
         
@@ -322,7 +376,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Divider Characters.
+        ///   Looks up a localized string similar to Enter Custom Divider Characters.
         /// </summary>
         public static string R_EnterDivChars {
             get {
@@ -331,7 +385,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Suffix.
+        ///   Looks up a localized string similar to Enter Custom Suffix.
         /// </summary>
         public static string R_EnterSuffix {
             get {
@@ -470,15 +524,14 @@ namespace SharedCode.Resources {
         ///
         ///To create new sheet:
         ///1.  Select &quot;Create New Sheets&quot; from the list of Operations
-        ///2.  (Optional): Change the &quot;New Sheet Options&quot;
-        ///3.  (Optional): Indicate the number of copies (maximum is 99)
+        ///2.  (Optional): Change the &quot;New Sheet Options&quot; (options are persistent)
+        ///3.  (Optional): Indicate the number of copies (default is one, maximum is 99)
         ///4.  (Optional): Choose a title block to use for the new sheets.
         ///    or choose &lt;no titleblock&gt;
         ///
-        ///Select OK to create the new sheets.
         ///Select cancel to not create the new sheets and exit.
         ///
-        ///The a new sheet i [rest of string was truncated]&quot;;.
+        ///Select OK to  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string R_HelpCreateSheets {
             get {
@@ -496,9 +549,9 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This option will duplicate an existing sheet and all of the elements contained on the sheet, within the limitations set by Revit®.  That is, any element that can only occur once on a sheet (e.g. floor plan view) will not be copied - the other elements are copied to a location matching the orignial location.  Also, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original. 
+        ///   Looks up a localized string similar to This option will duplicate an existing sheet and all of the elements contained on the sheet other than single sheet elements.  That is, any element that can only occur once on a sheet (e.g. floor plan view) will not be copied - the other elements are copied to a location matching the original location.  Also, due to Revit® limitations, the viewport title will match the original but cannot be positioned to match the original. 
         ///
-        ///If the current view is a sheet, the sheet is pre-selected as the sheet to  [rest of string was truncated]&quot;;.
+        ///If the current view is a sheet, that sheet is pre-selected as the sheet to be d [rest of string was truncated]&quot;;.
         /// </summary>
         public static string R_HelpDupSheet {
             get {
@@ -507,13 +560,14 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This option is identical to the &quot;Duplicate Sheet&quot; option except that views restricted to placement on a single sheet will be copied, with detailing, and the view copy will be placed on the newly duplicated sheet.  Again, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original.
+        ///   Looks up a localized string similar to This option will duplicate an existing sheet and all of the elements and views, even those restricted to placement on a single sheet, with detailing.  Also, due to Revit® limitations, the viewport title will match the original but cannot be positioned to match the original.
         ///
         ///If the current view is a sheet, the sheet is pre-selected as the sheet to be duplicated.
         ///
         ///To duplicate a sheet and views:
         ///1.  (Optional): Open a sheet view
-        ///2.  Select [rest of string was truncated]&quot;;.
+        ///2.  Select &quot;Duplicate Sheet and Views&quot; from the list of Operations
+        ///3.  (O [rest of string was truncated]&quot;;.
         /// </summary>
         public static string R_HelpDupSheetAndViews {
             get {
@@ -540,7 +594,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From Current Help.
+        ///   Looks up a localized string similar to Using the &quot;From Current&quot; option, the names for new sheets and new views are based on the current sheet number and sheet name..
         /// </summary>
         public static string R_HelpFromCurr {
             get {
@@ -549,7 +603,10 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From Current Name Format Help.
+        ///   Looks up a localized string similar to These settings determine how the current sheet name is adjusted to derive thew new sheet name.  The new sheet number is a combination of the current sheet name plus an optional divider and an optional suffix.  Note that if the &apos;none&apos; suffix is chosen, then a divider is also not used.  These settings persist between usages and sessions.
+        ///The divider character may be nothing, a preset character (a space, a period, or a dash), or a custom character.
+        ///The suffix must be one of the following:
+        ///- The phrase &apos;Copy [rest of string was truncated]&quot;;.
         /// </summary>
         public static string R_HelpFromCurrNameFmt {
             get {
@@ -567,7 +624,10 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From Current Number Format Help.
+        ///   Looks up a localized string similar to These settings determine how the current sheet number is adjusted to derive the new sheet number.  The new sheet number is a combination of the current sheet number plus an optional divider character plus a required suffix.  These settings persist between usages and sessions.
+        ///The divider character may be nothing, a preset character (a space, a period, or a dash), or a custom character.
+        ///The suffix must be one of the following:
+        ///- A sequential number with one of four formats (minimum number of zero filled d [rest of string was truncated]&quot;;.
         /// </summary>
         public static string R_HelpFromCurrNumFmt {
             get {
@@ -594,7 +654,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Per Settings Help.
+        ///   Looks up a localized string similar to Using the &quot;Per Settings&quot; option, the names for new sheets and new views are based on the settings in this section..
         /// </summary>
         public static string R_HelpPerSetg {
             get {
@@ -603,7 +663,8 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Per Settings Name Format Help.
+        ///   Looks up a localized string similar to These settings determine the new sheet name.  The new sheet name the &quot;Sheet Name&quot; provided.  If the &quot;Increment Sheet Name&quot; check box is selected, each sheet name is followed by a sequential number starting with the &quot;Sequence #&quot; value except the actual sequential number will match the sequential number used for the sheet number.
+        ///These settings persist between usages and sessions..
         /// </summary>
         public static string R_HelpPerSetgNameFmt {
             get {
@@ -621,7 +682,8 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Per Settings Number Format Help.
+        ///   Looks up a localized string similar to These settings determine the new sheet number.  The new sheet number is combination of the &quot;Number Prefix&quot; and a sequential number.  The format for the sequential number, that is minimum number of digits (zero filled), is determined by the number format drop down.  The sequential number start with the &quot;Sequence #&quot; provided in the &quot;New Sheet Name Format&quot; section below except the actual sheet number will be the first available, since duplicate sheet numbers are not allowed.
+        ///These settings persist between usa [rest of string was truncated]&quot;;.
         /// </summary>
         public static string R_HelpPerSetgNumFmt {
             get {
@@ -648,7 +710,80 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Re-use exiting parameters help.
+        ///   Looks up a localized string similar to One or more new sheets will be created based on your options and settings.
+        /// </summary>
+        public static string R_HelpProceed {
+            get {
+                return ResourceManager.GetString("R_HelpProceed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proceed Button.
+        /// </summary>
+        public static string R_HelpProceedTitle {
+            get {
+                return ResourceManager.GetString("R_HelpProceedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your One Click options and settings will be restored.  The current options and settings will be saved and can be restored using the Restore Settings button..
+        /// </summary>
+        public static string R_HelpRestoreOneClick {
+            get {
+                return ResourceManager.GetString("R_HelpRestoreOneClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore One Click Button.
+        /// </summary>
+        public static string R_HelpRestoreOneClickTitle {
+            get {
+                return ResourceManager.GetString("R_HelpRestoreOneClickTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current options and settings will be saved as your One Click settings.
+        /// </summary>
+        public static string R_HelpSaveAsOneClick {
+            get {
+                return ResourceManager.GetString("R_HelpSaveAsOneClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As One Click Button.
+        /// </summary>
+        public static string R_HelpSaveAsOneClickTitle {
+            get {
+                return ResourceManager.GetString("R_HelpSaveAsOneClickTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restores the options and settings saved when the Restore One Click button was pressed..
+        /// </summary>
+        public static string R_HelpSavedRestore {
+            get {
+                return ResourceManager.GetString("R_HelpSavedRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore Settings Button.
+        /// </summary>
+        public static string R_HelpSavedRestoreTitle {
+            get {
+                return ResourceManager.GetString("R_HelpSavedRestoreTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This setting determines whether the parameters, standard and custom, for the selected sheet will be applied to the new sheet.
+        ///This settings persist between usages and sessions.  .
         /// </summary>
         public static string R_HelpUseParams {
             get {
@@ -666,7 +801,11 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use this title block help.
+        ///   Looks up a localized string similar to This setting determines which title block will be used for the new sheets.  The choices are:
+        ///&lt;No titleblock&gt; = no title block will be added to the new sheet.
+        ///&lt;From Selected Sheet&gt; = the title block of the selected sheet will be used for the new sheets.
+        ///or from one of the other titleblocks loaded into the model.
+        ///This settings persist between usages and sessions..
         /// </summary>
         public static string R_HelpUseThisTblk {
             get {
@@ -893,7 +1032,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restore Saved
+        ///   Looks up a localized string similar to Restore
         ///Settings.
         /// </summary>
         public static string R_SavedRestore {
@@ -1184,7 +1323,16 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use parameters from existing sheet.
+        ///   Looks up a localized string similar to Reuse selected sheet for One Click.
+        /// </summary>
+        public static string R_UseSheetForOneClick {
+            get {
+                return ResourceManager.GetString("R_UseSheetForOneClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reuse parameters from existing sheet.
         /// </summary>
         public static string R_UseSheetParameters {
             get {

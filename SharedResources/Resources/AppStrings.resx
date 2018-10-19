@@ -145,7 +145,7 @@
     <value>Duplicate</value>
   </data>
   <data name="R_CommandDescription" xml:space="preserve">
-    <value>Duplicate Existing Sheet</value>
+    <value>Duplicate Sheets</value>
   </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello 1</value>
@@ -155,64 +155,63 @@
 
 To create new sheet:
 1.  Select "Create New Sheets" from the list of Operations
-2.  (Optional): Change the "New Sheet Options"
-3.  (Optional): Indicate the number of copies (maximum is 99)
+2.  (Optional): Change the "New Sheet Options" (options are persistent)
+3.  (Optional): Indicate the number of copies (default is one, maximum is 99)
 4.  (Optional): Choose a title block to use for the new sheets.
     or choose &lt;no titleblock&gt;
 
-Select OK to create the new sheets.
 Select cancel to not create the new sheets and exit.
 
-The a new sheet is created one or more times.  The new sheets will be given a sheet number and name based on the "New Sheet Options."
+Select OK to create the new sheets.  The a new sheet is created one or more times.  The new sheets will be given a sheet number and name based on the "New Sheet Options."
+
+If checked, the sheet's parameters, including custom parameters, from the original sheet are duplicated.
 
 Undo is supported.  All sheets created in a single operation will be removed with a single undo.</value>
   </data>
   <data name="R_HelpDupSheet" xml:space="preserve">
-    <value>This option will duplicate an existing sheet and all of the elements contained on the sheet, within the limitations set by Revit®.  That is, any element that can only occur once on a sheet (e.g. floor plan view) will not be copied - the other elements are copied to a location matching the orignial location.  Also, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original. 
+    <value>This option will duplicate an existing sheet and all of the elements contained on the sheet other than single sheet elements.  That is, any element that can only occur once on a sheet (e.g. floor plan view) will not be copied - the other elements are copied to a location matching the original location.  Also, due to Revit® limitations, the viewport title will match the original but cannot be positioned to match the original. 
 
-If the current view is a sheet, the sheet is pre-selected as the sheet to be duplicated.
+If the current view is a sheet, that sheet is pre-selected as the sheet to be duplicated.
 
 To duplicate a sheet:
 1.  (Optional): Open a sheet view
 2.  Select "Duplicate Sheet" from the list of Operations
-3.  (Optional): Set the "New Sheet Options"
+3.  (Optional): Set the "New Sheet Options" (options are persistent)
 4.  Select a sheet to be duplicated
-5.  (Optional): Indicate the number of copies (maximum is 99)
+5.  (Optional): Indicate the number of copies (default is one, maximum is 99)
 6.  (Optional): Choose a title block to use for the new sheets.
      The default is the same title block from the sheet 
      being duplicated
 
-Select OK to duplicate the sheet.
 Select cancel to not duplicate the sheet and exit.
 
-The selected sheet is duplicated one or more times.  The duplicates will be given a sheet number and name based on the "New Sheet Options."
+Select OK to duplicate the sheet. The selected sheet is duplicated one or more times.  The duplicates will be given a sheet number and name based on the "New Sheet Options."
 
-The sheet's parameters, including custom parameters, from the original sheet are duplicated.
+If checked, the sheet's parameters, including custom parameters, from the original sheet are duplicated.
 
 Undo is supported.  All sheets duplicated in a single operation will be removed with a single undo.</value>
   </data>
   <data name="R_HelpDupSheetAndViews" xml:space="preserve">
-    <value>This option is identical to the "Duplicate Sheet" option except that views restricted to placement on a single sheet will be copied, with detailing, and the view copy will be placed on the newly duplicated sheet.  Again, due to Revit® limitations, the viewport title will match the orignial but cannot be positioned to match the original.
+    <value>This option will duplicate an existing sheet and all of the elements and views, even those restricted to placement on a single sheet, with detailing.  Also, due to Revit® limitations, the viewport title will match the original but cannot be positioned to match the original.
 
 If the current view is a sheet, the sheet is pre-selected as the sheet to be duplicated.
 
 To duplicate a sheet and views:
 1.  (Optional): Open a sheet view
 2.  Select "Duplicate Sheet and Views" from the list of Operations
-3.  (Optional): Set the "New Sheet Options"
+3.  (Optional): Set the "New Sheet Options" (options are persistent)
 4.  (Optional): Set the "New View Name Options"
 5.  Select a sheet to be duplicated
-6.  (Optional): Indicate the number of copies (maximum is 99)
+6.  (Optional): Indicate the number of copies (default is one, maximum is 99)
 7.  (Optional): Choose a title block to use for the new sheets.
      The default is the same title block from the sheet 
      being duplicated
 
-Select OK to duplicate the sheet and views.
 Select cancel to not duplicate the sheet and exit.
 
-The selected sheet and views will be duplicated one or more times.  The duplicate sheet(s) will be given a sheet number and name based on the "New Sheet Options."  The duplicated views will be given a name based on the "New View Name Options."
+Select OK to duplicate the sheet and views.  The selected sheet and views will be duplicated one or more times.  The duplicate sheet(s) will be given a sheet number and name based on the "New Sheet Options."  The duplicated views will be given a name based on the "New Sheet Options."
 
-The sheet's parameters, including custom parameters, from the original sheet are duplicated.
+If checked, the sheet's parameters, including custom parameters, from the original sheet are duplicated.
 
 Undo is supported.  All sheets duplicated in a single operation will be removed with a single undo.</value>
   </data>
@@ -435,7 +434,7 @@ Sheet Number</value>
     <comment>Name suffix: Numeric</comment>
   </data>
   <data name="R_EnterSuffix" xml:space="preserve">
-    <value>Suffix</value>
+    <value>Enter Custom Suffix</value>
   </data>
   <data name="R_NewShtFmtTitleDivChars" xml:space="preserve">
     <value>Divider Chars</value>
@@ -453,7 +452,7 @@ Sheet Number</value>
     <value>Custom Divider Characters</value>
   </data>
   <data name="R_EnterDivChars" xml:space="preserve">
-    <value>Divider Characters</value>
+    <value>Enter Custom Divider Characters</value>
   </data>
   <data name="R_CharacterInvalid" xml:space="preserve">
     <value>Invalid Character Entered</value>
@@ -477,7 +476,7 @@ One Click</value>
 One Click</value>
   </data>
   <data name="R_SavedRestore" xml:space="preserve">
-    <value>Restore Saved
+    <value>Restore
 Settings</value>
   </data>
   <data name="R_Proceed" xml:space="preserve">
@@ -526,7 +525,7 @@ Settings</value>
     <value>jeff@cyberstudioapps.com</value>
   </data>
   <data name="R_UseSheetParameters" xml:space="preserve">
-    <value>Use parameters from existing sheet</value>
+    <value>Reuse parameters from existing sheet</value>
   </data>
   <data name="R_Make" xml:space="preserve">
     <value>Make</value>
@@ -535,46 +534,66 @@ Settings</value>
     <value>Cannot derive sheet name</value>
   </data>
   <data name="R_HelpPerSetg" xml:space="preserve">
-    <value>Per Settings Help</value>
+    <value>Using the "Per Settings" option, the names for new sheets and new views are based on the settings in this section.</value>
   </data>
   <data name="R_HelpPerSetgNumFmtTitle" xml:space="preserve">
     <value>Per Settings Number Format</value>
   </data>
   <data name="R_HelpPerSetgNumFmt" xml:space="preserve">
-    <value>Per Settings Number Format Help</value>
+    <value>These settings determine the new sheet number.  The new sheet number is combination of the "Number Prefix" and a sequential number.  The format for the sequential number, that is minimum number of digits (zero filled), is determined by the number format drop down.  The sequential number start with the "Sequence #" provided in the "New Sheet Name Format" section below except the actual sheet number will be the first available, since duplicate sheet numbers are not allowed.
+These settings persist between usages and sessions.</value>
   </data>
   <data name="R_HelpPerSetgNameFmtTitle" xml:space="preserve">
     <value>Per Settings Name Format</value>
   </data>
   <data name="R_HelpPerSetgNameFmt" xml:space="preserve">
-    <value>Per Settings Name Format Help</value>
+    <value>These settings determine the new sheet name.  The new sheet name the "Sheet Name" provided.  If the "Increment Sheet Name" check box is selected, each sheet name is followed by a sequential number starting with the "Sequence #" value except the actual sequential number will match the sequential number used for the sheet number.
+These settings persist between usages and sessions.</value>
   </data>
   <data name="R_HelpFromCurr" xml:space="preserve">
-    <value>From Current Help</value>
+    <value>Using the "From Current" option, the names for new sheets and new views are based on the current sheet number and sheet name.</value>
   </data>
   <data name="R_HelpFromCurrNumFmtTitle" xml:space="preserve">
     <value>From Current Number Format</value>
   </data>
   <data name="R_HelpFromCurrNumFmt" xml:space="preserve">
-    <value>From Current Number Format Help</value>
+    <value>These settings determine how the current sheet number is adjusted to derive the new sheet number.  The new sheet number is a combination of the current sheet number plus an optional divider character plus a required suffix.  These settings persist between usages and sessions.
+The divider character may be nothing, a preset character (a space, a period, or a dash), or a custom character.
+The suffix must be one of the following:
+- A sequential number with one of four formats (minimum number of zero filled digits)
+- A lower case letter (a, b, c ... z, aa, ab, etc.)
+- An upper case letter (A, B, C ... Z, AA, Ab, etc.)</value>
   </data>
   <data name="R_HelpFromCurrNameFmtTitle" xml:space="preserve">
     <value>From Current Name Format</value>
   </data>
   <data name="R_HelpFromCurrNameFmt" xml:space="preserve">
-    <value>From Current Name Format Help</value>
+    <value>These settings determine how the current sheet name is adjusted to derive thew new sheet name.  The new sheet number is a combination of the current sheet name plus an optional divider and an optional suffix.  Note that if the 'none' suffix is chosen, then a divider is also not used.  These settings persist between usages and sessions.
+The divider character may be nothing, a preset character (a space, a period, or a dash), or a custom character.
+The suffix must be one of the following:
+- The phrase 'Copy 1', then 'Copy 2', etc.
+- The phrase 'Copy A', then 'Copy B', etc.
+- A sequential number.
+- A lower case letter (a, b, c ... z, aa, ab, etc.)
+- An upper case letter (A, B, C ... Z, AA, Ab, etc.)
+- A custom phrase.</value>
   </data>
   <data name="R_HelpUseThisTblkTitle" xml:space="preserve">
     <value>Use this title block</value>
   </data>
   <data name="R_HelpUseThisTblk" xml:space="preserve">
-    <value>Use this title block help</value>
+    <value>This setting determines which title block will be used for the new sheets.  The choices are:
+&lt;No titleblock&gt; = no title block will be added to the new sheet.
+&lt;From Selected Sheet&gt; = the title block of the selected sheet will be used for the new sheets.
+or from one of the other titleblocks loaded into the model.
+This settings persist between usages and sessions.</value>
   </data>
   <data name="R_HelpUseParamsTitle" xml:space="preserve">
     <value>Re-use exiting parameters</value>
   </data>
   <data name="R_HelpUseParams" xml:space="preserve">
-    <value>Re-use exiting parameters help</value>
+    <value>This setting determines whether the parameters, standard and custom, for the selected sheet will be applied to the new sheet.
+This settings persist between usages and sessions.  </value>
   </data>
   <data name="R_CreateSheets" xml:space="preserve">
     <value>Create Empty Sheets</value>
@@ -590,5 +609,50 @@ Settings</value>
   </data>
   <data name="R_PerSettings" xml:space="preserve">
     <value>Per Settings</value>
+  </data>
+  <data name="R_HelpProceed" xml:space="preserve">
+    <value>One or more new sheets will be created based on your options and settings</value>
+  </data>
+  <data name="R_HelpProceedTitle" xml:space="preserve">
+    <value>Proceed Button</value>
+  </data>
+  <data name="R_HelpSaveAsOneClick" xml:space="preserve">
+    <value>The current options and settings will be saved as your One Click settings</value>
+  </data>
+  <data name="R_HelpSaveAsOneClickTitle" xml:space="preserve">
+    <value>Save As One Click Button</value>
+  </data>
+  <data name="R_HelpRestoreOneClick" xml:space="preserve">
+    <value>Your One Click options and settings will be restored.  The current options and settings will be saved and can be restored using the Restore Settings button.</value>
+  </data>
+  <data name="R_HelpRestoreOneClickTitle" xml:space="preserve">
+    <value>Restore One Click Button</value>
+  </data>
+  <data name="R_HelpSavedRestore" xml:space="preserve">
+    <value>Restores the options and settings saved when the Restore One Click button was pressed.</value>
+  </data>
+  <data name="R_HelpSavedRestoreTitle" xml:space="preserve">
+    <value>Restore Settings Button</value>
+  </data>
+  <data name="R_ButtonImage16_1Click" xml:space="preserve">
+    <value>DuplicateSheets_1-Click_16.png</value>
+  </data>
+  <data name="R_ButtonImage32_1Click" xml:space="preserve">
+    <value>DuplicateSheets_1-Click_32.png</value>
+  </data>
+  <data name="R_ButtonNameTop_1Click" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="R_ButtonNameBott_1Click" xml:space="preserve">
+    <value>Shts 1-Click</value>
+  </data>
+  <data name="R_CommandDescription_1Click" xml:space="preserve">
+    <value>Dup Shts 1 Click</value>
+  </data>
+  <data name="R_Command_1Click" xml:space="preserve">
+    <value>Command_1Click</value>
+  </data>
+  <data name="R_UseSheetForOneClick" xml:space="preserve">
+    <value>Reuse selected sheet for One Click</value>
   </data>
 </root>

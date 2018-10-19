@@ -15,19 +15,18 @@
   MaxWidth="1300"
   Width="800"
   MinWidth="800"
-  Height="690"
-  Padding="5,5,5,15"
+  Height="700"
   MinHeight="{Binding Height, ElementName=winSelViewSheet}"
   MaxHeight="{Binding Height, ElementName=winSelViewSheet}"
   FontSize="13"
   WindowStartupLocation="Manual"
-  WindowStyle="ToolWindow"
   DataContext="{Binding ElementName=winSelViewSheet}"
   ScrollViewer.VerticalScrollBarVisibility="Disabled"
   Loaded="winSelViewSheet_Loaded"
   Unloaded="winSelViewSheet_Unloaded"
   Closing="winSelViewSheet_Closing"
-  KeyUp="winSelViewSheet_KeyUp">
+  KeyUp="winSelViewSheet_KeyUp"
+  Icon="{DynamicResource Icon}">
 
   <!--  xmlns:res="clr-namespace:DuplicateSheets2017.Resources"-->
   <!--  Title="{x:Static res:WpfWindows.R_WindowTitleSelView}"-->
@@ -52,6 +51,12 @@
         </ResourceDictionary>
       </ResourceDictionary.MergedDictionaries>
 
+      <BitmapImage
+        x:Key="Icon"
+        CreateOptions="IgnoreImageCache"
+        CacheOption="OnLoad"
+        UriSource="B:\Programming\VisualStudioProjects\RevitProjects\CreateSheets\SharedResources\Resources\CyberStudio Icon.png" />
+
       <local:ComparisonCovnerter
         x:Key="comparisonCovnerter" />
       <local:EnumToBooleanConverter
@@ -69,16 +74,15 @@
           From="1.0"
           To="0.0"
           Duration="0:0:3" />
-        </Storyboard>
+      </Storyboard>
 
       <Style
         x:Key="btnHelpStyle"
         TargetType="Button"
         BasedOn="{StaticResource btnHelpStyleBase}">
-        <EventSetter 
+        <EventSetter
           Event="Click"
-          Handler="btnHelp_Click"
-          />
+          Handler="btnHelp_Click" />
       </Style>
 
     </ResourceDictionary>
@@ -89,9 +93,7 @@
     Background="#FFF0F0F0"
     HorizontalAlignment="Stretch"
     VerticalAlignment="Stretch"
-    Margin="0,0,0,0"
-    
-    >
+    Margin="0,0,0,0">
 
     <Grid.ColumnDefinitions>
       <ColumnDefinition
@@ -110,84 +112,187 @@
       <RowDefinition
         Height="320" />
       <RowDefinition
-        Height="140" />
+        Height="165" />
       <RowDefinition
-        Height="1*" />
+        Height="*" />
 
     </Grid.RowDefinitions>
 
-    <Grid
+    <!-- <Grid -->
+    <!--   Grid.Row="3" -->
+    <!--   Grid.Column="1" -->
+    <!--   Grid.ColumnSpan="3" -->
+    <!--    -->
+    <!-- -->
+    <!--   Margin="0,15,0,0"> -->
+    <!-- -->
+    <!--   <Grid.ColumnDefinitions> -->
+    <!--     <ColumnDefinition -->
+    <!--       Width="1*" /> -->
+    <!--     <ColumnDefinition -->
+    <!--       Width="650" /> -->
+    <!--   </Grid.ColumnDefinitions> -->
+
+    <DockPanel
+      Grid.Column="0"
       Grid.Row="3"
-      Grid.Column="1"
-      Grid.ColumnSpan="3"
-      
+      Grid.ColumnSpan="4"
+      Margin="0,0,0,15"
+      VerticalAlignment="Bottom"
+      HorizontalAlignment="Right">
 
-      Margin="0,15,0,0">
+      <Button
+        x:Name="btnAbout"
+        Margin="0,0,16,0"
+        Style="{StaticResource stdButton}"
+        Content="{x:Static res:AppStrings.R_About}"
+        Click="btnAbout_Click" />
 
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition
-          Width="1*" />
-        <ColumnDefinition
-          Width="650" />
-      </Grid.ColumnDefinitions>
+      <Button
+        x:Name="btnOneClickSave"
+        Margin="0,0,16,0"
+        Style="{StaticResource stdButton}"
+        HorizontalContentAlignment="Stretch"
+        Click="btnOneClickSave_Click">
+        <Button.Content>
+          <Grid
+            Margin="3,0,3,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition
+                Width="Auto" />
+              <ColumnDefinition
+                Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition
+                Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button
+              Grid.Column="0"
+              Content="?"
+              Tag="HelpSaveAsOneClick"
+              Style="{StaticResource btnHelpStyle}" />
+            <TextBlock
+              Grid.Column="1"
+              Text="{x:Static res:AppStrings.R_OneClickSave}"
+              Margin="2,0,0,0"
+              TextAlignment="Center" />
+          </Grid>
+        </Button.Content>
+      </Button>
 
-      <StackPanel
-        Grid.Column="1"
-        Orientation="Horizontal"
-        HorizontalAlignment="Right">
-        <Button
-          x:Name="btnOneClickSave"
-          FontSize="12"
-          Padding="-3"
-          Margin="0,0,16,0"
-          Click="btnOneClickSave_Click"
-          Style="{StaticResource stdButton}">
-          <TextBlock
-            Text="{x:Static res:AppStrings.R_OneClickSave}"
-            TextAlignment="Center" />
-        </Button>
+      <Button
+        x:Name="btnOneClickRestore"
+        Style="{StaticResource stdButton}"
+        Margin="0,0,16,0"
+        HorizontalContentAlignment="Stretch"
+        Click="btnOneClickRestore_Click">
+        <Button.Content>
+          <Grid
+            Margin="3,0,3,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition
+                Width="Auto" />
+              <ColumnDefinition
+                Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition
+                Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button
+              Grid.Column="0"
+              Content="?"
+              Tag="HelpRestoreOneClick"
+              Style="{StaticResource btnHelpStyle}" />
+            <TextBlock
+              Grid.Column="1"
+              Text="{x:Static res:AppStrings.R_OneClickRestore}"
+              Margin="2,0,0,0"
+              TextAlignment="Center" />
+          </Grid>
+        </Button.Content>
+      </Button>
 
-        <Button
-          x:Name="btnOneClickRestore"
-          FontSize="12"
-          Padding="-3"
-          Margin="0,0,16,0"
-          Click="btnOneClickRestore_Click"
-          Style="{StaticResource stdButton}">
-          <TextBlock
-            Text="{x:Static res:AppStrings.R_OneClickRestore}"
-            TextAlignment="Center" />
-        </Button>
+      <Button
+        x:Name="btnSavedRestore"
+        Style="{StaticResource stdButton}"
+        Margin="0,0,16,0"
+        IsEnabled="False"
+        HorizontalContentAlignment="Stretch"
+        Click="btnSavedRestore_Click">
+        <Button.Content>
+          <Grid
+            Margin="3,0,3,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition
+                Width="Auto" />
+              <ColumnDefinition
+                Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition
+                Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button
+              Grid.Column="0"
+              Content="?"
+              Tag="HelpSavedRestore"
+              Style="{StaticResource btnHelpStyle}" />
+            <TextBlock
+              Grid.Column="1"
+              Text="{x:Static res:AppStrings.R_SavedRestore}"
+              Margin="2,0,0,0"
+              TextAlignment="Center" />
+          </Grid>
+        </Button.Content>
+      </Button>
 
-        <Button
-          x:Name="btnSavedRestore"
-          FontSize="12"
-          Padding="-3"
-          Margin="0,0,16,0"
-          IsEnabled="False"
-          Click="btnSavedRestore_Click"
-          Style="{StaticResource stdButton}">
-          <TextBlock
-            Text="{x:Static res:AppStrings.R_SavedRestore}"
-            TextAlignment="Center" />
-        </Button>
+      <Button
+        x:Name="btnProceed"
+        Margin="0,0,16,0"
+        Style="{StaticResource stdButton}"
+        HorizontalContentAlignment="Stretch"
+        Click="btnProceed_Click">
 
-        <Button
-          x:Name="btnProceed"
-          Content="{x:Static res:AppStrings.R_Proceed}"
-          Margin="0,0,16,0"
-          Click="btnProceed_Click"
-          Style="{StaticResource stdButton}" />
+        <Button.Content>
+          <Grid
+            Margin="3,0,3,0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition
+                Width="Auto" />
+              <ColumnDefinition
+                Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition
+                Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button
+              Grid.Column="0"
+              Content="?"
+              Tag="HelpProceed"
+              Style="{StaticResource btnHelpStyle}" />
+            <TextBlock
+              Grid.Column="1"
+              Text="{x:Static res:AppStrings.R_Proceed}"
+              Margin="2,0,0,0"
+              TextAlignment="Center" />
+          </Grid>
+        </Button.Content>
 
-        <Button
-          x:Name="btnCancel"
-          Content="{x:Static res:AppStrings.R_Cancel}"
-          Margin="0,0,16,0"
-          IsCancel="True"
-          Style="{StaticResource stdButton}" />
-      </StackPanel>
+      </Button>
 
-    </Grid>
+      <Button
+        x:Name="btnCancel"
+        Margin="0,0,16,0"
+        Style="{StaticResource stdButton}"
+        IsCancel="True"
+        Content="{x:Static res:AppStrings.R_Cancel}" />
+
+    </DockPanel>
+
+    <!-- </Grid> -->
     <!--#endregion GroupBox Operation -->
 
     <!--#region GroupBox Operation -->
@@ -226,8 +331,7 @@
           Content="?"
           Style="{StaticResource btnHelpStyle}"
           Margin="0,5"
-          Tag="HelpDupSheetAndViews"
-          />
+          Tag="HelpDupSheetAndViews" />
 
         <RadioButton
           x:Name="rbOpDuplicateSheetsAndViews"
@@ -246,8 +350,7 @@
           Content="?"
           Style="{StaticResource btnHelpStyle}"
           Margin="0,5"
-          Tag="HelpDupSheet"
-          />
+          Tag="HelpDupSheet" />
 
         <RadioButton
           x:Name="rbOpDuplicateSheets"
@@ -266,8 +369,7 @@
           Content="?"
           Style="{StaticResource btnHelpStyle}"
           Margin="0,5"
-          Tag="HelpCreateSheets"
-          />
+          Tag="HelpCreateSheets" />
 
         <RadioButton
           x:Name="rbOpCreateSheets"
@@ -329,7 +431,7 @@
           Grid.Column="1"
           GroupName="NewSheetOptions"
           Style="{StaticResource rbStyle}"
-          IsChecked="{Binding NewShtOpts, ConverterParameter={x:Static shared:RbNewShtOptions.PerSettings}, Converter={StaticResource enumToBooleanConverter}}">
+          IsChecked="{Binding NewShtOpts, ConverterParameter={x:Static shared:NewShtOptions.PerSettings}, Converter={StaticResource enumToBooleanConverter}}">
 
           <TextBlock
             TextWrapping="NoWrap"
@@ -341,7 +443,7 @@
           Grid.Column="3"
           GroupName="NewSheetOptions"
           Style="{StaticResource rbStyle}"
-          IsChecked="{Binding NewShtOpts, ConverterParameter={x:Static shared:RbNewShtOptions.FromCurrent}, Converter={StaticResource enumToBooleanConverter}}">
+          IsChecked="{Binding NewShtOpts, ConverterParameter={x:Static shared:NewShtOptions.FromCurrent}, Converter={StaticResource enumToBooleanConverter}}">
 
           <TextBlock
             Text="{x:Static res:AppStrings.R_FromCurrent}"
@@ -354,9 +456,8 @@
           Grid.Column="0"
           Content="?"
           Style="{StaticResource btnHelpStyle}"
-          Margin="0,6" 
-          Tag="HelpPerSetg"
-          />
+          Margin="0,6"
+          Tag="HelpPerSetg" />
         <Button
           x:Name="btnHelpFromCurrent"
           Grid.Row="0"
@@ -364,8 +465,7 @@
           Content="?"
           Style="{StaticResource btnHelpStyle}"
           Margin="0,6"
-          Tag="HelpFromCurr"
-          />
+          Tag="HelpFromCurr" />
 
         <!--#endregion -->
 
@@ -547,9 +647,8 @@
             HorizontalAlignment="Left"
             Padding="0"
             Height="16"
-            Width="16" 
-            Margin="45,0,0,4"
-            />
+            Width="16"
+            Margin="45,0,0,4" />
         </Grid>
 
         <Grid
@@ -1001,7 +1100,6 @@
 
       <ListBox
         x:Name="lbxSheets"
-        
         Margin="0,4,2,4"
         BorderThickness="0"
         HorizontalContentAlignment="Stretch"
@@ -1094,7 +1192,7 @@
       <Grid
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
-        Margin="4,2,10,2">
+        Margin="3,0,3,0">
 
         <Grid.ColumnDefinitions>
           <ColumnDefinition
@@ -1106,7 +1204,7 @@
           <ColumnDefinition
             Width="{StaticResource spacerColumnWidth}" />
           <ColumnDefinition
-            Width="1*"/>
+            Width="1*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -1114,7 +1212,11 @@
             Height="{StaticResource opItemRowHeight}" />
           <RowDefinition
             Height="48" />
-          <RowDefinition />
+          <RowDefinition
+            Height="{StaticResource opItemRowHeight}" />
+          <RowDefinition
+            Height="*" />
+ 
         </Grid.RowDefinitions>
 
         <TextBox
@@ -1123,16 +1225,14 @@
           Grid.Row="0"
           Grid.ColumnSpan="3"
           Style="{StaticResource tbLblStyle}"
-          Margin="0,4,0,2" 
-          />
+          Margin="0,6,0,4" />
 
         <TextBox
           Text="{x:Static res:AppStrings.R_Copies}"
           Grid.Column="4"
           Grid.Row="0"
           Style="{StaticResource tbLblStyle}"
-          Margin="0,4,0,2" 
-          />
+          Margin="0,6,0,4" />
 
         <ComboBox
           x:Name="cbxNumOfCopies"
@@ -1140,13 +1240,11 @@
           Grid.Row="0"
           Height="{StaticResource newSheetItemHeight}"
           Width="50"
-          Margin="7,4,0,2"
+          Margin="7,6,0,4"
           HorizontalAlignment="Left"
           VerticalAlignment="Center"
           Style="{DynamicResource ComboBoxStyle}"
-          SelectedItem="{Binding Copies, Mode=TwoWay}" 
-          
-          />
+          SelectedItem="{Binding Copies, Mode=TwoWay}" />
 
         <Button
           x:Name="btnHelpUseThisTitleBlock"
@@ -1155,24 +1253,23 @@
           Content="?"
           Style="{StaticResource btnHelpStyle}"
           VerticalAlignment="top"
-          Margin="0,5,0,0"
+          Margin="0,6,0,0"
           Tag="HelpUseThisTblk" />
         <TextBox
           Text="{x:Static res:AppStrings.R_UseThisTtlBlk}"
           Grid.Column="2"
           Grid.Row="1"
-          Grid.ColumnSpan="5" 
-          Margin="7,4,0,0"
+          Grid.ColumnSpan="3"
+          Margin="7,5,0,0"
           Style="{StaticResource tbLblStyle}"
-          VerticalAlignment="Top"
-          />
+          VerticalAlignment="Top" />
 
         <ComboBox
           x:Name="cbxTitleBlock"
           Grid.Column="2"
           Grid.Row="1"
           Grid.ColumnSpan="3"
-          Margin="7,0,0,3"
+          Margin="7,0,0,1"
           Height="{StaticResource newSheetItemHeight}"
           VerticalAlignment="Bottom"
           HorizontalAlignment="Stretch"
@@ -1187,7 +1284,6 @@
           Grid.Column="0"
           Content="?"
           Style="{StaticResource btnHelpStyle}"
-          Margin="0,6"
           Tag="HelpUseParams" />
 
         <CheckBox
@@ -1200,14 +1296,44 @@
           Padding="0"
           Height="16"
           Width="16"
-          Margin="6,0,0,8" />
+          Margin="6,0,0,5" />
 
         <TextBox
-          Grid.Column="4"
+          Grid.Column="2"
           Grid.Row="2"
           Text="{x:Static res:AppStrings.R_UseSheetParameters}"
           Style="{StaticResource tbLblStyle}"
-          Margin="-35,4,0,6" />
+          Margin="31,6,0,4"
+          Grid.ColumnSpan="3" />
+
+        <Button
+          x:Name="btnHelpOneClickReuseSheet"
+          Grid.Row="3"
+          Grid.Column="0"
+          Content="?"
+          Style="{StaticResource btnHelpStyle}"
+          Tag="HelpUseParams" />
+
+        <CheckBox
+          Grid.Row="3"
+          Grid.Column="2"
+          IsChecked="{Binding UseParameters, Mode=TwoWay}"
+          BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"
+          VerticalAlignment="Bottom"
+          HorizontalAlignment="Left"
+          Padding="0"
+          Height="16"
+          Width="16"
+          Margin="6,0,0,5" />
+
+        <TextBox
+          Grid.Row="3"
+          Grid.Column="2"
+          Grid.ColumnSpan="3" 
+          Text="{x:Static res:AppStrings.R_UseSheetForOneClick}"
+          Style="{StaticResource tbLblStyle}"
+          Margin="31,6,0,4"
+          />
 
       </Grid>
 

@@ -27,13 +27,7 @@ namespace SharedCode
 				RibbonPanel m_RibbonPanel = app.CreateRibbonPanel(AppStrings.R_UiPanelName);
 
 				// create a button for the 'copy sheet' command
-				if (!AddPushButton(m_RibbonPanel, LocalResMgr.AppName, 
-					AppStrings.R_ButtonNameTop + nl + AppStrings.R_ButtonNameBott,
-					AppStrings.R_ButtonImage16,
-					AppStrings.R_ButtonImage32,
-					Assembly.GetExecutingAssembly().Location, 
-					LocalResMgr.Command, AppStrings.R_CommandDescription))
-				
+				if (!AddSplitPushButtons(m_RibbonPanel))
 				{
 					// creating the pushbutton failed
 					MessageBox.Show(AppStrings.R_ErrMakeButtonFailTitle, AppStrings.R_ErrMakeButtonFailDesc,
@@ -62,6 +56,51 @@ namespace SharedCode
 				return Result.Failed;
 			}
 		} // end OnShutdown
+
+
+
+		private bool AddSplitPushButtons(RibbonPanel rPanel)
+		{
+			try
+			{
+				// make push button 1
+				PushButtonData pbData1 = MakePushButton(
+					rPanel, LocalResMgr.ButtonName,
+					AppStrings.R_ButtonNameTop + nl + AppStrings.R_ButtonNameBott,
+					AppStrings.R_ButtonImage16,
+					AppStrings.R_ButtonImage32,
+					Assembly.GetExecutingAssembly().Location,
+					LocalResMgr.Command, AppStrings.R_CommandDescription);
+
+				if (pbData1 == null) return false;
+
+				PushButtonData pbData2 = MakePushButton(
+					rPanel, LocalResMgr.ButtonName_1Click,
+					AppStrings.R_ButtonNameTop_1Click + nl + AppStrings.R_ButtonNameBott_1Click,
+					AppStrings.R_ButtonImage16_1Click,
+					AppStrings.R_ButtonImage32_1Click,
+					Assembly.GetExecutingAssembly().Location,
+					LocalResMgr.Command_1Click, AppStrings.R_CommandDescription_1Click);
+
+				if (pbData2 == null) return false;
+
+				SplitButtonData sbd = new SplitButtonData("splitButton", "DupSheets");
+				SplitButton sb = rPanel.AddItem(sbd) as SplitButton;
+
+				sb.AddPushButton(pbData1);
+				sb.AddPushButton(pbData2);
+
+			}
+			catch
+			{
+				return false;
+			}
+
+			return true;
+		}
+
+
+
 
 		// method to add a pushbutton to the ribbon
 		private bool AddPushButton(RibbonPanel Panel, string ButtonName,
@@ -111,6 +150,54 @@ namespace SharedCode
 			catch
 			{
 				return false;
+			}
+		}
+
+		// method to make a pushbutton for the ribbon
+		private PushButtonData MakePushButton(RibbonPanel Panel, string ButtonName,
+			string ButtonText, string Image16, string Image32,
+			string dllPath, string dllClass, string ToolTip)
+		{
+			try
+			{
+				PushButtonData m_pdData = new PushButtonData(ButtonName,
+					ButtonText, dllPath, dllClass);
+				// if we have a path for a small image, try to load the image
+				if (Image16.Length != 0)
+				{
+					try
+					{
+						// load the image
+						m_pdData.Image = ShUtil.GetBitmapImage(Image16);
+					}
+					catch
+					{
+						// could not locate the image
+					}
+				}
+
+				// if have a path for a large image, try to load the image
+				if (Image32.Length != 0)
+				{
+					try
+					{
+						// load the image
+						m_pdData.LargeImage = ShUtil.GetBitmapImage(Image32);
+					}
+					catch
+					{
+						// could not locate the image
+					}
+				}
+
+				// set the tooltip
+				m_pdData.ToolTip = ToolTip;
+
+				return m_pdData;
+			}
+			catch
+			{
+				return null;
 			}
 		}
 

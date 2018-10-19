@@ -10,7 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ApplicationRibbon.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ShBoxItems.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NewSheetFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShNamePartItems.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShDBMgr.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShNewSheetMgr.cs" />

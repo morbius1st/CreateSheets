@@ -7,15 +7,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using Autodesk.Revit.DB;
 using ComboBox = System.Windows.Controls.ComboBox;
+
+using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+
 using static DuplicateSheets2017.SettingsUser;
-using static SharedCode.CbxType;
-using static SharedCode.CbxItemCode;
+
 using SharedCode;
 using SharedCode.Resources;
-using SharedResources;
+using static SharedCode.ShNamePartType;
+using static SharedCode.ShNamePartItemCode;
 using static SharedCode.ShSheetDataList;
 using static SharedCode.ShNewSheetMgr;
 
@@ -35,7 +37,7 @@ namespace DuplicateSheets2017
 		#region + Data
 
 		// elements to track per custom string
-		// ShBoxItems
+		// ShNamePartItems
 		// custom string
 		// current selected index
 		// label text
@@ -45,11 +47,11 @@ namespace DuplicateSheets2017
 		private  const int COPIES_END = 100;
 
 		private ShDbMgr _DBMgr;
-		private CbxBoxItems cbi;
+		private ShNamePartItemsTables cbi;
 		private NewSheetFormat SavedSettings;
 
-		private readonly ComboBox[] _comboBoxes      = new ComboBox[CbxBoxItems.CBX_QTY];
-		private string[]   _customText      = new string[CbxBoxItems.CBX_QTY];
+		private readonly ComboBox[] _comboBoxes      = new ComboBox[ShNamePartItemsTables.CBX_QTY];
+		private string[]   _customText      = new string[ShNamePartItemsTables.CBX_QTY];
 
 		private int _copies;
 		private bool _initalized;
@@ -74,7 +76,7 @@ namespace DuplicateSheets2017
 			_DBMgr = new ShDbMgr(commandData);
 
 			// needs to be setup before initalization of the controls
-			cbi = CbxBoxItems.Instance;
+			cbi = ShNamePartItemsTables.Instance;
 
 			//			Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr");
 			//
@@ -96,11 +98,11 @@ namespace DuplicateSheets2017
 		private void InitCbx()
 		{
 			// setup the comboboxes
-			ConfigCbxItems(cbxCurNumDvChars, CUR_NUMDIVCHARS);
-			ConfigCbxItems(cbxCurNumSx, CUR_NUMSUFFIX);
-			ConfigCbxItems(cbxCurNamDvChars, CUR_NAMEDIVCHARS);
-			ConfigCbxItems(cbxCurNamSx, CUR_NAMESUFFIX);
-			ConfigCbxItems(cbxSetNumFmt, SET_NUMSUFFIX);
+			ConfigCbxItems(cbxCurNumDvChars, CUR_NUMDIVCHARS_TBL);
+			ConfigCbxItems(cbxCurNumSx, CUR_NUMSUFFIX_TBL);
+			ConfigCbxItems(cbxCurNamDvChars, CUR_NAMEDIVCHARS_TBL);
+			ConfigCbxItems(cbxCurNamSx, CUR_NAMESUFFIX_TBL);
+			ConfigCbxItems(cbxSetNumFmt, SET_NUMSUFFIX_TBL);
 
 
 //			cbxCurNumDvChars.SetBinding(Selector.SelectedItemProperty,
@@ -324,7 +326,7 @@ namespace DuplicateSheets2017
 			}
 		}
 
-		public RbNewShtOptions NewShtOpts
+		public NewShtOptions NewShtOpts
 		{
 			get => USet.Basic.NewSheetOption;
 			set
@@ -401,12 +403,12 @@ namespace DuplicateSheets2017
 
 		public string PsNumberPrefix
 		{
-			get => USet.Basic.SheetFormatPerSetting.NumberPrefix;
+			get => USet.Basic.SheetFormatPs.NumberPrefix;
 			set
 			{
-				if (!value.Equals(USet.Basic.SheetFormatPerSetting.NumberPrefix))
+				if (!value.Equals(USet.Basic.SheetFormatPs.NumberPrefix))
 				{
-					USet.Basic.SheetFormatPerSetting.NumberPrefix = value;
+					USet.Basic.SheetFormatPs.NumberPrefix = value;
 					OnUiPropertyChange();
 					
 				}
@@ -415,12 +417,12 @@ namespace DuplicateSheets2017
 
 		public string PsSheetNamePrefix
 		{
-			get => USet.Basic.SheetFormatPerSetting.SheetNamePrefix;
+			get => USet.Basic.SheetFormatPs.SheetNamePrefix;
 			set
 			{
-				if (!value.Equals(USet.Basic.SheetFormatPerSetting.SheetNamePrefix))
+				if (!value.Equals(USet.Basic.SheetFormatPs.SheetNamePrefix))
 				{
-					USet.Basic.SheetFormatPerSetting.SheetNamePrefix = value;
+					USet.Basic.SheetFormatPs.SheetNamePrefix = value;
 					OnUiPropertyChange();
 
 				}
@@ -429,12 +431,12 @@ namespace DuplicateSheets2017
 		
 		public bool PsIncSheetName
 		{
-			get => USet.Basic.SheetFormatPerSetting.IncSheetName;
+			get => USet.Basic.SheetFormatPs.IncSheetName;
 			set
 			{
-				if (!value.Equals(USet.Basic.SheetFormatPerSetting.IncSheetName))
+				if (!value.Equals(USet.Basic.SheetFormatPs.IncSheetName))
 				{
-					USet.Basic.SheetFormatPerSetting.IncSheetName = value;
+					USet.Basic.SheetFormatPs.IncSheetName = value;
 					OnUiPropertyChange();
 				}
 			}
@@ -442,25 +444,25 @@ namespace DuplicateSheets2017
 
 
 		// this gets the collection
-		public ShBoxItems PsNumFmtCbxItems => 
-			cbi.Tables[(int) SET_NUMSUFFIX];
+		public ShNamePartItems PsNumFmtCbxItems => 
+			cbi.Tables[(int) SET_NUMSUFFIX_TBL];
 
 		// this gets / returns the currently selected box item
 		// only the CbxItemCode is saved in the settings file
-		public ShBoxItem PsNumFmtCbxSelected
+		public ShNamePartItem PsNumFmtCbxSelected
 		{
 //			get => _numFmtCbxSelected;
 			get => 
-				cbi.FindByCode(USet.Basic.SheetFormatPerSetting.
-					CbxSelItem[(int)SET_NUMSUFX]);
+				cbi.FindByCode(USet.Basic.SheetFormatPs.
+					NamePartSelItem[ShConst.SET_NUMSUFX]);
 
 			set
 			{
-				if (value != null && !USet.Basic.SheetFormatPerSetting
-					.CbxSelItem[(int) SET_NUMSUFX].Equals(value.Code))
+				if (value != null && !USet.Basic.SheetFormatPs
+					.NamePartSelItem[ShConst.SET_NUMSUFX].Equals(value.Code))
 				{
-					USet.Basic.SheetFormatPerSetting
-						.CbxSelItem[(int) SET_NUMSUFX] = value.Code;
+					USet.Basic.SheetFormatPs
+						.NamePartSelItem[ShConst.SET_NUMSUFX] = value.Code;
 
 					OnUiPropertyChange();
 				} 
@@ -470,83 +472,83 @@ namespace DuplicateSheets2017
 		// ***** from current *****
 
 		// this gets the collection
-		public ShBoxItems FcNameDivCharsCbxItems => 
-			cbi.Tables[(int) CUR_NAMEDIVCHARS];
+		public ShNamePartItems FcNameDivCharsCbxItems => 
+			cbi.Tables[(int) CUR_NAMEDIVCHARS_TBL];
 
 		// this gets / returns the currently selected box item
 		// only the CbxItemCode is saved in the settings file
-		public ShBoxItem FcNameDivCharsCbxSelected
+		public ShNamePartItem FcNameDivCharsCbxSelected
 		{
-			get => cbi.FindByCode(USet.Basic.SheetFormatFrmCurrent.
-					CbxSelItem[(int)CUR_NAMEDIVCHARS]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.
+					NamePartSelItem[(int)CUR_NAMEDIVCHARS_TBL]);
 			set
 			{
-				if (value != null && USet.Basic.SheetFormatFrmCurrent
-					.CbxSelItem[(int) CUR_NAMEDIVCHARS] != value.Code)
+				if (value != null && USet.Basic.SheetFormatFc
+					.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] != value.Code)
 				{
-					USet.Basic.SheetFormatFrmCurrent
-						.CbxSelItem[(int) CUR_NAMEDIVCHARS] = value.Code;
+					USet.Basic.SheetFormatFc
+						.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] = value.Code;
 
 					OnPropertyChange();
 				}
 			}
 		}
 
-		public ShBoxItems FcNameSufxCbxItems => 
-			cbi.Tables[(int) CUR_NAMESUFFIX];
+		public ShNamePartItems FcNameSufxCbxItems => 
+			cbi.Tables[(int) CUR_NAMESUFFIX_TBL];
 
-		public ShBoxItem FcNameSufxCbxSelected
+		public ShNamePartItem FcNameSufxCbxSelected
 		{
 //			get => _nameSufxCbxSelected;
-			get => cbi.FindByCode(USet.Basic.SheetFormatFrmCurrent.
-					CbxSelItem[(int)CUR_NAMESUFFIX]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.
+					NamePartSelItem[(int)CUR_NAMESUFFIX_TBL]);
 			set
 			{
-				if (value != null && !USet.Basic.SheetFormatFrmCurrent
-					.CbxSelItem[(int) CUR_NAMESUFFIX].Equals(value.Code))
+				if (value != null && !USet.Basic.SheetFormatFc
+					.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL].Equals(value.Code))
 				{
-					USet.Basic.SheetFormatFrmCurrent
-						.CbxSelItem[(int) CUR_NAMESUFFIX] = value.Code;
+					USet.Basic.SheetFormatFc
+						.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL] = value.Code;
 
 					OnPropertyChange();
 				}
 			}
 		}
 
-		public ShBoxItems FcNumSufxCbxItems => 
-			cbi.Tables[(int) CUR_NUMSUFFIX];
+		public ShNamePartItems FcNumSufxCbxItems => 
+			cbi.Tables[(int) CUR_NUMSUFFIX_TBL];
 
-		public ShBoxItem FcNumSufxCbxSelected
+		public ShNamePartItem FcNumSufxCbxSelected
 		{
 			//			get => _numSufxCbxSelected;
-			get => cbi.FindByCode(USet.Basic.SheetFormatFrmCurrent.
-				CbxSelItem[(int)CUR_NUMSUFFIX]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.
+				NamePartSelItem[(int)CUR_NUMSUFFIX_TBL]);
 			set
 			{
-				if (value != null && !USet.Basic.SheetFormatFrmCurrent
-					.CbxSelItem[(int) CUR_NUMSUFFIX].Equals(value.Code))
+				if (value != null && !USet.Basic.SheetFormatFc
+					.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL].Equals(value.Code))
 				{
-					USet.Basic.SheetFormatFrmCurrent
-						.CbxSelItem[(int) CUR_NUMSUFFIX] = value.Code;
+					USet.Basic.SheetFormatFc
+						.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL] = value.Code;
 
 					OnUiPropertyChange();
 				}
 			}
 		}
 
-		public ShBoxItems FcNumDivCharsCbxItems => 
-			cbi.Tables[(int) CUR_NUMDIVCHARS];
+		public ShNamePartItems FcNumDivCharsCbxItems => 
+			cbi.Tables[(int) CUR_NUMDIVCHARS_TBL];
 
-		public ShBoxItem FcNumDivCharsCbxSelected
+		public ShNamePartItem FcNumDivCharsCbxSelected
 		{
-			get => cbi.FindByCode(USet.Basic.SheetFormatFrmCurrent.CbxSelItem[(int) CUR_NUMDIVCHARS]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL]);
 			set
 			{
-				if (value != null && !USet.Basic.SheetFormatFrmCurrent
-					.CbxSelItem[(int) CUR_NUMDIVCHARS].Equals(value.Code))
+				if (value != null && !USet.Basic.SheetFormatFc
+					.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL].Equals(value.Code))
 				{
-					USet.Basic.SheetFormatFrmCurrent
-						.CbxSelItem[(int) CUR_NUMDIVCHARS] = value.Code;
+					USet.Basic.SheetFormatFc
+						.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL] = value.Code;
 
 					OnPropertyChange();
 				}
@@ -580,15 +582,15 @@ namespace DuplicateSheets2017
 
 			// ************
 			// read the from current settings
-			ReadCbxSettings(CbxBoxItems.CBX_CURR_START, CbxBoxItems.CBX_CURR_END, USet.Basic.SheetFormatFrmCurrent);
+			ReadCbxSettings(ShNamePartItemsTables.CBX_CURR_START, ShNamePartItemsTables.CBX_CURR_END, USet.Basic.SheetFormatFc);
 
 			// ************
 			// read the from current settings
-			ReadCbxSettings(CbxBoxItems.CBX_SET_START, CbxBoxItems.CBX_SET_END, USet.Basic.SheetFormatPerSetting);
+			ReadCbxSettings(ShNamePartItemsTables.CBX_SET_START, ShNamePartItemsTables.CBX_SET_END, USet.Basic.SheetFormatPs);
 
-			PsNumberPrefix = USet.Basic.SheetFormatPerSetting.NumberPrefix;
-			PsSheetNamePrefix = USet.Basic.SheetFormatPerSetting.SheetNamePrefix;
-			PsIncSheetName = USet.Basic.SheetFormatPerSetting.IncSheetName;
+			PsNumberPrefix = USet.Basic.SheetFormatPs.NumberPrefix;
+			PsSheetNamePrefix = USet.Basic.SheetFormatPs.SheetNamePrefix;
+			PsIncSheetName = USet.Basic.SheetFormatPs.IncSheetName;
 		}
 
 		private void ReadCbxSettings(int start, int end, CbxInfo stgInfo)
@@ -602,7 +604,7 @@ namespace DuplicateSheets2017
 			{
 				i = cbxIdx - start;
 
-				CbxItemCode cbxItemCode = stgInfo.CbxSelItem[i];
+				ShNamePartItemCode cbxItemCode = stgInfo.NamePartSelItem[i];
 
 				_customText[cbxIdx] =
 					stgInfo.CustomText[i];
@@ -637,11 +639,11 @@ namespace DuplicateSheets2017
 		{
 			// ************
 			// save "from current" settings
-			SaveCbxSettings(CbxBoxItems.CBX_CURR_START, CbxBoxItems.CBX_CURR_END, USet.Basic.SheetFormatFrmCurrent);
+			SaveCbxSettings(ShNamePartItemsTables.CBX_CURR_START, ShNamePartItemsTables.CBX_CURR_END, USet.Basic.SheetFormatFc);
 
 			// *************
 			// save "per settings" settings
-			SaveCbxSettings(CbxBoxItems.CBX_SET_START, CbxBoxItems.CBX_SET_END, USet.Basic.SheetFormatPerSetting);
+			SaveCbxSettings(ShNamePartItemsTables.CBX_SET_START, ShNamePartItemsTables.CBX_SET_END, USet.Basic.SheetFormatPs);
 
 			// save the settings
 			USettings.Save();
@@ -658,8 +660,8 @@ namespace DuplicateSheets2017
 			{
 				i = cbxIdx - start;
 
-				stgInfo.CbxSelItem[i] =
-					((ShBoxItem) _comboBoxes[cbxIdx].SelectedItem).Code;
+				stgInfo.NamePartSelItem[i] =
+					((ShNamePartItem) _comboBoxes[cbxIdx].SelectedItem).Code;
 
 				stgInfo.CustomText[i] = _customText[cbxIdx];
 			}
@@ -704,7 +706,7 @@ namespace DuplicateSheets2017
 			return false;
 		}
 
-		private void ConfigCbxItems(ComboBox cbx, CbxType ct)
+		private void ConfigCbxItems(ComboBox cbx, ShNamePartType ct)
 		{
 			int idx = (int)ct;
 
@@ -720,17 +722,17 @@ namespace DuplicateSheets2017
 
 			switch (NewShtOpts)
 			{
-			case RbNewShtOptions.PerSettings:
+			case NewShtOptions.PerSettings:
 				{
 					result = FormatShtNumber(PsNumberPrefix, 
-						PsNumFmtCbxSelected.Title, SampleSequenceInteger);
+						PsNumFmtCbxSelected.Code, SampleSequenceInteger);
 					break;
 				}
-			case RbNewShtOptions.FromCurrent:
+			case NewShtOptions.FromCurrent:
 				{
 					result = FormatShtNumber(origShtNum,
 						FcNumDivCharsCbxSelected.Code,
-						_customText[(int) CUR_NUMDIVCHARS],
+						_customText[(int) CUR_NUMDIVCHARS_TBL],
 						FcNumSufxCbxSelected.Code, SampleSequenceInteger);
 					break;
 				}
@@ -745,19 +747,20 @@ namespace DuplicateSheets2017
 
 			switch (NewShtOpts)
 			{
-			case RbNewShtOptions.PerSettings:
+			case NewShtOptions.PerSettings:
 				{
 					result = FormatShtName(PsSheetNamePrefix, 
-						PsIncSheetName, SampleSequenceInteger);
+						PsIncSheetName, PsNumFmtCbxSelected.Code,
+						SampleSequenceInteger);
 					break;
 				}
-			case RbNewShtOptions.FromCurrent:
+			case NewShtOptions.FromCurrent:
 				{
 					result = FormatShtName(origShtName,
 						FcNameDivCharsCbxSelected.Code,
-						_customText[(int) CUR_NAMEDIVCHARS],
+						_customText[(int) CUR_NAMEDIVCHARS_TBL],
 						FcNameSufxCbxSelected.Code,
-						_customText[(int) CUR_NAMESUFFIX], SampleSequenceInteger);
+						_customText[(int) CUR_NAMESUFFIX_TBL], SampleSequenceInteger);
 					break;
 				}
 			}
@@ -781,29 +784,43 @@ namespace DuplicateSheets2017
 			}
 		}
 
-		private string GetCustomText(string priorText, string titleText, string labelText)
+		private string GetCustText(int cbxIndex)
 		{
-			string result = priorText;
+			int idx = cbxIndex > 1 ? cbxIndex -= 2 : cbxIndex;
 
-			WpfCustomText w = new WpfCustomText(priorText, titleText, labelText);
-			
+			WpfCustomText w = new WpfCustomText(_customText[cbxIndex],
+				shData.CustomTitle[idx],
+				shData.CustomLabel[idx],
+				shData.CustomInvalidTitle[idx],
+				shData.CustomInvalidChars[idx]
+				);
+
 			if (w.ShowDialog() ?? false)
 			{
-				result = w.tbCustomText.Text;
+				return w.tbCustomText.Text;
 			}
-			return result;
+
+			return _customText[cbxIndex];
 		}
+
+
+//		private string GetCustomText(string priorText, string titleText, string labelText)
+//		{
+//			string result = priorText;
+//
+//			WpfCustomText w = new WpfCustomText(priorText, titleText, labelText);
+//			
+//			if (w.ShowDialog() ?? false)
+//			{
+//				result = w.tbCustomText.Text;
+//			}
+//			return result;
+//		}
 
 		private void GetCustomText(int cbxIndex)
 		{
-//			// setting the custom text?
-//			if ((int) cbi.Tables[cbxIndex].Selected.Code != 
-//				(int) CustomType.KEY) return;
-
 			// request the custom text from the user
-			_customText[cbxIndex] = GetCustomText(_customText[cbxIndex],
-				shData.CustomTitle[cbxIndex],
-				shData.CustomLabel[cbxIndex]);
+			_customText[cbxIndex] = GetCustText(cbxIndex);
 
 			// find the index of the custom divider text and
 			// update the combobox items with the custom text
@@ -823,7 +840,7 @@ namespace DuplicateSheets2017
 				// custom text is valid
 				_comboBoxes[cbxIndex].SelectedIndex = idx;
 
-				USet.Basic.SheetFormatFrmCurrent.CustomText[cbxIndex] =
+				USet.Basic.SheetFormatFc.CustomText[cbxIndex] =
 					_customText[cbxIndex];
 			}
 			else
@@ -833,7 +850,6 @@ namespace DuplicateSheets2017
 					// custom text is not valid - reset index
 					// to the previous value
 					_comboBoxes[cbxIndex].SelectedIndex = savedIdx;
-//						_currSelectedIdx[cbxIndex];
 				}
 				else
 				{
@@ -862,6 +878,13 @@ namespace DuplicateSheets2017
 			{
 				System.Diagnostics.Process.Start(@"http://www.cyberstudioapps.com/index.html");
 			}
+		}
+
+		private void btnAbout_Click(object sender, RoutedEventArgs e)
+		{
+			new SharedResources.About().ShowDialog();
+
+			e.Handled = true;
 		}
 
 		private void btnProceed_Click(object sender, RoutedEventArgs e)
@@ -939,6 +962,8 @@ namespace DuplicateSheets2017
 
 		public void btnHelp_Click(object sender, RoutedEventArgs e)
 		{
+			e.Handled = true;
+
 			string resource = (string) ((Button) sender).Tag;
 
 			ShUtil.ShowHelpMessage(resource);
@@ -947,10 +972,10 @@ namespace DuplicateSheets2017
 
 		private void cbxCurNumDvChars_DropDownClosed(object sender, EventArgs e)
 		{
-			if (USet.Basic.SheetFormatFrmCurrent
-				.CbxSelItem[(int) CUR_NUMDIVCHARS] == CUSTOMSELECT)
+			if (USet.Basic.SheetFormatFc
+				.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL] == CUSTOMSELECT)
 			{
-				GetCustomText((int) CUR_NUMDIVCHARS);
+				GetCustomText((int) CUR_NUMDIVCHARS_TBL);
 			}
 
 			UpdateShtNumExample();
@@ -958,10 +983,10 @@ namespace DuplicateSheets2017
 
 		private void cbxCurNamDvChars_DropDownClosed(object sender, EventArgs e)
 		{
-			if (USet.Basic.SheetFormatFrmCurrent
-				.CbxSelItem[(int) CUR_NAMEDIVCHARS] == CUSTOMSELECT)
+			if (USet.Basic.SheetFormatFc
+				.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] == CUSTOMSELECT)
 			{
-				GetCustomText((int) CUR_NAMEDIVCHARS);
+				GetCustomText((int) CUR_NAMEDIVCHARS_TBL);
 			}
 
 			UpdateShtNameExample();
@@ -969,10 +994,10 @@ namespace DuplicateSheets2017
 		
 		private void cbxCurNamSx_DropDownClosed(object sender, EventArgs e)
 		{
-			if (USet.Basic.SheetFormatFrmCurrent
-				.CbxSelItem[(int)CUR_NAMESUFFIX] == CUSTOMSELECT)
+			if (USet.Basic.SheetFormatFc
+				.NamePartSelItem[(int)CUR_NAMESUFFIX_TBL] == CUSTOMSELECT)
 			{
-				GetCustomText((int)CUR_NAMESUFFIX);
+				GetCustomText((int)CUR_NAMESUFFIX_TBL);
 			}
 
 			UpdateShtNameExample();

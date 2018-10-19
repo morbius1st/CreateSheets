@@ -1,0 +1,192 @@
+﻿<Window
+  x:Class="SharedResources.About"
+  xmlns:local="clr-namespace:SharedResources"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:res="clr-namespace:SharedCode.Resources"
+  xmlns:shared="clr-namespace:SharedCode"
+  mc:Ignorable="d"
+  Title="About"
+  Height="340"
+  Width="520"
+  Icon="{DynamicResource Icon}">
+  <Window.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+          Source="WpfStyles/WpfResource.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+
+      <BitmapImage
+        x:Key="Icon"
+        CreateOptions="IgnoreImageCache"
+        CacheOption="OnLoad"
+        UriSource="B:\Programming\VisualStudioProjects\RevitProjects\CreateSheets\SharedResources\Resources\CyberStudio Icon.png" />
+
+      <BitmapImage
+        x:Key="Logo"
+        CreateOptions="IgnoreImageCache"
+        CacheOption="OnLoad"
+        UriSource="B:\Programming\VisualStudioProjects\RevitProjects\CreateSheets\SharedResources\Resources\CyberStudio Logo - Narrow.png" />
+
+      <BitmapImage
+        x:Key="About"
+        CreateOptions="IgnoreImageCache"
+        CacheOption="OnLoad"
+        UriSource="B:\Programming\VisualStudioProjects\RevitProjects\CreateSheets\SharedResources\Resources\CreateSheetsAbout v2.png" />
+
+    </ResourceDictionary>
+  </Window.Resources>
+
+  <Grid
+    x:Name="grid"
+    Background="#FFF0F0F0"
+    Margin="0">
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition
+        Width="94" />
+      <ColumnDefinition
+        Width="*" />
+      <ColumnDefinition
+        Width="140" />
+    </Grid.ColumnDefinitions>
+
+    <Grid.RowDefinitions>
+      <RowDefinition
+        Height="170" />
+      <RowDefinition
+        Height="*" />
+      <RowDefinition
+        Height="50" />
+    </Grid.RowDefinitions>
+
+    <Image
+      Grid.Row="0"
+      Grid.Column="0"
+      x:Name="ibxLogo"
+      Source="{DynamicResource Logo}"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch"
+      Margin="0,0,-1,0" />
+
+    <Grid
+      Grid.Row="0"
+      Grid.Column="1"
+      Grid.ColumnSpan="2"
+      Background="{StaticResource dkGray}">
+
+      <Grid.RowDefinitions>
+        <RowDefinition
+          Height="15" />
+        <RowDefinition
+          Height="30" />
+        <RowDefinition
+          Height="20" />
+        <RowDefinition
+          Height="68" />
+        <RowDefinition
+          Height="23" />
+        <RowDefinition
+          Height="*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition
+          Width="*" />
+        <ColumnDefinition
+          Width="Auto" />
+        <ColumnDefinition
+          Width="17" />
+      </Grid.ColumnDefinitions>
+
+      <Image
+        Grid.Row="2"
+        Grid.Column="1"
+        Grid.ColumnSpan="2"
+        Grid.RowSpan="3"
+        Source="{DynamicResource About}"
+        HorizontalAlignment="Right"
+        Margin="0,20,0,18" />
+
+      <TextBlock
+        Name="tbkProgramYear"
+        Grid.Row="1"
+        Grid.Column="1"
+        FontFamily="Franklin Gothic Medium"
+        FontSize="28"
+        FontWeight="Bold"
+        Text="Duplicate Sheets 2017"
+        Foreground="White"
+        TextAlignment="Right"
+        Background="{StaticResource dkGray}"
+        Padding="0,0,0,0" />
+
+      <TextBlock
+        Name="tbkVersion"
+        Grid.Row="2"
+        Grid.Column="1"
+        FontFamily="Calibri"
+        FontSize="14"
+        Text="v 4.0.0"
+        Foreground="{StaticResource medCyan}"
+        Background="{StaticResource dkGray}"
+        TextAlignment="Right"
+        Padding="0,0,1,0" />
+
+      <TextBlock
+        Name="tbkCopyrightYear"
+        Grid.Row="4"
+        Grid.Column="1"
+        FontFamily="Calibri"
+        FontSize="18"
+        Text="Copyright 2018"
+        Foreground="{StaticResource medCyan}"
+        Background="{StaticResource dkGray}"
+        HorizontalAlignment="Right"
+        TextAlignment="Right"
+        Padding="0,0,1,0" />
+
+    </Grid>
+
+    <TextBlock
+      Grid.Row="1"
+      Grid.Column="0"
+      Grid.ColumnSpan="3"
+      Margin="6"
+      TextWrapping="Wrap"
+      HorizontalAlignment="Stretch"
+      VerticalAlignment="Stretch"
+      Text="I hope you like this small Revit® addin I made to help the guys at the office, and I hope it helps you too.  Please use the link below to find out more about me, this addin, and the Android® app I wrote.  This is a paid addin. If hope you find it useful and consider purchasing the addin through AutoDesk®'s app store if you received this free."></TextBlock>
+
+    <TextBlock
+      Grid.Row="2"
+      Grid.Column="0"
+      Grid.ColumnSpan="2"
+      Margin="6"
+
+      >
+
+      <Hyperlink
+        NavigateUri="http://www.cyberstudioApps.com"
+        RequestNavigate="Hyperlink_OnRequestNavigate">
+        CyberStudio Apps
+      </Hyperlink>
+
+
+
+    </TextBlock>
+
+
+    <Button
+      x:Name="btnClose"
+      Grid.Row="2"
+      Grid.Column="2"
+      Content="{x:Static res:AppStrings.R_Ok}"
+      Style="{StaticResource stdButton}"
+      Margin="0,5,15,0"
+      Click="btnOk_Click" />
+
+  </Grid>
+</Window>

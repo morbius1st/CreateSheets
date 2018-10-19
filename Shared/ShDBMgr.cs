@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+
 using SharedCode.Resources;
 using View = Autodesk.Revit.DB.View;
 
@@ -26,7 +27,7 @@ namespace SharedCode
 
 		#region + Private
 
-		private CbxBoxItems cbi;
+		private ShNamePartItemsTables cbi;
 		
 
 		private static Document   _doc;
@@ -59,9 +60,8 @@ namespace SharedCode
 
 			_cats = _doc.Settings.Categories;
 
-			cbi = CbxBoxItems.Instance;
+			cbi = ShNamePartItemsTables.Instance;
 		}
-		
 
 		#endregion
 
@@ -86,11 +86,11 @@ namespace SharedCode
 					// part A - determine the new sheet number depending
 					// on newsheetformat
 					// find sheet number and determine the sequence number
-					seq = FindNextSheetNumber(nsf, seq, out nsf.newSheetNumber);
+					nsf.seq = FindNextSheetNumber(nsf, seq, out nsf.newSheetNumber);
 
 					// part B - determine the new sheet name depending
 					// on newsheetformat
-					nsf.newSheetName = GetNewSheetName(nsf, seq);
+					nsf.newSheetName = GetNewSheetName(nsf);
 
 					// got the new sheet number and name
 #if DEBUG
@@ -174,7 +174,7 @@ namespace SharedCode
 
 			if (nsf.UseParameters && nsf.SelectedSheet.SheetView != null)
 			{
-				CopyParameters(nsf.SelectedViewSheet, vsDestinationSheet);
+				CopyParameters(nsf.FcSelViewSht, vsDestinationSheet);
 			}
 
 			return vsDestinationSheet;
@@ -216,7 +216,7 @@ namespace SharedCode
 
 			// first, get a collection of elements that exist on the source sheet
 			FilteredElementCollector colViewSheet = 
-				new FilteredElementCollector(_doc, (nsf.SelectedViewSheet).Id);
+				new FilteredElementCollector(_doc, nsf.FcSelViewSht.Id);
 
 			// prepare for the elements to "copy" and "paste"
 			ICollection<ElementId> copyIds = new List<ElementId>();
@@ -320,15 +320,14 @@ namespace SharedCode
 
 						if (vwCopy != null)
 						{
-							vwCopy.Name = FindNextViewName(vwSource.Name, nsf.newSheetNumber);
+							vwCopy.Name = FindNextViewName(vwSource.Name, nsf);
+//							vwCopy.Name = FindNextViewName(vwSource.Name, nsf.newSheetNumber);
 
 							PlaceViewportOnSheet(vsDestinationSheet, vpSource, vwCopy);
 						}
 					}
 				}
-				// this was done in the create an empty sheet method
-//				CopyParameters(vsSourceSheet, vsDestinationSheet);
-				
+	
 			}
 			catch (Exception e)
 			{
@@ -486,12 +485,11 @@ namespace SharedCode
 			{
 				switch (nsf.NewSheetOption)
 				{
-				case RbNewShtOptions.PerSettings:
+				case NewShtOptions.PerSettings:
 					{
 						shtNumber = ShNewSheetMgr.
-							FormatShtNumber(nsf.SheetFormatPerSetting.NumberPrefix,
-							cbi.FindTitleByCode(nsf.SheetFormatPerSetting.CbxSelItem[(int) CbxType.SET_NUMSUFX]),
-							++shtNumIdx);
+							FormatShtNumber(nsf.SheetFormatPs.NumberPrefix,
+								nsf.PsNumFmtCode, ++shtNumIdx);
 						break;
 					}
 				default: // from current
@@ -499,9 +497,9 @@ namespace SharedCode
 						shtNumber = ShNewSheetMgr.
 							FormatShtNumber(
 								nsf.SelectedSheet.SheetNumber,
-								nsf.SheetFormatFrmCurrent.CbxSelItem[(int)CbxType.CUR_NUMDIVCHARS],
-								nsf.SheetFormatFrmCurrent.CustomText[(int)CbxType.CUR_NUMDIVCHARS],
-								nsf.SheetFormatFrmCurrent.CbxSelItem[(int)CbxType.CUR_NUMSUFFIX],
+								nsf.FcNumDivChar,
+								nsf.FcNumDivCharCustom,
+								nsf.FcNumSuffix,
 								++shtNumIdx);
 						break;
 					}
@@ -538,24 +536,67 @@ namespace SharedCode
 			return shtNumIdx;
 		}
 
+		private string FindNextViewName(string origViewName, NewSheetFormat nsf)
+		{
+			string baseName = FormatViewName(origViewName, nsf);
+			string proposedViewName = baseName;
+
+			int idx = 1;
+
+			while (Array.IndexOf(_viewNameList, proposedViewName) >= 0)
+			{
+				proposedViewName = baseName + "." + idx++.ToString();
+			}
+
+			return proposedViewName;
+		}
+
+//
+//		
+//		private string FindNextViewName(string origViewName, string shtNumber)
+//		{
+//			string proposedViewName;
+//
+//			int idx = 0;
+//			int foundIdx;
+//
+//			do
+//			{
+//				proposedViewName = FormatViewName(origViewName, shtNumber, idx);
+//				foundIdx         = Array.IndexOf(_viewNameList, proposedViewName, idx++);
+//			}
+//			while (foundIdx >= 0);
+//
+//			return proposedViewName;
+//
+//		}
+
 		// find a ViewSheet based on a Sheet Number
 		// returns a ViesSheet if found
 		// returns null if not found
-		private string FindNextViewName(string origViewName, string shtNumber)
+		private string FormatViewName(string origViewName, NewSheetFormat nsf)
 		{
-			string proposedViewName;
-
-			int idx = 0;
-			int foundIdx;
-
-			do
+			if (nsf.NewSheetOption == NewShtOptions.PerSettings)
 			{
-				proposedViewName = FormatViewName(origViewName, shtNumber, idx);
-				foundIdx         = Array.IndexOf(_viewNameList, proposedViewName, idx++);
+				return ShNewSheetMgr.FormatShtName(origViewName + " Copy", true,
+					nsf.PsNumFmtCode, nsf.seq);
 			}
-			while (foundIdx >= 0);
 
-			return proposedViewName;
+			// new sheet option is from current
+
+			string result = ShNewSheetMgr.FormatShtName(origViewName,
+				nsf.FcNameDivChar,
+				nsf.FcNameDivCharCustom,
+				nsf.FcNameSuffix,
+				nsf.FcNameSuffixCustom,
+				nsf.seq);
+
+			if ( result.Equals(origViewName))
+			{
+				result += " Copy";
+			}
+
+			return result;
 
 		}
 
@@ -596,26 +637,27 @@ namespace SharedCode
 			}
 		}
 
-		private string GetNewSheetName(NewSheetFormat nsf, int seq)
+		private string GetNewSheetName(NewSheetFormat nsf)
 		{
 			switch (nsf.NewSheetOption)
 			{
-				case RbNewShtOptions.PerSettings:
+				case NewShtOptions.PerSettings:
 				{
 					return ShNewSheetMgr.FormatShtName(
-						nsf.SheetFormatPerSetting.SheetNamePrefix,
-						nsf.SheetFormatPerSetting.IncSheetName,
-						seq);
+						nsf.PsShtNamePrefix,
+						nsf.PsIncShtName,
+						nsf.PsNumFmtCode,
+						nsf.seq);
 				}
-				case RbNewShtOptions.FromCurrent:
+				case NewShtOptions.FromCurrent:
 				{
 					return ShNewSheetMgr.FormatShtName(
-						nsf.SelectedSheet.SheetName,
-						nsf.SheetFormatFrmCurrent.CbxSelItem[(int)CbxType.CUR_NAMEDIVCHARS],
-						nsf.SheetFormatFrmCurrent.CustomText[(int)CbxType.CUR_NAMEDIVCHARS],
-						nsf.SheetFormatFrmCurrent.CbxSelItem[(int)CbxType.CUR_NAMESUFFIX],
-						nsf.SheetFormatFrmCurrent.CustomText[(int)CbxType.CUR_NAMESUFFIX],
-						seq);
+						nsf.FcSelShtName,
+						nsf.FcNameDivChar,
+						nsf.FcNameDivCharCustom,
+						nsf.FcNameSuffix,
+						nsf.FcNameSuffixCustom,
+						nsf.seq);
 				}
 			}
 
@@ -769,7 +811,7 @@ namespace SharedCode
 
 			if (nsf.TitleBlockName.Equals(AppStrings.R_TBlkFromSelSheet))
 			{
-				result = GetTitleBlockFromSheet(nsf.SelectedViewSheet);
+				result = GetTitleBlockFromSheet(nsf.FcSelViewSht);
 			}
 			else if (nsf.TitleBlockName.Equals(AppStrings.R_TBlkNone))
 			{
