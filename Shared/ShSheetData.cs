@@ -97,6 +97,9 @@ namespace SharedCode
 
 		public override bool Equals(object obj)
 		{
+			if (obj == null) return false;
+
+
 			if (typeof(object) != typeof(SheetData))
 			{
 				return false;
@@ -105,7 +108,20 @@ namespace SharedCode
 			return this.CompareTo((SheetData) obj) == 0;
 		}
 
+
+		public override string ToString()
+		{
+			return _sheetNumber + " :: " + _sheetName;
+		}
+
 		// ReSharper disable once BaseObjectGetHashCodeCallInGetHashCode
 		public override int GetHashCode() => base.GetHashCode();
+
+		public SheetData Clone()
+		{
+			return new SheetData(_sheetNumber, _sheetName, _sheetView);
+		}
+
+
 	}
 }

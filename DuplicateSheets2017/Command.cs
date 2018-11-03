@@ -11,7 +11,8 @@ using SharedCode.Resources;
 using Document = Autodesk.Revit.DB.Document;
 
 using static DuplicateSheets2017.Command;
-using static DuplicateSheets2017.SettingsUser;
+
+using static SharedCode.ShDbMgr;
 
 using static UtilityLibrary.MessageUtilities2;
 
@@ -28,6 +29,7 @@ namespace DuplicateSheets2017
 		public static WpfSelViewSheet WpfSelViewSheetWin;
 
 		public static UIApplication _uiapp;
+		public static ShDbMgr _DBMgr;
 		private UIDocument _uidoc;
 		private Document _document;
 
@@ -40,6 +42,11 @@ namespace DuplicateSheets2017
 			_uidoc = _uiapp.ActiveUIDocument;
 			_document = _uidoc.Document;
 
+			_DBMgr = new ShDbMgr(commandData);
+
+
+			logMsgLn2("got view sheets| ", _DBMgr.AllViewSheets().FirstElement() == null ? "found" : "is null" );
+
 			string TransactionDesc = AppStrings.R_ButtonNameTop + " " + AppStrings.R_ButtonNameBott;
 
 			// determine if we can proceed
@@ -48,7 +55,6 @@ namespace DuplicateSheets2017
 				tx.Start(TransactionDesc);
 
 				WpfSelViewSheetWin = new WpfSelViewSheet(commandData);
-
 
 //				AppStrings.Culture = new CultureInfo("fr");
 //				Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("fr");
@@ -73,7 +79,7 @@ namespace DuplicateSheets2017
 				{
 					tx.Dispose();
 
-					ShUtil.ShowErrorDialog(e);
+					ShUtil.ShowExceptionDialog(e);
 
 					return Result.Cancelled;
 				}
@@ -91,8 +97,8 @@ namespace DuplicateSheets2017
 		// private ShDBMgr m_DBMgr;
 
 //		public static UIApplication _uiapp;
-		private UIDocument _uidoc;
-		private Document _document;
+//		private UIDocument _uidoc;
+//		private Document _document;
 
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
 		public Result Execute(ExternalCommandData commandData,
@@ -100,30 +106,55 @@ namespace DuplicateSheets2017
 		{
 		
 			_uiapp = commandData.Application;
-			_uidoc = _uiapp.ActiveUIDocument;
-			_document = _uidoc.Document;
+//			_uidoc = _uiapp.ActiveUIDocument;
+//			_document = _uidoc.Document;
 
-			ShDbMgr _DBMgr = new ShDbMgr(commandData);
+			_DBMgr = new ShDbMgr(commandData);
 
-			ViewSheet vs = null;
-
-			string TransactionDesc = AppStrings.R_ButtonNameTop_1Click + " " + AppStrings.R_ButtonNameBott_1Click;
-
+			ShDbMgr DBMgr = _DBMgr;
 			
-			USettings.Read();
-
-			View v = _DBMgr.ActiveGraphicalView;
-
-			if (v.ViewType == ViewType.DrawingSheet)
+			if (_DBMgr.SheetCount < 1)
 			{
-				vs = v as ViewSheet;
+				ShUtil.ShowErrorDialog("One Click Error", 
+					"One click cannot continue",
+					"This model has no sheet so no duplicate sheets "
+					+ "can be made.  Please make at least one sheet "
+					+ "and try again.");
+
+				return Result.Failed;
 			}
 
-			MessageBox.Show("One Click is defined| " + USet.OneClick.Defined
-				+ nl + " title block| " + (USet.OneClick.TitleBlockName ?? "is null")
-				+ nl + " sheet title| " + (vs?.Name ?? "is null"), 
-				"Got one click"
-				, MessageBoxButton.OK);
+
+			ShOneClick oneClick = new ShOneClick();
+
+			if (!oneClick.Process(commandData))
+			{
+				return Result.Failed;
+			}
+
+
+
+//			ShDbMgr _DBMgr = new ShDbMgr(commandData);
+//
+//			ViewSheet vs = null;
+//
+//			string TransactionDesc = AppStrings.R_ButtonNameTop_1Click + " " + AppStrings.R_ButtonNameBott_1Click;
+//
+//			
+//			USettings.Read();
+//
+//			View v = _DBMgr.ActiveGraphicalView;
+//
+//			if (v.ViewType == ViewType.DrawingSheet)
+//			{
+//				vs = v as ViewSheet;
+//			}
+//
+//			MessageBox.Show("One Click is defined| " + USet.OneClick.Defined
+//				+ nl + " title block| " + (USet.OneClick.TitleBlockName ?? "is null")
+//				+ nl + " sheet title| " + (vs?.Name ?? "is null"), 
+//				"Got one click"
+//				, MessageBoxButton.OK);
 
 
 			// determine if we can proceed
@@ -157,7 +188,7 @@ namespace DuplicateSheets2017
 //				{
 //					tx.Dispose();
 //
-//					ShUtil.ShowErrorDialog(e);
+//					ShUtil.ShowExceptionDialog(e);
 //
 //					return Result.Cancelled;
 //				}

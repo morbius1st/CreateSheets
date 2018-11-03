@@ -189,6 +189,20 @@
   </Style>
 
   <Style
+    x:Key="tblkStyle"
+    TargetType="{x:Type TextBlock}">
+    <Setter
+      Property="Height"
+      Value="{StaticResource newSheetItemHeight}" />
+    <Setter
+      Property="TextWrapping"
+      Value="Wrap" />
+ <Setter
+      Property="Background"
+      Value="{DynamicResource Transparent}" />
+  </Style>
+
+  <Style
     x:Key="tbStyle"
     TargetType="{x:Type TextBox}">
     <Setter
@@ -514,6 +528,26 @@
     <Setter
       Property="BorderBrush"
       Value="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+
+    <Style.Triggers>
+      <EventTrigger RoutedEvent="Click">
+        <EventTrigger.Actions>
+          <BeginStoryboard>
+            <Storyboard
+              BeginTime="00:00:00"
+              Duration="00:00:0.1"
+              AutoReverse="True"
+              RepeatBehavior="5x"
+              Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)">
+              <ColorAnimation
+                From="{StaticResource lt_Gray}" To="White" Duration="0:0:0.1"  
+                AutoReverse="True"
+                />
+            </Storyboard>
+          </BeginStoryboard>
+        </EventTrigger.Actions>
+      </EventTrigger>
+    </Style.Triggers>
   </Style>
 
   <Style

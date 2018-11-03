@@ -11,7 +11,9 @@
   Title="About"
   Height="340"
   Width="520"
-  Icon="{DynamicResource Icon}">
+  Icon="{DynamicResource Icon}"
+
+  >
   <Window.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>

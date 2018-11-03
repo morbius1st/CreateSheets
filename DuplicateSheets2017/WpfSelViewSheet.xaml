@@ -15,7 +15,7 @@
   MaxWidth="1300"
   Width="800"
   MinWidth="800"
-  Height="700"
+  Height="730"
   MinHeight="{Binding Height, ElementName=winSelViewSheet}"
   MaxHeight="{Binding Height, ElementName=winSelViewSheet}"
   FontSize="13"
@@ -99,9 +99,9 @@
       <ColumnDefinition
         Width="14" />
       <ColumnDefinition
-        Width="135.333" />
+        Width="355" />
       <ColumnDefinition
-        Width="234.667" />
+        Width="15" />
       <ColumnDefinition
         Width="*" />
     </Grid.ColumnDefinitions>
@@ -112,9 +112,9 @@
       <RowDefinition
         Height="320" />
       <RowDefinition
-        Height="165" />
-      <RowDefinition
         Height="*" />
+      <RowDefinition
+        Height="70" />
 
     </Grid.RowDefinitions>
 
@@ -1215,8 +1215,10 @@
           <RowDefinition
             Height="{StaticResource opItemRowHeight}" />
           <RowDefinition
-            Height="*" />
- 
+            Height="24" />
+          <RowDefinition
+            Height="24" />
+
         </Grid.RowDefinitions>
 
         <TextBox
@@ -1312,19 +1314,21 @@
           Grid.Column="0"
           Content="?"
           Style="{StaticResource btnHelpStyle}"
+          VerticalAlignment="Bottom"
+          Margin="0,0,0,2"
           Tag="HelpUseParams" />
 
         <CheckBox
           Grid.Row="3"
           Grid.Column="2"
-          IsChecked="{Binding UseParameters, Mode=TwoWay}"
+          IsChecked="{Binding UseTemplateSheet, Mode=TwoWay}"
           BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"
           VerticalAlignment="Bottom"
           HorizontalAlignment="Left"
           Padding="0"
           Height="16"
           Width="16"
-          Margin="6,0,0,5" />
+          Margin="6,0,0,2" />
 
         <TextBox
           Grid.Row="3"
@@ -1333,6 +1337,19 @@
           Text="{x:Static res:AppStrings.R_UseSheetForOneClick}"
           Style="{StaticResource tbLblStyle}"
           Margin="31,6,0,4"
+          />
+
+        <TextBlock
+          x:Name="tblkTemplateSheet"
+          Grid.Row="4"
+          Grid.Column="2"
+          Grid.ColumnSpan="3"
+          Margin="6,0,0,0"
+          Background="{StaticResource ltGray}"
+          Style="{StaticResource tblkStyle}"
+          
+          
+          
           />
 
       </Grid>

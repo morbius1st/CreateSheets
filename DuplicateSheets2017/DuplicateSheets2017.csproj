@@ -103,6 +103,7 @@
     <Compile Include="SettingsApp.cs" />
     <Compile Include="SettingsUser.cs" />
     <Compile Include="LocalResourceMgr.cs" />
+    <Compile Include="ShOneClick.cs" />
     <Compile Include="WpfCustomText.xaml.cs">
       <DependentUpon>WpfCustomText.xaml</DependentUpon>
     </Compile>

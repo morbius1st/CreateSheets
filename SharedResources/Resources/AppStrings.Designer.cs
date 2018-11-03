@@ -1323,7 +1323,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reuse selected sheet for One Click.
+        ///   Looks up a localized string similar to Use selected sheet for One Click.
         /// </summary>
         public static string R_UseSheetForOneClick {
             get {

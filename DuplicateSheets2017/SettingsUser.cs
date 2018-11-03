@@ -36,61 +36,6 @@ namespace DuplicateSheets2017
 
 	}
 
-	public static class SettingExtensions
-	{
-		public static NewSheetFormat Clone(this NewSheetFormat orig)
-		{
-			NewSheetFormat copy = new NewSheetFormat(orig.Defined);
-
-			copy.OperationOption = orig.OperationOption;
-			copy.NewSheetOption = orig.NewSheetOption;
-//			copy.UseParameters = orig.UseParameters;
-
-			copy.SheetFormatFc = orig.SheetFormatFc.Clone();
-			copy.SheetFormatPs = orig.SheetFormatPs.Clone();
-
-			return copy;
-		}
-
-		public static ShtFmtPerSetting Clone(this ShtFmtPerSetting orig)
-		{
-			ShtFmtPerSetting copy = new ShtFmtPerSetting();
-
-			copy.IncSheetName = orig.IncSheetName;
-			copy.NumberPrefix = orig.NumberPrefix;
-			copy.SheetNamePrefix = orig.SheetNamePrefix;
-
-			for (var i = 0; i < orig.NamePartSelItem.Length; i++)
-			{
-				copy.NamePartSelItem[i] = orig.NamePartSelItem[i];
-			}
-
-			for (var i = 0; i < orig.CustomText.Length; i++)
-			{
-				copy.CustomText[i] = orig.CustomText[i];
-			}
-
-			return copy;
-		}
-
-		public static ShtFmtFrmCurrent Clone(this ShtFmtFrmCurrent orig)
-		{
-			ShtFmtFrmCurrent copy = new ShtFmtFrmCurrent();
-
-			for (var i = 0; i < orig.NamePartSelItem.Length; i++)
-			{
-				copy.NamePartSelItem[i] = orig.NamePartSelItem[i];
-			}
-
-			for (var i = 0; i < orig.CustomText.Length; i++)
-			{
-				copy.CustomText[i] = orig.CustomText[i];
-			}
-
-			return copy;
-		}
-	}
-
 	// this is the actual data set saved to the user's configuration file
 	// this is unique for each program
 	[DataContract]
@@ -220,13 +165,13 @@ namespace DuplicateSheets2017
 //		public string SampleSheetName   { get; set; } = WpfWindows.R_ShtOpCurSampleShtName;
 //	}
 //
-//	public class ShtFmtFrmCurrent : CbxInfo
+//	public class ShtFmtFrmCurrent : BaseInfo
 //	{
 //		public CbxItemCode[] CbxSelItem { get; set; } = { C_DV_PERIOD, C_SX_NUMNUM2, C_DV_PERIOD, C_SX_NAMCOPY1 };
 //		public string[] CustomText      { get; set; } = { "", "", "", "" };
 //	}
 //
-//	public class ShtFmtPerSetting : CbxInfo
+//	public class ShtFmtPerSetting : BaseInfo
 //	{
 //		public string NumberPrefix      { get; set; } = ".X-";
 //		public string SheetNamePrefix   { get; set; } = "Sheet Name";
@@ -235,7 +180,7 @@ namespace DuplicateSheets2017
 //		public string[] CustomText      { get; set; } = {"" };
 //	}
 //
-//	public interface CbxInfo
+//	public interface BaseInfo
 //	{
 //		CbxItemCode[] CbxSelItem        { get; set; } 
 //		string[] CustomText             { get; set; }

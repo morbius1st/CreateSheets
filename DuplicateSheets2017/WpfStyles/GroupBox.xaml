@@ -98,7 +98,7 @@
 								</MultiBinding>
 							</Border.OpacityMask>
 							<Grid>
-                <Border
+              <Border
                   BorderThickness="{StaticResource GbWidth}"
                   Grid.ColumnSpan="4"
                   Grid.Row="0"

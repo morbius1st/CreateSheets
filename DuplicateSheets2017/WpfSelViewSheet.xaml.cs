@@ -21,7 +21,11 @@ using static SharedCode.ShNamePartItemCode;
 using static SharedCode.ShSheetDataList;
 using static SharedCode.ShNewSheetMgr;
 
+using static DuplicateSheets2017.Command;
+
 using Binding = System.Windows.Data.Binding;
+
+using static UtilityLibrary.MessageUtilities2;
 
 namespace DuplicateSheets2017
 {
@@ -46,7 +50,7 @@ namespace DuplicateSheets2017
 		private const int COPIES_START = 1;
 		private  const int COPIES_END = 100;
 
-		private ShDbMgr _DBMgr;
+//		private ShDbMgr _DBMgr;
 		private ShNamePartItemsTables cbi;
 		private NewSheetFormat SavedSettings;
 
@@ -72,8 +76,8 @@ namespace DuplicateSheets2017
 			// keep track of window up and running
 			_initalized = false;
 
-			// setup the database object
-			_DBMgr = new ShDbMgr(commandData);
+//			// setup the database object
+//			_DBMgr = new ShDbMgr(commandData);
 
 			// needs to be setup before initalization of the controls
 			cbi = ShNamePartItemsTables.Instance;
@@ -130,18 +134,21 @@ namespace DuplicateSheets2017
 			}
 		}
 
-
+		// create a list of sheets in the model
+		// auto loaded into the listbox
 		private bool InitSheetList()
 		{
-			int idx = 0;
-			int result = -1;
+			int idx = -1;
+//			int result = -1;
 
-			string activeViewUniqueId = _DBMgr.ActiveGraphicalView.UniqueId;
+//			string activeViewUniqueId = _DBMgr.ActiveGraphicalView.UniqueId;
 
 			SheetData sheetCurrent = null;
 
 			// clear the current list of sheets
 			SheetList.Clear();
+
+			
 
 			foreach (ViewSheet vs in _DBMgr.AllViewSheets())
 			{
@@ -149,67 +156,33 @@ namespace DuplicateSheets2017
 
 				SheetList.Add(sheetCurrent);
 
-				if (vs.UniqueId.Equals(activeViewUniqueId))
-				{
-					result = idx;
-				}
+//				if (vs.UniqueId.Equals(activeViewUniqueId))
+//				{
+//					result = idx;
+//				}
+//
+//				idx++;
+			}
+//
+//			if (result == -1) result = 0;
+//
+//			lbxSheets.SelectedIndex = result;
 
-				idx++;
+
+			lbxSheets.Items.SortDescriptions.Add(
+				new SortDescription("SheetNumber", 
+					ListSortDirection.Ascending));
+
+			if (_DBMgr.ActiveGraphicalView.ViewType == ViewType.DrawingSheet)
+			{
+				idx = FindSheetInList(
+					((ViewSheet) _DBMgr.ActiveGraphicalView).SheetNumber);
 			}
 
-			if (result == -1) result = 0;
-
-			lbxSheets.SelectedIndex = result;
+			lbxSheets.SelectedIndex = idx;
 
 			return true;
 		}
-
-
-//		private bool InitSheetList2()
-//		{
-//			bool gotActiveSheet = false;
-//
-//			SheetData sheetCurrent = null;
-//			SheetData sheetActive = null;
-//
-//			if (_DBMgr.SheetCount == 0) return false;
-//
-//			// get the ActiveView
-//			View vActive = _DBMgr.ActiveView;
-//
-//			if (vActive.ViewType == ViewType.DrawingSheet)
-//			{
-//				gotActiveSheet = true;
-//			}
-//
-//			// clear the current list of sheets
-//			SheetList.Clear();
-//
-//			foreach (ViewSheet vs in _DBMgr.AllViewSheets())
-//			{
-//				sheetCurrent = new SheetData(vs.SheetNumber, vs.Name);
-//
-//				SheetList.Add(sheetCurrent);
-//
-//				if (!gotActiveSheet)
-//				{
-//
-//				}
-//
-//				// save the active sheet
-//				if (gotActiveSheet && vActive.UniqueId.Equals(vs.UniqueId))
-//				{
-//					sheetActive = sheetCurrent;
-//				}
-//			}
-//
-//			// got an active sheet to pre-select?
-//			if (sheetActive != null)
-//			{
-//				lbxSheets.SelectedIndex = SheetList.IndexOf(sheetActive);
-//			}
-//			return true;
-//		}
 
 		private void InitTitleBlocks()
 		{
@@ -291,11 +264,83 @@ namespace DuplicateSheets2017
 				if (value != null)
 				{
 					SheetList.SelectedSheet = value;
+
+					if (UseTemplateSheet == false)
+					{
+						if (_initalized)
+							TemplateSheet = SheetList.SelectedSheet;
+					}
 				}
 			}
 		}
 
-		public string SelectedTitleBlock { get; set; }
+		public string SelectedTitleBlock
+		{
+			get => USet.Basic.TitleBlockName;
+			set
+			{
+				if (USet.Basic.TitleBlockName == null || 
+					!USet.Basic.TitleBlockName.Equals(value))
+				{
+					USet.Basic.TitleBlockName = value;
+				}
+			}
+		}
+
+
+		// need to keep in mind that the viewsheet data is null
+		public SheetData TemplateSheet
+		{
+			get => USet.Basic.TemplateSheet;
+
+			set
+			{
+				
+
+				if ((USet.Basic.TemplateSheet != null && !value.Equals(USet.Basic.TemplateSheet))
+					|| USet.Basic.TemplateSheet == null )
+				{
+					USet.Basic.TemplateSheet = value;
+					OnUiPropertyChange();
+				}
+
+				if (USet.Basic.TemplateSheet == null)
+				{
+					tblkTemplateSheet.Text = ((SheetData) lbxSheets.Items[lbxSheets.SelectedIndex]).ToString();
+				}
+				else
+				{
+					tblkTemplateSheet.Text = USet.Basic.TemplateSheet.ToString();
+				}
+			}
+		}
+
+		public bool UseTemplateSheet
+		{
+			get => USet.Basic.UseTemplateSheet;
+
+			set
+			{
+				if (!value == USet.Basic.UseTemplateSheet)
+				{
+					USet.Basic.UseTemplateSheet = value;
+					OnUiPropertyChange();
+				}
+
+				if (USet.Basic.UseTemplateSheet == false)
+				{
+					TemplateSheet = null;
+				}
+				else
+				{
+					if (lbxSheets.SelectedIndex > -1)
+					{
+						TemplateSheet = (SheetData) lbxSheets.Items[lbxSheets.SelectedIndex];
+					}
+				}
+			}
+		}
+
 
 		#region + Settings
 
@@ -591,9 +636,12 @@ namespace DuplicateSheets2017
 			PsNumberPrefix = USet.Basic.SheetFormatPs.NumberPrefix;
 			PsSheetNamePrefix = USet.Basic.SheetFormatPs.SheetNamePrefix;
 			PsIncSheetName = USet.Basic.SheetFormatPs.IncSheetName;
+
+			TemplateSheet = USet.Basic.TemplateSheet;
+			UseTemplateSheet = USet.Basic.UseTemplateSheet;
 		}
 
-		private void ReadCbxSettings(int start, int end, CbxInfo stgInfo)
+		private void ReadCbxSettings(int start, int end, BaseInfo stgInfo)
 		{
 			// represents the index in the settings array (stgInfo)
 			int i = 0;
@@ -649,7 +697,7 @@ namespace DuplicateSheets2017
 			USettings.Save();
 		}
 
-		private void SaveCbxSettings(int start, int end, CbxInfo stgInfo)
+		private void SaveCbxSettings(int start, int end, BaseInfo stgInfo)
 		{
 			// represents the index in the settings array (stgInfo)
 			int i = 0;
@@ -684,7 +732,7 @@ namespace DuplicateSheets2017
 
 		#region + Utility
 
-		private bool SelectSheet(string sheetNumber)
+		private int FindSheetInList(string sheetNumber)
 		{
 			int item = 0;
 
@@ -692,18 +740,14 @@ namespace DuplicateSheets2017
 			{
 				if (sd.SheetNumber.Equals(sheetNumber))
 				{
-					// found - select and set focus to
-					// control to flag which was selected
-					lbxSheets.SelectedIndex = item;
-					lbxSheets.Focus();
-					return true;
+					return item;
 				}
 
 				// next item number
 				item++;
 			}
 
-			return false;
+			return -1;
 		}
 
 		private void ConfigCbxItems(ComboBox cbx, ShNamePartType ct)
@@ -1020,10 +1064,10 @@ namespace DuplicateSheets2017
 			// setup and populate sheet list
 			InitShtList();
 
-			InitTitleBlocks();
-
 			// read the saved settings
 			USettings.Read();
+
+			InitTitleBlocks();
 
 			// setup the controls before read / apply settings
 			ApplySettings();
@@ -1057,9 +1101,11 @@ namespace DuplicateSheets2017
 			USet.Basic.TitleBlockName = SelectedTitleBlock;
 			USet.Basic.SelectedSheet = SelectedSheet;
 
+
+			logMsgLn2("at closing", SelectedSheet.ToString());
+
 			// process the selected operation - return the result
 			DialogResult = _DBMgr.Process2(USet.Basic);
-
 		}
 
 		#endregion

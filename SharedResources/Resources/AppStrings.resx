@@ -653,6 +653,6 @@ This settings persist between usages and sessions.  </value>
     <value>Command_1Click</value>
   </data>
   <data name="R_UseSheetForOneClick" xml:space="preserve">
-    <value>Reuse selected sheet for One Click</value>
+    <value>Use selected sheet for One Click</value>
   </data>
 </root>

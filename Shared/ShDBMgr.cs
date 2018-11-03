@@ -18,7 +18,7 @@ using static UtilityLibrary.MessageUtilities2;
 
 namespace SharedCode
 {
-	class ShDbMgr
+	public class ShDbMgr
 	{
 		private const char TBlkSeperator = (char) 0x00A0;
 
@@ -122,7 +122,7 @@ namespace SharedCode
 			}
 			catch (Exception e)
 			{
-				ShUtil.ShowErrorDialog(e);
+				ShUtil.ShowExceptionDialog(e);
 
 				return false;
 			}
@@ -366,7 +366,7 @@ namespace SharedCode
 			}
 		}
 
-		public int SheetCount => _vs.Count();
+		public int SheetCount => _vs.GetElementCount();
 
 		public int TitleBlockCount => GetAllTitleBlocks().Count();
 
@@ -384,6 +384,9 @@ namespace SharedCode
 
 		public ViewSheet FindExistSheet(string shtNumber)
 		{
+			
+			if (shtNumber == null) return null;
+
 			foreach (ViewSheet vs in _vs)
 			{
 				if (vs.SheetNumber.Equals(shtNumber))
@@ -598,6 +601,23 @@ namespace SharedCode
 
 			return result;
 
+		}
+
+		public int SheetViewExists(string sheetNumber)
+		{
+			int idx = 0;
+
+			foreach (ViewSheet vs in AllViewSheets())
+			{
+				if (vs.SheetNumber.Equals(sheetNumber))
+				{
+					return idx;
+				}
+
+				idx++;
+			}
+
+			return -1;
 		}
 
 		private void GetAllSheetViews()

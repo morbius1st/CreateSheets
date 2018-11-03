@@ -33,6 +33,7 @@ namespace SharedCode
 		SET_NUMSUFFIX_TBL    = 4  // table number in the tables array
 	}
 
+	
 	public enum ShNamePartItemCode
 	{
 		// < 0

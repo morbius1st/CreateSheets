@@ -60,7 +60,21 @@ namespace SharedCode
 			errMsg.Show();
 		}
 
-		public static void ShowErrorDialog(Exception e)
+		public static void ShowErrorDialog(string title, string main, string content)
+		{
+			TaskDialog err = new TaskDialog(LocalResMgr.AppName + ", " + title);
+
+			err.MainInstruction = main;
+			err.MainContent = content;
+
+			err.CommonButtons = TaskDialogCommonButtons.Close;
+			err.DefaultButton = TaskDialogResult.Close;
+			err.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
+
+			err.Show();
+		}
+
+		public static void ShowExceptionDialog(Exception e)
 		{
 			SharedResources.ErrorReport errorReport = new ErrorReport();
 

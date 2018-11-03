@@ -9,17 +9,20 @@
     <Import_RootNamespace>SharedLibrary</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-  <Compile Include="$(MSBuildThisFileDirectory)..\..\LibraryRevit\LibraryRevit\RevitLibrary.cs" >
-	<Link>RevitLibrary.cs</Link>
-  </Compile>
-  <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\CsUtilities.cs" >
-	<Link>CsUtilities.cs</Link>
-  </Compile>
-  <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\MessageUtilities.cs" >
-	<Link>MessageUtilities.cs</Link>
-  </Compile>
-  <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\SettingsMgr.cs" >
-	<Link>SettingsMgr.cs</Link>
-  </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\LibraryRevit\LibraryRevit\RevitLibrary.cs">
+      <Link>RevitLibrary.cs</Link>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\CsUtilities.cs">
+      <Link>CsUtilities.cs</Link>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\MessageUtilities.cs">
+      <Link>MessageUtilities.cs</Link>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\SettingsMgr.cs">
+      <Link>SettingsMgr.cs</Link>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\CsExtensions.cs">
+      <Link>CsExtensions.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>
