@@ -5,6 +5,7 @@ using UtilityLibrary;
 using static DuplicateSheets2017.Command;
 
 using SharedCode;
+using SharedCode.Resources;
 
 namespace DuplicateSheets2017
 {
@@ -84,8 +85,8 @@ namespace DuplicateSheets2017
 
 			SheetFormatSample = new ShtFmtSample();
 
-			Basic    = new NewSheetFormat(true);
-			OneClick = new NewSheetFormat(false);
+			Basic    = new NewSheetFormat(true, NewSheetFormat.BasicName);
+			OneClick = new NewSheetFormat(false, NewSheetFormat.OneClickName);
 
 		}
 
@@ -100,11 +101,11 @@ namespace DuplicateSheets2017
 	public class WinLocation
 	{
 		[DataMember]
-		public int    Top   { get; set; }
+		public int Top { get; set; }
 
 		[DataMember]
-		public int    Left  { get; set; }
-		
+		public int Left { get; set; }
+
 		[DataMember]
 		public double Width { get; set; }
 
@@ -129,62 +130,20 @@ namespace DuplicateSheets2017
 			Left  = left;
 			Width = width;
 		}
+
 	}
 
-//	[DataContract(Name = "NewSheetFormatSettings")]
-//	public class NewSheetFormat
-//	{
-//		[DataMember]
-//		public bool Defined { get; set; } = false;
-//
-//		public int Copies;
-//		public string TitleBlockName;
-//
-//		[DataMember]
-//		public OperOpType OperationOption { get; set; } = OperOpType.DupSheetAndViews;
-//
-//		[DataMember]
-//		public NewShtOptions NewSheetOption { get; set; } = NewShtOptions.FromCurrent;
-//
-//		[DataMember]
-//		public ShtFmtFrmCurrent SheetFormatFc { get; set; } = new ShtFmtFrmCurrent();
-//		
-//		[DataMember]
-//		public ShtFmtPerSetting SheetFormatPs { get; set; } = new ShtFmtPerSetting();
-//
-//		public NewSheetFormat(bool defined)
-//		{
-//			Defined = defined;
-//		}
-//	}
-//
-//	public class ShtFmtSample
-//	{
-//		public int Sequence             { get; set; } = 1;
-//		public string SampleSheetNumber { get; set; } = "A01.01-00";
-//		public string SampleSheetName   { get; set; } = WpfWindows.R_ShtOpCurSampleShtName;
-//	}
-//
-//	public class ShtFmtFrmCurrent : BaseInfo
-//	{
-//		public CbxItemCode[] CbxSelItem { get; set; } = { C_DV_PERIOD, C_SX_NUMNUM2, C_DV_PERIOD, C_SX_NAMCOPY1 };
-//		public string[] CustomText      { get; set; } = { "", "", "", "" };
-//	}
-//
-//	public class ShtFmtPerSetting : BaseInfo
-//	{
-//		public string NumberPrefix      { get; set; } = ".X-";
-//		public string SheetNamePrefix   { get; set; } = "Sheet Name";
-//		public bool IncSheetName        { get; set; } = false;
-//		public CbxItemCode[] CbxSelItem { get; set; } = {S_SX_NUMNUM1 };
-//		public string[] CustomText      { get; set; } = {"" };
-//	}
-//
-//	public interface BaseInfo
-//	{
-//		CbxItemCode[] CbxSelItem        { get; set; } 
-//		string[] CustomText             { get; set; }
-//	}
+	[DataContract(Namespace = LocalResMgr.XMLNS)]
+	public class ShtFmtSample
+	{
+		[DataMember(Order = 1)]
+		public int Sequence { get; set; } = 1;
 
+		[DataMember(Order = 2)]
+		public string SampleSheetNumber { get; set; } = AppStrings.R_ShtOpCurSampleShtNum;
+
+		[DataMember(Order = 3)]
+		public string SampleSheetName { get; set; } = AppStrings.R_ShtOpCurSampleShtName;
+	}
 }
 

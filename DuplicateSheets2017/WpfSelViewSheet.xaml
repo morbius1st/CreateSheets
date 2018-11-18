@@ -8,6 +8,7 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
+	
   mc:Ignorable="d"
   x:Name="winSelViewSheet"
   x:Class="DuplicateSheets2017.WpfSelViewSheet"
@@ -27,10 +28,6 @@
   Closing="winSelViewSheet_Closing"
   KeyUp="winSelViewSheet_KeyUp"
   Icon="{DynamicResource Icon}">
-
-  <!--  xmlns:res="clr-namespace:DuplicateSheets2017.Resources"-->
-  <!--  Title="{x:Static res:WpfWindows.R_WindowTitleSelView}"-->
-  <!--  Title="{x:Static shres:AppStrings.R_AppStrings}"-->
 
   <Window.Resources>
     <!--    		Title="{x:Static res:WpfWindows.R_WindowTitleSelView}"-->
@@ -61,20 +58,6 @@
         x:Key="comparisonCovnerter" />
       <local:EnumToBooleanConverter
         x:Key="enumToBooleanConverter" />
-
-      <Storyboard
-        x:Key="fader">
-        <DoubleAnimation
-          Storyboard.TargetProperty="Opacity"
-          From="0.0"
-          To="1.0"
-          Duration="0:0:3" />
-        <DoubleAnimation
-          Storyboard.TargetProperty="Opacity"
-          From="1.0"
-          To="0.0"
-          Duration="0:0:3" />
-      </Storyboard>
 
       <Style
         x:Key="btnHelpStyle"
@@ -118,21 +101,6 @@
 
     </Grid.RowDefinitions>
 
-    <!-- <Grid -->
-    <!--   Grid.Row="3" -->
-    <!--   Grid.Column="1" -->
-    <!--   Grid.ColumnSpan="3" -->
-    <!--    -->
-    <!-- -->
-    <!--   Margin="0,15,0,0"> -->
-    <!-- -->
-    <!--   <Grid.ColumnDefinitions> -->
-    <!--     <ColumnDefinition -->
-    <!--       Width="1*" /> -->
-    <!--     <ColumnDefinition -->
-    <!--       Width="650" /> -->
-    <!--   </Grid.ColumnDefinitions> -->
-
     <DockPanel
       Grid.Column="0"
       Grid.Row="3"
@@ -168,10 +136,12 @@
                 Height="Auto" />
             </Grid.RowDefinitions>
             <Button
+							Name="btnOneClickHelp"
               Grid.Column="0"
               Content="?"
               Tag="HelpSaveAsOneClick"
-              Style="{StaticResource btnHelpStyle}" />
+              Style="{StaticResource btnHelpStyle}"
+							Click="btnOneClickHelp_Click" />
             <TextBlock
               Grid.Column="1"
               Text="{x:Static res:AppStrings.R_OneClickSave}"

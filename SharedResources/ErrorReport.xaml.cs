@@ -30,7 +30,7 @@ namespace SharedResources
 			set => Title = value;
 		}
 
-		public string StackTrace
+		public string ErrReport
 		{
 			set => tblkStackTrace.Text = value;
 		}

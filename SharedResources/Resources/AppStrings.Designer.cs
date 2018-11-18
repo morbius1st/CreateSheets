@@ -457,6 +457,15 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This model has no sheet so duplicate sheets cannot be made.  Please make at least one sheet and try again..
+        /// </summary>
+        public static string R_ErrNoSheets {
+            get {
+                return ResourceManager.GetString("R_ErrNoSheets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A sheet is not selected\n\nPlease select a sheet to proceed.
         /// </summary>
         public static string R_ErrSelectSheetFailDesc {
@@ -958,6 +967,24 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One Click Error.
+        /// </summary>
+        public static string R_OneClickError {
+            get {
+                return ResourceManager.GetString("R_OneClickError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One click cannot continue.
+        /// </summary>
+        public static string R_OneClickMainMessage {
+            get {
+                return ResourceManager.GetString("R_OneClickMainMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restore 
         ///One Click.
         /// </summary>
@@ -968,12 +995,30 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One Click Restored.
+        /// </summary>
+        public static string R_OneClickRestored {
+            get {
+                return ResourceManager.GetString("R_OneClickRestored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save As 
         ///One Click.
         /// </summary>
         public static string R_OneClickSave {
             get {
                 return ResourceManager.GetString("R_OneClickSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One Click Saved.
+        /// </summary>
+        public static string R_OneClickSaved {
+            get {
+                return ResourceManager.GetString("R_OneClickSaved", resourceCulture);
             }
         }
         
@@ -1355,6 +1400,24 @@ namespace SharedCode.Resources {
         public static string R_ViewOpts {
             get {
                 return ResourceManager.GetString("R_ViewOpts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CyberStudio Apps.
+        /// </summary>
+        public static string R_WebSiteCybersStudioTitle {
+            get {
+                return ResourceManager.GetString("R_WebSiteCybersStudioTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://www.cyberstudioApps.com.
+        /// </summary>
+        public static string R_WebSiteCyberStudioAddress {
+            get {
+                return ResourceManager.GetString("R_WebSiteCyberStudioAddress", resourceCulture);
             }
         }
         

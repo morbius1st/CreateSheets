@@ -2,12 +2,15 @@
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using Autodesk.Revit.UI;
 
 using SharedCode.Resources;
 using SharedResources;
+
+using static UtilityLibrary.MessageUtilities;
 
 namespace SharedCode
 {
@@ -74,7 +77,7 @@ namespace SharedCode
 			err.Show();
 		}
 
-		public static void ShowExceptionDialog(Exception e)
+		public static void ShowExceptionDialog(Exception e, NewSheetFormat nsf)
 		{
 			SharedResources.ErrorReport errorReport = new ErrorReport();
 
@@ -82,17 +85,17 @@ namespace SharedCode
 
 			errorReport.tblkMessage.Text = AppStrings.R_ErrCannotProceed;
 
-			errorReport.StackTrace =
-				AppStrings.R_ErrEmailTo + nl 
-				+ AppStrings.R_EmailAddress + nl + nl
-				+ "root exception| "
-				+ (AppStrings.R_ErrCreateSheetFailDesc ?? "none") + nl
-				+ "primary exception| "
-				+ (e.Message ?? "none") + nl
-				+ "inner exception| "
-				+ (e.InnerException?.Message ?? "none") + nl
-				+ "stack trace| " + nl
-				+ (e.StackTrace ?? "none");
+			StringBuilder sb = new StringBuilder();
+
+			sb.AppendLine(AppStrings.R_ErrEmailTo);
+			sb.AppendLine(AppStrings.R_EmailAddress).AppendLine();
+			sb.Append(logMsgDbS("root exception")).AppendLine(AppStrings.R_ErrCreateSheetFailDesc ?? "none");
+			sb.Append(logMsgDbS("primary exception")).AppendLine(e.Message ?? "none");
+			sb.Append(logMsgDbS("inner exception")).AppendLine(e.InnerException?.Message ?? "none");
+			sb.AppendLine(logMsgDbS("stack trace")).AppendLine(e.StackTrace ?? "none").AppendLine();
+			sb.AppendLine(logMsgDbS("nsf")).Append(nsf?.ToString() ?? "is null").AppendLine();
+
+			errorReport.ErrReport = sb.ToString();
 
 			errorReport.ShowDialog();
 		}

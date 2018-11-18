@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="R_AppName" xml:space="preserve">
+  <data name="RL_AppName" xml:space="preserve">
     <value>DuplicateSheets2017</value>
   </data>
-  <data name="R_Command" xml:space="preserve">
+  <data name="RL_Command" xml:space="preserve">
     <value>Command</value>
   </data>
-  <data name="R_NamespacePrefixSubject" xml:space="preserve">
+  <data name="RL_NamespacePrefixSubject" xml:space="preserve">
     <value>Resources</value>
   </data>
 </root>

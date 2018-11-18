@@ -655,4 +655,25 @@ This settings persist between usages and sessions.  </value>
   <data name="R_UseSheetForOneClick" xml:space="preserve">
     <value>Use selected sheet for One Click</value>
   </data>
+  <data name="R_OneClickSaved" xml:space="preserve">
+    <value>One Click Saved</value>
+  </data>
+  <data name="R_OneClickRestored" xml:space="preserve">
+    <value>One Click Restored</value>
+  </data>
+  <data name="R_OneClickError" xml:space="preserve">
+    <value>One Click Error</value>
+  </data>
+  <data name="R_OneClickMainMessage" xml:space="preserve">
+    <value>One click cannot continue</value>
+  </data>
+  <data name="R_ErrNoSheets" xml:space="preserve">
+    <value>This model has no sheet so duplicate sheets cannot be made.  Please make at least one sheet and try again.</value>
+  </data>
+  <data name="R_WebSiteCyberStudioAddress" xml:space="preserve">
+    <value>http://www.cyberstudioApps.com</value>
+  </data>
+  <data name="R_WebSiteCybersStudioTitle" xml:space="preserve">
+    <value>CyberStudio Apps</value>
+  </data>
 </root>

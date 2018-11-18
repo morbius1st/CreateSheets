@@ -63,27 +63,27 @@ namespace DuplicateSheets2017.Resources {
         /// <summary>
         ///   Looks up a localized string similar to DuplicateSheets2017.
         /// </summary>
-        public static string R_AppName {
+        public static string RL_AppName {
             get {
-                return ResourceManager.GetString("R_AppName", resourceCulture);
+                return ResourceManager.GetString("RL_AppName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Command.
         /// </summary>
-        public static string R_Command {
+        public static string RL_Command {
             get {
-                return ResourceManager.GetString("R_Command", resourceCulture);
+                return ResourceManager.GetString("RL_Command", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Resources.
         /// </summary>
-        public static string R_NamespacePrefixSubject {
+        public static string RL_NamespacePrefixSubject {
             get {
-                return ResourceManager.GetString("R_NamespacePrefixSubject", resourceCulture);
+                return ResourceManager.GetString("RL_NamespacePrefixSubject", resourceCulture);
             }
         }
     }

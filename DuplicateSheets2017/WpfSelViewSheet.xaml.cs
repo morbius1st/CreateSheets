@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,6 +18,7 @@ using static DuplicateSheets2017.SettingsUser;
 
 using SharedCode;
 using SharedCode.Resources;
+using UtilityLibrary;
 using static SharedCode.ShNamePartType;
 using static SharedCode.ShNamePartItemCode;
 using static SharedCode.ShSheetDataList;
@@ -26,13 +29,11 @@ using static DuplicateSheets2017.Command;
 using Binding = System.Windows.Data.Binding;
 
 using static UtilityLibrary.MessageUtilities2;
+using static UtilityLibrary.Balloon;
+
 
 namespace DuplicateSheets2017
 {
-	#region enums
-
-	#endregion
-
 	/// <summary>
 	/// Interaction logic for WpfSelViewSheet.xaml
 	/// </summary>
@@ -57,13 +58,12 @@ namespace DuplicateSheets2017
 		private readonly ComboBox[] _comboBoxes      = new ComboBox[ShNamePartItemsTables.CBX_QTY];
 		private string[]   _customText      = new string[ShNamePartItemsTables.CBX_QTY];
 
-		private int _copies;
+//		private int _copies;
 		private bool _initalized;
 
 		public SharedCode.ShData shData = new SharedCode.ShData();
 
 		#endregion
-
 
 		#region + Constructor
 
@@ -76,9 +76,6 @@ namespace DuplicateSheets2017
 			// keep track of window up and running
 			_initalized = false;
 
-//			// setup the database object
-//			_DBMgr = new ShDbMgr(commandData);
-
 			// needs to be setup before initalization of the controls
 			cbi = ShNamePartItemsTables.Instance;
 
@@ -90,9 +87,6 @@ namespace DuplicateSheets2017
 			InitializeComponent();
 
 			InitWinLocation();
-
-			
-
 		}
 
 		#endregion
@@ -238,21 +232,6 @@ namespace DuplicateSheets2017
 
 		// copies is not not a saved setting
 		// value returned is
-		public int Copies { 
-			get => _copies;
-			set
-			{
-				if (value < COPIES_START || value > COPIES_END)
-				{
-					value = 1;
-				}
-
-				_copies = value;
-
-				cbxNumOfCopies.SelectedIndex = value - COPIES_START;
-
-			}
-		}
 
 		public ObservableCollection<string> TitleBlockList { get; set; }
 
@@ -343,6 +322,38 @@ namespace DuplicateSheets2017
 
 
 		#region + Settings
+
+//		public int Copies { 
+//			get => _copies;
+//			set
+//			{
+//				if (value < COPIES_START || value > COPIES_END)
+//				{
+//					value = 1;
+//				}
+//
+//				_copies = value;
+//
+//				cbxNumOfCopies.SelectedIndex = value - COPIES_START;
+//
+//			}
+//		}
+		
+		public int Copies { 
+			get => USet.Basic.Copies;
+			set
+			{
+				if (value < COPIES_START || value > COPIES_END)
+				{
+					value = 1;
+				}
+
+				USet.Basic.Copies = value;
+
+				cbxNumOfCopies.SelectedIndex = value - COPIES_START;
+
+			}
+		}
 
 		public bool UseParameters
 		{
@@ -687,14 +698,19 @@ namespace DuplicateSheets2017
 		{
 			// ************
 			// save "from current" settings
-			SaveCbxSettings(ShNamePartItemsTables.CBX_CURR_START, ShNamePartItemsTables.CBX_CURR_END, USet.Basic.SheetFormatFc);
+			SaveCbxSettings(ShNamePartItemsTables.CBX_CURR_START, 
+				ShNamePartItemsTables.CBX_CURR_END, USet.Basic.SheetFormatFc);
 
 			// *************
 			// save "per settings" settings
-			SaveCbxSettings(ShNamePartItemsTables.CBX_SET_START, ShNamePartItemsTables.CBX_SET_END, USet.Basic.SheetFormatPs);
+			SaveCbxSettings(ShNamePartItemsTables.CBX_SET_START, 
+				ShNamePartItemsTables.CBX_SET_END, USet.Basic.SheetFormatPs);
 
 			// save the settings
 			USettings.Save();
+
+			Debug.Print(USet.Basic.ToString());
+			Debug.Print(USet.OneClick.ToString());
 		}
 
 		private void SaveCbxSettings(int start, int end, BaseInfo stgInfo)
@@ -847,20 +863,6 @@ namespace DuplicateSheets2017
 			return _customText[cbxIndex];
 		}
 
-
-//		private string GetCustomText(string priorText, string titleText, string labelText)
-//		{
-//			string result = priorText;
-//
-//			WpfCustomText w = new WpfCustomText(priorText, titleText, labelText);
-//			
-//			if (w.ShowDialog() ?? false)
-//			{
-//				result = w.tbCustomText.Text;
-//			}
-//			return result;
-//		}
-
 		private void GetCustomText(int cbxIndex)
 		{
 			// request the custom text from the user
@@ -911,7 +913,7 @@ namespace DuplicateSheets2017
 
 		#endregion
 
-		#region + control routines
+		#region + Control routines
 
 		// *******************  control routines ************************ //
 
@@ -971,16 +973,23 @@ namespace DuplicateSheets2017
 		// save the one click settings
 		private void btnOneClickSave_Click(object sender, RoutedEventArgs e)
 		{
+			Balloon b = new Balloon(this, btnOneClickSave, AppStrings.R_OneClickSaved);
+
 			USet.OneClick = USet.Basic.Clone();
+			USet.OneClick.Name = NewSheetFormat.OneClickName;
 
 			SaveSettings();
+
+			b.Orientation = BalloonOrientation.TOP_RIGHT;
+			b.Show();
 		}
 
 		// restore the one click settings
 		// save a copy of the current settings first
 		private void btnOneClickRestore_Click(object sender, RoutedEventArgs e)
 		{
-			
+			Balloon b = new Balloon(this, btnOneClickRestore, AppStrings.R_OneClickRestored);
+
 			if (!btnSavedRestore.IsEnabled)
 			{
 				// save a copy to be restored later
@@ -989,8 +998,12 @@ namespace DuplicateSheets2017
 			}
 
 			USet.Basic = USet.OneClick.Clone();
+			USet.Basic.Name = NewSheetFormat.BasicName;
 
 			ApplySettings();
+
+			b.Orientation = BalloonOrientation.TOP_RIGHT;
+			b.Show();
 		}
 
 		// restore the saved settings
@@ -1011,6 +1024,14 @@ namespace DuplicateSheets2017
 			string resource = (string) ((Button) sender).Tag;
 
 			ShUtil.ShowHelpMessage(resource);
+
+		}
+
+
+		private void btnOneClickHelp_Click(object sender, RoutedEventArgs e)
+		{
+			e.Handled = true;
+
 
 		}
 
@@ -1102,7 +1123,9 @@ namespace DuplicateSheets2017
 			USet.Basic.SelectedSheet = SelectedSheet;
 
 
+#if DEBUG
 			logMsgLn2("at closing", SelectedSheet.ToString());
+#endif
 
 			// process the selected operation - return the result
 			DialogResult = _DBMgr.Process2(USet.Basic);
@@ -1132,6 +1155,10 @@ namespace DuplicateSheets2017
 		}
 
 	}
+
+
+
+
 
 	public class ComparisonCovnerter : IValueConverter
 	{

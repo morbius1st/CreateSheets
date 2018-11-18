@@ -99,5 +99,6 @@
   <ItemGroup>
     <Resource Include="Resources\CyberStudio Logo - Narrow.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

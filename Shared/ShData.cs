@@ -8,7 +8,6 @@ namespace SharedCode
 {
 	public class ShData
 	{
-		public static int test = 0;
 
 		public string[] CustomLabel =
 		{
@@ -32,12 +31,6 @@ namespace SharedCode
 			RvtIdentifiers.INVALID_NAME_CHARACTERS,
 			""
 		};
-	}
-
-	public static class ShConst
-	{
-		public const int SET_NUMSUFX = 0;
-
 	}
 
 	public enum NewShtOptions

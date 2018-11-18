@@ -11,9 +11,11 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ApplicationRibbon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NewSheetFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShConst.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShNamePartItems.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShDBMgr.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShNamePartItemsTables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShNewSheetMgr.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShIdeMgr.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShSheetData.cs" />

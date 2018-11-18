@@ -328,7 +328,40 @@
       Value="{StaticResource ltGray}" />
   </Style>
 
-  <Style
+
+	<Style
+		x:Key="stdButton"
+		TargetType="Button">
+		<Setter
+			Property="Height"
+			Value="40" />
+		<Setter
+			Property="Width"
+			Value="110" />
+		<Setter
+			Property="VerticalAlignment"
+			Value="Top" />
+		<Setter
+			Property="HorizontalAlignment"
+			Value="Right" />
+		<Setter
+			Property="VerticalContentAlignment"
+			Value="Center" />
+		<Setter
+			Property="HorizontalContentAlignment"
+			Value="Center" />
+		<Setter
+			Property="Padding"
+			Value="0" />
+		<Setter
+			Property="Background"
+			Value="{StaticResource ltGray}" />
+		<Setter
+			Property="BorderBrush"
+			Value="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+	</Style>
+
+	<Style
     x:Key="btnHelpStyleBase"
     TargetType="{x:Type Button}">
     <Setter
@@ -498,57 +531,7 @@
       Property="Height"
       Value="{StaticResource newSheetItemHeight}" />
   </Style>
-  <Style
-    x:Key="stdButton"
-    TargetType="Button">
-    <Setter
-      Property="Height"
-      Value="40" />
-    <Setter
-      Property="Width"
-      Value="110" />
-    <Setter
-      Property="VerticalAlignment"
-      Value="Top" />
-    <Setter
-      Property="HorizontalAlignment"
-      Value="Right" />
-    <Setter
-      Property="VerticalContentAlignment"
-      Value="Center" />
-    <Setter
-      Property="HorizontalContentAlignment"
-      Value="Center" />
-    <Setter
-      Property="Padding"
-      Value="0" />
-    <Setter
-      Property="Background"
-      Value="{StaticResource ltGray}" />
-    <Setter
-      Property="BorderBrush"
-      Value="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" />
 
-    <Style.Triggers>
-      <EventTrigger RoutedEvent="Click">
-        <EventTrigger.Actions>
-          <BeginStoryboard>
-            <Storyboard
-              BeginTime="00:00:00"
-              Duration="00:00:0.1"
-              AutoReverse="True"
-              RepeatBehavior="5x"
-              Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)">
-              <ColorAnimation
-                From="{StaticResource lt_Gray}" To="White" Duration="0:0:0.1"  
-                AutoReverse="True"
-                />
-            </Storyboard>
-          </BeginStoryboard>
-        </EventTrigger.Actions>
-      </EventTrigger>
-    </Style.Triggers>
-  </Style>
 
   <Style
     x:Key="lbxColumnHeader"

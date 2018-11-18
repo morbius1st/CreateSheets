@@ -4,6 +4,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using SharedCode.Resources;
 
 namespace SharedResources
 {
@@ -12,7 +13,7 @@ namespace SharedResources
 	/// </summary>
 	public partial class About : Window
 	{
-		
+		public const string test = "about";
 
 		public About()
 		{
@@ -30,6 +31,14 @@ namespace SharedResources
 		{
 			Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
 			e.Handled = true;
+		}
+
+		public Uri WebSite
+		{
+			get
+			{
+				return new Uri(AppStrings.R_WebSiteCyberStudioAddress);
+			}
 		}
 	}
 }

@@ -1,17 +1,23 @@
 ﻿<Window
   x:Class="SharedResources.About"
-  xmlns:local="clr-namespace:SharedResources"
+	x:Name="about"
+
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:res="clr-namespace:SharedCode.Resources"
-  xmlns:shared="clr-namespace:SharedCode"
+	xmlns:local="clr-namespace:SharedResources"
+
+	xmlns:sys="clr-namespace:System;assembly=mscorlib"
+
+
   mc:Ignorable="d"
   Title="About"
   Height="340"
   Width="520"
   Icon="{DynamicResource Icon}"
+	DataContext="{Binding ElementName=about}"
 
   >
   <Window.Resources>
@@ -21,7 +27,10 @@
           Source="WpfStyles/WpfResource.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
-      <BitmapImage
+			<x:Static
+				x:Key="string" Member="res:AppStrings.R_About"></x:Static>
+
+			<BitmapImage
         x:Key="Icon"
         CreateOptions="IgnoreImageCache"
         CacheOption="OnLoad"
@@ -171,9 +180,10 @@
       >
 
       <Hyperlink
-        NavigateUri="http://www.cyberstudioApps.com"
-        RequestNavigate="Hyperlink_OnRequestNavigate">
-        CyberStudio Apps
+				NavigateUri="{Binding WebSite}"
+				RequestNavigate="Hyperlink_OnRequestNavigate">
+        <TextBlock
+					Text="{x:Static res:AppStrings.R_WebSiteCybersStudioTitle}"/>
       </Hyperlink>
 
 

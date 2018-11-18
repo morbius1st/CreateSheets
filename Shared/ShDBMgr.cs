@@ -27,9 +27,6 @@ namespace SharedCode
 
 		#region + Private
 
-		private ShNamePartItemsTables cbi;
-		
-
 		private static Document   _doc;
 		private UIDocument _uidoc;
 		private static Categories _cats;
@@ -59,8 +56,6 @@ namespace SharedCode
 			GetAllSheetNumbers();
 
 			_cats = _doc.Settings.Categories;
-
-			cbi = ShNamePartItemsTables.Instance;
 		}
 
 		#endregion
@@ -86,7 +81,7 @@ namespace SharedCode
 					// part A - determine the new sheet number depending
 					// on newsheetformat
 					// find sheet number and determine the sequence number
-					nsf.seq = FindNextSheetNumber(nsf, seq, out nsf.newSheetNumber);
+					nsf.newSheetNumber = FindNextSheetNumber(nsf, seq, out nsf.seq);
 
 					// part B - determine the new sheet name depending
 					// on newsheetformat
@@ -101,7 +96,6 @@ namespace SharedCode
 					case OperOpType.CreateEmptySheets:
 						{
 							CreateOneEmptySheet(nsf);
-							GetAllSheetNumbers();
 							result = true;
 							break;
 						}
@@ -118,11 +112,15 @@ namespace SharedCode
 							break;
 						}
 					}
+
+					// make sure that the list of sheet numbers is current
+					// and includes the sheet just created
+					GetAllSheetNumbers();
 				}
 			}
 			catch (Exception e)
 			{
-				ShUtil.ShowExceptionDialog(e);
+				ShUtil.ShowExceptionDialog(e, nsf);
 
 				return false;
 			}
@@ -134,11 +132,9 @@ namespace SharedCode
 #if DEBUG
 		private void DebugInfo1(NewSheetFormat nsf, int idx)
 		{
-			logMsg2(nl);
-
 			logMsgLn2("process2| copy", idx);
 
-			logMsgLn2("process2|", new int[] { 22 }, "number", nsf.newSheetNumber, "name", nsf.newSheetName);
+			logMsgLn2("process2| number", new int[] { 22 }, nsf.newSheetNumber, "name", nsf.newSheetName);
 		}
 #endif
 
@@ -477,10 +473,12 @@ namespace SharedCode
 		// validate against the current set of
 		// sheet numbers - new sheet number
 		// cannot be one of these
-		private int FindNextSheetNumber(NewSheetFormat nsf, int seq, out string shtNumber)
+		private string FindNextSheetNumber(  NewSheetFormat nsf, int seq, out int seq1)
 		{
 			int idx = 0;
-			int shtNumIdx = seq;
+			seq1 = seq;
+
+			string newSheetNumber = null;
 
 			bool result;
 
@@ -490,31 +488,31 @@ namespace SharedCode
 				{
 				case NewShtOptions.PerSettings:
 					{
-						shtNumber = ShNewSheetMgr.
+						newSheetNumber = ShNewSheetMgr.
 							FormatShtNumber(nsf.SheetFormatPs.NumberPrefix,
-								nsf.PsNumFmtCode, ++shtNumIdx);
+								nsf.PsNumFmtCode, ++seq1);
 						break;
 					}
 				default: // from current
 					{
-						shtNumber = ShNewSheetMgr.
+						newSheetNumber = ShNewSheetMgr.
 							FormatShtNumber(
 								nsf.SelectedSheet.SheetNumber,
 								nsf.FcNumDivChar,
 								nsf.FcNumDivCharCustom,
 								nsf.FcNumSuffix,
-								++shtNumIdx);
+								++seq1);
 						break;
 					}
 				}
 
-				idx = Array.IndexOf(_sheetNumberList, shtNumber.ToLower(), idx);
+				idx = Array.IndexOf(_sheetNumberList, newSheetNumber.ToLower(), idx);
 
 				result = (idx++ >= 0);
 
 			} while (result);
-
-			return shtNumIdx;
+			
+			return newSheetNumber;
 		}
 
 		// determine the next sheet number based on a starting number
@@ -825,7 +823,7 @@ namespace SharedCode
 			}
 		}
 
-		private string SelectTitleBlock(NewSheetFormat nsf)
+		public string SelectTitleBlock(NewSheetFormat nsf)
 		{
 			string result = nsf.TitleBlockName;
 

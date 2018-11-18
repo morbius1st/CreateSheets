@@ -1,7 +1,10 @@
 ﻿using System.Net.NetworkInformation;
 using System.Runtime.Serialization;
+using System.Text;
 using Autodesk.Revit.DB;
 using SharedCode.Resources;
+
+using static UtilityLibrary.MessageUtilities;
 
 namespace SharedCode
 {
@@ -9,14 +12,16 @@ namespace SharedCode
 	[KnownType(typeof(string[]))]
 	public class NewSheetFormat
 	{
-		public NewSheetFormat(bool defined)
+		public const string BasicName = "Basic";
+		public const string OneClickName = "OneClick";
+
+		public NewSheetFormat(bool defined, string name)
 		{
 			Defined = defined;
+			Name = name;
 		}
 
-		private ShNamePartItemsTables npit = ShNamePartItemsTables.Instance;
-
-		public int       Copies;
+		private static ShNamePartItemsTables namePartTables = ShNamePartItemsTables.Instance;
 		
 		public string    newSheetNumber;
 		public string    newSheetName;
@@ -25,34 +30,42 @@ namespace SharedCode
 		private string    SelecedShtNumber;
 		public int       seq;		
 		
-		[DataMember]
+		[DataMember (Order = 0)]
 		public bool Defined { get; set; } = false;
-
-		[DataMember (Order = 1)]
-		public OperOpType OperationOption { get; set; } = OperOpType.DupSheetAndViews;
-
-		[DataMember(Order = 2)]
-		public NewShtOptions NewSheetOption { get; set; } = NewShtOptions.FromCurrent;
-
-		[DataMember(Order = 3)]
-		public string TitleBlockName { get; set; } = null;
-
-		[DataMember(Order = 4)]
-		public bool UseParameters { get; set; } = true;
-
-		[DataMember(Order = 5)]
-		public bool UseTemplateSheet { get; set; } = false;
-
-		[DataMember(Order = 6)]
-		public string TemplateSheetNumber { get; set; } = null;
-
-		[DataMember(Order = 7)]
-		public string TemplateSheetName { get; set; } = null;
+		
+		[DataMember (Order = 5)]
+		public string Name { get; set; }
 
 		[DataMember(Order = 10)]
+		public int Copies { get; set; }
+
+		[DataMember (Order = 15)]
+		public OperOpType OperationOption { get; set; } = OperOpType.DupSheetAndViews;
+
+		[DataMember(Order = 20)]
+		public NewShtOptions NewSheetOption { get; set; } = NewShtOptions.FromCurrent;
+
+		[DataMember(Order = 30)]
+		public string TitleBlockName { get; set; } = null;
+
+		[DataMember(Order = 40)]
+		public bool UseParameters { get; set; } = true;
+
+		[DataMember(Order = 50)]
+		public bool UseTemplateSheet { get; set; } = false;
+
+		[DataMember(Order = 60)]
+		public string TemplateSheetNumber { get; set; } = null;
+
+		[DataMember(Order = 70)]
+		public string TemplateSheetName { get; set; } = null;
+
+		public ViewSheet TemplateSheetView { get; set; } = null;
+
+		[DataMember(Order = 100)]
 		public ShtFmtFrmCurrent SheetFormatFc { get; set; } = new ShtFmtFrmCurrent();
 
-		[DataMember(Order = 11)]
+		[DataMember(Order = 110)]
 		public ShtFmtPerSetting SheetFormatPs { get; set; } = new ShtFmtPerSetting();
 
 		public SheetData SelectedSheet
@@ -117,10 +130,10 @@ namespace SharedCode
 			get => SheetFormatPs.NamePartSelItem[ShConst.SET_NUMSUFX];
 		}
 
-		// get the per setg number format namepartitem
+		// get the per setg number format name partitem
 		public ShNamePartItem PsNumFmtNamePartItem
 		{
-			get => npit.FindByCode(PsNumFmtCode);
+			get => namePartTables.FindByCode(PsNumFmtCode);
 		}
 
 		// get the per setg number format title
@@ -148,48 +161,134 @@ namespace SharedCode
 			get => SelectedViewSheet;
 		}
 
+		// get the new sheet name and file name parts
 		public ShNamePartItemCode FcNumDivChar
 		{
+			// number division character
 			get => SheetFormatFc.NamePartSelItem[(int) ShNamePartType.CUR_NUMDIVCHARS_TBL];
 		}
 
-		// get the from curr number suffix code
 		public ShNamePartItemCode FcNumSuffix
 		{
+			// number suffix code
 			get => SheetFormatFc.NamePartSelItem[(int)ShNamePartType.CUR_NUMSUFFIX_TBL];
 		}
-
-		// get the from curr name div char code
+		
 		public ShNamePartItemCode FcNameDivChar
 		{
+			// name div char code
 			get => SheetFormatFc.NamePartSelItem[(int)ShNamePartType.CUR_NAMEDIVCHARS_TBL];
 		}
 
-		// get the from curr name suffix code
+		
 		public ShNamePartItemCode FcNameSuffix
 		{
+			// name suffix code
 			get => SheetFormatFc.NamePartSelItem[(int)ShNamePartType.CUR_NAMESUFFIX_TBL];
 		}
 
-		// get the custom number div char
+		
 		public string FcNumDivCharCustom
 		{
+			// custom number div char
 			get => SheetFormatFc.CustomText[(int)ShNamePartType.CUR_NUMDIVCHARS_TBL];
 		}
 
-		// get the from curr name div char code
+		
 		public string FcNameDivCharCustom
 		{
+			// name div char code
 			get => SheetFormatFc.CustomText[(int)ShNamePartType.CUR_NAMEDIVCHARS_TBL];
 		}
 
-		// get the from curr name suffix code
+		
 		public string FcNameSuffixCustom
 		{
+			// name suffix code
 			get => SheetFormatFc.CustomText[(int)ShNamePartType.CUR_NAMESUFFIX_TBL];
 		}
 
+		#endregion
 
+		#region + Overrides
+
+		public override string ToString()
+		{
+			StringBuilder sb = new StringBuilder();
+
+			sb.Append("\n");
+			sb.AppendLine(logMsgDbS("New Sheet Format", "-- Persistent Parameters Only --"));
+			sb.AppendLine(logMsgDbS("For Structure", Name));
+			sb.Append(logMsgDbS("Is Defined?"));
+
+			if (Defined)
+			{
+				sb.AppendLine("Yes");
+			}
+			else
+			{
+				sb.AppendLine("No");
+				return sb.ToString();
+			}
+
+			sb.AppendLine(logMsgDbS("Operation", OperationOption.ToString()));
+			sb.AppendLine(logMsgDbS("New Sheet Option", NewSheetOption.ToString()));
+			sb.AppendLine(logMsgDbS("Title Block Name", TitleBlockName ?? "is null"));
+			sb.AppendLine(logMsgDbS("Re-use Parameters", UseParameters.ToString()));
+
+
+			sb.Append(logMsgDbS("Basis for New Sheets"));
+
+			if (UseTemplateSheet)
+			{
+				sb.AppendLine("Using Template| ").AppendLine(UseTemplateSheet.ToString());
+				sb.AppendLine(logMsgDbS("Template Sheet Number", TemplateSheetNumber ?? "is Undefined"));
+				sb.AppendLine(logMsgDbS("Template Sheet Name", TemplateSheetName ?? "is Undefined"));
+			}
+			else
+			{
+				sb.AppendLine("Using Current / Selected Sheet");
+			}
+
+
+			sb.Append(logMsgDbS("New Sheet Numbers / Names Basis"));
+
+			if (NewSheetOption == NewShtOptions.FromCurrent)
+			{
+				// from current
+				sb.AppendLine("From Current");
+
+				sb.AppendLine(logMsgDbS("Sheet Number","-- New Name Parts --"));
+				sb.AppendLine(logMsgDbS("Sheet Number Divisor", namePartTables.FindTitleByCode(FcNumDivChar)));
+				sb.AppendLine(logMsgDbS("Sheet Number Suffix", namePartTables.FindTitleByCode(FcNumSuffix)));
+				sb.AppendLine(logMsgDbS("Sheet Number Custom Divisor", 
+					string.IsNullOrWhiteSpace(FcNumDivCharCustom) ? "is Undefined" : FcNumDivCharCustom));
+
+				sb.AppendLine(logMsgDbS("Sheet Name", "-- New Name Parts --"));
+				sb.AppendLine(logMsgDbS("Sheet Name Divisor", namePartTables.FindTitleByCode(FcNameDivChar)));
+				sb.AppendLine(logMsgDbS("Sheet Name Suffix", namePartTables.FindTitleByCode(FcNameSuffix)));
+				sb.AppendLine(logMsgDbS("Sheet Name Custom Divisor", 
+					string.IsNullOrWhiteSpace(FcNameDivCharCustom) ? "is Undefined" : FcNameDivCharCustom));
+				sb.AppendLine(logMsgDbS("Sheet Name Custom Suffix", 
+					string.IsNullOrWhiteSpace(FcNameSuffixCustom) ? "is Undefined" : FcNameSuffixCustom));
+			}
+			else
+			{
+				// per settings	
+				sb.AppendLine("Per Settings");
+
+				sb.AppendLine(logMsgDbS("Sheet Number", "-- New Name Parts --"));
+				sb.AppendLine(logMsgDbS("Sheet Number Format Name", PsNumFmtTitle));
+				sb.AppendLine(logMsgDbS("Sheet Number Format Code", namePartTables.FindTitleByCode(PsNumFmtCode)));
+
+				sb.AppendLine(logMsgDbS("Sheet Name", "-- New Name Parts --"));
+				sb.AppendLine(logMsgDbS("Sheet Name Prefix", 
+					string.IsNullOrWhiteSpace(PsShtNamePrefix) ? "Is Undefined" : PsShtNamePrefix));
+				sb.AppendLine(logMsgDbS("Sheet Name Increment?", PsIncShtName.ToString()));
+			}
+
+			return sb.ToString();
+		}
 
 		#endregion
 	}
@@ -200,18 +299,6 @@ namespace SharedCode
 		string[]             CustomText      { get; set; }
 	}
 
-	[DataContract(Namespace = LocalResMgr.XMLNS)]
-	public class ShtFmtSample
-	{
-		[DataMember (Order = 1)]
-		public int Sequence { get; set; } = 1;
-
-		[DataMember (Order = 2)]
-		public string SampleSheetNumber { get; set; } = AppStrings.R_ShtOpCurSampleShtNum;
-
-		[DataMember (Order = 3)]
-		public string SampleSheetName { get; set; } = AppStrings.R_ShtOpCurSampleShtName;
-	}
 
 	[DataContract(Namespace = LocalResMgr.XMLNS)]
 	public class ShtFmtPerSetting : BaseInfo
@@ -247,10 +334,11 @@ namespace SharedCode
 	{
 		public static NewSheetFormat Clone(this NewSheetFormat orig)
 		{
-			NewSheetFormat copy = new NewSheetFormat(orig.Defined);
+			NewSheetFormat copy = new NewSheetFormat(orig.Defined, orig.Name);
 
 			copy.OperationOption = orig.OperationOption;
 			copy.NewSheetOption = orig.NewSheetOption;
+			copy.Copies = orig.Copies;
 			copy.TitleBlockName = orig.TitleBlockName;
 			copy.UseParameters = orig.UseParameters;
 
