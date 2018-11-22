@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Autodesk.Revit.DB;
 using SharedCode.Resources;
+using static SharedCode.ShConst;
 
 using static UtilityLibrary.MessageUtilities;
 
@@ -23,13 +24,14 @@ namespace SharedCode
 
 		private static ShNamePartItemsTables namePartTables = ShNamePartItemsTables.Instance;
 		
-		public string    newSheetNumber;
-		public string    newSheetName;
+		public string     newSheetNumber;
+		public string     newSheetName;
 		private ViewSheet SelectedViewSheet;
 		private string    SelectedShtName;
 		private string    SelecedShtNumber;
-		public int       seq;		
-		
+		public int        seq;
+		private int      copies;
+
 		[DataMember (Order = 0)]
 		public bool Defined { get; set; } = false;
 		
@@ -37,7 +39,20 @@ namespace SharedCode
 		public string Name { get; set; }
 
 		[DataMember(Order = 10)]
-		public int Copies { get; set; }
+		public int Copies
+		{
+			get => copies;
+			set
+			{
+				if (value < COPIES_START || value > COPIES_END)
+				{
+					value = 1;
+				}
+				copies = value;
+			}
+		}
+
+		
 
 		[DataMember (Order = 15)]
 		public OperOpType OperationOption { get; set; } = OperOpType.DupSheetAndViews;

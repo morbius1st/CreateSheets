@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -48,8 +47,7 @@ namespace DuplicateSheets2017
 		// label text
 		// combo box
 
-		private const int COPIES_START = 1;
-		private  const int COPIES_END = 100;
+
 
 //		private ShDbMgr _DBMgr;
 		private ShNamePartItemsTables cbi;
@@ -211,7 +209,7 @@ namespace DuplicateSheets2017
 		{
 			cbxNumOfCopies.Items.Clear();
 
-			for (int i = COPIES_START; i < COPIES_END; i++)
+			for (int i = ShConst.COPIES_START; i < ShConst.COPIES_END; i++)
 			{
 				cbxNumOfCopies.Items.Add(i.ToString());
 			}
@@ -266,7 +264,6 @@ namespace DuplicateSheets2017
 			}
 		}
 
-
 		// need to keep in mind that the viewsheet data is null
 		public SheetData TemplateSheet
 		{
@@ -274,9 +271,7 @@ namespace DuplicateSheets2017
 
 			set
 			{
-				
-
-				if ((USet.Basic.TemplateSheet != null && !value.Equals(USet.Basic.TemplateSheet))
+				if ((USet.Basic.TemplateSheet != null && !(value?.Equals(USet.Basic.TemplateSheet) ?? false))
 					|| USet.Basic.TemplateSheet == null )
 				{
 					USet.Basic.TemplateSheet = value;
@@ -285,6 +280,8 @@ namespace DuplicateSheets2017
 
 				if (USet.Basic.TemplateSheet == null)
 				{
+					if (lbxSheets.SelectedIndex < 0) lbxSheets.SelectedIndex = 0;
+
 					tblkTemplateSheet.Text = ((SheetData) lbxSheets.Items[lbxSheets.SelectedIndex]).ToString();
 				}
 				else
@@ -300,11 +297,8 @@ namespace DuplicateSheets2017
 
 			set
 			{
-				if (!value == USet.Basic.UseTemplateSheet)
-				{
-					USet.Basic.UseTemplateSheet = value;
-					OnUiPropertyChange();
-				}
+				USet.Basic.UseTemplateSheet = value;
+				OnUiPropertyChange();
 
 				if (USet.Basic.UseTemplateSheet == false)
 				{
@@ -343,14 +337,9 @@ namespace DuplicateSheets2017
 			get => USet.Basic.Copies;
 			set
 			{
-				if (value < COPIES_START || value > COPIES_END)
-				{
-					value = 1;
-				}
-
 				USet.Basic.Copies = value;
 
-				cbxNumOfCopies.SelectedIndex = value - COPIES_START;
+				cbxNumOfCopies.SelectedIndex = value - ShConst.COPIES_START;
 
 			}
 		}

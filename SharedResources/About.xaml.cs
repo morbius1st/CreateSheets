@@ -37,7 +37,7 @@ namespace SharedResources
 		{
 			get
 			{
-				return new Uri(AppStrings.R_WebSiteCyberStudioAddress);
+				return new Uri(AppStrings.R_CyberStudioAddr);
 			}
 		}
 	}

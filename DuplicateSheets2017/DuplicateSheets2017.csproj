@@ -30,6 +30,7 @@
     <StartAction>Program</StartAction>
     <StartProgram>$(ProgramW6432)\Autodesk\Revit 2017\Revit.exe</StartProgram>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Dup2017Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -106,14 +107,13 @@
     <Compile Include="SettingsApp.cs" />
     <Compile Include="SettingsUser.cs" />
     <Compile Include="LocalResourceMgr.cs" />
-    <Compile Include="ShOneClick.cs" />
+    <Compile Include="OneClick.cs" />
     <Compile Include="WpfCustomText.xaml.cs">
       <DependentUpon>WpfCustomText.xaml</DependentUpon>
     </Compile>
     <Compile Include="WpfSelViewSheet.xaml.cs">
       <DependentUpon>WpfSelViewSheet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WpfSelViewUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.fr.resx">
@@ -129,16 +129,17 @@
     <Resource Include="..\SharedResources\Resources\CyberStudio Icon.png">
       <Link>Resources\CyberStudio Icon.png</Link>
     </Resource>
-    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1-Click_16.png">
-      <Link>Resources\DuplicateSheets_1-Click_16.png</Link>
+    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1_Click_16.png">
+      <Link>Resources\DuplicateSheets_1_Click_16.png</Link>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1-Click_32.png">
-      <Link>Resources\DuplicateSheets_1-Click_32.png</Link>
+    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1_Click_32.png">
+      <Link>Resources\DuplicateSheets_1_Click_32.png</Link>
     </EmbeddedResource>
-    <Content Include="Other\DuplicateSheets2017.addin" />
+    <None Include="Other\DuplicateSheets2017.addin" />
     <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.resx">
       <LogicalName>SharedResources.Resources.AppStrings.resources</LogicalName>
       <Link>Resources\AppStrings.resx</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\DuplicateSheetsLogo.png" />
   </ItemGroup>

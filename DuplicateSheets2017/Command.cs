@@ -80,8 +80,8 @@ namespace DuplicateSheets2017
 			}
 			else
 			{
-				ShUtil.ShowErrorDialog(AppStrings.R_DupSheet,
-					AppStrings.R_OneClickMainMessage, AppStrings.R_ErrNoSheets);
+				ShUtil.ShowErrorDialog(AppStrings.R_ErrNoSheetsTitle,
+					AppStrings.R_ErrNoSheetsMainMsg_DupShts, AppStrings.R_ErrNoSheetsContent);
 
 				return Result.Failed;
 			}
@@ -114,7 +114,7 @@ namespace DuplicateSheets2017
 				{
 					tx.Start(TransactionDesc);
 
-					ShOneClick oneClick = new ShOneClick();
+					OneClick oneClick = new OneClick();
 
 					try
 					{
@@ -139,8 +139,8 @@ namespace DuplicateSheets2017
 			}
 			else
 			{
-				ShUtil.ShowErrorDialog(AppStrings.R_OneClickError,
-					AppStrings.R_OneClickMainMessage, AppStrings.R_ErrNoSheets);
+				ShUtil.ShowErrorDialog(AppStrings.R_ErrNoSheetsTitle,
+					AppStrings.R_ErrNoSheetsMainMsg_OneClick, AppStrings.R_ErrNoSheetsContent);
 
 				return Result.Failed;
 			}

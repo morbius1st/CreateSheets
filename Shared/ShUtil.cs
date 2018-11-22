@@ -53,28 +53,31 @@ namespace SharedCode
 
 		public static void ShowSelectSheetErrMsg()
 		{
-			TaskDialog errMsg = new TaskDialog(LocalResMgr.AppName);
+			TaskDialog errDialog = new TaskDialog(AppStrings.R_ErrSelShtTitle);
 
-			errMsg.MainInstruction = AppStrings.R_ErrSelShtMainInst;
-			errMsg.MainContent = AppStrings.R_ErrSelShtMainCont;
-			errMsg.CommonButtons = TaskDialogCommonButtons.Close;
-			errMsg.DefaultButton = TaskDialogResult.Close;
+			errDialog.MainInstruction = AppStrings.R_ErrSelShtMainInst;
+			errDialog.MainContent = AppStrings.R_ErrSelShtMainCont;
+			errDialog.CommonButtons = TaskDialogCommonButtons.Close;
+			errDialog.DefaultButton = TaskDialogResult.Close;
+			errDialog.TitleAutoPrefix = false;
 
-			errMsg.Show();
+			errDialog.Show();
 		}
 
 		public static void ShowErrorDialog(string title, string main, string content)
 		{
-			TaskDialog err = new TaskDialog(LocalResMgr.AppName + ", " + title);
+			TaskDialog errDialog = new TaskDialog(title);
 
-			err.MainInstruction = main;
-			err.MainContent = content;
+			errDialog.MainInstruction = main;
+			errDialog.MainContent = content;
 
-			err.CommonButtons = TaskDialogCommonButtons.Close;
-			err.DefaultButton = TaskDialogResult.Close;
-			err.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
+			errDialog.CommonButtons = TaskDialogCommonButtons.Close;
+			errDialog.DefaultButton = TaskDialogResult.Close;
+			errDialog.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
+			errDialog.FooterText = ShConst.WebSiteReference;
+			errDialog.TitleAutoPrefix = false;
 
-			err.Show();
+			errDialog.Show();
 		}
 
 		public static void ShowExceptionDialog(Exception e, NewSheetFormat nsf)
@@ -104,7 +107,8 @@ namespace SharedCode
 		{
 			string helpSubject = AppStrings.ResourceManager.GetString("R_" + resourceName + "Title") + " Help";
 
-			TaskDialog help = new TaskDialog(LocalResMgr.AppName + ", " + helpSubject);
+//			TaskDialog help = new TaskDialog(LocalResMgr.AppName + ", " + helpSubject);
+			TaskDialog help = new TaskDialog(AppStrings.R_HelpTitle);
 
 			help.MainInstruction = helpSubject;
 			help.MainContent = AppStrings.ResourceManager.GetString("R_" + resourceName);
@@ -112,6 +116,8 @@ namespace SharedCode
 			help.CommonButtons = TaskDialogCommonButtons.Close;
 			help.DefaultButton = TaskDialogResult.Close;
 			help.MainIcon = TaskDialogIcon.TaskDialogIconNone;
+			help.TitleAutoPrefix = false;
+			help.FooterText = ShConst.WebSiteReference;
 
 			help.Show();
 

@@ -124,15 +124,6 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DuplicateSheets_1-Click_16.png.
-        /// </summary>
-        public static string R_ButtonImage16_1Click {
-            get {
-                return ResourceManager.GetString("R_ButtonImage16_1Click", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to DuplicateSheets_32.png.
         /// </summary>
         public static string R_ButtonImage32 {
@@ -142,11 +133,20 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DuplicateSheets_1-Click_32.png.
+        ///   Looks up a localized string similar to DuplicateSheets_1_Click_16.png.
         /// </summary>
-        public static string R_ButtonImage32_1Click {
+        public static string R_ButtonImageOneClick16 {
             get {
-                return ResourceManager.GetString("R_ButtonImage32_1Click", resourceCulture);
+                return ResourceManager.GetString("R_ButtonImageOneClick16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DuplicateSheets_1_Click_32.png.
+        /// </summary>
+        public static string R_ButtonImageOneClick32 {
+            get {
+                return ResourceManager.GetString("R_ButtonImageOneClick32", resourceCulture);
             }
         }
         
@@ -162,9 +162,9 @@ namespace SharedCode.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Shts 1-Click.
         /// </summary>
-        public static string R_ButtonNameBott_1Click {
+        public static string R_ButtonNameBottOneClick {
             get {
-                return ResourceManager.GetString("R_ButtonNameBott_1Click", resourceCulture);
+                return ResourceManager.GetString("R_ButtonNameBottOneClick", resourceCulture);
             }
         }
         
@@ -180,9 +180,9 @@ namespace SharedCode.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
-        public static string R_ButtonNameTop_1Click {
+        public static string R_ButtonNameTopOneClick {
             get {
-                return ResourceManager.GetString("R_ButtonNameTop_1Click", resourceCulture);
+                return ResourceManager.GetString("R_ButtonNameTopOneClick", resourceCulture);
             }
         }
         
@@ -243,9 +243,9 @@ namespace SharedCode.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Command_1Click.
         /// </summary>
-        public static string R_Command_1Click {
+        public static string R_Command1Click {
             get {
-                return ResourceManager.GetString("R_Command_1Click", resourceCulture);
+                return ResourceManager.GetString("R_Command1Click", resourceCulture);
             }
         }
         
@@ -261,9 +261,9 @@ namespace SharedCode.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dup Shts 1 Click.
         /// </summary>
-        public static string R_CommandDescription_1Click {
+        public static string R_CommandDescriptionOneClick {
             get {
-                return ResourceManager.GetString("R_CommandDescription_1Click", resourceCulture);
+                return ResourceManager.GetString("R_CommandDescriptionOneClick", resourceCulture);
             }
         }
         
@@ -291,6 +291,24 @@ namespace SharedCode.Resources {
         public static string R_CreateSheets {
             get {
                 return ResourceManager.GetString("R_CreateSheets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://www.cyberstudioApps.com.
+        /// </summary>
+        public static string R_CyberStudioAddr {
+            get {
+                return ResourceManager.GetString("R_CyberStudioAddr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CyberStudio Apps.
+        /// </summary>
+        public static string R_CyberStudioTitle {
+            get {
+                return ResourceManager.GetString("R_CyberStudioTitle", resourceCulture);
             }
         }
         
@@ -459,14 +477,126 @@ namespace SharedCode.Resources {
         /// <summary>
         ///   Looks up a localized string similar to This model has no sheet so duplicate sheets cannot be made.  Please make at least one sheet and try again..
         /// </summary>
-        public static string R_ErrNoSheets {
+        public static string R_ErrNoSheetsContent {
             get {
-                return ResourceManager.GetString("R_ErrNoSheets", resourceCulture);
+                return ResourceManager.GetString("R_ErrNoSheetsContent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A sheet is not selected\n\nPlease select a sheet to proceed.
+        ///   Looks up a localized string similar to Duplicate Sheets cannot continue.
+        /// </summary>
+        public static string R_ErrNoSheetsMainMsg_DupShts {
+            get {
+                return ResourceManager.GetString("R_ErrNoSheetsMainMsg_DupShts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One Click cannot continue.
+        /// </summary>
+        public static string R_ErrNoSheetsMainMsg_OneClick {
+            get {
+                return ResourceManager.GetString("R_ErrNoSheetsMainMsg_OneClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model Has No Sheets.
+        /// </summary>
+        public static string R_ErrNoSheetsTitle {
+            get {
+                return ResourceManager.GetString("R_ErrNoSheetsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One click is set to use a Template sheet but the template sheet does not exist:.
+        /// </summary>
+        public static string R_ErrNoTemplateContent {
+            get {
+                return ResourceManager.GetString("R_ErrNoTemplateContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template Not Found.
+        /// </summary>
+        public static string R_ErrNoTemplateMain {
+            get {
+                return ResourceManager.GetString("R_ErrNoTemplateMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template Sheet Does Not Exist.
+        /// </summary>
+        public static string R_ErrNoTemplateTitle {
+            get {
+                return ResourceManager.GetString("R_ErrNoTemplateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Sheet Option is to use the current view as the basis for the new sheet&apos;s number and name. Since the current view is not a sheet view, I don&apos;t have a sheet number or name to use as the basis for the number and name of the new sheets.
+        ///
+        ///Please make a sheet view as the current view and select One Click again..
+        /// </summary>
+        public static string R_ErrNotViewSheetContent {
+            get {
+                return ResourceManager.GetString("R_ErrNotViewSheetContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Active View is not a Sheet View.
+        /// </summary>
+        public static string R_ErrNotViewSheetMain {
+            get {
+                return ResourceManager.GetString("R_ErrNotViewSheetMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active View is not a Sheet View.
+        /// </summary>
+        public static string R_ErrNotViewSheetTitle {
+            get {
+                return ResourceManager.GetString("R_ErrNotViewSheetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One click settings have not been configured and saved.  Please open the duplicate sheets dialog, configure your one click settings, and save the settings.
+        /// </summary>
+        public static string R_ErrOneClickSettingsMissingContent {
+            get {
+                return ResourceManager.GetString("R_ErrOneClickSettingsMissingContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One Click Settings Have Not Been Saved.
+        /// </summary>
+        public static string R_ErrOneClickSettingsMissingMain {
+            get {
+                return ResourceManager.GetString("R_ErrOneClickSettingsMissingMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One Click Settings Are Not Defined.
+        /// </summary>
+        public static string R_ErrOneClickSettingsMissingTitle {
+            get {
+                return ResourceManager.GetString("R_ErrOneClickSettingsMissingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A sheet is not selected
+        ///
+        ///Please select a sheet to proceed.
         /// </summary>
         public static string R_ErrSelectSheetFailDesc {
             get {
@@ -475,7 +605,8 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In order to create a new sheet, an existing sheet\nmust be selected.  Please select a sheet or select cancel..
+        ///   Looks up a localized string similar to In order to create a new sheet, an existing sheet
+        ///must be selected.  Please select a sheet or select cancel..
         /// </summary>
         public static string R_ErrSelShtMainCont {
             get {
@@ -489,6 +620,15 @@ namespace SharedCode.Resources {
         public static string R_ErrSelShtMainInst {
             get {
                 return ResourceManager.GetString("R_ErrSelShtMainInst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheet Not Selected.
+        /// </summary>
+        public static string R_ErrSelShtTitle {
+            get {
+                return ResourceManager.GetString("R_ErrSelShtTitle", resourceCulture);
             }
         }
         
@@ -791,6 +931,33 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Help Message.
+        /// </summary>
+        public static string R_HelpTitle {
+            get {
+                return ResourceManager.GetString("R_HelpTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This tells One Click to use this sheet as the template for duplicating sheets.  That is, duplicate sheets will be based on this sheet.  Note, however, that what is duplicated is determined by the Operation setting.
+        /// </summary>
+        public static string R_HelpUseAsTemplate {
+            get {
+                return ResourceManager.GetString("R_HelpUseAsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use sheet as a Template.
+        /// </summary>
+        public static string R_HelpUseAsTemplateTitle {
+            get {
+                return ResourceManager.GetString("R_HelpUseAsTemplateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This setting determines whether the parameters, standard and custom, for the selected sheet will be applied to the new sheet.
         ///This settings persist between usages and sessions.  .
         /// </summary>
@@ -963,24 +1130,6 @@ namespace SharedCode.Resources {
         public static string R_Ok {
             get {
                 return ResourceManager.GetString("R_Ok", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to One Click Error.
-        /// </summary>
-        public static string R_OneClickError {
-            get {
-                return ResourceManager.GetString("R_OneClickError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to One click cannot continue.
-        /// </summary>
-        public static string R_OneClickMainMessage {
-            get {
-                return ResourceManager.GetString("R_OneClickMainMessage", resourceCulture);
             }
         }
         
@@ -1368,7 +1517,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use selected sheet for One Click.
+        ///   Looks up a localized string similar to Use this sheet as a One Click Template.
         /// </summary>
         public static string R_UseSheetForOneClick {
             get {
@@ -1400,24 +1549,6 @@ namespace SharedCode.Resources {
         public static string R_ViewOpts {
             get {
                 return ResourceManager.GetString("R_ViewOpts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CyberStudio Apps.
-        /// </summary>
-        public static string R_WebSiteCybersStudioTitle {
-            get {
-                return ResourceManager.GetString("R_WebSiteCybersStudioTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://www.cyberstudioApps.com.
-        /// </summary>
-        public static string R_WebSiteCyberStudioAddress {
-            get {
-                return ResourceManager.GetString("R_WebSiteCyberStudioAddress", resourceCulture);
             }
         }
         

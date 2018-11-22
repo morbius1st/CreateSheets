@@ -76,11 +76,11 @@ namespace SharedCode
 
 				PushButtonData pbData2 = MakePushButton(
 					rPanel, LocalResMgr.ButtonName_1Click,
-					AppStrings.R_ButtonNameTop_1Click + nl + AppStrings.R_ButtonNameBott_1Click,
-					AppStrings.R_ButtonImage16_1Click,
-					AppStrings.R_ButtonImage32_1Click,
+					AppStrings.R_ButtonNameTopOneClick + nl + AppStrings.R_ButtonNameBottOneClick,
+					AppStrings.R_ButtonImageOneClick16,
+					AppStrings.R_ButtonImageOneClick32,
 					Assembly.GetExecutingAssembly().Location,
-					LocalResMgr.Command_1Click, AppStrings.R_CommandDescription_1Click);
+					LocalResMgr.Command_1Click, AppStrings.R_CommandDescriptionOneClick);
 
 				if (pbData2 == null) return false;
 

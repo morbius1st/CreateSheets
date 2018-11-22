@@ -498,13 +498,16 @@ Settings</value>
     <value>Error</value>
   </data>
   <data name="R_ErrSelectSheetFailDesc" xml:space="preserve">
-    <value>A sheet is not selected\n\nPlease select a sheet to proceed</value>
+    <value>A sheet is not selected
+
+Please select a sheet to proceed</value>
   </data>
   <data name="R_ErrSelShtMainInst" xml:space="preserve">
     <value>A Sheet Must Be Selected</value>
   </data>
   <data name="R_ErrSelShtMainCont" xml:space="preserve">
-    <value>In order to create a new sheet, an existing sheet\nmust be selected.  Please select a sheet or select cancel.</value>
+    <value>In order to create a new sheet, an existing sheet
+must be selected.  Please select a sheet or select cancel.</value>
   </data>
   <data name="R_FormatSheetNumberUndef" xml:space="preserve">
     <value>undefined</value>
@@ -634,26 +637,26 @@ This settings persist between usages and sessions.  </value>
   <data name="R_HelpSavedRestoreTitle" xml:space="preserve">
     <value>Restore Settings Button</value>
   </data>
-  <data name="R_ButtonImage16_1Click" xml:space="preserve">
-    <value>DuplicateSheets_1-Click_16.png</value>
+  <data name="R_ButtonImageOneClick16" xml:space="preserve">
+    <value>DuplicateSheets_1_Click_16.png</value>
   </data>
-  <data name="R_ButtonImage32_1Click" xml:space="preserve">
-    <value>DuplicateSheets_1-Click_32.png</value>
+  <data name="R_ButtonImageOneClick32" xml:space="preserve">
+    <value>DuplicateSheets_1_Click_32.png</value>
   </data>
-  <data name="R_ButtonNameTop_1Click" xml:space="preserve">
+  <data name="R_ButtonNameTopOneClick" xml:space="preserve">
     <value>Duplicate</value>
   </data>
-  <data name="R_ButtonNameBott_1Click" xml:space="preserve">
+  <data name="R_ButtonNameBottOneClick" xml:space="preserve">
     <value>Shts 1-Click</value>
   </data>
-  <data name="R_CommandDescription_1Click" xml:space="preserve">
+  <data name="R_CommandDescriptionOneClick" xml:space="preserve">
     <value>Dup Shts 1 Click</value>
   </data>
-  <data name="R_Command_1Click" xml:space="preserve">
+  <data name="R_Command1Click" xml:space="preserve">
     <value>Command_1Click</value>
   </data>
   <data name="R_UseSheetForOneClick" xml:space="preserve">
-    <value>Use selected sheet for One Click</value>
+    <value>Use this sheet as a One Click Template</value>
   </data>
   <data name="R_OneClickSaved" xml:space="preserve">
     <value>One Click Saved</value>
@@ -661,19 +664,63 @@ This settings persist between usages and sessions.  </value>
   <data name="R_OneClickRestored" xml:space="preserve">
     <value>One Click Restored</value>
   </data>
-  <data name="R_OneClickError" xml:space="preserve">
-    <value>One Click Error</value>
+  <data name="R_ErrNoSheetsMainMsg_OneClick" xml:space="preserve">
+    <value>One Click cannot continue</value>
   </data>
-  <data name="R_OneClickMainMessage" xml:space="preserve">
-    <value>One click cannot continue</value>
-  </data>
-  <data name="R_ErrNoSheets" xml:space="preserve">
+  <data name="R_ErrNoSheetsContent" xml:space="preserve">
     <value>This model has no sheet so duplicate sheets cannot be made.  Please make at least one sheet and try again.</value>
   </data>
-  <data name="R_WebSiteCyberStudioAddress" xml:space="preserve">
+  <data name="R_CyberStudioAddr" xml:space="preserve">
     <value>http://www.cyberstudioApps.com</value>
   </data>
-  <data name="R_WebSiteCybersStudioTitle" xml:space="preserve">
+  <data name="R_CyberStudioTitle" xml:space="preserve">
     <value>CyberStudio Apps</value>
+  </data>
+  <data name="R_HelpUseAsTemplateTitle" xml:space="preserve">
+    <value>Use sheet as a Template</value>
+  </data>
+  <data name="R_HelpUseAsTemplate" xml:space="preserve">
+    <value>This tells One Click to use this sheet as the template for duplicating sheets.  That is, duplicate sheets will be based on this sheet.  Note, however, that what is duplicated is determined by the Operation setting</value>
+  </data>
+  <data name="R_HelpTitle" xml:space="preserve">
+    <value>Help Message</value>
+  </data>
+  <data name="R_ErrNoSheetsMainMsg_DupShts" xml:space="preserve">
+    <value>Duplicate Sheets cannot continue</value>
+  </data>
+  <data name="R_ErrNoSheetsTitle" xml:space="preserve">
+    <value>Model Has No Sheets</value>
+  </data>
+  <data name="R_ErrSelShtTitle" xml:space="preserve">
+    <value>Sheet Not Selected</value>
+  </data>
+  <data name="R_ErrNoTemplateTitle" xml:space="preserve">
+    <value>Template Sheet Does Not Exist</value>
+  </data>
+  <data name="R_ErrOneClickSettingsMissingTitle" xml:space="preserve">
+    <value>One Click Settings Are Not Defined</value>
+  </data>
+  <data name="R_ErrNotViewSheetTitle" xml:space="preserve">
+    <value>Active View is not a Sheet View</value>
+  </data>
+  <data name="R_ErrNoTemplateMain" xml:space="preserve">
+    <value>Template Not Found</value>
+  </data>
+  <data name="R_ErrNoTemplateContent" xml:space="preserve">
+    <value>One click is set to use a Template sheet but the template sheet does not exist:</value>
+  </data>
+  <data name="R_ErrOneClickSettingsMissingMain" xml:space="preserve">
+    <value>One Click Settings Have Not Been Saved</value>
+  </data>
+  <data name="R_ErrOneClickSettingsMissingContent" xml:space="preserve">
+    <value>One click settings have not been configured and saved.  Please open the duplicate sheets dialog, configure your one click settings, and save the settings</value>
+  </data>
+  <data name="R_ErrNotViewSheetMain" xml:space="preserve">
+    <value>The Active View is not a Sheet View</value>
+  </data>
+  <data name="R_ErrNotViewSheetContent" xml:space="preserve">
+    <value>New Sheet Option is to use the current view as the basis for the new sheet's number and name. Since the current view is not a sheet view, I don't have a sheet number or name to use as the basis for the number and name of the new sheets.
+
+Please make a sheet view as the current view and select One Click again.</value>
   </data>
 </root>

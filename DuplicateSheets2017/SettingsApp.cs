@@ -1,6 +1,8 @@
 ﻿using System.Runtime.Serialization;
 using UtilityLibrary;
 
+// there are no app specific saved settings
+
 namespace DuplicateSheets2017
 {
 //	public static class SettingsApp

@@ -24,7 +24,7 @@ namespace SharedCode
 		public static string ButtonName => AppName;
 		public static string ButtonName_1Click => AppName + "_1Click";
 
-		public static string Command_1Click => RL_AppName + "." + Resources.AppStrings.R_Command_1Click;
+		public static string Command_1Click => RL_AppName + "." + Resources.AppStrings.R_Command1Click;
 		public static string Command => RL_AppName + "." + Resources.AppStrings.R_Command;
 	}
 }

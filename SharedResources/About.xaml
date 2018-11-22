@@ -7,10 +7,6 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:res="clr-namespace:SharedCode.Resources"
-	xmlns:local="clr-namespace:SharedResources"
-
-	xmlns:sys="clr-namespace:System;assembly=mscorlib"
-
 
   mc:Ignorable="d"
   Title="About"
@@ -28,7 +24,11 @@
       </ResourceDictionary.MergedDictionaries>
 
 			<x:Static
-				x:Key="string" Member="res:AppStrings.R_About"></x:Static>
+				x:Key="string" Member="res:AppStrings.R_About"/>
+
+			<x:Static
+				x:Key="navName"
+				Member="res:AppStrings.R_Sample"/>
 
 			<BitmapImage
         x:Key="Icon"
@@ -175,15 +175,16 @@
       Grid.Row="2"
       Grid.Column="0"
       Grid.ColumnSpan="2"
-      Margin="6"
-
-      >
+      Margin="6,0,0,10"
+			VerticalAlignment="Bottom"
+			>
 
       <Hyperlink
 				NavigateUri="{Binding WebSite}"
 				RequestNavigate="Hyperlink_OnRequestNavigate">
         <TextBlock
-					Text="{x:Static res:AppStrings.R_WebSiteCybersStudioTitle}"/>
+					Text="{x:Static res:AppStrings.R_CyberStudioTitle}"
+					/>
       </Hyperlink>
 
 

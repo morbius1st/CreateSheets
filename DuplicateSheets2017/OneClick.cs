@@ -5,13 +5,14 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using SharedCode;
 using SharedCode.Resources;
+using static SharedCode.ShUtil;
 using static DuplicateSheets2017.SettingsUser;
 using static UtilityLibrary.MessageUtilities2;
 #endregion
 
 
 // projname: DuplicateSheets2017
-// itemname: ShOneClick
+// itemname: OneClick
 // username: jeffs
 // created:  11/3/2018 2:09:11 PM
 
@@ -28,9 +29,8 @@ using static UtilityLibrary.MessageUtilities2;
 
 namespace DuplicateSheets2017
 {
-	public class ShOneClick
+	public class OneClick
 	{
-
 		public bool Process(ExternalCommandData commandData)
 		{
 			USettings.Read();
@@ -44,11 +44,15 @@ namespace DuplicateSheets2017
 
 			if (nsf.Defined)
 			{
-//				MessageBox.Show(nsf.ToString(), "Got one click", MessageBoxButton.OK);
-
 				if (nsf.UseTemplateSheet)
 				{
 					nsf.TemplateSheetView = dbMgr.FindExistSheet(nsf.TemplateSheetNumber);
+
+					if (nsf.TemplateSheetView == null)
+					{
+						ErrorTemplateNotFound(nsf.TemplateSheetNumber, nsf.TemplateSheetName);
+						return false;
+					}
 				}
 
 				View v = dbMgr.ActiveGraphicalView;
@@ -63,48 +67,37 @@ namespace DuplicateSheets2017
 					}
 					else
 					{
-						TaskDialog td = new TaskDialog("");
-
-						td.MainInstruction = "Current View is not a Sheet";
-						td.MainContent = "New Sheet Option is to use the current view "
-							+ "as the basis for the new sheet's number and name. "
-							+ "Since the current view is not a sheet view, I don't have "
-							+ "a sheet number or name to use as the basis for the number "
-							+ "and name of the new sheets.\n\n"
-							+ "Please make a sheet view as the current view and select One Click again.";
-						td.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
-						td.CommonButtons = TaskDialogCommonButtons.Ok;
-						td.DefaultButton = TaskDialogResult.Ok;
-						td.FooterText = ShConst.WebSiteReference;
-
-						td.Show();
-
+						ErrorNotSheetView();
 						return false;
 					}
 				}
-
 				dbMgr.Process2(nsf);
 			}
 			else
 			{
-				TaskDialog td = new TaskDialog("");
-
-				td.MainInstruction = "One Click Settings are not defined";
-				td.MainContent = "One click settings have not been configured and saved.  Please open the "
-					+ "duplicate sheets dialog, configure your one click settings, and save the settings";
-				td.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
-				td.CommonButtons = TaskDialogCommonButtons.Ok;
-				td.DefaultButton = TaskDialogResult.Ok;
-				td.FooterText = ShConst.WebSiteReference;
-
-				TaskDialogResult result = td.Show();
-
+				ErrorSettingsNotDefined();
 				return false;
 			}
 
 			return true;
 		}
 
+		private static void ErrorTemplateNotFound(string tempShtNum, string tempShtName)
+		{
+			ShowErrorDialog(AppStrings.R_ErrNoTemplateTitle, AppStrings.R_ErrNoTemplateMain,
+				AppStrings.R_ErrNoTemplateContent + "\n" + tempShtNum + " :: " + tempShtName);
+		}
+		
+		private static void ErrorSettingsNotDefined()
+		{
+			ShowErrorDialog(AppStrings.R_ErrOneClickSettingsMissingTitle, AppStrings.R_ErrOneClickSettingsMissingMain,
+				AppStrings.R_ErrOneClickSettingsMissingContent);
+		}
 
+		private static void ErrorNotSheetView()
+		{
+			ShowErrorDialog(AppStrings.R_ErrNotViewSheetTitle, AppStrings.R_ErrNotViewSheetMain,
+				AppStrings.R_ErrNotViewSheetContent);
+		}
 	}
 }
