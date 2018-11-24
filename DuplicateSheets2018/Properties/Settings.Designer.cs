@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfApp1.Properties
+namespace DuplicateSheets2018.Properties
 {
 
 

@@ -9,12 +9,12 @@ using SharedCode.Resources;
 
 using Document = Autodesk.Revit.DB.Document;
 
-using static DuplicateSheets2017.Command;
-using static DuplicateSheets2017.SettingsUser;
+using static DuplicateSheets2018.Command;
+using static DuplicateSheets2018.SettingsUser;
 
 #endregion
 
-namespace DuplicateSheets2017
+namespace DuplicateSheets2018
 {
 
 	[Transaction(TransactionMode.Manual)]
@@ -95,7 +95,6 @@ namespace DuplicateSheets2017
 	[Transaction(TransactionMode.Manual)]
 	public class Command_1Click : IExternalCommand
 	{
-
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
 		public Result Execute(ExternalCommandData commandData,
 		  ref string message, ElementSet elements)

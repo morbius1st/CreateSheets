@@ -80,9 +80,12 @@ namespace SharedCode
 			errDialog.Show();
 		}
 
-		public static void ShowExceptionDialog(Exception e, NewSheetFormat nsf)
+		public static void ShowExceptionDialog(Exception e, NewSheetFormat nsf, double parentLeft, double parentTop)
 		{
-			SharedResources.ErrorReport errorReport = new ErrorReport();
+			ErrorReport errorReport = new ErrorReport();
+
+			errorReport.ParentLeft = parentLeft;
+			errorReport.ParentTop = parentTop;
 
 			errorReport.WindowTitle = LocalResMgr.WinTitleErrorReport;
 

@@ -14,13 +14,14 @@
   Width="520"
   Icon="{DynamicResource Icon}"
 	DataContext="{Binding ElementName=about}"
-
-  >
+	WindowStartupLocation="CenterOwner"
+	
+	>
   <Window.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
-          Source="WpfStyles/WpfResource.xaml" />
+					Source="WpfStyles/ShWpfResource.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
 			<x:Static
@@ -87,7 +88,7 @@
       Grid.Row="0"
       Grid.Column="1"
       Grid.ColumnSpan="2"
-      Background="{StaticResource dkGray}">
+			Background="{DynamicResource dkGray}">
 
       <Grid.RowDefinitions>
         <RowDefinition

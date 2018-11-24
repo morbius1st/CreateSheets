@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace SharedResources
 {
@@ -19,10 +7,12 @@ namespace SharedResources
 	/// </summary>
 	public partial class ErrorReport : Window
 	{
+
 		public ErrorReport()
 		{
 			InitializeComponent();
 		}
+		#region + properties
 
 		public string WindowTitle
 		{
@@ -34,6 +24,26 @@ namespace SharedResources
 		{
 			set => tblkStackTrace.Text = value;
 		}
+
+		public double ParentLeft
+		{
+			set
+			{
+				if (value >= 0)
+					this.Left = value + 50.0;
+			}
+		}
+
+		public double ParentTop
+		{
+			set
+			{
+				if (value >= 0)
+					this.Top = value + 50.0;
+			}
+		}
+
+		#endregion
 
 		private void btnClose_Click(object sender, RoutedEventArgs e)
 		{

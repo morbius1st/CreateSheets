@@ -19,7 +19,7 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Dup2017Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Dup2017DebugPrjConfig|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -32,7 +32,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Dup2017Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Dup2017ReleasePrjConfig|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -51,12 +51,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Expression.Effects, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero2" />
@@ -126,9 +120,9 @@
     <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_32.png">
       <Link>Resources\DuplicateSheets_32.png</Link>
     </EmbeddedResource>
-    <Resource Include="..\SharedResources\Resources\CyberStudio Icon.png">
+    <EmbeddedResource Include="..\SharedResources\Resources\CyberStudio Icon.png">
       <Link>Resources\CyberStudio Icon.png</Link>
-    </Resource>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1_Click_16.png">
       <Link>Resources\DuplicateSheets_1_Click_16.png</Link>
     </EmbeddedResource>
@@ -159,8 +153,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\SharedResources\WpfStyles\WpfResource.xaml">
-      <Link>Resources\WpfStyles\WpfResource.xaml</Link>
+    <Page Include="..\SharedResources\WpfStyles\ShWpfResource.xaml">
+      <Link>Resources\WpfStyles\ShWpfResource.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -188,10 +182,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WpfStyles\WpfSelViewSheetResource.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -210,9 +200,9 @@
   <Import Project="..\SharedLibrary\SharedLibrary.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Dup2017Debug (copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2017")
-if $(ConfigurationName) == Dup2017Debug (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017")
-if $(ConfigurationName) == Dup2017Release (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017")
+    <PostBuildEvent>if $(ConfigurationName) == Dup2017DebugPrjConfig (copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2017")
+if $(ConfigurationName) == Dup2017DebugPrjConfig (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017")
+if $(ConfigurationName) == Dup2017ReleasePrjConfig (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017")
 robocopy $(TargetDir) $(AppData)\Autodesk\REVIT\Addins\2017 *.resources.dll /s /ns /nc /np /njh /njs
 if errorlevel 4 goto BuildEventFailed
 if errorlevel 0 goto end

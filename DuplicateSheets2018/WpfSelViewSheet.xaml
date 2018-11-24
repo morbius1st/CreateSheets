@@ -4,13 +4,12 @@
 	xmlns:sys="clr-namespace:System;assembly=mscorlib"
 	xmlns:shared="clr-namespace:SharedCode"
 	xmlns:res="clr-namespace:SharedCode.Resources"
-	xmlns:local="clr-namespace:DuplicateSheets2017"
+	xmlns:local="clr-namespace:DuplicateSheets2018"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
 	mc:Ignorable="d"
 	x:Name="winSelViewSheet"
-	x:Class="DuplicateSheets2017.WpfSelViewSheet"
+	x:Class="DuplicateSheets2018.WpfSelViewSheet"
 	Title="{x:Static res:AppStrings.R_WindowTitleSelView}"
 	MaxWidth="1300"
 	Width="800"
@@ -26,17 +25,19 @@
 	Unloaded="winSelViewSheet_Unloaded"
 	Closing="winSelViewSheet_Closing"
 	KeyUp="winSelViewSheet_KeyUp"
-	Icon="{DynamicResource Icon}">
+	
+	ShowInTaskbar="False"
+	Icon="Resources/CyberStudio Icon.png">
 
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary
-					Source="WpfStyles/GroupBox.xaml" />
+					Source="/DuplicateSheets2018;component/WpfStyles/GroupBox.xaml" />
 				<ResourceDictionary
-					Source="WpfStyles/ComboBox.xaml" />
+					Source="/DuplicateSheets2018;component/WpfStyles/ComboBox.xaml" />
 				<ResourceDictionary
-					Source="WpfStyles/ListBoxItem.xaml" />
+					Source="/DuplicateSheets2018;component/WpfStyles/ListBoxItem.xaml" />
 				<ResourceDictionary
 					Source="Resources/WpfStyles/ShWpfResource.xaml" />
 
@@ -47,11 +48,11 @@
 				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
 
-			<BitmapImage
-				x:Key="Icon"
-				CreateOptions="IgnoreImageCache"
-				CacheOption="OnLoad"
-				UriSource="/DuplicateSheets2017;component/Resources/CyberStudio Icon.png" />
+			<!-- <BitmapImage -->
+			<!-- 	x:Key="Icon" -->
+			<!-- 	CreateOptions="IgnoreImageCache" -->
+			<!-- 	CacheOption="OnLoad" -->
+			<!-- 	UriSource="/DuplicateSheets2018;component/Resources/CyberStudio Icon.png" /> -->
 
 			<local:ComparisonCovnerter
 				x:Key="comparisonCovnerter" />
@@ -1376,3 +1377,4 @@
 	</Grid>
 
 </Window>
+

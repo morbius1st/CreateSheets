@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Timers;
 using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Threading;
 using SharedCode.Resources;
 
 namespace SharedResources
@@ -11,14 +9,37 @@ namespace SharedResources
 	/// <summary>
 	/// Interaction logic for ErrorReport.xaml
 	/// </summary>
+	///
+	
 	public partial class About : Window
 	{
-		public const string test = "about";
-
 		public About()
 		{
 			InitializeComponent();
 		}
+
+		#region + properties
+
+		public double ParentLeft
+		{
+			set
+			{
+				if (value >= 0 )
+					this.Left = value + 50.0;
+			}
+		}
+
+		public double ParentTop
+		{
+			set
+			{
+				if (value >= 0)
+					this.Top = value + 50.0; 
+			}
+		}
+
+		#endregion
+
 
 		private void btnOk_Click(object sender, RoutedEventArgs e)
 		{

@@ -12,14 +12,16 @@
 	MinHeight="400"
   Width="650"
 	MinWidth="500"
+	Top="300.0"
+	Left="300.0"
 	WindowStartupLocation="CenterOwner"
 	>
   <Window.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
-          Source="WpfStyles/WpfResource.xaml" />
-      </ResourceDictionary.MergedDictionaries>
+					Source="WpfStyles/ShWpfResource.xaml" />
+			</ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Window.Resources>
 

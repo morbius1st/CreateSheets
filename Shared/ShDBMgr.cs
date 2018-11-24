@@ -34,14 +34,15 @@ namespace SharedCode
 		// save the list of ViewSheets
 		private static FilteredElementCollector _vs;
 
-//		private bool _copySingleSheetViews;
-
 		// a list of all sheet numbers - lower case
 		private string[] _sheetNumberList;
 
 		private string[] _viewNameList;
 
 		private static FilteredElementCollector _mVw;
+
+		private static double _parentLeft;
+		private static double _parentTop;
 
 		#endregion
 
@@ -120,7 +121,7 @@ namespace SharedCode
 			}
 			catch (Exception e)
 			{
-				ShUtil.ShowExceptionDialog(e, nsf);
+				ShUtil.ShowExceptionDialog(e, nsf, _parentLeft, _parentTop);
 
 				return false;
 			}
@@ -337,6 +338,26 @@ namespace SharedCode
 		#endregion
 
 		#region + Properties
+
+		public double ParentLeft
+		{
+			get => _parentLeft;
+			set
+			{
+				if (value >= 0)
+					_parentLeft = value;
+			}
+		}
+
+		public double ParentTop
+		{
+			get => _parentTop;
+			set
+			{
+				if (value >= 0)
+					_parentTop = value;
+			}
+		}
 
 		internal string SheetNamePrefix    { private get; set; } = "";
 		internal string SheetNumPrefix     { private get; set; } = "";
