@@ -3,14 +3,12 @@
 	xmlns:sys="clr-namespace:System;assembly=mscorlib"
 	xmlns:shared="clr-namespace:SharedCode"
 	xmlns:res="clr-namespace:SharedCode.Resources"
-	xmlns:local="clr-namespace:DuplicateSheets2017"
-	xmlns:res2="clr-namespace:SharedResources"
+	xmlns:local="clr-namespace:DuplicateSheets2019"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
 	mc:Ignorable="d"
 	x:Name="winSelViewSheet"
-	x:Class="DuplicateSheets2017.WpfSelViewSheet"
+	x:Class="DuplicateSheets2019.WpfSelViewSheet"
 	Title="{x:Static res:AppStrings.R_WindowTitleSelView}"
 	MaxWidth="1300"
 	Width="800"
@@ -26,30 +24,38 @@
 	Unloaded="winSelViewSheet_Unloaded"
 	Closing="winSelViewSheet_Closing"
 	KeyUp="winSelViewSheet_KeyUp"
-	Icon="{DynamicResource Icon}" ShowInTaskbar="False" Topmost="True">
-
+	ShowInTaskbar="False"
+	Icon="{DynamicResource Icon}" Topmost="True">
 
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary
-					Source="WpfStyles/GroupBox.xaml" />
+					Source="/DuplicateSheets2019;component/WpfStyles/GroupBox.xaml" />
 				<ResourceDictionary
-					Source="WpfStyles/ComboBox.xaml" />
+					Source="/DuplicateSheets2019;component/WpfStyles/ComboBox.xaml" />
 				<ResourceDictionary
-					Source="WpfStyles/ListBoxItem.xaml" />
+					Source="/DuplicateSheets2019;component/WpfStyles/ListBoxItem.xaml" />
 				<ResourceDictionary
 					Source="Resources/WpfStyles/ShWpfResource.xaml" />
+
 				<ResourceDictionary>
 					<BooleanToVisibilityConverter
 						x:Key="b2v" />
 
+
 					<BitmapImage x:Key="Icon"
-					 CacheOption="OnLoad"
-					 UriSource="Resources/CyberStudio Icon.png"/>
+											 CacheOption="OnLoad"
+											 UriSource="Resources/CyberStudio Icon.png" />
 
 				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
+
+			<!-- <BitmapImage -->
+			<!-- 	x:Key="Icon" -->
+			<!-- 	CreateOptions="IgnoreImageCache" -->
+			<!-- 	CacheOption="OnLoad" -->
+			<!-- 	UriSource="/DuplicateSheets2019;component/Resources/CyberStudio Icon.png" /> -->
 
 			<local:ComparisonCovnerter
 				x:Key="comparisonCovnerter" />
@@ -192,7 +198,6 @@
 							Tag="HelpSaveAsOneClick"
 							Style="{StaticResource btnHelpStyle}"
 							/>
-							<!-- Click="btnOneClickHelp_Click"  -->
 						<TextBlock
 							Grid.Column="1"
 							Text="{x:Static res:AppStrings.R_OneClickSave}"
@@ -1375,3 +1380,4 @@
 	</Grid>
 
 </Window>
+

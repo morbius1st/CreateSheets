@@ -259,7 +259,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dup Shts 1 Click.
+        ///   Looks up a localized string similar to One Click Duplicate Sheets.
         /// </summary>
         public static string R_CommandDescriptionOneClick {
             get {
@@ -511,7 +511,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One click is set to use a Template sheet but the template sheet does not exist:.
+        ///   Looks up a localized string similar to One Click is set to use a Template sheet but the template sheet does not exist:.
         /// </summary>
         public static string R_ErrNoTemplateContent {
             get {
@@ -567,7 +567,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One click settings have not been configured and saved.  Please open the duplicate sheets dialog, configure your one click settings, and save the settings.
+        ///   Looks up a localized string similar to One Click settings have not been configured and saved.  Please open the duplicate sheets dialog, configure your one click settings, and save the settings.
         /// </summary>
         public static string R_ErrOneClickSettingsMissingContent {
             get {

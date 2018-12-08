@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ShNamePartItemsTables.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShNewSheetMgr.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShIdeMgr.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShOneClick.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShSheetData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShSheetDataList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShUtil.cs" />

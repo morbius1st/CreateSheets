@@ -13,7 +13,7 @@ using ComboBox = System.Windows.Controls.ComboBox;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-using static DuplicateSheets2018.SettingsUser;
+using static DuplicateSheets2019.SettingsUser;
 
 using SharedCode;
 using SharedCode.Resources;
@@ -24,7 +24,7 @@ using static SharedCode.ShNamePartItemCode;
 using static SharedCode.ShSheetDataList;
 using static SharedCode.ShNewSheetMgr;
 
-using static DuplicateSheets2018.Command;
+using static DuplicateSheets2019.Command;
 
 using Binding = System.Windows.Data.Binding;
 
@@ -32,7 +32,7 @@ using static UtilityLibrary.MessageUtilities2;
 using static UtilityLibrary.Balloon;
 
 
-namespace DuplicateSheets2018
+namespace DuplicateSheets2019
 {
 	/// <summary>
 	/// Interaction logic for WpfSelViewSheet.xaml

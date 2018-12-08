@@ -698,8 +698,8 @@ namespace DuplicateSheets2017
 			// save the settings
 			USettings.Save();
 
-			Debug.Print(USet.Basic.ToString());
-			Debug.Print(USet.OneClick.ToString());
+//			Debug.Print(USet.Basic.ToString());
+//			Debug.Print(USet.OneClick.ToString());
 		}
 
 		private void SaveCbxSettings(int start, int end, BaseInfo stgInfo)

@@ -650,7 +650,7 @@ This settings persist between usages and sessions.  </value>
     <value>Shts 1-Click</value>
   </data>
   <data name="R_CommandDescriptionOneClick" xml:space="preserve">
-    <value>Dup Shts 1 Click</value>
+    <value>One Click Duplicate Sheets</value>
   </data>
   <data name="R_Command1Click" xml:space="preserve">
     <value>Command_1Click</value>
@@ -672,6 +672,7 @@ This settings persist between usages and sessions.  </value>
   </data>
   <data name="R_CyberStudioAddr" xml:space="preserve">
     <value>http://www.cyberstudioApps.com</value>
+    <comment>Cyberstudio URL</comment>
   </data>
   <data name="R_CyberStudioTitle" xml:space="preserve">
     <value>CyberStudio Apps</value>
@@ -707,13 +708,13 @@ This settings persist between usages and sessions.  </value>
     <value>Template Not Found</value>
   </data>
   <data name="R_ErrNoTemplateContent" xml:space="preserve">
-    <value>One click is set to use a Template sheet but the template sheet does not exist:</value>
+    <value>One Click is set to use a Template sheet but the template sheet does not exist:</value>
   </data>
   <data name="R_ErrOneClickSettingsMissingMain" xml:space="preserve">
     <value>One Click Settings Have Not Been Saved</value>
   </data>
   <data name="R_ErrOneClickSettingsMissingContent" xml:space="preserve">
-    <value>One click settings have not been configured and saved.  Please open the duplicate sheets dialog, configure your one click settings, and save the settings</value>
+    <value>One Click settings have not been configured and saved.  Please open the duplicate sheets dialog, configure your one click settings, and save the settings</value>
   </data>
   <data name="R_ErrNotViewSheetMain" xml:space="preserve">
     <value>The Active View is not a Sheet View</value>

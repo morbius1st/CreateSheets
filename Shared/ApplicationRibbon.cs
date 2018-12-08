@@ -1,9 +1,7 @@
-﻿
-using System.Reflection;
+﻿using System.Reflection;
 using System.Windows.Forms;
 using Autodesk.Revit.UI;
 using SharedCode.Resources;
-
 using static UtilityLibrary.MessageUtilities2;
 
 
@@ -13,14 +11,10 @@ using static UtilityLibrary.MessageUtilities2;
 // this is the code to add a ribbon tab / panel / button
 namespace SharedCode
 {
-
-
 	class ApplicationRibbon : IExternalApplication
 	{
-
 		public Result OnStartup(UIControlledApplication app)
 		{
-
 			try
 			{
 				// this will always use the add-ins tab - don't need to make the tab first
@@ -39,7 +33,6 @@ namespace SharedCode
 			}
 			catch
 			{
-
 				return Result.Failed;
 			}
 		} // end OnStartup
@@ -56,7 +49,6 @@ namespace SharedCode
 				return Result.Failed;
 			}
 		} // end OnShutdown
-
 
 
 		private bool AddSplitPushButtons(RibbonPanel rPanel)
@@ -85,11 +77,10 @@ namespace SharedCode
 				if (pbData2 == null) return false;
 
 				SplitButtonData sbd = new SplitButtonData("splitButton", "DupSheets");
-				SplitButton sb = rPanel.AddItem(sbd) as SplitButton;
+				SplitButton     sb  = rPanel.AddItem(sbd) as SplitButton;
 
 				sb.AddPushButton(pbData1);
 				sb.AddPushButton(pbData2);
-
 			}
 			catch
 			{
@@ -100,67 +91,75 @@ namespace SharedCode
 		}
 
 
-
-
-		// method to add a pushbutton to the ribbon
-		private bool AddPushButton(RibbonPanel Panel, string ButtonName,
-			string ButtonText, string Image16, string Image32,
-			string dllPath, string dllClass, string ToolTip)
-		{
-			try
-			{
-				PushButtonData m_pdData = new PushButtonData(ButtonName,
-					ButtonText, dllPath, dllClass);
-				// if we have a path for a small image, try to load the image
-				if (Image16.Length != 0)
-				{
-					try
-					{
-						// load the image
-						m_pdData.Image = ShUtil.GetBitmapImage(Image16);
-					}
-					catch
-					{
-						// could not locate the image
-					}
-				}
-
-				// if have a path for a large image, try to load the image
-				if (Image32.Length != 0)
-				{
-					try
-					{
-						// load the image
-						m_pdData.LargeImage = ShUtil.GetBitmapImage(Image32);
-					}
-					catch
-					{
-						// could not locate the image
-					}
-				}
-
-				// set the tooltip
-				m_pdData.ToolTip = ToolTip;
-
-				// add it to the panel
-				PushButton m_pb = Panel.AddItem(m_pdData) as PushButton;
-
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-		}
+//		// method to add a pushbutton to the ribbon
+//		private bool AddPushButton(RibbonPanel Panel,
+//			string ButtonName,
+//			string ButtonText,
+//			string Image16,
+//			string Image32,
+//			string dllPath,
+//			string dllClass,
+//			string ToolTip)
+//		{
+//			try
+//			{
+//				PushButtonData m_pdData = new PushButtonData(ButtonName,
+//					ButtonText, dllPath, dllClass);
+//				// if we have a path for a small image, try to load the image
+//				if (Image16.Length != 0)
+//				{
+//					try
+//					{
+//						// load the image
+//						m_pdData.Image = ShUtil.GetBitmapImage(Image16);
+//					}
+//					catch
+//					{
+//						// could not locate the image
+//					}
+//				}
+//
+//				// if have a path for a large image, try to load the image
+//				if (Image32.Length != 0)
+//				{
+//					try
+//					{
+//						// load the image
+//						m_pdData.LargeImage = ShUtil.GetBitmapImage(Image32);
+//					}
+//					catch
+//					{
+//						// could not locate the image
+//					}
+//				}
+//
+//				// set the tooltip
+//				m_pdData.ToolTip = ToolTip;
+//
+//				// add it to the panel
+//				PushButton m_pb = Panel.AddItem(m_pdData) as PushButton;
+//
+//				return true;
+//			}
+//			catch
+//			{
+//				return false;
+//			}
+//		}
 
 		// method to make a pushbutton for the ribbon
-		private PushButtonData MakePushButton(RibbonPanel Panel, string ButtonName,
-			string ButtonText, string Image16, string Image32,
-			string dllPath, string dllClass, string ToolTip)
+		private PushButtonData MakePushButton(RibbonPanel Panel,
+			string ButtonName,
+			string ButtonText,
+			string Image16,
+			string Image32,
+			string dllPath,
+			string dllClass,
+			string ToolTip)
 		{
 			try
 			{
-				PushButtonData m_pdData = new PushButtonData(ButtonName,
+				PushButtonData pdData = new PushButtonData(ButtonName,
 					ButtonText, dllPath, dllClass);
 				// if we have a path for a small image, try to load the image
 				if (Image16.Length != 0)
@@ -168,7 +167,7 @@ namespace SharedCode
 					try
 					{
 						// load the image
-						m_pdData.Image = ShUtil.GetBitmapImage(Image16);
+						pdData.Image = ShUtil.GetBitmapImage(Image16);
 					}
 					catch
 					{
@@ -182,7 +181,7 @@ namespace SharedCode
 					try
 					{
 						// load the image
-						m_pdData.LargeImage = ShUtil.GetBitmapImage(Image32);
+						pdData.LargeImage = ShUtil.GetBitmapImage(Image32);
 					}
 					catch
 					{
@@ -191,15 +190,19 @@ namespace SharedCode
 				}
 
 				// set the tooltip
-				m_pdData.ToolTip = ToolTip;
+				pdData.ToolTip = ToolTip;
 
-				return m_pdData;
+//				ContextualHelp cHelp = new ContextualHelp(ContextualHelpType.Url, 
+//					AppStrings.R_CyberStudioAddr);
+//
+//				pdData.SetContextualHelp(cHelp);
+
+				return pdData;
 			}
 			catch
 			{
 				return null;
 			}
 		}
-
 	}
 }

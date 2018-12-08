@@ -14,7 +14,7 @@
   Width="520"
   Icon="{DynamicResource Icon}"
 	DataContext="{Binding ElementName=about}"
-	WindowStartupLocation="CenterOwner"
+	WindowStartupLocation="CenterScreen" Topmost="True" ShowInTaskbar="False"
 	
 	>
   <Window.Resources>

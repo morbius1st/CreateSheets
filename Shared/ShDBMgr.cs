@@ -672,7 +672,8 @@ namespace SharedCode
 
 			foreach (View vw in _mVw)
 			{
-				_viewNameList[i++] = vw.ViewName;
+//				_viewNameList[i++] = vw.ViewName;
+				_viewNameList[i++] = vw.Name;
 			}
 		}
 

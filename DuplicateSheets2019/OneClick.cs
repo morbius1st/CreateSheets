@@ -6,12 +6,12 @@ using Autodesk.Revit.UI;
 using SharedCode;
 using SharedCode.Resources;
 using static SharedCode.ShUtil;
-using static DuplicateSheets2018.SettingsUser;
+using static DuplicateSheets2019.SettingsUser;
 using static UtilityLibrary.MessageUtilities2;
 #endregion
 
 
-// projname: DuplicateSheets2018
+// projname: DuplicateSheets2019
 // itemname: OneClick
 // username: jeffs
 // created:  11/3/2018 2:09:11 PM
@@ -27,7 +27,7 @@ using static UtilityLibrary.MessageUtilities2;
  */
 
 
-namespace DuplicateSheets2018
+namespace DuplicateSheets2019
 {
 	public class OneClick
 	{
@@ -36,7 +36,7 @@ namespace DuplicateSheets2018
 			USettings.Read();
 
 			return SharedCode.ShOneClick.Process(commandData, USet.OneClick);
-			//
+
 			//			USettings.Read();
 			//
 			//			ViewSheet vs = null;
