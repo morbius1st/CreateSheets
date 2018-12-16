@@ -84,8 +84,6 @@ namespace DuplicateSheets2017
 			// initalize all of the components
 			InitializeComponent();
 
-			this.Icon = ShUtil.GetBitmapImage("CyberStudio Icon.png", "Images");
-
 			InitWinLocation();
 		}
 

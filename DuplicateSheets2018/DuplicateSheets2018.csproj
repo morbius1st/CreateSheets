@@ -210,12 +210,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\SharedResources\Resources\CyberStudio Icon.png">
-      <Link>Resources\CyberStudio Icon.png</Link>
-    </Resource>
-  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\CreateSheetsAbout v2.png" />
+    <Resource Include="Resources\Images\CyberStudio Icon.png" />
+    <Resource Include="Resources\Images\CyberStudio Logo - Narrow.png" />
+  </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="..\SharedLibrary\SharedLibrary.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

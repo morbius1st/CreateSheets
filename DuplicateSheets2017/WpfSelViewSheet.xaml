@@ -11,6 +11,7 @@
 	x:Name="winSelViewSheet"
 	x:Class="DuplicateSheets2017.WpfSelViewSheet"
 	Title="{x:Static res:AppStrings.R_WindowTitleSelView}"
+	Icon="{DynamicResource Icon}"
 	MaxWidth="1300"
 	Width="800"
 	MinWidth="800"
@@ -27,7 +28,6 @@
 	KeyUp="winSelViewSheet_KeyUp"
 	ShowInTaskbar="False"
 	Topmost="True">
-	<!-- Icon="{DynamicResource Icon}" -->
 
 
 	<Window.Resources>
@@ -45,9 +45,9 @@
 					<BooleanToVisibilityConverter
 						x:Key="b2v" />
 
-					<!-- <BitmapImage x:Key="Icon" -->
-					<!--  CacheOption="OnLoad" -->
-					<!-- 	UriSource="/DuplicateSheets2017;component/Images/CyberStudio Icon.png" /> -->
+					<BitmapImage x:Key="Icon"
+					 CacheOption="OnLoad"
+						UriSource="Resources/Images/CyberStudio Icon.png" />
 
 				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
