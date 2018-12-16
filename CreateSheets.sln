@@ -17,6 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplicateSheets2019", "Dupl
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedLibrary\SharedLibrary.projitems*{00196854-aa9e-4fdd-9346-834708dac17b}*SharedItemsImports = 4
 		SharedLibrary\SharedLibrary.projitems*{3823d62c-dbfa-478e-8a1a-34868e8b7053}*SharedItemsImports = 4
 		Shared\Shared.projitems*{3823d62c-dbfa-478e-8a1a-34868e8b7053}*SharedItemsImports = 4
 		SharedLibrary\SharedLibrary.projitems*{76028afe-7c9d-4d01-9c7f-6e5890087d89}*SharedItemsImports = 13
@@ -75,10 +76,10 @@ Global
 		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2017Release|Any CPU.ActiveCfg = Dup2019ReleasePrjConfig|Any CPU
 		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2018Debug|Any CPU.ActiveCfg = Dup2019ReleasePrjConfig|Any CPU
 		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2018Release|Any CPU.ActiveCfg = Dup2019ReleasePrjConfig|Any CPU
-		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2019Debug|Any CPU.ActiveCfg = Dup2019Debug|Any CPU
-		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2019Debug|Any CPU.Build.0 = Dup2019Debug|Any CPU
-		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2019Release|Any CPU.ActiveCfg = Dup2019Release|Any CPU
-		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2019Release|Any CPU.Build.0 = Dup2019Release|Any CPU
+		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2019Debug|Any CPU.ActiveCfg = Dup2019DebugPrjConfig|Any CPU
+		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2019Debug|Any CPU.Build.0 = Dup2019DebugPrjConfig|Any CPU
+		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2019Release|Any CPU.ActiveCfg = Dup2019ReleasePrjConfig|Any CPU
+		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Dup2019Release|Any CPU.Build.0 = Dup2019ReleasePrjConfig|Any CPU
 		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Release|Any CPU.ActiveCfg = Dup2019ReleasePrjConfig|Any CPU
 		{3823D62C-DBFA-478E-8A1A-34868E8B7053}.Release|Any CPU.Build.0 = Dup2019ReleasePrjConfig|Any CPU
 	EndGlobalSection

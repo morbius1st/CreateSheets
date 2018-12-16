@@ -1,8 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Resources;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using SharedCode;
 using SharedCode.Resources;
+using UtilityLibrary;
+
+
+
 
 namespace SharedResources
 {
@@ -15,7 +24,18 @@ namespace SharedResources
 	{
 		public About()
 		{
+			this.Icon = ShUtil.GetBitmapImage("CyberStudio Icon.png", "Images");
+
+			this.ibxAbout = new Image();
+			this.ibxLogo = new Image();
+
+			this.ibxAbout.Source = ShUtil.GetBitmapImage("CreateSheetsAbout v2.png", "Images");
+			this.ibxLogo.Source = ShUtil.GetBitmapImage("CyberStudio Logo - Narrow.png", "Images");
+
 			InitializeComponent();
+
+			tbkVersion.Text = CsUtilities.AssemblyVersion;
+			tbkProgramName.Text = SharedCode.LocalResMgr.AppName;
 		}
 
 		#region + properties

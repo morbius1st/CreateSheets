@@ -21,8 +21,16 @@ namespace SharedCode
 		// load an image from embeded resource
 		public static BitmapImage GetBitmapImage(string imageName)
 		{
+			return GetBitmapImage(imageName, Resources.AppStrings.R_NamespacePrefixSubject);
+		}
+
+		// load an image from embeded resource
+		public static BitmapImage GetBitmapImage(string imageName, string folder)
+		{
+			Assembly b = Assembly.GetExecutingAssembly();
+
 			Stream s = Assembly.GetExecutingAssembly().
-				GetManifestResourceStream(LocalResMgr.NamespacePrefix + "." + imageName);
+				GetManifestResourceStream(LocalResMgr.AppIdentifier + "." + folder + "." + imageName);
 
 			BitmapImage img = new BitmapImage();
 
@@ -31,7 +39,6 @@ namespace SharedCode
 			img.EndInit();
 
 			return img;
-
 		}
 
 		public static Image GetImage(string imageName)
@@ -45,7 +52,7 @@ namespace SharedCode
 		private static void ShowSelectSheetErrorMessage()
 		{
 			MessageBox.Show(AppStrings.R_ErrSelectSheetFailDesc,
-				LocalResMgr.AppName,
+				LocalResMgr.AppIdentifier,
 				MessageBoxButtons.OK,
 				MessageBoxIcon.Error,
 				MessageBoxDefaultButton.Button1);
@@ -110,7 +117,7 @@ namespace SharedCode
 		{
 			string helpSubject = AppStrings.ResourceManager.GetString("R_" + resourceName + "Title") + " Help";
 
-//			TaskDialog help = new TaskDialog(LocalResMgr.AppName + ", " + helpSubject);
+//			TaskDialog help = new TaskDialog(LocalResMgr.AppIdentifier + ", " + helpSubject);
 			TaskDialog help = new TaskDialog(AppStrings.R_HelpTitle);
 
 			help.MainInstruction = helpSubject;

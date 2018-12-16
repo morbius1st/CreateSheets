@@ -14,7 +14,7 @@
 	MinWidth="500"
 	Top="300.0"
 	Left="300.0"
-	WindowStartupLocation="CenterOwner"
+	WindowStartupLocation="CenterOwner" Topmost="True" ShowInTaskbar="False"
 	>
   <Window.Resources>
     <ResourceDictionary>

@@ -32,7 +32,6 @@ namespace DuplicateSheets2017
 		public Result Execute(ExternalCommandData commandData,
 		  ref string message, ElementSet elements)
 		{
-
 			_uiapp = commandData.Application;
 			_uidoc = _uiapp.ActiveUIDocument;
 			_document = _uidoc.Document;

@@ -209,7 +209,6 @@
       <Link>Resources\AppStrings.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DuplicateSheetsLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="..\SharedResources\Resources\CyberStudio Icon.png">
@@ -224,10 +223,18 @@
     <PreBuildEvent>Echo "Duplicate Sheets 2019"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Dup2019DebugPrjConfig (copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2019")
+    <PostBuildEvent>if $(ConfigurationName) == Dup2019ReleasePrjConfig (echo "*** Release ***")
+if $(ConfigurationName) == Dup2019DebugPrjConfig (echo "*** Debug ***")
+copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2019"
 if $(ConfigurationName) == Dup2019DebugPrjConfig (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2019")
 if $(ConfigurationName) == Dup2019ReleasePrjConfig (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2019")
-</PostBuildEvent>
+robocopy $(TargetDir) $(AppData)\Autodesk\REVIT\Addins\2019 *.resources.dll /s /ns /nc /np /njh /njs
+if errorlevel 4 goto BuildEventFailed
+if errorlevel 0 goto end
+:BuildEventFailed echo FileCopy for $(ProjectName) Failed
+exit 1
+:end 
+exit 0</PostBuildEvent>
   </PropertyGroup>
   <Target Name="AfterClean">
     <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2019\DuplicateSheets2019.addin" />

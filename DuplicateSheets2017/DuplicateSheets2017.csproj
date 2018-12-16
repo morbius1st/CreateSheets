@@ -128,9 +128,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.fr.resx">
-      <LogicalName>SharedResources.Resources.AppStrings.fr.resources</LogicalName>
-      <Link>Resources\AppStrings.fr.resx</Link>
+    <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.resx">
+      <LogicalName>SharedResources.Resources.AppStrings.resources</LogicalName>
+      <Link>Resources\AppStrings.resx</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_16.png">
       <Link>Resources\DuplicateSheets_16.png</Link>
@@ -138,9 +139,6 @@
     <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_32.png">
       <Link>Resources\DuplicateSheets_32.png</Link>
     </EmbeddedResource>
-    <Resource Include="..\SharedResources\Resources\CyberStudio Icon.png">
-      <Link>Resources\CyberStudio Icon.png</Link>
-    </Resource>
     <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1_Click_16.png">
       <Link>Resources\DuplicateSheets_1_Click_16.png</Link>
     </EmbeddedResource>
@@ -148,12 +146,6 @@
       <Link>Resources\DuplicateSheets_1_Click_32.png</Link>
     </EmbeddedResource>
     <None Include="Other\DuplicateSheets2017.addin" />
-    <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.resx">
-      <LogicalName>SharedResources.Resources.AppStrings.resources</LogicalName>
-      <Link>Resources\AppStrings.resx</Link>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DuplicateSheetsLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\..\..\UtilityLibrary\UtilityLibrary\Balloon.xaml">
@@ -209,16 +201,22 @@
     <EmbeddedResource Include="Resources\AppLocalStrings.resx">
       <LastGenOutput>AppLocalStrings.Designer.cs</LastGenOutput>
       <Generator>PublicResxFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="..\SharedLibrary\SharedLibrary.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Dup2017DebugPrjConfig (copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2017")
+    <PostBuildEvent>if $(ConfigurationName) == Dup2017ReleasePrjConfig (echo "*** Release ***")
+if $(ConfigurationName) == Dup2017DebugPrjConfig (echo "*** Debug ***")
+copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2017"
 if $(ConfigurationName) == Dup2017DebugPrjConfig (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017")
 if $(ConfigurationName) == Dup2017ReleasePrjConfig (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017")
 robocopy $(TargetDir) $(AppData)\Autodesk\REVIT\Addins\2017 *.resources.dll /s /ns /nc /np /njh /njs

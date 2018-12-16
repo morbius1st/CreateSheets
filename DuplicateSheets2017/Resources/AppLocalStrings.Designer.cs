@@ -63,6 +63,15 @@ namespace DuplicateSheets2017.Resources {
         /// <summary>
         ///   Looks up a localized string similar to DuplicateSheets2017.
         /// </summary>
+        public static string RL_AppIdentifier {
+            get {
+                return ResourceManager.GetString("RL_AppIdentifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Sheets 2017.
+        /// </summary>
         public static string RL_AppName {
             get {
                 return ResourceManager.GetString("RL_AppName", resourceCulture);
