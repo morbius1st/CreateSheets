@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Application CreateSheets</Name>
+    <Description>Duplicate and Create Sheets</Description>
+    <Assembly>CreateSheets2017.dll</Assembly>
+    <FullClassName>SharedCreate.ApplicationRibbon</FullClassName>
+    <ClientId>48bff096-3281-493e-9362-1c84a1cc41de</ClientId>
+		<AddInId>7EF6BD80-9372-4BB0-BA8F-F5BBB968BF72</AddInId>
+    <VendorId>CSTU</VendorId>
+    <VendorDescription>CyberStudio</VendorDescription>
+  </AddIn>
+</RevitAddIns>

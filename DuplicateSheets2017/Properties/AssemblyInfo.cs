@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("Revit 2017")]
 [assembly: AssemblyCompany("CyberStudio")]
 [assembly: AssemblyProduct("DuplicateSheets2017")]
-[assembly: AssemblyCopyright("Copyright 2018 (C) Jeff Stuyvesant, CyberStudio")]
+[assembly: AssemblyCopyright("Copyright 2019 (C) Jeff Stuyvesant, CyberStudio")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -47,6 +47,6 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.0.2.0")]
-[assembly: AssemblyFileVersion("4.0.2.0")]
+[assembly: AssemblyVersion("4.0.4.0")]
+[assembly: AssemblyFileVersion("4.0.4.0")]
 [assembly: NeutralResourcesLanguage("en-US")]

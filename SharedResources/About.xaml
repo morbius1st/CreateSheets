@@ -4,6 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:res="clr-namespace:SharedCode.Resources"
+	xmlns:res2="clr-namespace:SharedCode"
 	x:Class="SharedResources.About"
 	x:Name="about"
 	Icon="Images/CyberStudio Icon.png"
@@ -23,29 +24,29 @@
 					Source="WpfStyles/ShWpfResource.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
-			<x:Static
-				x:Key="string" Member="res:AppStrings.R_About"/>
-
-			<x:Static
-				x:Key="navName"
-				Member="res:AppStrings.R_Sample"/>
+			<!-- <x:Static -->
+			<!-- 	x:Key="string" Member="res:AppStrings.R_About"/> -->
+			<!-- -->
+			<!-- <x:Static -->
+			<!-- 	x:Key="navName" -->
+			<!-- 	Member="res:AppStrings.R_Sample"/> -->
      
 			  <!-- <BitmapImage   -->
      <!--      x:Key="Icon"   -->
      <!--      CacheOption="OnLoad"   -->
 			  	<!-- UriSource="Images/CyberStudio Icon.png" />   -->
      
-			  <BitmapImage  
-          x:Key="Logo"  
-          CreateOptions="IgnoreImageCache"  
-          CacheOption="OnLoad"  
-			  	UriSource="Images/CyberStudio Logo - Narrow.png" />  
-     
-			  <BitmapImage  
-          x:Key="About"  
-          CreateOptions="IgnoreImageCache"  
-          CacheOption="OnLoad"  
-			  	UriSource="Images/CreateSheetsAbout v2.png" />  
+			  <!-- <BitmapImage   -->
+     <!--      x:Key="Logo"   -->
+     <!--      CreateOptions="IgnoreImageCache"   -->
+     <!--      CacheOption="OnLoad"   -->
+			  <!-- 	UriSource="Images/CyberStudio Logo - Narrow.png" />   -->
+     <!-- -->
+			  <!-- <BitmapImage   -->
+     <!--      x:Key="About"   -->
+     <!--      CreateOptions="IgnoreImageCache"   -->
+     <!--      CacheOption="OnLoad"   -->
+			  <!-- 	UriSource="Images/CreateSheetsAbout v2.png" />   -->
 
 		</ResourceDictionary>
 	</Window.Resources>
@@ -127,7 +128,7 @@
         FontFamily="Franklin Gothic Medium"
         FontSize="28"
         FontWeight="Bold"
-        Text="Duplicate Sheets 2017"
+				Text="{x:Static res2:LocalResMgr.AppName}"
         Foreground="White"
         TextAlignment="Right"
         Background="{StaticResource dkGray}"

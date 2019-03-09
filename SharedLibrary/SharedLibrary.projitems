@@ -18,11 +18,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\MessageUtilities.cs">
       <Link>MessageUtilities.cs</Link>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\SettingsMgr.cs">
-      <Link>SettingsMgr.cs</Link>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)..\..\..\UtilityLibrary\UtilityLibrary\CsExtensions.cs">
       <Link>CsExtensions.cs</Link>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SettingsMgr-v26.cs" />
   </ItemGroup>
 </Project>

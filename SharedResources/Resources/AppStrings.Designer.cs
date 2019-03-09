@@ -178,11 +178,29 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string R_ButtonNameTopCreate {
+            get {
+                return ResourceManager.GetString("R_ButtonNameTopCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
         public static string R_ButtonNameTopOneClick {
             get {
                 return ResourceManager.GetString("R_ButtonNameTopOneClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string R_ButtonNameTopOneClickCreate {
+            get {
+                return ResourceManager.GetString("R_ButtonNameTopOneClickCreate", resourceCulture);
             }
         }
         
@@ -250,6 +268,24 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Sheets.
+        /// </summary>
+        public static string R_CommandDescCreate {
+            get {
+                return ResourceManager.GetString("R_CommandDescCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One Click Create Sheets.
+        /// </summary>
+        public static string R_CommandDescOneClickCreate {
+            get {
+                return ResourceManager.GetString("R_CommandDescOneClickCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate Sheets.
         /// </summary>
         public static string R_CommandDescription {
@@ -300,6 +336,15 @@ namespace SharedCode.Resources {
         public static string R_CyberStudioAddr {
             get {
                 return ResourceManager.GetString("R_CyberStudioAddr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://www.cyberstudioapps.com/about-duplicate-sheets.html.
+        /// </summary>
+        public static string R_CyberStudioDupSheetsAddr {
+            get {
+                return ResourceManager.GetString("R_CyberStudioDupSheetsAddr", resourceCulture);
             }
         }
         
@@ -896,6 +941,8 @@ namespace SharedCode.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to The current options and settings will be saved as your One Click settings.
+        ///One click, which also has a separate button on the ribbon, can be used to quickly create a sheet.  One-click can use a preconfigured template sheet and options to quickly create new duplicate sheets.  The one-click settings are saved and are available between sessions and between models (this is a per machine setting so the one-click settings from one model is available in a different model).  
+        ///Since this is a per machine setting,  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string R_HelpSaveAsOneClick {
             get {
@@ -959,7 +1006,7 @@ namespace SharedCode.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to This setting determines whether the parameters, standard and custom, for the selected sheet will be applied to the new sheet.
-        ///This settings persist between usages and sessions.  .
+        ///This setting persists between usages and sessions.  .
         /// </summary>
         public static string R_HelpUseParams {
             get {
@@ -968,7 +1015,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Re-use exiting parameters.
+        ///   Looks up a localized string similar to Reuse exiting parameters.
         /// </summary>
         public static string R_HelpUseParamsTitle {
             get {
@@ -981,7 +1028,7 @@ namespace SharedCode.Resources {
         ///&lt;No titleblock&gt; = no title block will be added to the new sheet.
         ///&lt;From Selected Sheet&gt; = the title block of the selected sheet will be used for the new sheets.
         ///or from one of the other titleblocks loaded into the model.
-        ///This settings persist between usages and sessions..
+        ///This setting persists between usages and sessions..
         /// </summary>
         public static string R_HelpUseThisTblk {
             get {
@@ -1576,6 +1623,15 @@ namespace SharedCode.Resources {
         public static string R_WindowTitleSelView {
             get {
                 return ResourceManager.GetString("R_WindowTitleSelView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Sheets.
+        /// </summary>
+        public static string R_WindowTitleSelViewCreate {
+            get {
+                return ResourceManager.GetString("R_WindowTitleSelViewCreate", resourceCulture);
             }
         }
         

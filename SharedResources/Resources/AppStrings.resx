@@ -589,14 +589,14 @@ The suffix must be one of the following:
 &lt;No titleblock&gt; = no title block will be added to the new sheet.
 &lt;From Selected Sheet&gt; = the title block of the selected sheet will be used for the new sheets.
 or from one of the other titleblocks loaded into the model.
-This settings persist between usages and sessions.</value>
+This setting persists between usages and sessions.</value>
   </data>
   <data name="R_HelpUseParamsTitle" xml:space="preserve">
-    <value>Re-use exiting parameters</value>
+    <value>Reuse exiting parameters</value>
   </data>
   <data name="R_HelpUseParams" xml:space="preserve">
     <value>This setting determines whether the parameters, standard and custom, for the selected sheet will be applied to the new sheet.
-This settings persist between usages and sessions.  </value>
+This setting persists between usages and sessions.  </value>
   </data>
   <data name="R_CreateSheets" xml:space="preserve">
     <value>Create Empty Sheets</value>
@@ -620,7 +620,13 @@ This settings persist between usages and sessions.  </value>
     <value>Proceed Button</value>
   </data>
   <data name="R_HelpSaveAsOneClick" xml:space="preserve">
-    <value>The current options and settings will be saved as your One Click settings</value>
+    <value>The current options and settings will be saved as your One Click settings.
+One click, which also has a separate button on the ribbon, can be used to quickly create a sheet.  One-click can use a preconfigured template sheet and options to quickly create new duplicate sheets.  The one-click settings are saved and are available between sessions and between models (this is a per machine setting so the one-click settings from one model is available in a different model).  
+Since this is a per machine setting, best practice would be to create a generic template sheet in each model that has the exact same name.  This way, one click can work simply in each model.  
+One-click will not work if the template does not exist in the current model.
+Use the “Save as One Click” button to save the current options as your one-click settings.  
+Use the “Restore One Click” button to restore your one click settings.  Note that the current settings are temporarily saved and can be restored using the “Restore Saved” button.
+</value>
   </data>
   <data name="R_HelpSaveAsOneClickTitle" xml:space="preserve">
     <value>Save As One Click Button</value>
@@ -723,5 +729,23 @@ This settings persist between usages and sessions.  </value>
     <value>New Sheet Option is to use the current view as the basis for the new sheet's number and name. Since the current view is not a sheet view, I don't have a sheet number or name to use as the basis for the number and name of the new sheets.
 
 Please make a sheet view as the current view and select One Click again.</value>
+  </data>
+  <data name="R_CyberStudioDupSheetsAddr" xml:space="preserve">
+    <value>http://www.cyberstudioapps.com/about-duplicate-sheets.html</value>
+  </data>
+  <data name="R_CommandDescOneClickCreate" xml:space="preserve">
+    <value>One Click Create Sheets</value>
+  </data>
+  <data name="R_CommandDescCreate" xml:space="preserve">
+    <value>Create Sheets</value>
+  </data>
+  <data name="R_ButtonNameTopOneClickCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="R_ButtonNameTopCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="R_WindowTitleSelViewCreate" xml:space="preserve">
+    <value>Create Sheets</value>
   </data>
 </root>

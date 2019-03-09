@@ -13,6 +13,7 @@
 *.doc*
 *_backup/
 **/.archive
+.Publish/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

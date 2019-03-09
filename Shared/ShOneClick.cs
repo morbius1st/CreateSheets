@@ -39,19 +39,19 @@ namespace SharedCode
 				{
 					v = dbMgr.ActiveGraphicalView;
 
-					if (nsf.NewSheetOption == NewShtOptions.FromCurrent)
+//					if (nsf.NewSheetOption == NewShtOptions.FromCurrent)
+//					{
+					if (v.ViewType == ViewType.DrawingSheet)
 					{
-						if (v.ViewType == ViewType.DrawingSheet)
-						{
-							vs = v as ViewSheet;
-						}
-						else
-						{
-							ErrorNotSheetView();
-							return false;
-						}
+						vs = v as ViewSheet;
 					}
-				}
+					else
+					{
+						ErrorNotSheetView();
+						return false;
+					}
+//				}
+			}
 
 //				nsf.SelectedSheet = new SheetData(vs.SheetNumber, vs.ViewName, vs);
 				nsf.SelectedSheet = new SheetData(vs.SheetNumber, vs.Name, vs);

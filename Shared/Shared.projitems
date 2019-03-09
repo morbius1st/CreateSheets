@@ -9,7 +9,6 @@
     <Import_RootNamespace>SharedCode</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ApplicationRibbon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NewSheetFormat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShConst.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShNamePartItems.cs" />

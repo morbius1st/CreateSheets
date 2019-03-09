@@ -1,16 +1,16 @@
-﻿using System.Reflection;
 using System.Resources;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DuplicateSheets2018")]
-[assembly: AssemblyDescription("Revit Add-In Description for DuplicateSheets2018")]
-[assembly: AssemblyConfiguration("Revit 2018")]
+[assembly: AssemblyTitle("CreateSheets2017")]
+[assembly: AssemblyDescription("Revit Add-In Description for CreateSheets2017")]
+[assembly: AssemblyConfiguration("Revit 2017")]
 [assembly: AssemblyCompany("CyberStudio")]
-[assembly: AssemblyProduct("DuplicateSheets2018")]
+[assembly: AssemblyProduct("CreateSheets2017")]
 [assembly: AssemblyCopyright("Copyright 2019 (C) Jeff Stuyvesant, CyberStudio")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,6 @@ using System.Windows;
 // to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
-
 //In order to begin building localizable applications, set
 //<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
 //inside a <PropertyGroup>.  For example, if you are using US english
