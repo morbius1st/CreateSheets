@@ -12,7 +12,6 @@ using SharedCode.Resources;
 // this is the code to add a ribbon tab / panel / button
 
 
-
 namespace SharedDuplicate
 {
 	class AppRibbonDuplicate : IExternalApplication

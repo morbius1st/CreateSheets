@@ -11,15 +11,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DDC429DE-0FCC-45A7-A152-112E9AB46CC4}</ProjectGuid>
+    <ProjectGuid>{831FC088-D8FE-4B98-83B7-0206D9914971}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DuplicateSheets2017</RootNamespace>
-    <AssemblyName>DuplicateSheets2017</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>CreateSheets2019</RootNamespace>
+    <AssemblyName>CreateSheets2019</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2019Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -28,32 +28,73 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <StartAction>Program</StartAction>
-    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2017\Revit.exe</StartProgram>
+    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2019\Revit.exe</StartProgram>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <StartAction>Program</StartAction>
-    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2017\Revit.exe</StartProgram>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2018Release|AnyCPU'">
-    <OutputPath>bin\Dup2018Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2019Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Create2019Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2019Release|x64'">
+    <OutputPath>bin\x64\Create2019Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2017Release|AnyCPU'">
+    <OutputPath>bin\Create2017Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2017Release|x64'">
+    <OutputPath>bin\x64\Create2017Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2017Debug|AnyCPU'">
+    <OutputPath>bin\Dup2017Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2017Debug|x64'">
+    <OutputPath>bin\x64\Dup2017Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2018Debug|AnyCPU'">
+    <OutputPath>bin\Dup2018Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2018Debug|x64'">
+    <OutputPath>bin\x64\Dup2018Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2019Debug|AnyCPU'">
+    <OutputPath>bin\Dup2019Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2019Debug|x64'">
+    <OutputPath>bin\x64\Dup2019Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2017Release|AnyCPU'">
+    <OutputPath>bin\Dup2017Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2017Release|x64'">
+    <OutputPath>bin\x64\Dup2017Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2018Release|AnyCPU'">
+    <OutputPath>bin\Dup2018Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2018Release|x64'">
+    <OutputPath>bin\x64\Dup2018Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2019Release|AnyCPU'">
     <OutputPath>bin\Dup2019Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2019Release|x64'">
+    <OutputPath>bin\x64\Dup2019Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="envdte, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -67,11 +108,11 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="RevitAPI">
-      <HintPath>$(ProgramW6432)\Autodesk\Revit 2017\RevitAPI.dll</HintPath>
+      <HintPath>$(ProgramW6432)\Autodesk\Revit 2019\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>$(ProgramW6432)\Autodesk\Revit 2017\RevitAPIUI.dll</HintPath>
+      <HintPath>$(ProgramW6432)\Autodesk\Revit 2019\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -139,7 +180,9 @@
     <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1_Click_32.png">
       <Link>Resources\DuplicateSheets_1_Click_32.png</Link>
     </EmbeddedResource>
-    <None Include="Other\DuplicateSheets2017.addin" />
+    <None Include="Other\CreateSheets2019.addin">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\..\..\UtilityLibrary\UtilityLibrary\Balloon.xaml">
@@ -201,24 +244,27 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="..\SharedResources\Resources\AO-LOGO-Bar-Sm.png">
+      <Link>Resources\Images\AO-LOGO-Bar-Sm.png</Link>
+    </Resource>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\CreateSheetsAbout v2.png" />
     <Resource Include="Resources\Images\CyberStudio Icon.png" />
     <Resource Include="Resources\Images\CyberStudio Logo - Narrow.png" />
   </ItemGroup>
-  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="..\SharedLibrary\SharedLibrary.projitems" Label="Shared" />
-  <Import Project="..\SharedDuplicate\SharedDuplicate.projitems" Label="Shared" />
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
+  <Import Project="..\SharedCreate\SharedCreate.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo configuration: $(ConfigurationName)
-if $(ConfigurationName) == Debug (echo "*** Release ***")
-if $(ConfigurationName) == Release (echo "*** Debug ***")
-copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2017"
-if $(ConfigurationName) == Debug (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017")
-if $(ConfigurationName) == Release (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2017")
-robocopy $(TargetDir) $(AppData)\Autodesk\REVIT\Addins\2017 *.resources.dll /s /ns /nc /np /njh /njs
+    <PostBuildEvent>if $(ConfigurationName) == Create2019Release (echo "*** Release ***")
+if $(ConfigurationName) == Create2019Debug (echo "*** Debug ***")
+copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2019"
+if $(ConfigurationName) == Create2019Debug (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2019")
+if $(ConfigurationName) == Create2019Release (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2019")
+robocopy $(TargetDir) $(AppData)\Autodesk\REVIT\Addins\2019 *.resources.dll /s /ns /nc /np /njh /njs
 if errorlevel 4 goto BuildEventFailed
 if errorlevel 0 goto end
 :BuildEventFailed echo FileCopy for $(ProjectName) Failed
@@ -227,7 +273,7 @@ exit 1
 exit 0</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>Echo "Duplicate Sheets 2017"</PreBuildEvent>
+    <PreBuildEvent>Echo "CreateSheets 2019"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -237,7 +283,7 @@ exit 0</PostBuildEvent>
   </Target>
   -->
   <Target Name="AfterClean">
-    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2017\DuplicateSheets2017.addin" />
-    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2017\DuplicateSheets2017.dll" />
+    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2019\CreateSheets2019.addin" />
+    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2019\CreateSheets2019.dll" />
   </Target>
 </Project>

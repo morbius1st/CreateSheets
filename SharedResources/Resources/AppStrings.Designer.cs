@@ -1546,7 +1546,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tools.
+        ///   Looks up a localized string similar to Sheets.
         /// </summary>
         public static string R_UiPanelName {
             get {

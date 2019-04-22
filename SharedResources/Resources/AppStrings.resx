@@ -222,7 +222,7 @@ Undo is supported.  All sheets duplicated in a single operation will be removed 
     <value>Failed to Add Button!</value>
   </data>
   <data name="R_UiPanelName" xml:space="preserve">
-    <value>Tools</value>
+    <value>Sheets</value>
   </data>
   <data name="R_UiTabName" xml:space="preserve">
     <value>Not Used</value>

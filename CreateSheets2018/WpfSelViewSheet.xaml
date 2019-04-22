@@ -6,10 +6,10 @@
 	xmlns:res="clr-namespace:SharedCode.Resources"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:local="clr-namespace:CreateSheets2017"
+	xmlns:local="clr-namespace:CreateSheets2018"
 	mc:Ignorable="d"
 	x:Name="winSelViewSheet"
-	x:Class="CreateSheets2017.WpfSelViewSheet"
+	x:Class="CreateSheets2018.WpfSelViewSheet"
 	Title="{x:Static res:AppStrings.R_WindowTitleSelViewCreate}"
 	Icon="{DynamicResource Icon}"
 	MaxWidth="1300"
@@ -163,7 +163,8 @@
 			Grid.Column="2"
 			Grid.Row="3"
 			Grid.ColumnSpan="3"
-			Margin="0,16.6,-0.4,13.8"
+			Margin="0"
+
 			VerticalAlignment="Center"
 			HorizontalAlignment="Right"
 			Height="50"
@@ -1390,7 +1391,7 @@
 			VerticalAlignment="Stretch"
 			HorizontalAlignment="Left"
 			Width="98"
-			Source="/CreateSheets2017;component/Resources/Images/AO-LOGO-Bar-Sm.png"
+			Source="/CreateSheets2018;component/Resources/Images/AO-LOGO-Bar-Sm.png"
 			>
 			
 		</Image>
