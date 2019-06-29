@@ -152,7 +152,7 @@
         Grid.Column="1"
         FontFamily="Calibri"
         FontSize="18"
-        Text="Copyright 2018"
+				Text="{x:Static res:AppStrings.R_About_Copyright}"
         Foreground="{StaticResource medCyan}"
         Background="{StaticResource dkGray}"
         HorizontalAlignment="Right"

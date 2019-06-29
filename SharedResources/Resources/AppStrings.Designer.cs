@@ -79,6 +79,15 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copyright 2019.
+        /// </summary>
+        public static string R_About_Copyright {
+            get {
+                return ResourceManager.GetString("R_About_Copyright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Space(s).
         /// </summary>
         public static string R_AddSpaces {

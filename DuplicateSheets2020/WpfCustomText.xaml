@@ -1,0 +1,175 @@
+﻿<Window
+  x:Class="DuplicateSheets2020.WpfCustomText"
+  x:Name="winCustomText"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="clr-namespace:DuplicateSheets2020"
+  xmlns:res="clr-namespace:SharedCode.Resources"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
+  Title="{x:Static res:AppStrings.R_WindowTitleDivChars}"
+  Height="125"
+  Width="335"
+  FontSize="13"
+  ResizeMode="NoResize"
+  WindowStartupLocation="CenterOwner"
+  MinHeight="125"
+  WindowStyle="ToolWindow"
+  HorizontalContentAlignment="Center"
+  VerticalContentAlignment="Center"
+  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+  Loaded="winCustomText_Loaded"
+  LocationChanged="winCustomText_LocationChanged">
+
+  <Window.Resources>
+    <sys:Double
+      x:Key="lblHeightStd">25</sys:Double>
+    <Color
+      x:Key="lt_Gray">#FFC3C3C3</Color>
+    <Color
+      x:Key="x_LtGray">#FFDDDDDD</Color>
+
+    <SolidColorBrush
+      x:Key="XLtGray"
+      Color="{DynamicResource x_LtGray}" />
+    <SolidColorBrush
+      x:Key="windowBackground"
+      Color="{DynamicResource lt_Gray}" />
+
+    <Style
+      x:Key="stdButton"
+      TargetType="{x:Type Button}">
+      <Setter
+        Property="Height"
+        Value="25" />
+      <Setter
+        Property="Width"
+        Value="75" />
+      <Setter
+        Property="Margin"
+        Value="0,0,10,10" />
+      <Setter
+        Property="VerticalAlignment"
+        Value="Bottom" />
+      <Setter
+        Property="HorizontalAlignment"
+        Value="Right" />
+      <Setter
+        Property="VerticalContentAlignment"
+        Value="Center" />
+      <Setter
+        Property="HorizontalContentAlignment"
+        Value="Center" />
+      <Setter
+        Property="Padding"
+        Value="0" />
+      <Setter
+        Property="Background"
+        Value="{DynamicResource windowBackground}" />
+      <Setter
+        Property="BorderBrush"
+        Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+    </Style>
+
+    <Style
+      x:Key="lblStyleStd"
+      TargetType="{x:Type Label}">
+      <Setter
+        Property="BorderThickness"
+        Value="0" />
+      <Setter
+        Property="Padding"
+        Value="2,0,0,2" />
+      <Setter
+        Property="BorderBrush"
+        Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+      <Setter
+        Property="Background"
+        Value="{StaticResource XLtGray}" />
+      <Setter
+        Property="VerticalContentAlignment"
+        Value="Center" />
+    </Style>
+
+    <Style
+      x:Key="tbStyleStd"
+      TargetType="{x:Type TextBox}">
+      <Setter
+        Property="BorderThickness"
+        Value="0" />
+      <Setter
+        Property="Padding"
+        Value="2,0,0,0" />
+      <Setter
+        Property="BorderBrush"
+        Value="Transparent" />
+      <Setter
+        Property="Background"
+        Value="White" />
+    </Style>
+
+  </Window.Resources>
+  <Window.BindingGroup>
+    <BindingGroup />
+  </Window.BindingGroup>
+  <Grid
+    x:Name="gridCustomDivider"
+    Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}"
+    Margin="0,0,-1,0">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition
+        Width="80*" />
+      <ColumnDefinition
+        Width="85" />
+      <ColumnDefinition
+        Width="85" />
+    </Grid.ColumnDefinitions>
+    <Button
+      x:Name="btnOk"
+      Content="{x:Static res:AppStrings.R_Ok}"
+      Style="{StaticResource ResourceKey=stdButton}"
+      IsDefault="True"
+      Click="btnOk_Click"
+      Grid.Column="1" />
+    <Button
+      x:Name="btnCancel"
+      Content="{x:Static res:AppStrings.R_Cancel}"
+      Style="{StaticResource stdButton}"
+      IsCancel="True"
+      Grid.Column="2"
+      Click="btnCancel_Click" />
+    <TextBox
+      x:Name="tbCustomText"
+      Grid.Column="2"
+      Height="{DynamicResource lblHeightStd}"
+      Style="{DynamicResource tbStyleStd}"
+      Margin="0,12,10,0"
+      VerticalAlignment="Top"
+      VerticalContentAlignment="Center"
+      PreviewTextInput="tbCustomText_PreviewTextInput" />
+    <Label
+      Grid.Column="0"
+      x:Name="lblCustom"
+      Content="{x:Static res:AppStrings.R_EnterDivChars}"
+      Height="{DynamicResource lblHeightStd}"
+      Style="{DynamicResource lblStyleStd}"
+      Margin="10,12,10,0"
+      Grid.ColumnSpan="2"
+      VerticalAlignment="Top" />
+
+    <TextBox
+      x:Name="tbInvalidChar"
+      Grid.Column="0"
+      Text="{x:Static res:AppStrings.R_CharacterInvalid}"
+      TextWrapping="Wrap"
+      FontSize="10"
+      Height="{DynamicResource lblHeightStd}"
+      Style="{DynamicResource tbStyleStd}"
+      Background="{StaticResource XLtGray}"
+      Margin="10,0,10,10"
+      Padding="2,-1,0,0"
+      VerticalContentAlignment="Center"
+      VerticalAlignment="Bottom" />
+
+  </Grid>
+</Window>

@@ -748,4 +748,7 @@ Please make a sheet view as the current view and select One Click again.</value>
   <data name="R_WindowTitleSelViewCreate" xml:space="preserve">
     <value>Create Sheets</value>
   </data>
+  <data name="R_About_Copyright" xml:space="preserve">
+    <value>Copyright 2019</value>
+  </data>
 </root>
