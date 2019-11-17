@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
 	<!--#region <GroupBox Style>-->
 	<CornerRadius x:Key="GbR4">6</CornerRadius>
@@ -15,138 +16,134 @@
 
 	<Thickness x:Key="GbMiddleWidth">2</Thickness>
 
-	<Thickness x:Key="GbWidth"
-						 Left="{StaticResource W2}"
-						 Top="{StaticResource W2}"
-						 Bottom="{StaticResource W2}"
-						 Right="{StaticResource W2}" />
+	<Thickness
+		x:Key="GbWidth"
+		Bottom="{StaticResource W2}"
+		Left="{StaticResource W2}"
+		Right="{StaticResource W2}"
+		Top="{StaticResource W2}" />
 
-	<Thickness x:Key="GbTlWidth"
-						 Left="{StaticResource W1}"
-						 Top="{StaticResource W1}" />
+	<Thickness
+		x:Key="GbTlWidth"
+		Left="{StaticResource W1}"
+		Top="{StaticResource W1}" />
 
-	<Thickness x:Key="GbBrWidth"
-						 Bottom="{StaticResource W1}"
-						 Right="{StaticResource W1}" />
+	<Thickness
+		x:Key="GbBrWidth"
+		Bottom="{StaticResource W1}"
+		Right="{StaticResource W1}" />
 
-  <Color x:Key="GbBorderA">#FFF9F9F9</Color>
+	<Color x:Key="GbBorderA">#FFF9F9F9</Color>
 	<Color x:Key="GbBorderM">#D5D5D5</Color>
 	<Color x:Key="GbBorderB">#FFA2A2A2</Color>
-	
 
 
-	<SolidColorBrush x:Key="GbInnerTlBorder"
-									 Color="{StaticResource GbBorderA}" />
-	<SolidColorBrush x:Key="GbInnerBrBorder"
-									 Color="{StaticResource GbBorderB}" />
-	<SolidColorBrush x:Key="GbMiddleBorder"
-									 Color="{StaticResource GbBorderM}" />
-	<SolidColorBrush x:Key="GbOuterTlBorder"
-									 Color="{StaticResource GbBorderB}" />
-	<SolidColorBrush x:Key="GbOuterBrBorder"
-									 Color="{StaticResource GbBorderA}" />
-	<SolidColorBrush x:Key="Transparent"
-									 Color="{x:Static Colors.Transparent}" />
+
+	<SolidColorBrush x:Key="GbInnerTlBorder" Color="{StaticResource GbBorderA}" />
+	<SolidColorBrush x:Key="GbInnerBrBorder" Color="{StaticResource GbBorderB}" />
+	<SolidColorBrush x:Key="GbMiddleBorder" Color="{StaticResource GbBorderM}" />
+	<SolidColorBrush x:Key="GbOuterTlBorder" Color="{StaticResource GbBorderB}" />
+	<SolidColorBrush x:Key="GbOuterBrBorder" Color="{StaticResource GbBorderA}" />
+	<SolidColorBrush x:Key="Transparent" Color="{x:Static Colors.Transparent}" />
 
 	<BorderGapMaskConverter x:Key="BorderGapMaskConverter" />
 
 
-	<Style x:Key="GroupBoxStyle"
-				 TargetType="{x:Type GroupBox}">
-		<Setter Property="BorderBrush"
-						Value="#D5DFE5" />
-		<Setter Property="BorderThickness"
-						Value="1" />
+	<Style x:Key="GroupBoxStyle" TargetType="{x:Type GroupBox}">
+		<Setter Property="BorderBrush" Value="#D5DFE5" />
+		<Setter Property="BorderThickness" Value="1" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type GroupBox}">
 					<Grid SnapsToDevicePixels="true">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="6" />
-							<ColumnDefinition Width="Auto"
-																MinWidth="64" />
+							<ColumnDefinition Width="Auto" MinWidth="64" />
 							<ColumnDefinition />
 							<ColumnDefinition Width="6" />
 						</Grid.ColumnDefinitions>
 						<Grid.RowDefinitions>
-							<RowDefinition Height="Auto"
-														 MinHeight="7" />
-							<RowDefinition Height="Auto"
-														 MinHeight="8.145" />
+							<RowDefinition Height="Auto" MinHeight="7" />
+							<RowDefinition Height="Auto" MinHeight="8.145" />
 							<RowDefinition />
 							<RowDefinition Height="6" />
 						</Grid.RowDefinitions>
 
-						<Border BorderBrush="Transparent"
-										BorderThickness="0"
-										Background="{TemplateBinding Background}"
-										CornerRadius="4"
-										Grid.ColumnSpan="4"
-										Grid.Column="0"
-										Grid.Row="1"
-										Grid.RowSpan="3">
-<!--							d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">-->
+						<Border
+							Grid.Row="1"
+							Grid.RowSpan="3"
+							Grid.Column="0"
+							Grid.ColumnSpan="4"
+							Background="{TemplateBinding Background}"
+							BorderBrush="Transparent"
+							BorderThickness="0"
+							CornerRadius="4">
+							<!--  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">  -->
 							<Border.OpacityMask>
-								<MultiBinding ConverterParameter="7"
-															Converter="{StaticResource BorderGapMaskConverter}">
-									<Binding ElementName="Header"
-													 Path="ActualWidth" />
-									<Binding Path="ActualWidth"
-													 RelativeSource="{RelativeSource Self}" />
-									<Binding Path="ActualHeight"
-													 RelativeSource="{RelativeSource Self}" />
+								<MultiBinding Converter="{StaticResource BorderGapMaskConverter}" ConverterParameter="7">
+									<Binding ElementName="Header" Path="ActualWidth" />
+									<Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}" />
+									<Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}" />
 								</MultiBinding>
 							</Border.OpacityMask>
 							<Grid>
-              <Border
-                  BorderThickness="{StaticResource GbWidth}"
-                  Grid.ColumnSpan="4"
-                  Grid.Row="0"
-                  Grid.RowSpan="0">
+								<Border
+									Grid.Row="0"
+									Grid.RowSpan="0"
+									Grid.ColumnSpan="4"
+									BorderThickness="{StaticResource GbWidth}">
 
-                  <Border BorderThickness="{StaticResource GbMiddleWidth}"
-													CornerRadius="{StaticResource GbR3}"
-													BorderBrush="{StaticResource GbMiddleBorder}">
+									<Border
+										BorderBrush="{StaticResource GbMiddleBorder}"
+										BorderThickness="{StaticResource GbMiddleWidth}"
+										CornerRadius="{StaticResource GbR3}">
 										<Grid>
-											<Border BorderThickness="{StaticResource GbTlWidth}"
-															CornerRadius="{StaticResource GbR2}"
-															BorderBrush="{StaticResource GbInnerTlBorder}"
-															Visibility="{StaticResource VInner}" />
-											<Border BorderThickness="{StaticResource GbBrWidth}"
-															CornerRadius="{StaticResource GbR2}"
-															BorderBrush="{StaticResource GbInnerBrBorder}"
-															Visibility="{StaticResource VInner}" />
+											<Border
+												BorderBrush="{StaticResource GbInnerTlBorder}"
+												BorderThickness="{StaticResource GbTlWidth}"
+												CornerRadius="{StaticResource GbR2}"
+												Visibility="{StaticResource VInner}" />
+											<Border
+												BorderBrush="{StaticResource GbInnerBrBorder}"
+												BorderThickness="{StaticResource GbBrWidth}"
+												CornerRadius="{StaticResource GbR2}"
+												Visibility="{StaticResource VInner}" />
 										</Grid>
 									</Border>
 
 
 								</Border>
-								<Border BorderThickness="{StaticResource GbTlWidth}"
-												CornerRadius="{StaticResource GbR3}"
-												BorderBrush="{StaticResource GbOuterTlBorder}"
-												Visibility="{StaticResource VOuter}" />
-								<Border BorderThickness="{StaticResource GbBrWidth}"
-												CornerRadius="{StaticResource GbR3}"
-												BorderBrush="{StaticResource GbOuterBrBorder}"
-												Visibility="{StaticResource VOuter}" />
+								<Border
+									BorderBrush="{StaticResource GbOuterTlBorder}"
+									BorderThickness="{StaticResource GbTlWidth}"
+									CornerRadius="{StaticResource GbR3}"
+									Visibility="{StaticResource VOuter}" />
+								<Border
+									BorderBrush="{StaticResource GbOuterBrBorder}"
+									BorderThickness="{StaticResource GbBrWidth}"
+									CornerRadius="{StaticResource GbR3}"
+									Visibility="{StaticResource VOuter}" />
 							</Grid>
 						</Border>
-						<Border x:Name="Header"
-										Grid.Column="1"
-										Padding="3,0"
-										Grid.Row="0"
-										Grid.RowSpan="2"
-										Margin="0,-2,0,0">
-<!--							d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">-->
-							<ContentPresenter ContentSource="Header"
-																RecognizesAccessKey="True"
-																SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+						<Border
+							x:Name="Header"
+							Grid.Row="0"
+							Grid.RowSpan="2"
+							Grid.Column="1"
+							Margin="0,-2,0,0"
+							Padding="3,0">
+							<!--  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">  -->
+							<ContentPresenter
+								ContentSource="Header"
+								RecognizesAccessKey="True"
+								SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 						</Border>
-						<ContentPresenter Grid.ColumnSpan="2"
-															Grid.Column="1"
-															Margin="{TemplateBinding Padding}"
-															Grid.Row="2"
-															SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+						<ContentPresenter
+							Grid.Row="2"
+							Grid.Column="1"
+							Grid.ColumnSpan="2"
+							Margin="{TemplateBinding Padding}"
+							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>

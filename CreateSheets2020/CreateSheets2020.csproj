@@ -43,6 +43,37 @@
     <StartProgram>$(ProgramW6432)\Autodesk\Revit 2020\Revit.exe</StartProgram>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2020Debug|AnyCPU'">
+    <OutputPath>bin\Create2020Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2020Debug|x64'">
+    <OutputPath>bin\x64\Create2020Debug\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2020Release|AnyCPU'">
+    <OutputPath>bin\Create2020Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2020Release|x64'">
+    <OutputPath>bin\x64\Create2020Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="envdte, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -192,14 +223,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="..\SharedResources\Resources\AO-LOGO-Bar-Sm.png">
-      <Link>Resources\Images\AO-LOGO-Bar-Sm.png</Link>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\CreateSheetsAbout v2.png" />
     <Resource Include="Resources\Images\CyberStudio Icon.png" />
     <Resource Include="Resources\Images\CyberStudio Logo - Narrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\SharedResources\Resources\AO-LOGO-New-Bar.png">
+      <Link>Resources\Images\AO-LOGO-New-Bar.png</Link>
+    </Resource>
   </ItemGroup>
   <Import Project="..\SharedLibrary\SharedLibrary.projitems" Label="Shared" />
   <Import Project="..\Shared\Shared.projitems" Label="Shared" />
@@ -209,8 +240,8 @@
     <PostBuildEvent>if $(ConfigurationName) == Release (echo "*** Release ***")
 if $(ConfigurationName) == Debug (echo "*** Debug ***")
 copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2020"
-if $(ConfigurationName) == Debug (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2020")
-if $(ConfigurationName) == Release (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2020")
+if $(ConfigurationName) == Create2020Debug (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2020")
+if $(ConfigurationName) == Create2020Release (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2020")
 robocopy $(TargetDir) $(AppData)\Autodesk\REVIT\Addins\2020 *.resources.dll /s /ns /nc /np /njh /njs
 if errorlevel 4 goto BuildEventFailed
 if errorlevel 0 goto end

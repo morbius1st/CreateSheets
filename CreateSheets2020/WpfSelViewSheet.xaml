@@ -45,11 +45,11 @@
 						CacheOption="OnLoad"
 						UriSource="Resources/Images/CyberStudio Icon.png" />
 
-					<BitmapImage
-						x:Key="logo"
-						CacheOption="OnLoad"
-						CreateOptions="IgnoreImageCache"
-						UriSource="Resources/Images/AO-LOGO-Bar-Sm.png" />
+					<!-- <BitmapImage -->
+					<!-- 	x:Key="logo" -->
+					<!-- 	CacheOption="OnLoad" -->
+					<!-- 	CreateOptions="IgnoreImageCache" -->
+					<!-- 	UriSource="Resources/Images/AO-LOGO-Bar-Sm.png" /> -->
 
 				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
@@ -1266,7 +1266,7 @@
 			Margin="0,-2,0,-2.2"
 			HorizontalAlignment="Left"
 			VerticalAlignment="Stretch"
-			Source="/CreateSheets2020;component/Resources/Images/AO-LOGO-Bar-Sm.png" />
+			Source="/CreateSheets2020;component/Resources/Images/AO-LOGO-New-Bar.png" />
 
 	</Grid>
 

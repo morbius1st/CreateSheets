@@ -50,11 +50,11 @@
 						CacheOption="OnLoad"
 						UriSource="Resources/Images/CyberStudio Icon.png" />
 
-					<BitmapImage
-						x:Key="logo"
-						CacheOption="OnLoad"
-						CreateOptions="IgnoreImageCache"
-						UriSource="Resources/Images/AO-LOGO-Bar-Sm.png" />
+					<!-- <BitmapImage -->
+					<!-- 	x:Key="logo" -->
+					<!-- 	CacheOption="OnLoad" -->
+					<!-- 	CreateOptions="IgnoreImageCache" -->
+					<!-- 	UriSource="Resources/Images/AO-LOGO-Bar-Sm.png" /> -->
 
 				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
@@ -1390,7 +1390,7 @@
 			VerticalAlignment="Stretch"
 			HorizontalAlignment="Left"
 			Width="98"
-			Source="/CreateSheets2019;component/Resources/Images/AO-LOGO-Bar-Sm.png"
+			Source="/CreateSheets2019;component/Resources/Images/AO-LOGO-New-Bar.png"
 			>
 			
 		</Image>

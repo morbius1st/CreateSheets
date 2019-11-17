@@ -349,7 +349,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.cyberstudioapps.com/about-duplicate-sheets.html.
+        ///   Looks up a localized string similar to http://www.cyberstudio.pro/?page_id=654.
         /// </summary>
         public static string R_CyberStudioDupSheetsAddr {
             get {
