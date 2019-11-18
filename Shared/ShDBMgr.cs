@@ -123,6 +123,8 @@ namespace SharedCode
 			{
 				ShUtil.ShowExceptionDialog(e, nsf, _parentLeft, _parentTop);
 
+				
+
 				return false;
 			}
 
@@ -201,7 +203,6 @@ namespace SharedCode
 			}
 			catch (Exception e)
 			{
-				
 				throw new Exception(e.Message);
 			}
 

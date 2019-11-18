@@ -1155,7 +1155,7 @@
 					Margin="7,6,0,4"
 					HorizontalAlignment="Left"
 					VerticalAlignment="Center"
-					SelectedItem="{Binding Copies, Mode=TwoWay}"
+					SelectedIndex="{Binding CopiesIdx, Mode=TwoWay}"
 					Style="{DynamicResource ComboBoxStyle}" />
 
 				<Button

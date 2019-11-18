@@ -8,114 +8,68 @@
     <TargetFrameworkProfile />
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
-	
-  <!-- project configurations -->
-	<!-- Debug/AnyCPU -->
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C09A8C2B-45FC-4B8E-9AF3-1BD54B8886A7}</ProjectGuid>
+    <ProjectGuid>{385CB207-0D76-4CCB-A601-0FFFE978446A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DuplicateSheets2018</RootNamespace>
-    <AssemblyName>DuplicateSheets2018</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>DuplicateSheets2020</RootNamespace>
+    <AssemblyName>DuplicateSheets2020</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-	
-	<!-- Debug|AnyCPU -->
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\AnyCPU\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-		<PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>full</DebugType>
-		<DebugSymbols>true</DebugSymbols>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Dup2020Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-	
-	<!-- Dup2018Debug|AnyCPU -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2018Debug|AnyCPU'">
-    <OutputPath>bin\AnyCPU\Dup2018Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-		<PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>	
-	
-	
-	<!-- Debug|x64 -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Dup2020Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2020Debug|AnyCPU'">
+    <OutputPath>bin\Dup2020Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <DebugType>full</DebugType>
-		<DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>	
-	
-	<!-- Dup2018Debug|x64 -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2018Debug|x64'">
-    <OutputPath>bin\x64\Dup2018Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2020Debug|x64'">
+    <OutputPath>bin\x64\Dup2020Debug\</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>	
-
-
-	<!-- Release|AnyCPU -->
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\AnyCPU\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>none</DebugType>
-		<DebugSymbols>false</DebugSymbols>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Create2020Release|x64'">
+    <OutputPath>bin\x64\Create2020Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-	
-	<!-- Dup2018Release|AnyCPU -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2018Release|AnyCPU'">
-    <OutputPath>bin\AnyCPU\Dup2018Release\</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2020Release|AnyCPU'">
+    <OutputPath>bin\Dup2020Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2020Release|x64'">
+    <OutputPath>bin\x64\Dup2020Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>none</DebugType>
-		<DebugSymbols>false</DebugSymbols>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>    
-  </PropertyGroup>	
-	
-	
-	<!-- Release|x64 -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-		<DefineConstants>
-    </DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>none</DebugType>
-		<DebugSymbols>false</DebugSymbols>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>	
-	
-	<!-- Dup2018Release|x64 -->
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2018Release|x64'">
-    <OutputPath>bin\x64\Dup2018Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <Optimize>true</Optimize>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
-		<PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-	
-	
   <ItemGroup>
     <Reference Include="envdte, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -125,11 +79,11 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="RevitAPI">
-      <HintPath>C:\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
+      <HintPath>C:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>C:\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
+      <HintPath>C:\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -259,14 +213,13 @@
     <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1_Click_32.png">
       <Link>Resources\DuplicateSheets_1_Click_32.png</Link>
     </EmbeddedResource>
-    <None Include="Other\DuplicateSheets2018.addin" />
+    <None Include="Other\DuplicateSheets2020.addin" />
     <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.resx">
       <LogicalName>SharedResources.Resources.AppStrings.resources</LogicalName>
       <Link>Resources\AppStrings.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\CreateSheetsAbout v2.png" />
     <Resource Include="Resources\Images\CyberStudio Icon.png" />
@@ -277,16 +230,13 @@
   <Import Project="..\SharedDuplicate\SharedDuplicate.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>Echo "Duplicate Sheets 2018"</PreBuildEvent>
+    <PreBuildEvent>Echo "Duplicate Sheets 2020"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>echo configuration: $(ConfigurationName)
-if $(ConfigurationName) == Release (echo "*** Release ***")
-if $(ConfigurationName) == Debug (echo "*** Debug ***")
-copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2018"
-if $(ConfigurationName) == Debug (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2018")
-if $(ConfigurationName) == Release (copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2018")
-robocopy $(TargetDir) $(AppData)\Autodesk\REVIT\Addins\2018 *.resources.dll /s /ns /nc /np /njh /njs
+copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2020"
+copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2020"
+robocopy $(TargetDir) $(AppData)\Autodesk\REVIT\Addins\2020 *.resources.dll /s /ns /nc /np /njh /njs
 if errorlevel 4 goto BuildEventFailed
 if errorlevel 0 goto end
 :BuildEventFailed echo FileCopy for $(ProjectName) Failed
@@ -295,7 +245,7 @@ exit 1
 exit 0</PostBuildEvent>
   </PropertyGroup>
   <Target Name="AfterClean">
-    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2018\DuplicateSheets2018.addin" />
-    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2018\DuplicateSheets2018.dll" />
+    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2020\DuplicateSheets2020.addin" />
+    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2020\DuplicateSheets2020.dll" />
   </Target>
 </Project>

@@ -1281,7 +1281,7 @@
 						Height="{StaticResource newSheetItemHeight}"
 						HorizontalAlignment="Left"
 						VerticalAlignment="Center"
-						SelectedItem="{Binding Copies, Mode=TwoWay}"
+						SelectedIndex="{Binding CopiesIdx, Mode=TwoWay}"
 						Style="{DynamicResource ComboBoxStyle}"
 						/>
 

@@ -212,7 +212,7 @@ namespace DuplicateSheets2019
 				cbxNumOfCopies.Items.Add(i.ToString());
 			}
 
-			Copies = 1;
+
 		}
 
 		private void InitWinLocation()
@@ -336,13 +336,24 @@ namespace DuplicateSheets2019
 
 		public int Copies
 		{
-			get => USet.Basic.Copies;
+			get => USet.Basic.Copies <= 0 ? 1 : USet.Basic.Copies;
+
 			set
 			{
 				USet.Basic.Copies = value;
 
-				cbxNumOfCopies.SelectedIndex = value - ShConst.COPIES_START;
+				OnPropertyChange("CopiesIdx");
+			}
+		}
 
+		public int CopiesIdx
+		{
+			get => USet.Basic.Copies - 1;
+			set
+			{
+				USet.Basic.Copies = value + 1;
+
+				OnPropertyChange();
 			}
 		}
 
@@ -1082,6 +1093,10 @@ namespace DuplicateSheets2019
 
 			// read the saved settings
 			USettings.Read();
+
+			// always reset the number of copies to 1
+			// must be here after the old saves settings are read;
+			Copies = 1;
 
 			InitTitleBlocks();
 

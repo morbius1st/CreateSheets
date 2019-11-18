@@ -492,7 +492,8 @@ Settings</value>
     <value>Failed to Create the Sheet</value>
   </data>
   <data name="R_ErrDupSheetFailDesc" xml:space="preserve">
-    <value>Duplicate Sheet failed\nReason: </value>
+    <value>Duplicate Sheet failed 
+Reason: </value>
   </data>
   <data name="R_ErrError" xml:space="preserve">
     <value>Error</value>

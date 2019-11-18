@@ -484,7 +484,8 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duplicate Sheet failed\nReason: .
+        ///   Looks up a localized string similar to Duplicate Sheet failed 
+        ///Reason: .
         /// </summary>
         public static string R_ErrDupSheetFailDesc {
             get {
