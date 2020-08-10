@@ -212,24 +212,24 @@ namespace SharedCode
 		{
 			string result = "-" + AppStrings.R_ErrError + "-";
 
-			switch (divCode)
+			switch ((int) divCode % 100)
 			{
-			case C_DV_NUMNONE: // none
+			case (int) C_DV_NUMNONE: // none
 				{
 					result = "";
 					break;
 				}
-			case C_DV_NUMSPACE: // space
+			case (int) C_DV_NUMSPACE: // space
 				{
 					result = " ";
 					break;
 				}
-			case C_DV_NUMPERIOD: // space
+			case (int) C_DV_NUMPERIOD: // space
 				{
 					result = ".";
 					break;
 				}
-			case C_DV_NUMDASH: // space
+			case (int) C_DV_NUMDASH: // space
 				{
 					result = "-";
 					break;

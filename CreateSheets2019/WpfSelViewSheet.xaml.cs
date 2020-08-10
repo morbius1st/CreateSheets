@@ -672,6 +672,8 @@ namespace CreateSheets2019
 
 		private void ReadCbxSettings(int start, int end, BaseInfo stgInfo)
 		{
+			ComboBox[] c = _comboBoxes;
+
 			// represents the index in the settings array (stgInfo)
 			int i = 0;
 
@@ -686,16 +688,23 @@ namespace CreateSheets2019
 				_customText[cbxIdx] =
 					stgInfo.CustomText[i];
 
-				if (cbxItemCode == CUSTOMSET)
+				int a = (int) cbxItemCode;
+
+// todo apply to all versions
+				if (cbxItemCode == CUSTOMSET + cbxIdx * 100)
 				{
 					_comboBoxes[cbxIdx].SelectedIndex =
 						cbi.Tables[cbxIdx].UpdateCustom(_customText[cbxIdx]);
 				}
 				else
 				{
+					int b = cbi.Tables[cbxIdx].FindCode((int) cbxItemCode);
+
 					_comboBoxes[cbxIdx].SelectedIndex =
 						cbi.Tables[cbxIdx].FindCode((int) cbxItemCode);
 				}
+
+				
 			}
 		}
 
@@ -978,8 +987,6 @@ namespace CreateSheets2019
 
 		private void btnAbout_Click(object sender, RoutedEventArgs e)
 		{
-			logMsgLn2("window position| X", this.Left + "  Y| " + this.Top);
-
 			About about = new About();
 			about.ParentLeft = this.Left;
 			about.ParentTop = this.Top;
@@ -1175,11 +1182,6 @@ namespace CreateSheets2019
 			USet.Basic.Copies = Copies;
 			USet.Basic.TitleBlockName = SelectedTitleBlock;
 			USet.Basic.SelectedSheet = SelectedSheet;
-
-
-		#if DEBUG
-			logMsgLn2("at closing", SelectedSheet.ToString());
-		#endif
 
 			// process the selected operation - return the result
 			DialogResult = _DBMgr.Process2(USet.Basic);

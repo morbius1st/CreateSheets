@@ -978,8 +978,6 @@ namespace CreateSheets2020
 
 		private void btnAbout_Click(object sender, RoutedEventArgs e)
 		{
-			logMsgLn2("window position| X", this.Left + "  Y| " + this.Top);
-
 			About about = new About();
 			about.ParentLeft = this.Left;
 			about.ParentTop = this.Top;
@@ -1175,11 +1173,6 @@ namespace CreateSheets2020
 			USet.Basic.Copies = Copies;
 			USet.Basic.TitleBlockName = SelectedTitleBlock;
 			USet.Basic.SelectedSheet = SelectedSheet;
-
-
-		#if DEBUG
-			logMsgLn2("at closing", SelectedSheet.ToString());
-		#endif
 
 			// process the selected operation - return the result
 			DialogResult = _DBMgr.Process2(USet.Basic);

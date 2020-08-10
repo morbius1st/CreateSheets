@@ -10,7 +10,7 @@
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		x:Name="winSelViewSheet"
 		Title="{x:Static res:AppStrings.R_WindowTitleSelViewCreate}"
-		Width="1000"
+		Width="1100"
 		Height="730"
 		MinWidth="1000"
 		MinHeight="{Binding Height,
@@ -37,7 +37,7 @@
 				<ResourceDictionary Source="WpfStyles/GroupBox.xaml" />
 				<ResourceDictionary Source="WpfStyles/ComboBox.xaml" />
 				<ResourceDictionary Source="WpfStyles/ListBoxItem.xaml" />
-				<ResourceDictionary Source="../SharedResources/WpfStyles/ShWpfResource.xaml" />
+				<ResourceDictionary Source="Resources/WpfStyles/ShWpfResource.xaml" />
 				<ResourceDictionary>
 
 					<BooleanToVisibilityConverter x:Key="b2v" />

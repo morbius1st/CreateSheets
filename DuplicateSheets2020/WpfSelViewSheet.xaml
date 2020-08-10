@@ -34,10 +34,10 @@
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="../SharedResources/WpfStyles/GroupBox.xaml" />
-				<ResourceDictionary Source="../SharedResources/WpfStyles/ComboBox.xaml" />
-				<ResourceDictionary Source="../SharedResources/WpfStyles/ListBoxItem.xaml" />
-				<ResourceDictionary Source="../SharedResources/WpfStyles/ShWpfResource.xaml" />
+				<ResourceDictionary Source="WpfStyles/GroupBox.xaml" />
+				<ResourceDictionary Source="WpfStyles/ComboBox.xaml" />
+				<ResourceDictionary Source="WpfStyles/ListBoxItem.xaml" />
+				<ResourceDictionary Source="Resources/WpfStyles/ShWpfResource.xaml" />
 				<ResourceDictionary>
 
 					<BooleanToVisibilityConverter x:Key="b2v" />

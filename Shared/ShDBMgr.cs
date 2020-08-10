@@ -72,11 +72,6 @@ namespace SharedCode
 			{
 				nsf.TitleBlockName = SelectTitleBlock(nsf);
 
-#if DEBUG
-				logMsg2(nl);
-				logMsgLn2("process2| Titleblock name",nsf.TitleBlockName ?? "null");
-#endif
-
 				for (int i = 1; i < nsf.Copies + 1; i++)
 				{
 					// part A - determine the new sheet number depending
@@ -89,9 +84,7 @@ namespace SharedCode
 					nsf.newSheetName = GetNewSheetName(nsf);
 
 					// got the new sheet number and name
-#if DEBUG
-					DebugInfo1(nsf, i);
-#endif
+
 					switch (nsf.OperationOption)
 					{
 					case OperOpType.CreateEmptySheets:
@@ -130,16 +123,6 @@ namespace SharedCode
 
 			return result;
 		}
-
-
-#if DEBUG
-		private void DebugInfo1(NewSheetFormat nsf, int idx)
-		{
-			logMsgLn2("process2| copy", idx);
-
-			logMsgLn2("process2| number", new int[] { 22 }, nsf.newSheetNumber, "name", nsf.newSheetName);
-		}
-#endif
 
 
 		#region + Create One Sheet
@@ -930,12 +913,6 @@ namespace SharedCode
 				{
 					Element e = _doc.GetElement(p.AsElementId());
 
-					logMsgLn2("got none");
-//					logMsgLn2("category", e.Category.Name);  category is null
-//					logMsgLn2("category type", (int)e.Category.CategoryType);  category is null
-//					logMsgLn2("location", e.Location); n/a
-//					IList<ElementId> list = ((SketchPlane)e).GetMonitoredLinkElementIds(); none
-
 					Plane pl = ((SketchPlane) e).GetPlane();
 
 					e.Location.Move(new XYZ(1.0, 1.0, 0));
@@ -1023,9 +1000,6 @@ namespace SharedCode
 					break;
 			}
 		}
-
-
-
 
 
 #endif
