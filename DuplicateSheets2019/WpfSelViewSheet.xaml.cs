@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
+using System.Windows.Interop;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -9,12 +9,8 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using ComboBox = System.Windows.Controls.ComboBox;
-
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
-using static DuplicateSheets2019.SettingsUser;
-
 using SharedCode;
 using SharedCode.Resources;
 using SharedResources;
@@ -23,14 +19,11 @@ using static SharedCode.ShNamePartType;
 using static SharedCode.ShNamePartItemCode;
 using static SharedCode.ShSheetDataList;
 using static SharedCode.ShNewSheetMgr;
-
-using static DuplicateSheets2019.Command;
-
 using Binding = System.Windows.Data.Binding;
-
 using static UtilityLibrary.MessageUtilities2;
 using static UtilityLibrary.Balloon;
-
+using static DuplicateSheets2019.SettingsUser;
+using static DuplicateSheets2019.Command;
 
 namespace DuplicateSheets2019
 {
@@ -39,7 +32,7 @@ namespace DuplicateSheets2019
 	/// </summary>
 	public partial class WpfSelViewSheet : Window, INotifyPropertyChanged
 	{
-		#region + Data
+	#region + Data
 
 		// elements to track per custom string
 		// ShNamePartItems
@@ -59,9 +52,13 @@ namespace DuplicateSheets2019
 
 		public SharedCode.ShData shData = new SharedCode.ShData();
 
-		#endregion
 
-		#region + Constructor
+		private string exampleSheetNumber;
+		private string exampleSheetName;
+
+	#endregion
+
+	#region + Constructor
 
 		/// <summary>
 		/// Entry point
@@ -85,9 +82,9 @@ namespace DuplicateSheets2019
 			InitWinLocation();
 		}
 
-		#endregion
+	#endregion
 
-		#region + initalize
+	#region + initalize
 
 		private void InitCbx()
 		{
@@ -101,7 +98,6 @@ namespace DuplicateSheets2019
 
 			//			cbxCurNumDvChars.SetBinding(Selector.SelectedItemProperty,
 			//				new Binding("NumDivCharsCbxSelected"));
-
 		}
 
 		private void InitShtList()
@@ -139,7 +135,6 @@ namespace DuplicateSheets2019
 			SheetList.Clear();
 
 
-
 			foreach (ViewSheet vs in _DBMgr.AllViewSheets())
 			{
 				sheetCurrent = new SheetData(vs.SheetNumber, vs.Name, vs);
@@ -166,7 +161,7 @@ namespace DuplicateSheets2019
 			if (_DBMgr.ActiveGraphicalView.ViewType == ViewType.DrawingSheet)
 			{
 				idx = FindSheetInList(
-					((ViewSheet)_DBMgr.ActiveGraphicalView).SheetNumber);
+					((ViewSheet) _DBMgr.ActiveGraphicalView).SheetNumber);
 			}
 
 			lbxSheets.SelectedIndex = idx;
@@ -212,7 +207,7 @@ namespace DuplicateSheets2019
 				cbxNumOfCopies.Items.Add(i.ToString());
 			}
 
-
+			Copies = 1;
 		}
 
 		private void InitWinLocation()
@@ -225,9 +220,9 @@ namespace DuplicateSheets2019
 			_DBMgr.ParentTop = Top;
 		}
 
-		#endregion
+	#endregion
 
-		#region + Properties
+	#region + Properties
 
 		// copies is not not a saved setting
 		// value returned is
@@ -248,6 +243,9 @@ namespace DuplicateSheets2019
 						if (_initalized)
 							TemplateSheet = SheetList.SelectedSheet;
 					}
+
+					UpdateShtNumExample();
+					UpdateShtNameExample();
 				}
 			}
 		}
@@ -283,7 +281,7 @@ namespace DuplicateSheets2019
 				{
 					if (lbxSheets.SelectedIndex < 0) lbxSheets.SelectedIndex = 0;
 
-					tblkTemplateSheet.Text = ((SheetData)lbxSheets.Items[lbxSheets.SelectedIndex]).ToString();
+					tblkTemplateSheet.Text = ((SheetData) lbxSheets.Items[lbxSheets.SelectedIndex]).ToString();
 				}
 				else
 				{
@@ -309,14 +307,37 @@ namespace DuplicateSheets2019
 				{
 					if (lbxSheets.SelectedIndex > -1)
 					{
-						TemplateSheet = (SheetData)lbxSheets.Items[lbxSheets.SelectedIndex];
+						TemplateSheet = (SheetData) lbxSheets.Items[lbxSheets.SelectedIndex];
 					}
 				}
 			}
 		}
 
 
-		#region + Settings
+		public string ExampleSheetNumber
+		{
+			get => exampleSheetNumber;
+			set
+			{
+				exampleSheetNumber = value;
+
+				OnPropertyChange();
+			}
+		}
+
+		public string ExampleSheetName
+		{
+			get => exampleSheetName;
+			set
+			{
+				exampleSheetName = value;
+
+				OnPropertyChange();
+			}
+		}
+
+
+	#region + Settings
 
 		//		public int Copies { 
 		//			get => _copies;
@@ -372,11 +393,7 @@ namespace DuplicateSheets2019
 
 		public OperOpType OperationOpts
 		{
-			get
-			{
-				return USet.Basic.OperationOption;
-
-			}
+			get { return USet.Basic.OperationOption; }
 			set
 			{
 				USet.Basic.OperationOption = value;
@@ -391,6 +408,9 @@ namespace DuplicateSheets2019
 			{
 				USet.Basic.NewSheetOption = value;
 				OnUiPropertyChange();
+
+				UpdateShtNumExample();
+				UpdateShtNameExample();
 			}
 		}
 
@@ -468,7 +488,6 @@ namespace DuplicateSheets2019
 				{
 					USet.Basic.SheetFormatPs.NumberPrefix = value;
 					OnUiPropertyChange();
-
 				}
 			}
 		}
@@ -482,7 +501,6 @@ namespace DuplicateSheets2019
 				{
 					USet.Basic.SheetFormatPs.SheetNamePrefix = value;
 					OnUiPropertyChange();
-
 				}
 			}
 		}
@@ -502,25 +520,22 @@ namespace DuplicateSheets2019
 
 
 		// this gets the collection
-		public ShNamePartItems PsNumFmtCbxItems =>
-			cbi.Tables[(int)SET_NUMSUFFIX_TBL];
+		public ShNamePartItems PsNumFmtCbxItems => cbi.Tables[(int) SET_NUMSUFFIX_TBL];
 
 		// this gets / returns the currently selected box item
 		// only the CbxItemCode is saved in the settings file
 		public ShNamePartItem PsNumFmtCbxSelected
 		{
 			//			get => _numFmtCbxSelected;
-			get =>
-				cbi.FindByCode(USet.Basic.SheetFormatPs.
-					NamePartSelItem[ShConst.SET_NUMSUFX]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatPs.NamePartSelItem[ShConst.SET_NUMSUFX]);
 
 			set
 			{
 				if (value != null && !USet.Basic.SheetFormatPs
-					.NamePartSelItem[ShConst.SET_NUMSUFX].Equals(value.Code))
+				.NamePartSelItem[ShConst.SET_NUMSUFX].Equals(value.Code))
 				{
 					USet.Basic.SheetFormatPs
-						.NamePartSelItem[ShConst.SET_NUMSUFX] = value.Code;
+					.NamePartSelItem[ShConst.SET_NUMSUFX] = value.Code;
 
 					OnUiPropertyChange();
 				}
@@ -530,104 +545,103 @@ namespace DuplicateSheets2019
 		// ***** from current *****
 
 		// this gets the collection
-		public ShNamePartItems FcNameDivCharsCbxItems =>
-			cbi.Tables[(int)CUR_NAMEDIVCHARS_TBL];
+		public ShNamePartItems FcNameDivCharsCbxItems => cbi.Tables[(int) CUR_NAMEDIVCHARS_TBL];
 
 		// this gets / returns the currently selected box item
 		// only the CbxItemCode is saved in the settings file
 		public ShNamePartItem FcNameDivCharsCbxSelected
 		{
-			get => cbi.FindByCode(USet.Basic.SheetFormatFc.
-					NamePartSelItem[(int)CUR_NAMEDIVCHARS_TBL]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL]);
 			set
 			{
-				if (value != null && USet.Basic.SheetFormatFc
-					.NamePartSelItem[(int)CUR_NAMEDIVCHARS_TBL] != value.Code)
+				if (value != null && value.Equals(C_DV_NAMCUST) ||
+					USet.Basic.SheetFormatFc
+					.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] != value.Code)
 				{
 					USet.Basic.SheetFormatFc
-						.NamePartSelItem[(int)CUR_NAMEDIVCHARS_TBL] = value.Code;
+					.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] = value.Code;
 
 					OnPropertyChange();
+					// UpdateCurrentExample();
 				}
 			}
 		}
 
-		public ShNamePartItems FcNameSufxCbxItems =>
-			cbi.Tables[(int)CUR_NAMESUFFIX_TBL];
+		public ShNamePartItems FcNameSufxCbxItems => cbi.Tables[(int) CUR_NAMESUFFIX_TBL];
 
 		public ShNamePartItem FcNameSufxCbxSelected
 		{
 			//			get => _nameSufxCbxSelected;
-			get => cbi.FindByCode(USet.Basic.SheetFormatFc.
-					NamePartSelItem[(int)CUR_NAMESUFFIX_TBL]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL]);
 			set
 			{
-				if (value != null && !USet.Basic.SheetFormatFc
-					.NamePartSelItem[(int)CUR_NAMESUFFIX_TBL].Equals(value.Code))
+				if (value != null && value.Equals(C_SX_CUST) ||
+					!USet.Basic.SheetFormatFc
+					.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL].Equals(value.Code))
 				{
 					USet.Basic.SheetFormatFc
-						.NamePartSelItem[(int)CUR_NAMESUFFIX_TBL] = value.Code;
+					.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL] = value.Code;
 
 					OnPropertyChange();
+					// UpdateCurrentExample();
 				}
 			}
 		}
 
-		public ShNamePartItems FcNumSufxCbxItems =>
-			cbi.Tables[(int)CUR_NUMSUFFIX_TBL];
+		public ShNamePartItems FcNumSufxCbxItems => cbi.Tables[(int) CUR_NUMSUFFIX_TBL];
 
 		public ShNamePartItem FcNumSufxCbxSelected
 		{
 			//			get => _numSufxCbxSelected;
-			get => cbi.FindByCode(USet.Basic.SheetFormatFc.
-				NamePartSelItem[(int)CUR_NUMSUFFIX_TBL]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL]);
 			set
 			{
 				if (value != null && !USet.Basic.SheetFormatFc
-					.NamePartSelItem[(int)CUR_NUMSUFFIX_TBL].Equals(value.Code))
+				.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL].Equals(value.Code))
 				{
 					USet.Basic.SheetFormatFc
-						.NamePartSelItem[(int)CUR_NUMSUFFIX_TBL] = value.Code;
+					.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL] = value.Code;
 
 					OnUiPropertyChange();
+					UpdateShtNumExample();
 				}
 			}
 		}
 
-		public ShNamePartItems FcNumDivCharsCbxItems =>
-			cbi.Tables[(int)CUR_NUMDIVCHARS_TBL];
+		public ShNamePartItems FcNumDivCharsCbxItems => cbi.Tables[(int) CUR_NUMDIVCHARS_TBL];
 
 		public ShNamePartItem FcNumDivCharsCbxSelected
 		{
-			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int)CUR_NUMDIVCHARS_TBL]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL]);
 			set
 			{
 				if (value != null && !USet.Basic.SheetFormatFc
-					.NamePartSelItem[(int)CUR_NUMDIVCHARS_TBL].Equals(value.Code))
+				.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL].Equals(value.Code))
 				{
 					USet.Basic.SheetFormatFc
-						.NamePartSelItem[(int)CUR_NUMDIVCHARS_TBL] = value.Code;
+					.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL] = value.Code;
 
 					OnPropertyChange();
+					UpdateShtNameExample();
 				}
 			}
 		}
 
-		#endregion
+	#endregion
 
-		#endregion
+	#endregion
 
-		#region + ReadSettings
+	#region + ReadSettings
 
 		private void ApplySettings()
 		{
 			// ************
 			// read the radio button info
-			SelectRadioButton((int)USet.Basic.OperationOption,
+			SelectRadioButton((int) USet.Basic.OperationOption,
 				rbOpDuplicateSheets, rbOpDuplicateSheetsAndViews,
 				rbOpCreateSheets);
 
-			SelectRadioButton((int)USet.Basic.NewSheetOption,
+			SelectRadioButton((int) USet.Basic.NewSheetOption,
 				rbPerSettingss, rbFromCurrent);
 
 			UseParameters = USet.Basic.UseParameters;
@@ -640,11 +654,13 @@ namespace DuplicateSheets2019
 
 			// ************
 			// read the from current settings
-			ReadCbxSettings(ShNamePartItemsTables.CBX_CURR_START, ShNamePartItemsTables.CBX_CURR_END, USet.Basic.SheetFormatFc);
+			ReadCbxSettings(ShNamePartItemsTables.CBX_CURR_START, ShNamePartItemsTables.CBX_CURR_END,
+				USet.Basic.SheetFormatFc);
 
 			// ************
 			// read the from current settings
-			ReadCbxSettings(ShNamePartItemsTables.CBX_SET_START, ShNamePartItemsTables.CBX_SET_END, USet.Basic.SheetFormatPs);
+			ReadCbxSettings(ShNamePartItemsTables.CBX_SET_START, ShNamePartItemsTables.CBX_SET_END,
+				USet.Basic.SheetFormatPs);
 
 			PsNumberPrefix = USet.Basic.SheetFormatPs.NumberPrefix;
 			PsSheetNamePrefix = USet.Basic.SheetFormatPs.SheetNamePrefix;
@@ -678,7 +694,7 @@ namespace DuplicateSheets2019
 				else
 				{
 					_comboBoxes[cbxIdx].SelectedIndex =
-						cbi.Tables[cbxIdx].FindCode((int)cbxItemCode);
+						cbi.Tables[cbxIdx].FindCode((int) cbxItemCode);
 				}
 			}
 		}
@@ -689,12 +705,13 @@ namespace DuplicateSheets2019
 			{
 				rb.IsChecked = false;
 			}
+
 			rbs[which].IsChecked = true;
 		}
 
-		#endregion
+	#endregion
 
-		#region + SaveSettings
+	#region + SaveSettings
 
 		private void SaveSettings()
 		{
@@ -727,7 +744,7 @@ namespace DuplicateSheets2019
 				i = cbxIdx - start;
 
 				stgInfo.NamePartSelItem[i] =
-					((ShNamePartItem)_comboBoxes[cbxIdx].SelectedItem).Code;
+					((ShNamePartItem) _comboBoxes[cbxIdx].SelectedItem).Code;
 
 				stgInfo.CustomText[i] = _customText[cbxIdx];
 			}
@@ -737,18 +754,18 @@ namespace DuplicateSheets2019
 		{
 			for (int i = 0; i < rbs.Length; i++)
 			{
-				if ((bool)rbs[i].IsChecked)
+				if ((bool) rbs[i].IsChecked)
 				{
 					return i;
 				}
 			}
+
 			return 0;
 		}
 
+	#endregion
 
-		#endregion
-
-		#region + Utility
+	#region + Utility
 
 		private int FindSheetInList(string sheetNumber)
 		{
@@ -770,12 +787,12 @@ namespace DuplicateSheets2019
 
 		private void ConfigCbxItems(ComboBox cbx, ShNamePartType ct)
 		{
-			int idx = (int)ct;
+			int idx = (int) ct;
 
 			_comboBoxes[idx] = cbx;
 			cbx.Tag = idx;
 
-			cbx.SelectedIndex = 0;  // pre-select the top item
+			cbx.SelectedIndex = 0; // pre-select the top item
 		}
 
 		public string FormatSheetNumber(string origShtNum)
@@ -784,17 +801,17 @@ namespace DuplicateSheets2019
 
 			switch (NewShtOpts)
 			{
-				case NewShtOptions.PerSettings:
+			case NewShtOptions.PerSettings:
 				{
 					result = FormatShtNumber(PsNumberPrefix,
 						PsNumFmtCbxSelected.Code, SampleSequenceInteger);
 					break;
 				}
-				case NewShtOptions.FromCurrent:
+			case NewShtOptions.FromCurrent:
 				{
 					result = FormatShtNumber(origShtNum,
 						FcNumDivCharsCbxSelected.Code,
-						_customText[(int)CUR_NUMDIVCHARS_TBL],
+						_customText[(int) CUR_NUMDIVCHARS_TBL],
 						FcNumSufxCbxSelected.Code, SampleSequenceInteger);
 					break;
 				}
@@ -809,20 +826,20 @@ namespace DuplicateSheets2019
 
 			switch (NewShtOpts)
 			{
-				case NewShtOptions.PerSettings:
+			case NewShtOptions.PerSettings:
 				{
 					result = FormatShtName(PsSheetNamePrefix,
 						PsIncSheetName, PsNumFmtCbxSelected.Code,
 						SampleSequenceInteger);
 					break;
 				}
-				case NewShtOptions.FromCurrent:
+			case NewShtOptions.FromCurrent:
 				{
 					result = FormatShtName(origShtName,
 						FcNameDivCharsCbxSelected.Code,
-						_customText[(int)CUR_NAMEDIVCHARS_TBL],
-						FcNameSufxCbxSelected.Code,
-						_customText[(int)CUR_NAMESUFFIX_TBL], SampleSequenceInteger);
+						_customText[(int) CUR_NAMEDIVCHARS_TBL],
+						FcNameSufxCbxSelected?.Code ?? ShNamePartItemCode.C_SX_NAMNONE,
+						_customText[(int) CUR_NAMESUFFIX_TBL], SampleSequenceInteger);
 					break;
 				}
 			}
@@ -830,19 +847,44 @@ namespace DuplicateSheets2019
 			return result;
 		}
 
-		private void UpdateShtNumExample()
+		private void UpdateShtNumExample(string shtNum = null)
 		{
 			if (_initalized)
 			{
-				tbExampleShtNum.Text = FormatSheetNumber(tbSampleShtNum.Text);
+				if  (SelectedSheet != null && NewShtOpts == NewShtOptions.FromCurrent)
+				{
+					shtNum = SelectedSheet.SheetNumber;
+				}
+
+
+				if (shtNum == null)
+				{
+					ExampleSheetNumber = FormatSheetNumber(tbSampleShtNum.Text);
+				}
+				else
+				{
+					ExampleSheetNumber = FormatSheetNumber(shtNum);
+				}
 			}
 		}
 
-		private void UpdateShtNameExample()
+		private void UpdateShtNameExample(string shtName = null)
 		{
 			if (_initalized)
 			{
-				tbExampleShtName.Text = FormatSheetName(tbSampleShtName.Text);
+				if (SelectedSheet != null && NewShtOpts == NewShtOptions.FromCurrent)
+				{
+					shtName = SelectedSheet.SheetName;
+				}
+
+				if (shtName == null)
+				{
+					ExampleSheetName = FormatSheetName(tbSampleShtName.Text);
+				}
+				else
+				{
+					ExampleSheetName = FormatSheetName(shtName);
+				}
 			}
 		}
 
@@ -856,6 +898,11 @@ namespace DuplicateSheets2019
 				shData.CustomInvalidTitle[idx],
 				shData.CustomInvalidChars[idx]
 				);
+
+			System.Windows.Window main =
+				(System.Windows.Window) HwndSource.FromHwnd(_uiapp.MainWindowHandle).RootVisual;
+
+			w.Owner = main;
 
 			if (w.ShowDialog() ?? false)
 			{
@@ -909,13 +956,14 @@ namespace DuplicateSheets2019
 						= cbi.Tables[cbxIndex].DefaultItemIdx;
 				}
 			}
+
 			UpdateShtNumExample();
 			UpdateShtNameExample();
 		}
 
-		#endregion
+	#endregion
 
-		#region + Control routines
+	#region + Control routines
 
 		// *******************  control routines ************************ //
 
@@ -973,6 +1021,7 @@ namespace DuplicateSheets2019
 					return;
 				}
 			}
+
 			DialogResult = true;
 		}
 
@@ -1030,23 +1079,20 @@ namespace DuplicateSheets2019
 			string resource = (string) ((Button) sender).Tag;
 
 			ShUtil.ShowHelpMessage(resource);
-
 		}
 
 
 		private void btnOneClickHelp_Click(object sender, RoutedEventArgs e)
 		{
 			e.Handled = true;
-
-
 		}
 
 		private void cbxCurNumDvChars_DropDownClosed(object sender, EventArgs e)
 		{
 			if (USet.Basic.SheetFormatFc
-				.NamePartSelItem[(int)CUR_NUMDIVCHARS_TBL] == CUSTOMSELECT)
+			.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL] == C_DV_NUMCUST)
 			{
-				GetCustomText((int)CUR_NUMDIVCHARS_TBL);
+				GetCustomText((int) CUR_NUMDIVCHARS_TBL);
 			}
 
 			UpdateShtNumExample();
@@ -1055,9 +1101,9 @@ namespace DuplicateSheets2019
 		private void cbxCurNamDvChars_DropDownClosed(object sender, EventArgs e)
 		{
 			if (USet.Basic.SheetFormatFc
-				.NamePartSelItem[(int)CUR_NAMEDIVCHARS_TBL] == CUSTOMSELECT)
+			.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] == C_DV_NAMCUST)
 			{
-				GetCustomText((int)CUR_NAMEDIVCHARS_TBL);
+				GetCustomText((int) CUR_NAMEDIVCHARS_TBL);
 			}
 
 			UpdateShtNameExample();
@@ -1066,9 +1112,9 @@ namespace DuplicateSheets2019
 		private void cbxCurNamSx_DropDownClosed(object sender, EventArgs e)
 		{
 			if (USet.Basic.SheetFormatFc
-				.NamePartSelItem[(int)CUR_NAMESUFFIX_TBL] == CUSTOMSELECT)
+			.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL] == C_SX_CUST)
 			{
-				GetCustomText((int)CUR_NAMESUFFIX_TBL);
+				GetCustomText((int) CUR_NAMESUFFIX_TBL);
 			}
 
 			UpdateShtNameExample();
@@ -1106,16 +1152,14 @@ namespace DuplicateSheets2019
 			// flat that ui is configured
 			_initalized = true;
 
-			// update the display of the examples and samples
 			UpdateShtNumExample();
 			UpdateShtNameExample();
-
 		}
 
 		private void winSelViewSheet_Unloaded(object sender, RoutedEventArgs e)
 		{
-			USet.WinLocMainWin.Top = (int)Top;
-			USet.WinLocMainWin.Left = (int)Left;
+			USet.WinLocMainWin.Top = (int) Top;
+			USet.WinLocMainWin.Left = (int) Left;
 			USet.WinLocMainWin.Width = Width;
 			USettings.Save();
 		}
@@ -1133,15 +1177,15 @@ namespace DuplicateSheets2019
 			USet.Basic.SelectedSheet = SelectedSheet;
 
 
-#if DEBUG
+		#if DEBUG
 			logMsgLn2("at closing", SelectedSheet.ToString());
-#endif
+		#endif
 
 			// process the selected operation - return the result
 			DialogResult = _DBMgr.Process2(USet.Basic);
 		}
 
-		#endregion
+	#endregion
 
 		private void App_UnhandledExecption(object sender,
 			System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
@@ -1163,21 +1207,15 @@ namespace DuplicateSheets2019
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
 		}
-
 	}
-
-
-
 
 
 	public class ComparisonCovnerter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (value == null)
-			{
+			if (value == null) { }
 
-			}
 			return value.Equals(parameter);
 		}
 

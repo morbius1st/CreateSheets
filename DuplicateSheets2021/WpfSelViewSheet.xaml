@@ -9,6 +9,7 @@
 		xmlns:shared="clr-namespace:SharedCode"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		x:Name="winSelViewSheet"
+		Icon="Resources/Images/CyberStudio Icon.png"
 		Title="{x:Static res:AppStrings.R_WindowTitleSelView}"
 		Width="960"
 		Height="730"
@@ -21,12 +22,10 @@
 		FontSize="13"
 		Closing="winSelViewSheet_Closing"
 		DataContext="{Binding ElementName=winSelViewSheet}"
-		Icon="Resources/Images/CyberStudio Icon.png"
 		KeyUp="winSelViewSheet_KeyUp"
 		Loaded="winSelViewSheet_Loaded"
 		ScrollViewer.VerticalScrollBarVisibility="Disabled"
 		ShowInTaskbar="False"
-		
 		Unloaded="winSelViewSheet_Unloaded"
 		WindowStartupLocation="Manual"
 		mc:Ignorable="d"
@@ -35,39 +34,19 @@
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="WpfStyles/GroupBox.xaml" />
-				
-				<ResourceDictionary Source="WpfStyles/ComboBox.xaml" />
-				<ResourceDictionary Source="WpfStyles/ListBoxItem.xaml" />
-				<ResourceDictionary Source="ShWpfResource.xaml" />
+				<ResourceDictionary Source="../SharedResources/WpfStyles/GroupBox.xaml" />
+				<ResourceDictionary Source="../SharedResources/WpfStyles/ComboBox.xaml" />
+				<ResourceDictionary Source="../SharedResources/WpfStyles/ListBoxItem.xaml" />
+				<ResourceDictionary Source="../SharedResources/WpfStyles/ShWpfResource.xaml" />
 				<ResourceDictionary>
-				<!-- <ResourceDictionary Source="Resources/WpfStyles/ShWpfResource.xaml" /> -->
 
 					<BooleanToVisibilityConverter x:Key="b2v" />
-
-					<!--    -->
-					<!--  <BitmapImage x:Key="Icon"  -->
-					<!--  CacheOption="OnLoad"  -->
-					<!--  UriSource="Resources/CyberStudio Icon.png" />  -->
 
 				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
 
 			<local:ComparisonCovnerter x:Key="comparisonCovnerter" />
 			<local:EnumToBooleanConverter x:Key="enumToBooleanConverter" />
-
-			<GridLength x:Key="helpColumnWidth">27</GridLength>
-			<GridLength x:Key="spacerColumnWidth">8</GridLength>
-			<GridLength x:Key="title1ColumnWidth">80</GridLength>
-			<GridLength x:Key="title2ColumnWidth">80</GridLength>
-			<GridLength x:Key="plus1ColumnWidth">18</GridLength>
-			<GridLength x:Key="dividerColumnWidth">120</GridLength>
-			<GridLength x:Key="plus2ColumnWidth">18</GridLength>
-			<GridLength x:Key="suffixColumnWidth">*</GridLength>
-
-
-			<GridLength x:Key="newSheetFmtGridHeight">76</GridLength>
-			<GridLength x:Key="newSheetSampleGridHeight">106</GridLength>
 
 			<Style
 					x:Key="btnHelpStyle"
@@ -740,7 +719,8 @@
 							Grid.ColumnSpan="7"
 							Margin="0,2"
 							VerticalAlignment="Center"
-							Style="{StaticResource dividerLine}" />
+							Style="{StaticResource dividerLine}"
+							/>
 
 
 					<TextBox
@@ -749,7 +729,8 @@
 							Grid.ColumnSpan="6"
 							Margin="0,3"
 							Text="{x:Static res:AppStrings.R_ShtOpCurExampleDesc}"
-							Style="{StaticResource tbLblStyle}" />
+							Style="{StaticResource tbLblStyle}"
+							/>
 
 					<TextBox
 							Grid.Column="0"
@@ -757,7 +738,8 @@
 							Grid.ColumnSpan="3"
 							Margin="0,3"
 							Text="{x:Static res:AppStrings.R_ShtOpCurExample}"
-							Style="{StaticResource tbLblStyle}" />
+							Style="{StaticResource tbLblStyle}"
+							/>
 
 					<TextBox
 							x:Name="tbExampleShtNumCurrent"
@@ -766,8 +748,10 @@
 							Grid.ColumnSpan="3"
 							Margin="0,3"
 							HorizontalAlignment="Stretch"
-							Text="{Binding ExampleSheetNumber, FallbackValue='A01.01-00-ABC'}"
-							Style="{StaticResource tbLblStyleExample}" />
+							Text="{Binding ExampleSheetNumber,
+														 FallbackValue='A01.01-00-ABC'}"
+							Style="{StaticResource tbLblStyleExample}"
+							/>
 
 
 					<TextBox
@@ -777,12 +761,12 @@
 							Grid.ColumnSpan="3"
 							Margin="0,3"
 							HorizontalAlignment="Stretch"
-							Text="{Binding ExampleSheetName, FallbackValue='Example Name A'}"
-							Style="{StaticResource tbLblStyleExample}" />
+							Text="{Binding ExampleSheetName,
+														 FallbackValue='Example Name A'}"
+							Style="{StaticResource tbLblStyleExample}"
+							/>
 
 				</Grid>
-
-
 
 				<Grid
 						x:Name="gridSamplesAndExamples"
@@ -914,13 +898,12 @@
 							Grid.Column="0"
 							Grid.Row="5"
 							Grid.ColumnSpan="3"
-							
 							Margin="0,3"
 							HorizontalAlignment="Stretch"
-							Text="{Binding ExampleSheetNumber, FallbackValue='A01.01-00-ABC'}"
+							Text="{Binding ExampleSheetNumber,
+														 FallbackValue='A01.01-00-ABC'}"
 							Style="{StaticResource tbLblStyleExample}"
 							/>
-
 
 					<TextBox
 							x:Name="tbExampleShtName"
@@ -929,10 +912,10 @@
 							Grid.ColumnSpan="3"
 							Margin="0,3"
 							HorizontalAlignment="Stretch"
-							Text="{Binding ExampleSheetName, FallbackValue='Example Name A'}"
+							Text="{Binding ExampleSheetName,
+														 FallbackValue='Example Name A'}"
 							Style="{StaticResource tbLblStyleExample}"
 							/>
-
 
 				</Grid>
 

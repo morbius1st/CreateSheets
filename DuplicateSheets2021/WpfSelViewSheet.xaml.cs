@@ -25,12 +25,6 @@ using Binding = System.Windows.Data.Binding;
 using static UtilityLibrary.MessageUtilities2;
 using static UtilityLibrary.Balloon;
 
-// this is an intentional error to flag the last set of changes
-// changed with the last set of changes:
-// the number of copies processing had but that could lead to
-// more copies then intended - fixed. - need to note on new
-// version page
-
 
 namespace DuplicateSheets2021
 {
@@ -582,30 +576,10 @@ namespace DuplicateSheets2021
 			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL]);
 			set
 			{
-				// int v = (int) value.Code;
-				//
-				// int i = (int) USet.Basic.SheetFormatFc
-				// .NamePartSelItem[(int) CUR_NAMESUFFIX_TBL];
-				//
-				// bool b = (value != null && value.Equals(C_SX_CUST) ||
-				// 	!USet.Basic.SheetFormatFc
-				// 	.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL].Equals(value.Code));
-				//
-				// bool b1 = value.Equals(C_SX_CUST);
-				//
-				// bool b2 = !USet.Basic.SheetFormatFc
-				// .NamePartSelItem[(int) CUR_NAMESUFFIX_TBL].Equals(value.Code);
-
 				if (value != null && value.Equals(C_SX_CUST) ||
 					!USet.Basic.SheetFormatFc
 					.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL].Equals(value.Code))
 				{
-					// ShNamePartItemsTables c = cbi;
-					//
-					// UserSettings u = USet;
-					//
-					// int a = (int) value.Code;
-
 					USet.Basic.SheetFormatFc
 					.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL] = value.Code;
 
@@ -873,23 +847,6 @@ namespace DuplicateSheets2021
 
 			return result;
 		}
-
-		// private void UpdateCurrentExample()
-		// {
-		// 	if (!_initalized || NewShtOpts != NewShtOptions.FromCurrent) return;
-		//
-		// 	if (SelectedSheet != null || SelectedSheet.SheetView != null)
-		// 	{
-		// 		UpdateShtNumExample(SelectedSheet.SheetNumber);
-		// 		UpdateShtNameExample(SelectedSheet.SheetName);
-		// 	}
-		// 	else
-		// 	{
-		// 		UpdateShtNumExample();
-		// 		UpdateShtNameExample();
-		// 	}
-		// }
-
 
 		private void UpdateShtNumExample(string shtNum = null)
 		{
@@ -1198,7 +1155,6 @@ namespace DuplicateSheets2021
 
 			UpdateShtNumExample();
 			UpdateShtNameExample();
-
 		}
 
 		private void winSelViewSheet_Unloaded(object sender, RoutedEventArgs e)

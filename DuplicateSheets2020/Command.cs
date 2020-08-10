@@ -1,6 +1,6 @@
 #region Namespaces
-
 using System;
+using System.Windows.Interop;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -56,6 +56,10 @@ namespace DuplicateSheets2020
 					// this works
 					//				Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr");
 					//				Debug.WriteLine("hello? " + AppStrings.Hello);
+
+					System.Windows.Window w = (System.Windows.Window) HwndSource.FromHwnd(_uiapp.MainWindowHandle).RootVisual;
+
+					WpfSelViewSheetWin.Owner = w;
 
 					try
 					{

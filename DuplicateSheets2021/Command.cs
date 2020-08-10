@@ -1,5 +1,4 @@
 #region Namespaces
-
 using System;
 using System.Windows.Interop;
 using Autodesk.Revit.Attributes;
@@ -58,7 +57,8 @@ namespace DuplicateSheets2021
 					//				Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr");
 					//				Debug.WriteLine("hello? " + AppStrings.Hello);
 
-					System.Windows.Window w = (System.Windows.Window) HwndSource.FromHwnd(_uiapp.MainWindowHandle).RootVisual;
+					System.Windows.Window w = 
+						(System.Windows.Window) HwndSource.FromHwnd(_uiapp.MainWindowHandle).RootVisual;
 
 					WpfSelViewSheetWin.Owner = w;
 

@@ -4,23 +4,25 @@
 	xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
 	<!--#region +Distances-->
+
 	<GridLength x:Key="helpColumnWidth">27</GridLength>
 	<GridLength x:Key="spacerSmColumnWidth">5</GridLength>
 	<GridLength x:Key="spacerColumnWidth">8</GridLength>
-	<GridLength x:Key="title1ColumnWidth">45</GridLength>
-	<GridLength x:Key="title2ColumnWidth">58</GridLength>
+	<GridLength x:Key="title1ColumnWidth">80</GridLength>
+	<GridLength x:Key="title2ColumnWidth">80</GridLength>
 	<GridLength x:Key="title3ColumnWidth">55</GridLength>
 	<GridLength x:Key="plus1ColumnWidth">18</GridLength>
-	<GridLength x:Key="dividerColumnWidth">80</GridLength>
+	<GridLength x:Key="dividerColumnWidth">120</GridLength>
 	<GridLength x:Key="plus2ColumnWidth">18</GridLength>
 	<GridLength x:Key="suffixColumnWidth">*</GridLength>
+
+	<GridLength x:Key="newSheetFmtGridHeight">76</GridLength>
+	<GridLength x:Key="newSheetSampleGridHeight">106</GridLength>
 
 	<GridLength x:Key="operationItemRowHeight">28</GridLength>
 
 	<GridLength x:Key="dividerRowHeight">5</GridLength>
 
-	<GridLength x:Key="newSheetFmtGridHeight">76</GridLength>
-	<GridLength x:Key="newSheetSampleGridHeight">106</GridLength>
 
 	<GridLength x:Key="newSheetRowHeightTitle">22</GridLength>
 	<GridLength x:Key="newSheetRowHeightTyp">24</GridLength>
@@ -147,6 +149,7 @@
 		x:Key="tbLblStyleExample"
 		BasedOn="{StaticResource tbLblStyle}"
 		TargetType="{x:Type TextBox}">
+		<Setter Property="TextWrapping" Value="NoWrap" />
 		<Setter Property="FontSize" Value="{StaticResource fontSizeSmall}" />
 		<Setter Property="Background" Value="{StaticResource ltGray}" />
 		<Setter Property="Padding" Value="1,1,0,0" />
