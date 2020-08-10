@@ -752,4 +752,7 @@ Please make a sheet view as the current view and select One Click again.</value>
   <data name="R_About_Copyright" xml:space="preserve">
     <value>Copyright 2019</value>
   </data>
+  <data name="R_ShtOpCurExampleDesc" xml:space="preserve">
+    <value>Example based on selected sheet</value>
+  </data>
 </root>

@@ -2,11 +2,11 @@
 using System.Windows.Media;
 using DuplicateSheets2020.Resources;
 using RevitLibrary;
-using static UtilityLibrary.MessageUtilities;
 using static UtilityLibrary.CsUtilities;
 using static DuplicateSheets2020.SettingsUser;
 
 using SharedCode.Resources;
+using UtilityLibrary;
 
 namespace DuplicateSheets2020
 {
@@ -45,7 +45,7 @@ namespace DuplicateSheets2020
 
 			}
 
-			InvalidChars = invalidCharactersTitle + nl + invalidCharacters;
+			InvalidChars = invalidCharactersTitle + CsUtilities.nl + invalidCharacters;
 
 			tbInvalidChar.Text = InvalidChars;
 		}

@@ -22,10 +22,12 @@ namespace SharedCode
 			ShNamePartItemCode divCode, string customDivider, ShNamePartItemCode suffixCode,
 			int seq)
 		{
-			string divider = customDivider;
+			string divider = customDivider ?? "-";
 			string suffix  = GetNumSuffix(suffixCode, seq);
 
-			if ((int) divCode > (int) CUSTOMSELECT) divider = GetDivider(divCode);
+			int dividerTestCode = (int) divCode % 100;
+
+			if (dividerTestCode != (int) CUSTOMSET) divider = GetDivider(divCode);
 
 			return origShtNum + divider + suffix;
 
@@ -55,11 +57,14 @@ namespace SharedCode
 		{
 			if (suffixCode == C_SX_NAMNONE) return origShtName;
 
-			string divider = customDivider;
-			string suffix  = customSuffix;
+			string divider = customDivider ?? "-";
+			string suffix  = customSuffix ?? "A";
 
-			if ((int) divCode    > (int) CUSTOMSELECT) divider = GetDivider(divCode);
-			if ((int) suffixCode > (int) CUSTOMSELECT) suffix  = GetNameSuffix(suffixCode, seq);
+			int dividerTestCode = (int) divCode % 100;
+			int suffixTestCode = (int) suffixCode % 100;
+
+			if (dividerTestCode != (int) CUSTOMSET) divider = GetDivider(divCode);
+			if (suffixTestCode  != (int) CUSTOMSET) suffix  = GetNameSuffix(suffixCode, seq);
 
 			return origShtName + divider + suffix;
 		}
@@ -209,22 +214,22 @@ namespace SharedCode
 
 			switch (divCode)
 			{
-			case C_DV_NONE: // none
+			case C_DV_NUMNONE: // none
 				{
 					result = "";
 					break;
 				}
-			case C_DV_SPACE: // space
+			case C_DV_NUMSPACE: // space
 				{
 					result = " ";
 					break;
 				}
-			case C_DV_PERIOD: // space
+			case C_DV_NUMPERIOD: // space
 				{
 					result = ".";
 					break;
 				}
-			case C_DV_DASH: // space
+			case C_DV_NUMDASH: // space
 				{
 					result = "-";
 					break;

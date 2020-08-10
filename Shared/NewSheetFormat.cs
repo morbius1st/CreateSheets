@@ -338,7 +338,7 @@ namespace SharedCode
 	public class ShtFmtFrmCurrent : BaseInfo
 	{
 		[DataMember(Order = 1)]
-		public ShNamePartItemCode[] NamePartSelItem { get; set; } = { ShNamePartItemCode.C_DV_PERIOD, ShNamePartItemCode.C_SX_NUMNUM2, ShNamePartItemCode.C_DV_PERIOD, ShNamePartItemCode.C_SX_NAMCOPY1 };
+		public ShNamePartItemCode[] NamePartSelItem { get; set; } = { ShNamePartItemCode.C_DV_NUMPERIOD, ShNamePartItemCode.C_SX_NUMNUM2, ShNamePartItemCode.C_DV_NUMPERIOD, ShNamePartItemCode.C_SX_NAMCOPY1 };
 
 		[DataMember(Order = 2)]
 		public string[] CustomText { get; set; } = { "", "", "", "" };

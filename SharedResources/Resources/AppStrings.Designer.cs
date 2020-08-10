@@ -19,7 +19,7 @@ namespace SharedCode.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class AppStrings {
@@ -1334,6 +1334,15 @@ namespace SharedCode.Resources {
         public static string R_ShtOpCurExample {
             get {
                 return ResourceManager.GetString("R_ShtOpCurExample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Example based on selected sheet.
+        /// </summary>
+        public static string R_ShtOpCurExampleDesc {
+            get {
+                return ResourceManager.GetString("R_ShtOpCurExampleDesc", resourceCulture);
             }
         }
         

@@ -25,14 +25,16 @@ namespace SharedCode
 	{
 		// < 0
 		UNDEFINED    = -3,
-		CUSTOMSET    = -2,
-		CUSTOMSELECT = -1,
-		
+		CUSTOMSET    = 98,
+		CUSTOMSELECT = 99,
+
 		// 0+
-		C_DV_NONE   = ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + 0,
-		C_DV_SPACE  = ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + 1,
-		C_DV_PERIOD = ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + 2,
-		C_DV_DASH   = ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + 3,
+		C_DV_NUMNONE   = ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + 0,
+		C_DV_NUMSPACE  = ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + 1,
+		C_DV_NUMPERIOD = ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + 2,
+		C_DV_NUMDASH   = ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + 3,
+		C_DV_NUMCUST   = ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + CUSTOMSELECT,
+		C_DV_NUMCUSTSET= ShNamePartType.CUR_NUMDIVCHARS_TBL * 100 + CUSTOMSET,
 		
 		// 100+
 		C_SX_NUMNUM1  = ShNamePartType.CUR_NUMSUFFIX_TBL * 100 + 1,
@@ -42,7 +44,15 @@ namespace SharedCode
 		C_SX_NUMNUM5  = ShNamePartType.CUR_NUMSUFFIX_TBL * 100 + 5,
 		C_SX_NUMALPLC = ShNamePartType.CUR_NUMSUFFIX_TBL * 100 + 11,
 		C_SX_NUMALPUC = ShNamePartType.CUR_NUMSUFFIX_TBL * 100 + 12,
-		
+
+		// 200+
+		C_DV_NAMNONE   = ShNamePartType.CUR_NAMEDIVCHARS_TBL * 100 + 0,
+		C_DV_NAMSPACE  = ShNamePartType.CUR_NAMEDIVCHARS_TBL * 100 + 1,
+		C_DV_NAMPERIOD = ShNamePartType.CUR_NAMEDIVCHARS_TBL * 100 + 2,
+		C_DV_NAMDASH   = ShNamePartType.CUR_NAMEDIVCHARS_TBL * 100 + 3,
+		C_DV_NAMCUST   = ShNamePartType.CUR_NAMEDIVCHARS_TBL * 100 + CUSTOMSELECT,
+		C_DV_NAMCUSTSET= ShNamePartType.CUR_NAMEDIVCHARS_TBL * 100 + CUSTOMSET,
+
 		// 300+
 		C_SX_NAMNONE  = ShNamePartType.CUR_NAMESUFFIX_TBL * 100 + 0,
 		C_SX_NAMCOPY1 = ShNamePartType.CUR_NAMESUFFIX_TBL * 100 + 1,
@@ -50,6 +60,8 @@ namespace SharedCode
 		C_SX_NAMALPLC = ShNamePartType.CUR_NAMESUFFIX_TBL * 100 + 11,
 		C_SX_NAMALPUC = ShNamePartType.CUR_NAMESUFFIX_TBL * 100 + 12,
 		C_SX_NAMNUM1  = ShNamePartType.CUR_NAMESUFFIX_TBL * 100 + 21,
+		C_SX_CUST     = ShNamePartType.CUR_NAMESUFFIX_TBL * 100 + CUSTOMSELECT,
+		C_SX_CUSTSET  = ShNamePartType.CUR_NAMESUFFIX_TBL * 100 + CUSTOMSET,
 		
 		// 400+
 		S_SX_NUMNUM1 = ShNamePartType.SET_NUMSUFFIX_TBL * 100 + 1,
@@ -105,16 +117,18 @@ namespace SharedCode
 
 		private void AssignBoxItems()
 		{
+			// 0+
 			Tables[(int)ShNamePartType.CUR_NUMDIVCHARS_TBL]
 				= new ShNamePartItems(new ObservableCollection<ShNamePartItem>()
 				{
-					new ShNamePartItem(AppStrings.R_DivNone  , ShNamePartItemCode.C_DV_NONE            ),
-					new ShNamePartItem(AppStrings.R_DivSpace , ShNamePartItemCode.C_DV_SPACE           ),
-					new ShNamePartItem(AppStrings.R_DivPeriod, ShNamePartItemCode.C_DV_PERIOD          ),
-					new ShNamePartItem(AppStrings.R_DivDash  , ShNamePartItemCode.C_DV_DASH            ),
-					new ShNamePartItem(AppStrings.R_DivCustom, ShNamePartItemCode.CUSTOMSELECT         )
+					new ShNamePartItem(AppStrings.R_DivNone  , ShNamePartItemCode.C_DV_NUMNONE            ),
+					new ShNamePartItem(AppStrings.R_DivSpace , ShNamePartItemCode.C_DV_NUMSPACE           ),
+					new ShNamePartItem(AppStrings.R_DivPeriod, ShNamePartItemCode.C_DV_NUMPERIOD          ),
+					new ShNamePartItem(AppStrings.R_DivDash  , ShNamePartItemCode.C_DV_NUMDASH            ),
+					new ShNamePartItem(AppStrings.R_DivCustom, ShNamePartItemCode.C_DV_NUMCUST            )
 				}, PreSelectList[(int)ShNamePartType.CUR_NUMDIVCHARS_TBL], ShNamePartType.CUR_NUMDIVCHARS_TBL);
 
+			// 100+
 			Tables[(int)ShNamePartType.CUR_NUMSUFFIX_TBL]
 				= new ShNamePartItems(new ObservableCollection<ShNamePartItem>()
 				{
@@ -127,28 +141,31 @@ namespace SharedCode
 					new ShNamePartItem(AppStrings.R_SuffixNumAlphaUc , ShNamePartItemCode.C_SX_NUMALPUC)
 				}, PreSelectList[(int)ShNamePartType.CUR_NUMSUFFIX_TBL], ShNamePartType.CUR_NUMSUFFIX_TBL);
 
+			// 200+
 			Tables[(int)ShNamePartType.CUR_NAMEDIVCHARS_TBL]
 				= new ShNamePartItems(new ObservableCollection<ShNamePartItem>()
 				{
-					new ShNamePartItem(AppStrings.R_DivNone  , ShNamePartItemCode.C_DV_NONE            ),
-					new ShNamePartItem(AppStrings.R_DivSpace , ShNamePartItemCode.C_DV_SPACE           ),
-					new ShNamePartItem(AppStrings.R_DivPeriod, ShNamePartItemCode.C_DV_PERIOD          ),
-					new ShNamePartItem(AppStrings.R_DivDash  , ShNamePartItemCode.C_DV_DASH            ),
-					new ShNamePartItem(AppStrings.R_DivCustom, ShNamePartItemCode.CUSTOMSELECT         )
+					new ShNamePartItem(AppStrings.R_DivNone  , ShNamePartItemCode.C_DV_NAMNONE  ),
+					new ShNamePartItem(AppStrings.R_DivSpace , ShNamePartItemCode.C_DV_NAMSPACE ),
+					new ShNamePartItem(AppStrings.R_DivPeriod, ShNamePartItemCode.C_DV_NAMPERIOD),
+					new ShNamePartItem(AppStrings.R_DivDash  , ShNamePartItemCode.C_DV_NAMDASH  ),
+					new ShNamePartItem(AppStrings.R_DivCustom, ShNamePartItemCode.C_DV_NAMCUST  )
 				}, PreSelectList[(int)ShNamePartType.CUR_NAMEDIVCHARS_TBL], ShNamePartType.CUR_NAMEDIVCHARS_TBL);
 
+			// 300+
 			Tables[(int)ShNamePartType.CUR_NAMESUFFIX_TBL]
 				= new ShNamePartItems(new ObservableCollection<ShNamePartItem>()
 				{
 					new ShNamePartItem(AppStrings.R_SuffixNameNone   , ShNamePartItemCode.C_SX_NAMNONE ),
 					new ShNamePartItem(AppStrings.R_SuffixNameCopy1  , ShNamePartItemCode.C_SX_NAMCOPY1),
 					new ShNamePartItem(AppStrings.R_SuffixNameCopyA  , ShNamePartItemCode.C_SX_NAMCOPYA),
-					new ShNamePartItem(AppStrings.R_SuffixNameNumeric, ShNamePartItemCode.C_SX_NAMNUM1 ),
 					new ShNamePartItem(AppStrings.R_SuffixNameAlphaLc, ShNamePartItemCode.C_SX_NAMALPLC),
 					new ShNamePartItem(AppStrings.R_SuffixNameAlphaUc, ShNamePartItemCode.C_SX_NAMALPUC),
-					new ShNamePartItem(AppStrings.R_SuffixNameCustom , ShNamePartItemCode.CUSTOMSELECT )
+					new ShNamePartItem(AppStrings.R_SuffixNameNumeric, ShNamePartItemCode.C_SX_NAMNUM1 ),
+					new ShNamePartItem(AppStrings.R_SuffixNameCustom , ShNamePartItemCode.C_SX_CUST    )
 				}, PreSelectList[(int)ShNamePartType.CUR_NAMESUFFIX_TBL], ShNamePartType.CUR_NAMESUFFIX_TBL);
 
+			// 400+
 			Tables[(int)ShNamePartType.SET_NUMSUFFIX_TBL]
 				= new ShNamePartItems(new ObservableCollection<ShNamePartItem>()
 				{

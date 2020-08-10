@@ -1,0 +1,292 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+	<!--#region +Distances-->
+	<GridLength x:Key="helpColumnWidth">27</GridLength>
+	<GridLength x:Key="spacerSmColumnWidth">5</GridLength>
+	<GridLength x:Key="spacerColumnWidth">8</GridLength>
+	<GridLength x:Key="title1ColumnWidth">45</GridLength>
+	<GridLength x:Key="title2ColumnWidth">58</GridLength>
+	<GridLength x:Key="title3ColumnWidth">55</GridLength>
+	<GridLength x:Key="plus1ColumnWidth">18</GridLength>
+	<GridLength x:Key="dividerColumnWidth">80</GridLength>
+	<GridLength x:Key="plus2ColumnWidth">18</GridLength>
+	<GridLength x:Key="suffixColumnWidth">*</GridLength>
+
+	<GridLength x:Key="operationItemRowHeight">28</GridLength>
+
+	<GridLength x:Key="dividerRowHeight">5</GridLength>
+
+	<GridLength x:Key="newSheetFmtGridHeight">76</GridLength>
+	<GridLength x:Key="newSheetSampleGridHeight">106</GridLength>
+
+	<GridLength x:Key="newSheetRowHeightTitle">22</GridLength>
+	<GridLength x:Key="newSheetRowHeightTyp">24</GridLength>
+
+	<GridLength x:Key="newSheetRowHeightSampleExampleTitle">24</GridLength>
+	<GridLength x:Key="newSheetRowHeightSampleExample">24</GridLength>
+
+	<sys:Double x:Key="newSheetItemHeight">18</sys:Double>
+
+	<GridLength x:Key="opItemRowHeight">28</GridLength>
+
+	<sys:Double x:Key="opItemHeight">18</sys:Double>
+	<sys:Double x:Key="fontSizeXLarge">24</sys:Double>
+	<sys:Double x:Key="fontSizeSmall">12</sys:Double>
+	<sys:Double x:Key="fontSizeXSmall">11</sys:Double>
+
+	<GridLength x:Key="newSheetItemRowHeightSmallTitle">14*</GridLength>
+
+	<GridLength x:Key="shtNumberColWidth">120</GridLength>
+
+	<!--#endregion-->
+
+	<!--#region +Colors-->
+	<Color x:Key="rbFill">#FFFFFFFF</Color>
+	<Color x:Key="med_Cyan">#33B5E5</Color>
+
+	<Color x:Key="dk_Gray">#FF1C1C1C</Color>
+	<Color x:Key="med_Gray">#FF888888</Color>
+	<Color x:Key="lt_Gray">#FFDDDDDD</Color>
+	<Color x:Key="xlt_Gray">#FFF7F7F7</Color>
+
+	<Color x:Key="hlp_border">#7EADFF</Color>
+	<Color x:Key="hlp_field">#F0F5FF</Color>
+
+
+	<SolidColorBrush x:Key="rbBtnFill" Color="{StaticResource rbFill}" />
+	<SolidColorBrush x:Key="lnDivider" Color="{StaticResource med_Gray}" />
+	<SolidColorBrush x:Key="gridLineHeader" Color="{StaticResource med_Gray}" />
+	<SolidColorBrush x:Key="gridLineItem" Color="{StaticResource lt_Gray}" />
+	<SolidColorBrush x:Key="medCyan" Color="{StaticResource med_Cyan}" />
+	<SolidColorBrush x:Key="dkGray" Color="{StaticResource dk_Gray}" />
+	<SolidColorBrush x:Key="medGray" Color="{StaticResource med_Gray}" />
+	<SolidColorBrush x:Key="ltGray" Color="{StaticResource lt_Gray}" />
+	<SolidColorBrush x:Key="xltGray" Color="{StaticResource xlt_Gray}" />
+	<SolidColorBrush x:Key="hlpBorder" Color="{StaticResource hlp_border}" />
+	<SolidColorBrush x:Key="hlpField" Color="{StaticResource hlp_field}" />
+
+	<!--#endregion-->
+
+	<!--#region +Styles-->
+
+	<Style x:Key="itemTitle" TargetType="{x:Type Control}">
+		<Setter Property="Margin" Value="0" />
+		<Setter Property="Padding" Value="-2,0,0,0" />
+		<Setter Property="Height" Value="{StaticResource newSheetItemHeight}" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+	</Style>
+	<Style x:Key="tbCtrlStyle" TargetType="{x:Type TextBox}">
+		<Setter Property="Margin" Value="0" />
+		<Setter Property="TextWrapping" Value="NoWrap" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Padding" Value="3,-1,0,0" />
+		<Setter Property="Height" Value="18" />
+		<Setter Property="BorderBrush" Value="{DynamicResource Transparent}" />
+		<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" />
+	</Style>
+
+	<Style
+		x:Key="tbLblStyle"
+		BasedOn="{StaticResource itemTitle}"
+		TargetType="{x:Type TextBox}">
+		<Setter Property="TextWrapping" Value="Wrap" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="IsReadOnly" Value="True" />
+		<Setter Property="BorderBrush" Value="{DynamicResource Transparent}" />
+		<Setter Property="Background" Value="{DynamicResource Transparent}" />
+	</Style>
+
+	<Style x:Key="tblkStyle" TargetType="{x:Type TextBlock}">
+		<Setter Property="Height" Value="{StaticResource newSheetItemHeight}" />
+		<Setter Property="TextWrapping" Value="Wrap" />
+		<Setter Property="Background" Value="{DynamicResource Transparent}" />
+	</Style>
+
+	<Style x:Key="tbStyle" TargetType="{x:Type TextBox}">
+		<Setter Property="TextWrapping" Value="Wrap" />
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="IsReadOnly" Value="True" />
+		<Setter Property="BorderBrush" Value="{DynamicResource Transparent}" />
+		<Setter Property="Background" Value="{DynamicResource Transparent}" />
+	</Style>
+
+	<Style
+		x:Key="tbPlus"
+		BasedOn="{StaticResource tbStyle}"
+		TargetType="TextBox">
+		<Setter Property="Padding" Value="-1,0,0,0" />
+
+		<Setter Property="FontSize" Value="{StaticResource fontSizeXLarge}" />
+	</Style>
+
+	<Style
+		x:Key="tbUseThisTitleBlock"
+		BasedOn="{StaticResource tbLblStyle}"
+		TargetType="{x:Type TextBox}">
+		<Setter Property="IsReadOnly" Value="False" />
+		<Setter Property="Background" Value="White" />
+		<Setter Property="Padding" Value="1,1,0,0" />
+	</Style>
+
+	<Style
+		x:Key="tbLblStyleSample"
+		BasedOn="{StaticResource tbLblStyle}"
+		TargetType="{x:Type TextBox}">
+		<Setter Property="IsReadOnly" Value="False" />
+		<Setter Property="FontSize" Value="{StaticResource fontSizeSmall}" />
+		<Setter Property="Background" Value="White" />
+		<Setter Property="Padding" Value="1,1,0,0" />
+	</Style>
+	<Style
+		x:Key="tbLblStyleExample"
+		BasedOn="{StaticResource tbLblStyle}"
+		TargetType="{x:Type TextBox}">
+		<Setter Property="TextWrapping" Value="NoWrap"/>
+		<Setter Property="FontSize" Value="{StaticResource fontSizeSmall}" />
+		<Setter Property="Background" Value="{StaticResource ltGray}" />
+		<Setter Property="Padding" Value="1,1,0,0" />
+
+	</Style>
+	<Style
+		x:Key="tbLblStyleTitleSmall"
+		BasedOn="{StaticResource tbLblStyle}"
+		TargetType="{x:Type TextBox}">
+		<Setter Property="FontSize" Value="{StaticResource fontSizeXSmall}" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Margin" Value="6,0,1,0" />
+		<Setter Property="Padding" Value="0,-2,0,0" />
+		<Setter Property="Background" Value="{StaticResource ltGray}" />
+	</Style>
+	<Style
+		x:Key="tbLblStyleBld"
+		BasedOn="{StaticResource tbLblStyle}"
+		TargetType="{x:Type TextBox}">
+		<Setter Property="FontWeight" Value="Medium" />
+	</Style>
+	<Style
+		x:Key="tbLblStyleOrig"
+		BasedOn="{StaticResource tbLblStyle}"
+		TargetType="{x:Type TextBox}">
+		<Setter Property="Padding" Value="1,0,0,0" />
+		<Setter Property="FontSize" Value="{StaticResource fontSizeSmall}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+		<Setter Property="Background" Value="{StaticResource ltGray}" />
+	</Style>
+
+
+	<Style x:Key="stdButton" TargetType="Button">
+		<Setter Property="Height" Value="40" />
+		<Setter Property="Width" Value="110" />
+		<Setter Property="VerticalAlignment" Value="Top" />
+		<Setter Property="HorizontalAlignment" Value="Right" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="Background" Value="{StaticResource ltGray}" />
+		<Setter Property="BorderBrush" Value="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+	</Style>
+
+	<Style x:Key="btnHelpStyleBase" TargetType="{x:Type Button}">
+		<Setter Property="Margin" Value="0,0,0,0" />
+		<Setter Property="HorizontalAlignment" Value="Left" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="BorderThickness" Value="0.75" />
+		<Setter Property="BorderBrush" Value="{StaticResource hlpBorder}" />
+		<Setter Property="Background" Value="{StaticResource hlpField}" />
+		<Setter Property="Height" Value="18" />
+		<Setter Property="Width" Value="18" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border
+						Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}">
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="DeepSkyBlue" />
+							<Setter Property="Foreground" Value="White" />
+							<Setter Property="FontWeight" Value="Bold" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="rbStyle" TargetType="{x:Type RadioButton}">
+		<Setter Property="Height" Value="20" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="HorizontalAlignment" Value="Left" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="Background" Value="{StaticResource rbBtnFill}" />
+	</Style>
+	<Style
+		x:Key="lblOptions"
+		BasedOn="{StaticResource itemTitle}"
+		TargetType="{x:Type Label}">
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="HorizontalContentAlignment" Value="Left" />
+		<Setter Property="Margin" Value="0,0,0,4" />
+	</Style>
+
+	<Style
+		x:Key="lblCurrent"
+		BasedOn="{StaticResource lblOptions}"
+		TargetType="{x:Type Label}">
+		<Setter Property="Margin" Value="0,-3,0,0" />
+
+	</Style>
+	<Style x:Key="dividerLine" TargetType="{x:Type Line}">
+		<Setter Property="X1" Value="0" />
+		<Setter Property="X2" Value="10" />
+		<Setter Property="Y1" Value="0" />
+		<Setter Property="Stretch" Value="Fill" />
+		<Setter Property="StrokeThickness" Value="1" />
+		<Setter Property="Stroke" Value="{StaticResource lnDivider}" />
+
+	</Style>
+	<Style
+		x:Key="comboBoxNewSheetCurrent"
+		BasedOn="{StaticResource ComboBoxStyle}"
+		TargetType="{x:Type ComboBox}">
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="FontSize" Value="{StaticResource fontSizeSmall}" />
+		<Setter Property="Margin" Value="6,0,1,0" />
+		<Setter Property="Height" Value="{StaticResource newSheetItemHeight}" />
+	</Style>
+
+
+	<Style x:Key="lbxColumnHeader" TargetType="Label">
+		<Setter Property="HorizontalContentAlignment" Value="Left" />
+		<Setter Property="BorderThickness" Value="1,0,1,0" />
+		<Setter Property="BorderBrush" Value="{StaticResource gridLineHeader}" />
+		<Setter Property="Padding" Value="2,0,0,0" />
+		<Setter Property="Background" Value="{StaticResource ltGray}" />
+	</Style>
+
+	<Style x:Key="lbxLbl" TargetType="Label">
+
+		<Setter Property="Margin" Value="0" />
+		<Setter Property="Padding" Value="4,0,0,0" />
+		<Setter Property="BorderBrush" Value="{StaticResource gridLineItem}" />
+	</Style>
+
+	<!--#endregion-->
+
+</ResourceDictionary>

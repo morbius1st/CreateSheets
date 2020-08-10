@@ -139,7 +139,8 @@ namespace SharedCode
 				this.Custom = custom;
 
 				// create the box item
-				ShNamePartItem bi = new ShNamePartItem("[" + custom + "]", CUSTOMSET);
+				ShNamePartItem bi = new ShNamePartItem("[" + custom + "]", 
+					(int) Type * 100 + CUSTOMSET);
 
 				// update the list of box items based on 
 				// wheather the current custom value is found

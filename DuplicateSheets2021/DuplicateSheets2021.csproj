@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+      None
+    </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <TargetFrameworkProfile />
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <!-- project configurations -->
+  <!-- Debug/AnyCPU -->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5F8E611-D295-4863-98BE-69442B7807B3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DuplicateSheets2021</RootNamespace>
+    <AssemblyName>DuplicateSheets2021</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <!-- Debug|AnyCPU -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\AnyCPU\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <!-- Dup2021Debug|AnyCPU -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2021Debug|AnyCPU'">
+    <OutputPath>bin\AnyCPU\Dup2021Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <!-- Debug|x64 -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <!-- Dup2021Debug|x64 -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2021Debug|x64'">
+    <OutputPath>bin\x64\Dup2021Debug\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <!-- Release|AnyCPU -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\AnyCPU\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <!-- Dup2021Release|AnyCPU -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2021Release|AnyCPU'">
+    <OutputPath>bin\AnyCPU\Dup2021Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <!-- Release|x64 -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <!-- Dup2021Release|x64 -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dup2021Release|x64'">
+    <OutputPath>bin\x64\Dup2021Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="envdte, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="envdte80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="RevitAPI">
+      <HintPath>C:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>C:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <!-- <ApplicationDefinition Include="App.xaml"> -->
+  <!-- <Generator>MSBuild:Compile</Generator> -->
+  <!-- <SubType>Designer</SubType> -->
+  <!-- </ApplicationDefinition> -->
+  <ItemGroup>
+    <Page Include="..\..\..\UtilityLibrary\UtilityLibrary\Balloon.xaml">
+      <Link>Resources\Balloon.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\SharedResources\About.xaml">
+      <Link>Resources\About.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\SharedResources\ErrorReport.xaml">
+      <Link>Resources\ErrorReport.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\SharedResources\WpfStyles\ComboBox.xaml">
+      <Link>WpfStyles\ComboBox.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\SharedResources\WpfStyles\GroupBox.xaml">
+      <Link>WpfStyles\GroupBox.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\SharedResources\WpfStyles\ListBoxItem.xaml">
+      <Link>WpfStyles\ListBoxItem.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\SharedResources\WpfStyles\ShWpfResource.xaml">
+      <Link>Resources\WpfStyles\ShWpfResource.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ShWpfResource.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WpfCustomText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="WpfSelViewSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\..\UtilityLibrary\UtilityLibrary\Balloon.cs">
+      <Link>Resources\Balloon.cs</Link>
+    </Compile>
+    <Compile Include="..\SharedResources\About.xaml.cs">
+      <Link>Resources\About.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\SharedResources\ErrorReport.xaml.cs">
+      <Link>Resources\ErrorReport.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\SharedResources\Resources\AppStrings.Designer.cs">
+      <Link>Resources\AppStrings.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\SharedResources\Resources\GlobalSuppressions.cs">
+      <Link>Resources\GlobalSuppressions.cs</Link>
+    </Compile>
+    <Compile Include="Command.cs" />
+    <Compile Include="LocalResourceMgr.cs" />
+    <Compile Include="OneClick.cs" />
+    <Compile Include="Resources\AppLocalStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppLocalStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsApp.cs" />
+    <Compile Include="SettingsUser.cs" />
+    <Compile Include="WpfCustomText.xaml.cs">
+      <DependentUpon>WpfCustomText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WpfSelViewSheet.xaml.cs">
+      <DependentUpon>WpfSelViewSheet.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppLocalStrings.resx">
+      <Generator>PublicResxFileCodeGenerator</Generator>
+      <LastGenOutput>AppLocalStrings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_16.png">
+      <Link>Resources\DuplicateSheets_16.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_32.png">
+      <Link>Resources\DuplicateSheets_32.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1_Click_16.png">
+      <Link>Resources\DuplicateSheets_1_Click_16.png</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\SharedResources\Resources\DuplicateSheets_1_Click_32.png">
+      <Link>Resources\DuplicateSheets_1_Click_32.png</Link>
+    </EmbeddedResource>
+    <None Include="Other\DuplicateSheets2021.addin" />
+    <EmbeddedResource Include="..\SharedResources\Resources\AppStrings.resx">
+      <LogicalName>SharedResources.Resources.AppStrings.resources</LogicalName>
+      <Link>Resources\AppStrings.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\CreateSheetsAbout v2.png" />
+    <Resource Include="Resources\Images\CyberStudio Icon.png" />
+    <Resource Include="Resources\Images\CyberStudio Logo - Narrow.png" />
+  </ItemGroup>
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
+  <Import Project="..\SharedLibrary\SharedLibrary.projitems" Label="Shared" />
+  <Import Project="..\SharedDuplicate\SharedDuplicate.projitems" Label="Shared" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>Echo "Duplicate Sheets 2021"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>echo configuration: $(ConfigurationName)
+copy /y "$(ProjectDir)Other\$(TargetName).addin" "$(AppData)\Autodesk\REVIT\Addins\2021"
+copy /y "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2021"
+robocopy $(TargetDir) $(AppData)\Autodesk\REVIT\Addins\2021 *.resources.dll /s /ns /nc /np /njh /njs
+if errorlevel 4 goto BuildEventFailed
+if errorlevel 0 goto end
+:BuildEventFailed echo FileCopy for $(ProjectName) Failed
+exit 1
+:end 
+exit 0</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="AfterClean">
+    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2021\DuplicateSheets2021.addin" />
+    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2021\DuplicateSheets2021.dll" />
+  </Target>
+</Project>
