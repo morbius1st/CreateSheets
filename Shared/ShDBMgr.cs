@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace SharedCode
 {
 	public class ShDbMgr
 	{
+		public ViewSheet LastNewSheet;
+
 		private const char TBlkSeperator = (char) 0x00A0;
 
 
@@ -67,6 +70,8 @@ namespace SharedCode
 		{
 			bool result = false;
 			int seq = 0;
+
+			LastNewSheet = null;
 
 			try
 			{
@@ -172,10 +177,11 @@ namespace SharedCode
 		/// <param name="shtNumber">The new sheet number</param>
 		/// <param name="shtName">The new sheet name</param>
 		/// <param name="tbName">The title block for the new sheet</param>
-		/// <param name="vsSourceSheet">The ViewSheet to copy</param>
+		/// <param name="nsf.FcSelViewSht">The ViewSheet to copy</param>
 //		public void DuplicateOneSheet(string shtNumber, string shtName, string tbName, ViewSheet vsSourceSheet)
 		public void DuplicateOneSheet(NewSheetFormat nsf)
 		{
+
 			ViewSheet vsDestinationSheet;
 
 			try
@@ -208,7 +214,7 @@ namespace SharedCode
 				// in order to copy detail lines directly onto the sheet, we need to 
 				// setup a SketchPlane on the "blank" sheet
 
-				SketchPlane sketch = CreateSketchPlane(vsDestinationSheet);
+				// SketchPlane sketch = CreateSketchPlane(vsDestinationSheet);
 
 				List<Viewport> vpList       = new List<Viewport>(10);
 				List<Viewport> vpListNoCopy = new List<Viewport>(10);
@@ -308,7 +314,9 @@ namespace SharedCode
 						}
 					}
 				}
-	
+
+				LastNewSheet = vsDestinationSheet;
+
 			}
 			catch (Exception e)
 			{
@@ -622,6 +630,41 @@ namespace SharedCode
 
 			return -1;
 		}
+		
+		// this will get a list of all viewports on a sheet and flag those
+		// that are copyable;
+		// this must be run in a transaction
+		public List<ShViewport> GetCopyableViewports(ViewSheet vs)
+		{
+			ViewSheet vsDestinationSheet = ViewSheet.Create(_doc, ElementId.InvalidElementId);
+
+			List<ShViewport> vpList = new List<ShViewport>(10);
+
+			// first, get a collection of elements that exist on the source sheet
+			FilteredElementCollector colViewSheet =
+				new FilteredElementCollector(_doc, vs.Id);
+
+			foreach (Element sourceElem in colViewSheet)
+			{
+				// we cannot copy some viewports or GuideGrids
+				if (sourceElem.Category.Id == _cats.get_Item(BuiltInCategory.OST_Viewports).Id)
+				{
+					Viewport vp = (Viewport) sourceElem;
+					View     vw = (View) _doc.GetElement(vp.ViewId);
+					ShViewport svp = new ShViewport();
+
+					svp.Viewport = vp;
+					svp.IsCopyable = Viewport.CanAddViewToSheet(_doc, vsDestinationSheet.Id, vw.Id);
+					svp.NewViewName = null;
+
+					vpList.Add(svp);
+				}
+			}
+
+			_doc.Delete(vsDestinationSheet.Id);
+
+			return vpList;
+		}
 
 		private void GetAllSheetViews()
 		{
@@ -807,8 +850,6 @@ namespace SharedCode
 
 		private void PlaceViewportOnSheet(ViewSheet vsDestinationSheet, Viewport vpSource, View vw)
 		{
-//			View vw = _doc.GetElement(vpSource.ViewId) as View;
-
 			XYZ xyzVpCenter = vpSource.GetBoxCenter();
 
 			Viewport vpDestination = Viewport.Create(_doc, vsDestinationSheet.Id, vw.Id, xyzVpCenter);

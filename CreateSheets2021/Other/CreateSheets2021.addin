@@ -6,7 +6,7 @@
     <Assembly>CreateSheets2021.dll</Assembly>
     <FullClassName>SharedCreate.ApplicationRibbon</FullClassName>
     <ClientId>48bff096-3281-493e-9362-1c84a1cc41de</ClientId>
-		<AddInId>80CED527-40D7-43E2-B577-50C16FDA8C93</AddInId>
+		<AddInId>EA0BF32B-A2CA-4551-8695-D2D4B0D65F51</AddInId>
     <VendorId>CSTU</VendorId>
     <VendorDescription>CyberStudio</VendorDescription>
   </AddIn>

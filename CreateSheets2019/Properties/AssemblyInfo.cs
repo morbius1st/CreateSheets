@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("Revit 2019")]
 [assembly: AssemblyCompany("CyberStudio")]
 [assembly: AssemblyProduct("CreateSheets2019")]
-[assembly: AssemblyCopyright("Copyright 2019 (C) Jeff Stuyvesant, CyberStudio")]
+[assembly: AssemblyCopyright("Copyright 2021 (C) Jeff Stuyvesant, CyberStudio")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,6 +19,7 @@ using System.Windows;
 // to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
+
 //In order to begin building localizable applications, set
 //<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
 //inside a <PropertyGroup>.  For example, if you are using US english
@@ -47,6 +48,6 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.0.4.0")]
-[assembly: AssemblyFileVersion("4.0.4.0")]
+[assembly: AssemblyVersion("4.1.0.0")]
+[assembly: AssemblyFileVersion("4.1.0.0")]
 [assembly: NeutralResourcesLanguage("en-US")]

@@ -81,6 +81,11 @@ namespace DuplicateSheets2020
 						return Result.Cancelled;
 					}
 				}
+
+				if (_DBMgr.LastNewSheet != null)
+				{
+					_uidoc.ActiveView = _DBMgr.LastNewSheet;
+				}
 			}
 			else
 			{

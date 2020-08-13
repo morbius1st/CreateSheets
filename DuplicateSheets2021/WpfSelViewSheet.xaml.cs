@@ -979,13 +979,9 @@ namespace DuplicateSheets2021
 
 		private void btnAbout_Click(object sender, RoutedEventArgs e)
 		{
-			About about = new About();
-			about.ParentLeft = this.Left;
-			about.ParentTop = this.Top;
+			About about = new About(this);
 
 			about.ShowDialog();
-
-			e.Handled = true;
 		}
 
 		private void btnProceed_Click(object sender, RoutedEventArgs e)

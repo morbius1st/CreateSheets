@@ -11,12 +11,12 @@
 		x:Name="winSelViewSheet"
 		Icon="Resources/Images/CyberStudio Icon.png"
 		Title="{x:Static res:AppStrings.R_WindowTitleSelView}"
-		Width="960"
+		Width="1000"
 		Height="730"
-		MinWidth="930"
+		MinWidth="1000"
 		MinHeight="{Binding Height,
 												ElementName=winSelViewSheet}"
-		MaxWidth="1500"
+		MaxWidth="1600"
 		MaxHeight="{Binding Height,
 												ElementName=winSelViewSheet}"
 		FontSize="13"
@@ -34,10 +34,10 @@
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="../SharedResources/WpfStyles/GroupBox.xaml" />
-				<ResourceDictionary Source="../SharedResources/WpfStyles/ComboBox.xaml" />
-				<ResourceDictionary Source="../SharedResources/WpfStyles/ListBoxItem.xaml" />
-				<ResourceDictionary Source="../SharedResources/WpfStyles/ShWpfResource.xaml" />
+				<ResourceDictionary Source="WpfStyles/GroupBox.xaml" />
+				<ResourceDictionary Source="WpfStyles/ComboBox.xaml" />
+				<ResourceDictionary Source="WpfStyles/ListBoxItem.xaml" />
+				<ResourceDictionary Source="Resources/WpfStyles/ShWpfResource.xaml" />
 				<ResourceDictionary>
 
 					<BooleanToVisibilityConverter x:Key="b2v" />

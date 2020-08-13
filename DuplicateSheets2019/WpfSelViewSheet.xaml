@@ -10,12 +10,12 @@
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		x:Name="winSelViewSheet"
 		Title="{x:Static res:AppStrings.R_WindowTitleSelView}"
-		Width="960"
+		Width="1000"
 		Height="730"
-		MinWidth="930"
+		MinWidth="1000"
 		MinHeight="{Binding Height,
 												ElementName=winSelViewSheet}"
-		MaxWidth="1500"
+		MaxWidth="1600"
 		MaxHeight="{Binding Height,
 												ElementName=winSelViewSheet}"
 		FontSize="13"

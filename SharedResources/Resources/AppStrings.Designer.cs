@@ -79,7 +79,7 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright 2019.
+        ///   Looks up a localized string similar to Copyright 2021.
         /// </summary>
         public static string R_About_Copyright {
             get {

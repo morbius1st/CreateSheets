@@ -1,6 +1,8 @@
 #region Namespaces
-
 using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Interop;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -32,6 +34,7 @@ namespace CreateSheets2021
 		public Result Execute(ExternalCommandData commandData,
 		  ref string message, ElementSet elements)
 		{
+
 			_uiapp = commandData.Application;
 			_uidoc = _uiapp.ActiveUIDocument;
 			_document = _uidoc.Document;
@@ -58,6 +61,20 @@ namespace CreateSheets2021
 
 					try
 					{
+						Window w =
+							(Window) HwndSource.FromHwnd(_uiapp.MainWindowHandle).RootVisual;
+
+						WpfSelViewSheetWin.Owner = w;
+					}
+					catch
+					{
+						// if fail, just ignore
+					}
+
+					try
+					{
+
+
 						if ((WpfSelViewSheetWin.ShowDialog() ?? false) == false)
 						{
 							// user canceled the operation - return canceled result
@@ -75,6 +92,11 @@ namespace CreateSheets2021
 
 						return Result.Cancelled;
 					}
+				}
+
+				if (_DBMgr.LastNewSheet != null)
+				{
+					_uidoc.ActiveView = _DBMgr.LastNewSheet;
 				}
 			}
 			else

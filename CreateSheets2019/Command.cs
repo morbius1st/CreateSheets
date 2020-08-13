@@ -18,9 +18,8 @@ namespace CreateSheets2019
 {
 
 	[Transaction(TransactionMode.Manual)]
-	public class Command : IExternalCommand
+	public partial class Command : IExternalCommand
 	{
-
 		public static WpfSelViewSheet WpfSelViewSheetWin;
 
 		public static UIApplication _uiapp;
@@ -32,7 +31,6 @@ namespace CreateSheets2019
 		public Result Execute(ExternalCommandData commandData,
 		  ref string message, ElementSet elements)
 		{
-
 			_uiapp = commandData.Application;
 			_uidoc = _uiapp.ActiveUIDocument;
 			_document = _uidoc.Document;
@@ -82,6 +80,11 @@ namespace CreateSheets2019
 						return Result.Cancelled;
 					}
 				}
+
+				if (_DBMgr.LastNewSheet != null)
+				{
+					_uidoc.ActiveView = _DBMgr.LastNewSheet;
+				}
 			}
 			else
 			{
@@ -93,14 +96,12 @@ namespace CreateSheets2019
 
 			return Result.Succeeded;
 		}
-
 	}
 
 
 	[Transaction(TransactionMode.Manual)]
 	public class Command_1Click : IExternalCommand
 	{
-
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
 		public Result Execute(ExternalCommandData commandData,
 		  ref string message, ElementSet elements)

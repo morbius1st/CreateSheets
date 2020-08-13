@@ -21,5 +21,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ShSheetData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShSheetDataList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShViewport.cs" />
   </ItemGroup>
 </Project>

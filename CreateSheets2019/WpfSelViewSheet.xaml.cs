@@ -69,6 +69,7 @@ namespace CreateSheets2019
 			// keep track of window up and running
 			_initalized = false;
 
+
 			// needs to be setup before initalization of the controls
 			cbi = ShNamePartItemsTables.Instance;
 
@@ -240,7 +241,9 @@ namespace CreateSheets2019
 
 					if (UseTemplateSheet == false)
 					{
+#pragma warning disable CS0103 // The name '_initalized' does not exist in the current context
 						if (_initalized)
+#pragma warning restore CS0103 // The name '_initalized' does not exist in the current context
 							TemplateSheet = SheetList.SelectedSheet;
 					}
 
@@ -858,7 +861,9 @@ namespace CreateSheets2019
 
 		private void UpdateShtNumExample(string shtNum = null)
 		{
+#pragma warning disable CS0103 // The name '_initalized' does not exist in the current context
 			if (_initalized)
+#pragma warning restore CS0103 // The name '_initalized' does not exist in the current context
 			{
 				if  (SelectedSheet != null && NewShtOpts == NewShtOptions.FromCurrent)
 				{
@@ -879,7 +884,9 @@ namespace CreateSheets2019
 
 		private void UpdateShtNameExample(string shtName = null)
 		{
+#pragma warning disable CS0103 // The name '_initalized' does not exist in the current context
 			if (_initalized)
+#pragma warning restore CS0103 // The name '_initalized' does not exist in the current context
 			{
 				if (SelectedSheet != null && NewShtOpts == NewShtOptions.FromCurrent)
 				{
@@ -987,13 +994,9 @@ namespace CreateSheets2019
 
 		private void btnAbout_Click(object sender, RoutedEventArgs e)
 		{
-			About about = new About();
-			about.ParentLeft = this.Left;
-			about.ParentTop = this.Top;
+			About about = new About(this);
 
 			about.ShowDialog();
-
-			e.Handled = true;
 		}
 
 		private void btnProceed_Click(object sender, RoutedEventArgs e)
@@ -1157,7 +1160,9 @@ namespace CreateSheets2019
 			ApplySettings();
 
 			// flat that ui is configured
+#pragma warning disable CS0103 // The name '_initalized' does not exist in the current context
 			_initalized = true;
+#pragma warning restore CS0103 // The name '_initalized' does not exist in the current context
 
 			UpdateShtNumExample();
 			UpdateShtNameExample();

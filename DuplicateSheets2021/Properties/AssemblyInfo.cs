@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("Revit 2021")]
 [assembly: AssemblyCompany("CyberStudio")]
 [assembly: AssemblyProduct("DuplicateSheets2021")]
-[assembly: AssemblyCopyright("Copyright 2019 (C) Jeff Stuyvesant, CyberStudio")]
+[assembly: AssemblyCopyright("Copyright 2021 (C) Jeff Stuyvesant, CyberStudio")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -28,7 +28,6 @@ using System.Windows;
 //the line below to match the UICulture setting in the project file.
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
-
 
 [assembly: ThemeInfo(
 	ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
@@ -49,6 +48,6 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.0.4.0")]
-[assembly: AssemblyFileVersion("4.0.4.0")]
+[assembly: AssemblyVersion("4.1.0.0")]
+[assembly: AssemblyFileVersion("4.1.0.0")]
 [assembly: NeutralResourcesLanguage("en-US")]

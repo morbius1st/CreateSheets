@@ -12,10 +12,10 @@
 		Title="{x:Static res:AppStrings.R_WindowTitleSelViewCreate}"
 		Width="1100"
 		Height="730"
-		MinWidth="1000"
+		MinWidth="1100"
 		MinHeight="{Binding Height,
 												ElementName=winSelViewSheet}"
-		MaxWidth="1500"
+		MaxWidth="1600"
 		MaxHeight="{Binding Height,
 												ElementName=winSelViewSheet}"
 		FontSize="13"

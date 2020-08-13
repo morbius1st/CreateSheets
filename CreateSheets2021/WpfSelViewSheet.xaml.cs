@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Interop;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -8,27 +10,21 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using ComboBox = System.Windows.Controls.ComboBox;
-
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
-using static CreateSheets2021.SettingsUser;
-
 using SharedCode;
 using SharedCode.Resources;
+using SharedResources;
 using UtilityLibrary;
 using static SharedCode.ShNamePartType;
 using static SharedCode.ShNamePartItemCode;
 using static SharedCode.ShSheetDataList;
 using static SharedCode.ShNewSheetMgr;
-
-using static CreateSheets2021.Command;
-
 using Binding = System.Windows.Data.Binding;
-
 using static UtilityLibrary.MessageUtilities2;
 using static UtilityLibrary.Balloon;
-
+using static CreateSheets2021.SettingsUser;
+using static CreateSheets2021.Command;
 
 namespace CreateSheets2021
 {
@@ -37,7 +33,7 @@ namespace CreateSheets2021
 	/// </summary>
 	public partial class WpfSelViewSheet : Window, INotifyPropertyChanged
 	{
-		#region + Data
+	#region + Data
 
 		// elements to track per custom string
 		// ShNamePartItems
@@ -46,21 +42,24 @@ namespace CreateSheets2021
 		// label text
 		// combo box
 
-//		private ShDbMgr _DBMgr;
 		private ShNamePartItemsTables cbi;
 		private NewSheetFormat SavedSettings;
 
 		private readonly ComboBox[] _comboBoxes      = new ComboBox[ShNamePartItemsTables.CBX_QTY];
 		private string[]   _customText      = new string[ShNamePartItemsTables.CBX_QTY];
 
-//		private int _copies;
+		//		private int _copies;
 		private bool _initalized;
 
 		public SharedCode.ShData shData = new SharedCode.ShData();
 
-		#endregion
 
-		#region + Constructor
+		private string exampleSheetNumber;
+		private string exampleSheetName;
+
+	#endregion
+
+	#region + Constructor
 
 		/// <summary>
 		/// Entry point
@@ -84,9 +83,9 @@ namespace CreateSheets2021
 			InitWinLocation();
 		}
 
-		#endregion
+	#endregion
 
-		#region + initalize
+	#region + initalize
 
 		private void InitCbx()
 		{
@@ -98,9 +97,8 @@ namespace CreateSheets2021
 			ConfigCbxItems(cbxSetNumFmt, SET_NUMSUFFIX_TBL);
 
 
-//			cbxCurNumDvChars.SetBinding(Selector.SelectedItemProperty,
-//				new Binding("NumDivCharsCbxSelected"));
-
+			//			cbxCurNumDvChars.SetBinding(Selector.SelectedItemProperty,
+			//				new Binding("NumDivCharsCbxSelected"));
 		}
 
 		private void InitShtList()
@@ -128,16 +126,15 @@ namespace CreateSheets2021
 		private bool InitSheetList()
 		{
 			int idx = -1;
-//			int result = -1;
+			//			int result = -1;
 
-//			string activeViewUniqueId = _DBMgr.ActiveGraphicalView.UniqueId;
+			//			string activeViewUniqueId = _DBMgr.ActiveGraphicalView.UniqueId;
 
 			SheetData sheetCurrent = null;
 
 			// clear the current list of sheets
 			SheetList.Clear();
 
-			
 
 			foreach (ViewSheet vs in _DBMgr.AllViewSheets())
 			{
@@ -145,21 +142,21 @@ namespace CreateSheets2021
 
 				SheetList.Add(sheetCurrent);
 
-//				if (vs.UniqueId.Equals(activeViewUniqueId))
-//				{
-//					result = idx;
-//				}
-//
-//				idx++;
+				//				if (vs.UniqueId.Equals(activeViewUniqueId))
+				//				{
+				//					result = idx;
+				//				}
+				//
+				//				idx++;
 			}
-//
-//			if (result == -1) result = 0;
-//
-//			lbxSheets.SelectedIndex = result;
+			//
+			//			if (result == -1) result = 0;
+			//
+			//			lbxSheets.SelectedIndex = result;
 
 
 			lbxSheets.Items.SortDescriptions.Add(
-				new SortDescription("SheetNumber", 
+				new SortDescription("SheetNumber",
 					ListSortDirection.Ascending));
 
 			if (_DBMgr.ActiveGraphicalView.ViewType == ViewType.DrawingSheet)
@@ -211,18 +208,22 @@ namespace CreateSheets2021
 				cbxNumOfCopies.Items.Add(i.ToString());
 			}
 
+			Copies = 1;
 		}
 
 		private void InitWinLocation()
 		{
-			Top  = USet.WinLocMainWin.Top;
+			Top = USet.WinLocMainWin.Top;
 			Left = USet.WinLocMainWin.Left;
 			Width = USet.WinLocMainWin.Width;
+
+			_DBMgr.ParentLeft = Left;
+			_DBMgr.ParentTop = Top;
 		}
 
-		#endregion
+	#endregion
 
-		#region + Properties
+	#region + Properties
 
 		// copies is not not a saved setting
 		// value returned is
@@ -243,6 +244,15 @@ namespace CreateSheets2021
 						if (_initalized)
 							TemplateSheet = SheetList.SelectedSheet;
 					}
+
+					UpdateShtNumExample();
+					UpdateShtNameExample();
+
+					// using the below, a list of the viewports contained on a 
+					// viewsheet can be obtained - this could be used to 
+					// allow the user to choose which views to copy and / or edit the names of the copies
+					// List<ShViewport> vpList = _DBMgr.GetCopyableViewports((ViewSheet) value.SheetView);
+
 				}
 			}
 		}
@@ -252,7 +262,7 @@ namespace CreateSheets2021
 			get => USet.Basic.TitleBlockName;
 			set
 			{
-				if (USet.Basic.TitleBlockName == null || 
+				if (USet.Basic.TitleBlockName == null ||
 					!USet.Basic.TitleBlockName.Equals(value))
 				{
 					USet.Basic.TitleBlockName = value;
@@ -268,7 +278,7 @@ namespace CreateSheets2021
 			set
 			{
 				if ((USet.Basic.TemplateSheet != null && !(value?.Equals(USet.Basic.TemplateSheet) ?? false))
-					|| USet.Basic.TemplateSheet == null )
+					|| USet.Basic.TemplateSheet == null)
 				{
 					USet.Basic.TemplateSheet = value;
 					OnUiPropertyChange();
@@ -311,23 +321,46 @@ namespace CreateSheets2021
 		}
 
 
-		#region + Settings
+		public string ExampleSheetNumber
+		{
+			get => exampleSheetNumber;
+			set
+			{
+				exampleSheetNumber = value;
 
-//		public int Copies { 
-//			get => _copies;
-//			set
-//			{
-//				if (value < COPIES_START || value > COPIES_END)
-//				{
-//					value = 1;
-//				}
-//
-//				_copies = value;
-//
-//				cbxNumOfCopies.SelectedIndex = value - COPIES_START;
-//
-//			}
-//		}
+				OnPropertyChange();
+			}
+		}
+
+		public string ExampleSheetName
+		{
+			get => exampleSheetName;
+			set
+			{
+				exampleSheetName = value;
+
+				OnPropertyChange();
+			}
+		}
+
+
+	#region + Settings
+
+		//		public int Copies { 
+		//			get => _copies;
+		//			set
+		//			{
+		//				if (value < COPIES_START || value > COPIES_END)
+		//				{
+		//					value = 1;
+		//				}
+		//
+		//				_copies = value;
+		//
+		//				cbxNumOfCopies.SelectedIndex = value - COPIES_START;
+		//
+		//			}
+		//		}
 
 		public int Copies
 		{
@@ -352,7 +385,6 @@ namespace CreateSheets2021
 			}
 		}
 
-
 		public bool UseParameters
 		{
 			get => USet.Basic.UseParameters;
@@ -368,14 +400,10 @@ namespace CreateSheets2021
 
 		public OperOpType OperationOpts
 		{
-			get
-			{
-				return USet.Basic.OperationOption;
-
-			}
+			get { return USet.Basic.OperationOption; }
 			set
 			{
-				USet.Basic.OperationOption = value; 
+				USet.Basic.OperationOption = value;
 				OnPropertyChange();
 			}
 		}
@@ -387,6 +415,9 @@ namespace CreateSheets2021
 			{
 				USet.Basic.NewSheetOption = value;
 				OnUiPropertyChange();
+
+				UpdateShtNumExample();
+				UpdateShtNameExample();
 			}
 		}
 
@@ -464,7 +495,6 @@ namespace CreateSheets2021
 				{
 					USet.Basic.SheetFormatPs.NumberPrefix = value;
 					OnUiPropertyChange();
-					
 				}
 			}
 		}
@@ -478,11 +508,10 @@ namespace CreateSheets2021
 				{
 					USet.Basic.SheetFormatPs.SheetNamePrefix = value;
 					OnUiPropertyChange();
-
 				}
 			}
 		}
-		
+
 		public bool PsIncSheetName
 		{
 			get => USet.Basic.SheetFormatPs.IncSheetName;
@@ -498,100 +527,95 @@ namespace CreateSheets2021
 
 
 		// this gets the collection
-		public ShNamePartItems PsNumFmtCbxItems => 
-			cbi.Tables[(int) SET_NUMSUFFIX_TBL];
+		public ShNamePartItems PsNumFmtCbxItems => cbi.Tables[(int) SET_NUMSUFFIX_TBL];
 
 		// this gets / returns the currently selected box item
 		// only the CbxItemCode is saved in the settings file
 		public ShNamePartItem PsNumFmtCbxSelected
 		{
-//			get => _numFmtCbxSelected;
-			get => 
-				cbi.FindByCode(USet.Basic.SheetFormatPs.
-					NamePartSelItem[ShConst.SET_NUMSUFX]);
+			//			get => _numFmtCbxSelected;
+			get => cbi.FindByCode(USet.Basic.SheetFormatPs.NamePartSelItem[ShConst.SET_NUMSUFX]);
 
 			set
 			{
 				if (value != null && !USet.Basic.SheetFormatPs
-					.NamePartSelItem[ShConst.SET_NUMSUFX].Equals(value.Code))
+				.NamePartSelItem[ShConst.SET_NUMSUFX].Equals(value.Code))
 				{
 					USet.Basic.SheetFormatPs
-						.NamePartSelItem[ShConst.SET_NUMSUFX] = value.Code;
+					.NamePartSelItem[ShConst.SET_NUMSUFX] = value.Code;
 
 					OnUiPropertyChange();
-				} 
+				}
 			}
 		}
 
 		// ***** from current *****
 
 		// this gets the collection
-		public ShNamePartItems FcNameDivCharsCbxItems => 
-			cbi.Tables[(int) CUR_NAMEDIVCHARS_TBL];
+		public ShNamePartItems FcNameDivCharsCbxItems => cbi.Tables[(int) CUR_NAMEDIVCHARS_TBL];
 
 		// this gets / returns the currently selected box item
 		// only the CbxItemCode is saved in the settings file
 		public ShNamePartItem FcNameDivCharsCbxSelected
 		{
-			get => cbi.FindByCode(USet.Basic.SheetFormatFc.
-					NamePartSelItem[(int)CUR_NAMEDIVCHARS_TBL]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL]);
 			set
 			{
-				if (value != null && USet.Basic.SheetFormatFc
+				if (value != null && value.Equals(C_DV_NAMCUST) ||
+					USet.Basic.SheetFormatFc
 					.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] != value.Code)
 				{
 					USet.Basic.SheetFormatFc
-						.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] = value.Code;
+					.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] = value.Code;
 
 					OnPropertyChange();
+					// UpdateCurrentExample();
 				}
 			}
 		}
 
-		public ShNamePartItems FcNameSufxCbxItems => 
-			cbi.Tables[(int) CUR_NAMESUFFIX_TBL];
+		public ShNamePartItems FcNameSufxCbxItems => cbi.Tables[(int) CUR_NAMESUFFIX_TBL];
 
 		public ShNamePartItem FcNameSufxCbxSelected
 		{
-//			get => _nameSufxCbxSelected;
-			get => cbi.FindByCode(USet.Basic.SheetFormatFc.
-					NamePartSelItem[(int)CUR_NAMESUFFIX_TBL]);
+			//			get => _nameSufxCbxSelected;
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL]);
 			set
 			{
-				if (value != null && !USet.Basic.SheetFormatFc
+				if (value != null && value.Equals(C_SX_CUST) ||
+					!USet.Basic.SheetFormatFc
 					.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL].Equals(value.Code))
 				{
 					USet.Basic.SheetFormatFc
-						.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL] = value.Code;
+					.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL] = value.Code;
 
 					OnPropertyChange();
+					// UpdateCurrentExample();
 				}
 			}
 		}
 
-		public ShNamePartItems FcNumSufxCbxItems => 
-			cbi.Tables[(int) CUR_NUMSUFFIX_TBL];
+		public ShNamePartItems FcNumSufxCbxItems => cbi.Tables[(int) CUR_NUMSUFFIX_TBL];
 
 		public ShNamePartItem FcNumSufxCbxSelected
 		{
 			//			get => _numSufxCbxSelected;
-			get => cbi.FindByCode(USet.Basic.SheetFormatFc.
-				NamePartSelItem[(int)CUR_NUMSUFFIX_TBL]);
+			get => cbi.FindByCode(USet.Basic.SheetFormatFc.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL]);
 			set
 			{
 				if (value != null && !USet.Basic.SheetFormatFc
-					.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL].Equals(value.Code))
+				.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL].Equals(value.Code))
 				{
 					USet.Basic.SheetFormatFc
-						.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL] = value.Code;
+					.NamePartSelItem[(int) CUR_NUMSUFFIX_TBL] = value.Code;
 
 					OnUiPropertyChange();
+					UpdateShtNumExample();
 				}
 			}
 		}
 
-		public ShNamePartItems FcNumDivCharsCbxItems => 
-			cbi.Tables[(int) CUR_NUMDIVCHARS_TBL];
+		public ShNamePartItems FcNumDivCharsCbxItems => cbi.Tables[(int) CUR_NUMDIVCHARS_TBL];
 
 		public ShNamePartItem FcNumDivCharsCbxSelected
 		{
@@ -599,21 +623,22 @@ namespace CreateSheets2021
 			set
 			{
 				if (value != null && !USet.Basic.SheetFormatFc
-					.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL].Equals(value.Code))
+				.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL].Equals(value.Code))
 				{
 					USet.Basic.SheetFormatFc
-						.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL] = value.Code;
+					.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL] = value.Code;
 
 					OnPropertyChange();
+					UpdateShtNameExample();
 				}
 			}
 		}
 
-		#endregion
+	#endregion
 
-		#endregion
+	#endregion
 
-		#region + ReadSettings
+	#region + ReadSettings
 
 		private void ApplySettings()
 		{
@@ -636,11 +661,13 @@ namespace CreateSheets2021
 
 			// ************
 			// read the from current settings
-			ReadCbxSettings(ShNamePartItemsTables.CBX_CURR_START, ShNamePartItemsTables.CBX_CURR_END, USet.Basic.SheetFormatFc);
+			ReadCbxSettings(ShNamePartItemsTables.CBX_CURR_START, ShNamePartItemsTables.CBX_CURR_END,
+				USet.Basic.SheetFormatFc);
 
 			// ************
 			// read the from current settings
-			ReadCbxSettings(ShNamePartItemsTables.CBX_SET_START, ShNamePartItemsTables.CBX_SET_END, USet.Basic.SheetFormatPs);
+			ReadCbxSettings(ShNamePartItemsTables.CBX_SET_START, ShNamePartItemsTables.CBX_SET_END,
+				USet.Basic.SheetFormatPs);
 
 			PsNumberPrefix = USet.Basic.SheetFormatPs.NumberPrefix;
 			PsSheetNamePrefix = USet.Basic.SheetFormatPs.SheetNamePrefix;
@@ -685,23 +712,24 @@ namespace CreateSheets2021
 			{
 				rb.IsChecked = false;
 			}
+
 			rbs[which].IsChecked = true;
 		}
 
-		#endregion
+	#endregion
 
-		#region + SaveSettings
+	#region + SaveSettings
 
 		private void SaveSettings()
 		{
 			// ************
 			// save "from current" settings
-			SaveCbxSettings(ShNamePartItemsTables.CBX_CURR_START, 
+			SaveCbxSettings(ShNamePartItemsTables.CBX_CURR_START,
 				ShNamePartItemsTables.CBX_CURR_END, USet.Basic.SheetFormatFc);
 
 			// *************
 			// save "per settings" settings
-			SaveCbxSettings(ShNamePartItemsTables.CBX_SET_START, 
+			SaveCbxSettings(ShNamePartItemsTables.CBX_SET_START,
 				ShNamePartItemsTables.CBX_SET_END, USet.Basic.SheetFormatPs);
 
 			// save the settings
@@ -738,13 +766,13 @@ namespace CreateSheets2021
 					return i;
 				}
 			}
+
 			return 0;
 		}
-		
 
-		#endregion
+	#endregion
 
-		#region + Utility
+	#region + Utility
 
 		private int FindSheetInList(string sheetNumber)
 		{
@@ -766,12 +794,12 @@ namespace CreateSheets2021
 
 		private void ConfigCbxItems(ComboBox cbx, ShNamePartType ct)
 		{
-			int idx = (int)ct;
+			int idx = (int) ct;
 
 			_comboBoxes[idx] = cbx;
 			cbx.Tag = idx;
-			
-			cbx.SelectedIndex = 0;	// pre-select the top item
+
+			cbx.SelectedIndex = 0; // pre-select the top item
 		}
 
 		public string FormatSheetNumber(string origShtNum)
@@ -782,7 +810,7 @@ namespace CreateSheets2021
 			{
 			case NewShtOptions.PerSettings:
 				{
-					result = FormatShtNumber(PsNumberPrefix, 
+					result = FormatShtNumber(PsNumberPrefix,
 						PsNumFmtCbxSelected.Code, SampleSequenceInteger);
 					break;
 				}
@@ -807,7 +835,7 @@ namespace CreateSheets2021
 			{
 			case NewShtOptions.PerSettings:
 				{
-					result = FormatShtName(PsSheetNamePrefix, 
+					result = FormatShtName(PsSheetNamePrefix,
 						PsIncSheetName, PsNumFmtCbxSelected.Code,
 						SampleSequenceInteger);
 					break;
@@ -817,7 +845,7 @@ namespace CreateSheets2021
 					result = FormatShtName(origShtName,
 						FcNameDivCharsCbxSelected.Code,
 						_customText[(int) CUR_NAMEDIVCHARS_TBL],
-						FcNameSufxCbxSelected.Code,
+						FcNameSufxCbxSelected?.Code ?? ShNamePartItemCode.C_SX_NAMNONE,
 						_customText[(int) CUR_NAMESUFFIX_TBL], SampleSequenceInteger);
 					break;
 				}
@@ -826,19 +854,44 @@ namespace CreateSheets2021
 			return result;
 		}
 
-		private void UpdateShtNumExample()
+		private void UpdateShtNumExample(string shtNum = null)
 		{
 			if (_initalized)
 			{
-				tbExampleShtNum.Text = FormatSheetNumber(tbSampleShtNum.Text);
+				if  (SelectedSheet != null && NewShtOpts == NewShtOptions.FromCurrent)
+				{
+					shtNum = SelectedSheet.SheetNumber;
+				}
+
+
+				if (shtNum == null)
+				{
+					ExampleSheetNumber = FormatSheetNumber(tbSampleShtNum.Text);
+				}
+				else
+				{
+					ExampleSheetNumber = FormatSheetNumber(shtNum);
+				}
 			}
 		}
 
-		private void UpdateShtNameExample()
+		private void UpdateShtNameExample(string shtName = null)
 		{
 			if (_initalized)
 			{
-				tbExampleShtName.Text = FormatSheetName(tbSampleShtName.Text);
+				if (SelectedSheet != null && NewShtOpts == NewShtOptions.FromCurrent)
+				{
+					shtName = SelectedSheet.SheetName;
+				}
+
+				if (shtName == null)
+				{
+					ExampleSheetName = FormatSheetName(tbSampleShtName.Text);
+				}
+				else
+				{
+					ExampleSheetName = FormatSheetName(shtName);
+				}
 			}
 		}
 
@@ -852,6 +905,11 @@ namespace CreateSheets2021
 				shData.CustomInvalidTitle[idx],
 				shData.CustomInvalidChars[idx]
 				);
+
+			System.Windows.Window main =
+				(System.Windows.Window) HwndSource.FromHwnd(_uiapp.MainWindowHandle).RootVisual;
+
+			w.Owner = main;
 
 			if (w.ShowDialog() ?? false)
 			{
@@ -901,17 +959,18 @@ namespace CreateSheets2021
 					// custom string is blank
 					cbi.Tables[cbxIndex].SetToDefault();
 
-					_comboBoxes[cbxIndex].SelectedIndex 
+					_comboBoxes[cbxIndex].SelectedIndex
 						= cbi.Tables[cbxIndex].DefaultItemIdx;
 				}
 			}
+
 			UpdateShtNumExample();
 			UpdateShtNameExample();
 		}
 
-		#endregion
+	#endregion
 
-		#region + Control routines
+	#region + Control routines
 
 		// *******************  control routines ************************ //
 
@@ -926,9 +985,10 @@ namespace CreateSheets2021
 
 		private void btnAbout_Click(object sender, RoutedEventArgs e)
 		{
-			new SharedResources.About().ShowDialog();
+			About about = new About(this);
 
-			e.Handled = true;
+			about.ShowDialog();
+
 		}
 
 		private void btnProceed_Click(object sender, RoutedEventArgs e)
@@ -965,7 +1025,6 @@ namespace CreateSheets2021
 			}
 
 			DialogResult = true;
-
 		}
 
 		// save the one click settings
@@ -1022,21 +1081,18 @@ namespace CreateSheets2021
 			string resource = (string) ((Button) sender).Tag;
 
 			ShUtil.ShowHelpMessage(resource);
-
 		}
 
 
 		private void btnOneClickHelp_Click(object sender, RoutedEventArgs e)
 		{
 			e.Handled = true;
-
-
 		}
 
 		private void cbxCurNumDvChars_DropDownClosed(object sender, EventArgs e)
 		{
 			if (USet.Basic.SheetFormatFc
-				.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL] == CUSTOMSELECT)
+			.NamePartSelItem[(int) CUR_NUMDIVCHARS_TBL] == C_DV_NUMCUST)
 			{
 				GetCustomText((int) CUR_NUMDIVCHARS_TBL);
 			}
@@ -1047,20 +1103,20 @@ namespace CreateSheets2021
 		private void cbxCurNamDvChars_DropDownClosed(object sender, EventArgs e)
 		{
 			if (USet.Basic.SheetFormatFc
-				.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] == CUSTOMSELECT)
+			.NamePartSelItem[(int) CUR_NAMEDIVCHARS_TBL] == C_DV_NAMCUST)
 			{
 				GetCustomText((int) CUR_NAMEDIVCHARS_TBL);
 			}
 
 			UpdateShtNameExample();
 		}
-		
+
 		private void cbxCurNamSx_DropDownClosed(object sender, EventArgs e)
 		{
 			if (USet.Basic.SheetFormatFc
-				.NamePartSelItem[(int)CUR_NAMESUFFIX_TBL] == CUSTOMSELECT)
+			.NamePartSelItem[(int) CUR_NAMESUFFIX_TBL] == C_SX_CUST)
 			{
-				GetCustomText((int)CUR_NAMESUFFIX_TBL);
+				GetCustomText((int) CUR_NAMESUFFIX_TBL);
 			}
 
 			UpdateShtNameExample();
@@ -1098,16 +1154,14 @@ namespace CreateSheets2021
 			// flat that ui is configured
 			_initalized = true;
 
-			// update the display of the examples and samples
 			UpdateShtNumExample();
 			UpdateShtNameExample();
-
 		}
 
 		private void winSelViewSheet_Unloaded(object sender, RoutedEventArgs e)
 		{
-			USet.WinLocMainWin.Top = (int)Top;
-			USet.WinLocMainWin.Left = (int)Left;
+			USet.WinLocMainWin.Top = (int) Top;
+			USet.WinLocMainWin.Left = (int) Left;
 			USet.WinLocMainWin.Width = Width;
 			USettings.Save();
 		}
@@ -1124,16 +1178,11 @@ namespace CreateSheets2021
 			USet.Basic.TitleBlockName = SelectedTitleBlock;
 			USet.Basic.SelectedSheet = SelectedSheet;
 
-
-#if DEBUG
-			logMsgLn2("at closing", SelectedSheet.ToString());
-#endif
-
 			// process the selected operation - return the result
 			DialogResult = _DBMgr.Process2(USet.Basic);
 		}
 
-		#endregion
+	#endregion
 
 		private void App_UnhandledExecption(object sender,
 			System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
@@ -1155,21 +1204,15 @@ namespace CreateSheets2021
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberName));
 		}
-
 	}
-
-
-
 
 
 	public class ComparisonCovnerter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (value == null)
-			{
+			if (value == null) { }
 
-			}
 			return value.Equals(parameter);
 		}
 
@@ -1181,10 +1224,10 @@ namespace CreateSheets2021
 
 	public class EnumToBooleanConverter : IValueConverter
 	{
-		public object Convert(object value, Type targetType, 
+		public object Convert(object value, Type targetType,
 			object parameter, CultureInfo culture) => value != null && value.Equals(parameter);
 
-		public object ConvertBack(object value, Type targetType, 
+		public object ConvertBack(object value, Type targetType,
 			object parameter, CultureInfo culture) => value.Equals(true) ? parameter : Binding.DoNothing;
 	}
 }

@@ -22,12 +22,15 @@ namespace SharedResources
 	
 	public partial class About : Window
 	{
-		public About()
+		public About(Window w)
 		{
 			InitializeComponent();
 
 			tbkVersion.Text = CsUtilities.AssemblyVersion;
 			tbkProgramName.Text = SharedCode.LocalResMgr.AppName;
+
+			this.Owner = w;
+			
 		}
 
 		#region + properties
@@ -55,8 +58,6 @@ namespace SharedResources
 
 		private void btnOk_Click(object sender, RoutedEventArgs e)
 		{
-			DialogResult = true;
-
 			Close();
 		}
 
