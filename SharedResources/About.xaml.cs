@@ -56,6 +56,13 @@ namespace SharedResources
 		#endregion
 
 
+		
+		private void btnPrivacy_Click(object sender, RoutedEventArgs e)
+		{
+			Privacy p = new Privacy(this);
+			p.ShowDialog();
+		}
+
 		private void btnOk_Click(object sender, RoutedEventArgs e)
 		{
 			Close();

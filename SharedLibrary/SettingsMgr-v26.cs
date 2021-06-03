@@ -1,9 +1,11 @@
 ﻿#region Using directives
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
+using SharedLibrary;
 
 #endregion
 
@@ -57,12 +59,18 @@ namespace UtilityLibrary
 
 	public class SettingsMgr<T> where T : SettingsPathFileBase, new()
 	{
+		private string traceAppName;
+		private ShTraceLogging logger;
+
 		public T Settings { get; private set; } = new T();
 
 		public string SettingsPathAndFile { get; private set; }
 
 		public SettingsMgr(RstData rst)
 		{
+			traceAppName = GetType().Name;
+			logger = ShTraceLogging.Instance;
+
 			SettingsPathAndFile = Settings.SettingsPathAndFile;
 
 			Read();
@@ -123,16 +131,37 @@ namespace UtilityLibrary
 
 		public void Save()
 		{
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, "SaveSettings", "start");
+
 			XmlWriterSettings xmlSettings = new XmlWriterSettings() {Indent = true};
 
 			DataContractSerializer ds = new DataContractSerializer(typeof(T));
 
+			logger.TraceEvent(TraceEventType.Information, 3,
+				traceAppName, "SaveSettings", 
+				$"making a new header| Settings file version| {(Settings?.FileVersion ?? "is null")}");
+
 			Settings.Heading = new Header(Settings.FileVersion);
+
+			logger.TraceEvent(TraceEventType.Information, 5,
+				traceAppName, "SaveSettings", 
+				$"header made");
+			
+			logger.TraceEvent(TraceEventType.Information, 7,
+				traceAppName, "SaveSettings", 
+				$"write settings to file");
 
 			using (XmlWriter w = XmlWriter.Create(SettingsPathAndFile, xmlSettings))
 			{
 				ds.WriteObject(w, Settings);
 			}
+
+			logger.TraceEvent(TraceEventType.Information, 9,
+				traceAppName, "SaveSettings", $"Settings written");
+
+			logger.TraceEvent(TraceEventType.Information, 10,
+				traceAppName, "SaveSettings", "complete");
 		}
 
 		#endregion
@@ -213,6 +242,21 @@ namespace UtilityLibrary
 	public abstract class SettingsPathFileUserBase : SettingsPathFileBase
 	{
 		protected SettingsPathFileUserBase()
+		{
+			// FileName = @"user" + SETTINGFILEBASE;
+			//
+			// RootPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			//
+			// SubFolders = new[]
+			// {
+			// 	CsUtilities.CompanyName,
+			// 	CsUtilities.AssemblyName
+			// };
+
+			Init();
+		}
+
+		public void Init()
 		{
 			FileName = @"user" + SETTINGFILEBASE;
 

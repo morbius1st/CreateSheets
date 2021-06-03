@@ -1,4 +1,4 @@
-﻿<Window
+﻿<Window x:Name="winSelViewSheet"
 		x:Class="DuplicateSheets2021.WpfSelViewSheet"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,8 +8,6 @@
 		xmlns:res="clr-namespace:SharedCode.Resources"
 		xmlns:shared="clr-namespace:SharedCode"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
-		x:Name="winSelViewSheet"
-		Icon="Resources/Images/CyberStudio Icon.png"
 		Title="{x:Static res:AppStrings.R_WindowTitleSelView}"
 		Width="1000"
 		Height="730"
@@ -19,17 +17,20 @@
 		MaxWidth="1600"
 		MaxHeight="{Binding Height,
 												ElementName=winSelViewSheet}"
-		FontSize="13"
-		Closing="winSelViewSheet_Closing"
 		DataContext="{Binding ElementName=winSelViewSheet}"
+		mc:Ignorable="d"
+		FontSize="13"
+		Icon="Resources/Images/CyberStudio Icon.png"
+		Closing="winSelViewSheet_Closing"
 		KeyUp="winSelViewSheet_KeyUp"
 		Loaded="winSelViewSheet_Loaded"
 		ScrollViewer.VerticalScrollBarVisibility="Disabled"
 		ShowInTaskbar="False"
 		Unloaded="winSelViewSheet_Unloaded"
 		WindowStartupLocation="Manual"
-		mc:Ignorable="d"
 		>
+
+	<!-- <ResourceDictionary Source="WpfStyles/GroupBox.xaml" /> -->
 
 	<Window.Resources>
 		<ResourceDictionary>
@@ -48,8 +49,7 @@
 			<local:ComparisonCovnerter x:Key="comparisonCovnerter" />
 			<local:EnumToBooleanConverter x:Key="enumToBooleanConverter" />
 
-			<Style
-					x:Key="btnHelpStyle"
+			<Style x:Key="btnHelpStyle"
 					TargetType="Button"
 					BasedOn="{StaticResource btnHelpStyleBase}"
 					>
@@ -116,8 +116,7 @@
 		</ResourceDictionary>
 	</Window.Resources>
 
-	<Grid
-			x:Name="gridBackground"
+	<Grid x:Name="gridBackground"
 			Margin="0,0,0,0"
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
@@ -139,6 +138,21 @@
 
 		</Grid.RowDefinitions>
 
+		<Button x:Name="btnTrace"
+				Content=""
+				Grid.Row="3"
+				Grid.ColumnSpan="2"
+				Width="15"
+				Height="15"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Bottom"
+				Background="LightGray"
+				BorderThickness="0"
+				ToolTip="{x:Static res:AppStrings.R_Trace_ToolTip}"
+				Click="BtnTrace_OnClick"
+				/>
+
+
 		<DockPanel
 				Grid.Column="0"
 				Grid.Row="3"
@@ -148,20 +162,18 @@
 				VerticalAlignment="Bottom"
 				>
 
-			<Button
-					x:Name="btnAbout"
+			<Button x:Name="btnAbout"
 					Content="{x:Static res:AppStrings.R_About}"
 					Margin="0,0,16,0"
-					Click="btnAbout_Click"
 					Style="{StaticResource stdButton}"
+					Click="btnAbout_Click"
 					/>
 
-			<Button
-					x:Name="btnOneClickSave"
+			<Button x:Name="btnOneClickSave"
 					Margin="0,0,16,0"
 					HorizontalContentAlignment="Stretch"
-					Click="btnOneClickSave_Click"
 					Style="{StaticResource stdButton}"
+					Click="btnOneClickSave_Click"
 					>
 
 				<Button.Content>
@@ -173,11 +185,10 @@
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
 						</Grid.RowDefinitions>
-						<Button
-								Name="btnOneClickHelp"
+						<Button Name="btnOneClickHelp"
 								Content="?"
-								Grid.Column="0"
 								Tag="HelpSaveAsOneClick"
+								Grid.Column="0"
 								Style="{StaticResource btnHelpStyle}"
 								/>
 						<TextBlock
@@ -190,12 +201,11 @@
 				</Button.Content>
 			</Button>
 
-			<Button
-					x:Name="btnOneClickRestore"
+			<Button x:Name="btnOneClickRestore"
 					Margin="0,0,16,0"
 					HorizontalContentAlignment="Stretch"
-					Click="btnOneClickRestore_Click"
 					Style="{StaticResource stdButton}"
+					Click="btnOneClickRestore_Click"
 					>
 				<Button.Content>
 					<Grid Margin="3,0,3,0">
@@ -208,8 +218,8 @@
 						</Grid.RowDefinitions>
 						<Button
 								Content="?"
-								Grid.Column="0"
 								Tag="HelpRestoreOneClick"
+								Grid.Column="0"
 								Style="{StaticResource btnHelpStyle}"
 								/>
 						<TextBlock
@@ -222,13 +232,12 @@
 				</Button.Content>
 			</Button>
 
-			<Button
-					x:Name="btnSavedRestore"
+			<Button x:Name="btnSavedRestore"
 					Margin="0,0,16,0"
 					HorizontalContentAlignment="Stretch"
 					IsEnabled="False"
-					Click="btnSavedRestore_Click"
 					Style="{StaticResource stdButton}"
+					Click="btnSavedRestore_Click"
 					>
 				<Button.Content>
 					<Grid Margin="3,0,3,0">
@@ -241,8 +250,8 @@
 						</Grid.RowDefinitions>
 						<Button
 								Content="?"
-								Grid.Column="0"
 								Tag="HelpSavedRestore"
+								Grid.Column="0"
 								Style="{StaticResource btnHelpStyle}"
 								/>
 						<TextBlock
@@ -255,12 +264,11 @@
 				</Button.Content>
 			</Button>
 
-			<Button
-					x:Name="btnProceed"
+			<Button x:Name="btnProceed"
 					Margin="0,0,16,0"
 					HorizontalContentAlignment="Stretch"
-					Click="btnProceed_Click"
 					Style="{StaticResource stdButton}"
+					Click="btnProceed_Click"
 					>
 
 				<Button.Content>
@@ -274,8 +282,8 @@
 						</Grid.RowDefinitions>
 						<Button
 								Content="?"
-								Grid.Column="0"
 								Tag="HelpProceed"
+								Grid.Column="0"
 								Style="{StaticResource btnHelpStyle}"
 								/>
 						<TextBlock
@@ -289,8 +297,7 @@
 
 			</Button>
 
-			<Button
-					x:Name="btnCancel"
+			<Button x:Name="btnCancel"
 					Content="{x:Static res:AppStrings.R_Cancel}"
 					Margin="0,0,16,0"
 					IsCancel="True"
@@ -303,8 +310,7 @@
 		<!--#endregion GroupBox Operation-->
 
 		<!--#region GroupBox Operation-->
-		<GroupBox
-				x:Name="gbOperation"
+		<GroupBox x:Name="gbOperation"
 				Grid.Column="1"
 				Grid.Row="0"
 				Grid.ColumnSpan="2"
@@ -315,8 +321,7 @@
 				Style="{StaticResource GroupBoxStyle}"
 				>
 
-			<Grid
-					x:Name="gridOperation"
+			<Grid x:Name="gridOperation"
 					Margin="3,1,3,3"
 					>
 				<Grid.ColumnDefinitions>
@@ -329,17 +334,15 @@
 					<RowDefinition Height="{StaticResource operationItemRowHeight}" />
 				</Grid.RowDefinitions>
 
-				<Button
-						x:Name="btnHelpDupSheetsAndViews"
+				<Button x:Name="btnHelpDupSheetsAndViews"
 						Content="?"
+						Tag="HelpDupSheetAndViews"
 						Grid.Row="0"
 						Margin="0,5"
-						Tag="HelpDupSheetAndViews"
 						Style="{StaticResource btnHelpStyle}"
 						/>
 
-				<RadioButton
-						x:Name="rbOpDuplicateSheetsAndViews"
+				<RadioButton x:Name="rbOpDuplicateSheetsAndViews"
 						Grid.Column="1"
 						Grid.Row="0"
 						IsChecked="{Binding OperationOpts,
@@ -353,17 +356,15 @@
 							/>
 				</RadioButton>
 
-				<Button
-						x:Name="btnHelpDupSheets"
+				<Button x:Name="btnHelpDupSheets"
 						Content="?"
+						Tag="HelpDupSheet"
 						Grid.Row="1"
 						Margin="0,5"
-						Tag="HelpDupSheet"
 						Style="{StaticResource btnHelpStyle}"
 						/>
 
-				<RadioButton
-						x:Name="rbOpDuplicateSheets"
+				<RadioButton x:Name="rbOpDuplicateSheets"
 						Grid.Column="1"
 						Grid.Row="1"
 						IsChecked="{Binding OperationOpts,
@@ -377,17 +378,15 @@
 							/>
 				</RadioButton>
 
-				<Button
-						x:Name="btnHelpCreateSheets"
+				<Button x:Name="btnHelpCreateSheets"
 						Content="?"
+						Tag="HelpCreateSheets"
 						Grid.Row="2"
 						Margin="0,5"
-						Tag="HelpCreateSheets"
 						Style="{StaticResource btnHelpStyle}"
 						/>
 
-				<RadioButton
-						x:Name="rbOpCreateSheets"
+				<RadioButton x:Name="rbOpCreateSheets"
 						Grid.Column="1"
 						Grid.Row="2"
 						IsChecked="{Binding OperationOpts,
@@ -406,8 +405,7 @@
 		</GroupBox>
 
 		<!--#region GroupBox New Sheet Options-->
-		<GroupBox
-				x:Name="gbNewSheetOptions"
+		<GroupBox x:Name="gbNewSheetOptions"
 				Grid.Column="1"
 				Grid.Row="1"
 				Grid.ColumnSpan="2"
@@ -418,8 +416,7 @@
 				Style="{DynamicResource GroupBoxStyle}"
 				>
 
-			<Grid
-					x:Name="gridNewSheetOptions"
+			<Grid x:Name="gridNewSheetOptions"
 					Margin="3,1,3,2"
 					HorizontalAlignment="Stretch"
 					VerticalAlignment="Top"
@@ -439,14 +436,13 @@
 				</Grid.RowDefinitions>
 				<!--#region + New Sheet Options-->
 
-				<RadioButton
-						x:Name="rbPerSettingss"
+				<RadioButton x:Name="rbPerSettingss"
 						Grid.Column="1"
-						GroupName="NewSheetOptions"
 						IsChecked="{Binding NewShtOpts,
 																ConverterParameter={x:Static shared:NewShtOptions.PerSettings},
 																Converter={StaticResource enumToBooleanConverter},
 																FallbackValue=false}"
+						GroupName="NewSheetOptions"
 						Style="{StaticResource rbStyle}"
 						>
 
@@ -455,15 +451,14 @@
 							TextWrapping="NoWrap"
 							/>
 				</RadioButton>
-				<RadioButton
-						x:Name="rbFromCurrent"
+				<RadioButton x:Name="rbFromCurrent"
 						Grid.Column="3"
 						Grid.Row="0"
-						GroupName="NewSheetOptions"
 						IsChecked="{Binding NewShtOpts,
 																ConverterParameter={x:Static shared:NewShtOptions.FromCurrent},
 																Converter={StaticResource enumToBooleanConverter},
 																FallbackValue=true}"
+						GroupName="NewSheetOptions"
 						Style="{StaticResource rbStyle}"
 						>
 
@@ -473,29 +468,26 @@
 							/>
 				</RadioButton>
 
-				<Button
-						x:Name="btnHelpPerSettings"
+				<Button x:Name="btnHelpPerSettings"
 						Content="?"
+						Tag="HelpPerSetg"
 						Grid.Column="0"
 						Grid.Row="0"
 						Margin="0,6"
-						Tag="HelpPerSetg"
 						Style="{StaticResource btnHelpStyle}"
 						/>
-				<Button
-						x:Name="btnHelpFromCurrent"
+				<Button x:Name="btnHelpFromCurrent"
 						Content="?"
+						Tag="HelpFromCurr"
 						Grid.Column="2"
 						Grid.Row="0"
 						Margin="0,6"
-						Tag="HelpFromCurr"
 						Style="{StaticResource btnHelpStyle}"
 						/>
 
 				<!--#endregion-->
 
-				<Grid
-						x:Name="gridPerSettingNewNumFormat"
+				<Grid x:Name="gridPerSettingNewNumFormat"
 						Grid.Column="0"
 						Grid.Row="1"
 						Grid.ColumnSpan="4"
@@ -528,13 +520,12 @@
 							Style="{StaticResource dividerLine}"
 							/>
 
-					<Button
-							x:Name="btnHelpShtNumFmtPerSettings"
+					<Button x:Name="btnHelpShtNumFmtPerSettings"
 							Content="?"
+							Tag="HelpPerSetgNumFmt"
 							Grid.Column="0"
 							Grid.Row="1"
 							Margin="0,2"
-							Tag="HelpPerSetgNumFmt"
 							Style="{StaticResource btnHelpStyle}"
 							/>
 
@@ -547,8 +538,7 @@
 							Style="{StaticResource tbLblStyleBld}"
 							/>
 
-					<Label
-							x:Name="lblShtNumPrefix"
+					<Label x:Name="lblShtNumPrefix"
 							Content="{x:Static res:AppStrings.R_NumPrefix}"
 							Grid.Column="0"
 							Grid.Row="2"
@@ -557,8 +547,7 @@
 							Style="{DynamicResource lblOptions}"
 							/>
 
-					<TextBox
-							x:Name="tbShtNumPrefix"
+					<TextBox x:Name="tbShtNumPrefix"
 							Grid.Column="4"
 							Grid.Row="2"
 							Text="{Binding PsNumberPrefix,
@@ -566,8 +555,7 @@
 							Style="{StaticResource tbCtrlStyle}"
 							/>
 
-					<Label
-							x:Name="lblShtNumFormat"
+					<Label x:Name="lblShtNumFormat"
 							Content="{x:Static res:AppStrings.R_NumFmt}"
 							Grid.Column="0"
 							Grid.Row="3"
@@ -576,8 +564,7 @@
 							Style="{StaticResource lblOptions}"
 							/>
 
-					<ComboBox
-							x:Name="cbxSetNumFmt"
+					<ComboBox x:Name="cbxSetNumFmt"
 							Grid.Column="4"
 							Grid.Row="3"
 							Grid.ColumnSpan="4"
@@ -589,8 +576,7 @@
 							/>
 				</Grid>
 
-				<Grid
-						x:Name="gridPerSettingNewNameFormat"
+				<Grid x:Name="gridPerSettingNewNameFormat"
 						Grid.Column="0"
 						Grid.Row="2"
 						Grid.ColumnSpan="4"
@@ -620,13 +606,12 @@
 							Grid.ColumnSpan="5"
 							Style="{StaticResource dividerLine}"
 							/>
-					<Button
-							x:Name="btnHelpShtNameFmtPerSettings"
+					<Button x:Name="btnHelpShtNameFmtPerSettings"
 							Content="?"
+							Tag="HelpPerSetgNameFmt"
 							Grid.Column="0"
 							Grid.Row="1"
 							Margin="0,2"
-							Tag="HelpPerSetgNameFmt"
 							Style="{StaticResource btnHelpStyle}"
 							/>
 
@@ -638,8 +623,7 @@
 							Text="{x:Static res:AppStrings.R_NewShtNameFormat}"
 							Style="{StaticResource tbLblStyleBld}"
 							/>
-					<Label
-							x:Name="lblShtName"
+					<Label x:Name="lblShtName"
 							Content="{x:Static res:AppStrings.R_SheetName}"
 							Grid.Column="0"
 							Grid.Row="2"
@@ -647,8 +631,7 @@
 							Margin="0,1,0,5"
 							Style="{StaticResource lblOptions}"
 							/>
-					<TextBox
-							x:Name="tbSheetNamePrefix"
+					<TextBox x:Name="tbSheetNamePrefix"
 							Grid.Column="4"
 							Grid.Row="2"
 							Margin="0,3"
@@ -656,8 +639,7 @@
 														 Mode=TwoWay}"
 							Style="{StaticResource tbCtrlStyle}"
 							/>
-					<Label
-							x:Name="lblIncSheName"
+					<Label x:Name="lblIncSheName"
 							Content="{x:Static res:AppStrings.R_IncSheetName}"
 							Grid.Column="0"
 							Grid.Row="3"
@@ -665,8 +647,7 @@
 							Margin="0,1,0,5"
 							Style="{StaticResource lblOptions}"
 							/>
-					<CheckBox
-							x:Name="incSheetName"
+					<CheckBox x:Name="incSheetName"
 							Grid.Column="4"
 							Grid.Row="3"
 							Margin="45,0,0,4"
@@ -681,8 +662,7 @@
 							/>
 				</Grid>
 
-				<Grid
-						x:Name="gridCurrentExample"
+				<Grid x:Name="gridCurrentExample"
 						Grid.Column="0"
 						Grid.Row="3"
 						Grid.ColumnSpan="4"
@@ -712,8 +692,7 @@
 						<RowDefinition Height="{StaticResource newSheetRowHeightSampleExample}" />
 					</Grid.RowDefinitions>
 
-					<Line
-							x:Name="divider5"
+					<Line x:Name="divider5"
 							Grid.Column="0"
 							Grid.Row="0"
 							Grid.ColumnSpan="7"
@@ -741,8 +720,7 @@
 							Style="{StaticResource tbLblStyle}"
 							/>
 
-					<TextBox
-							x:Name="tbExampleShtNumCurrent"
+					<TextBox x:Name="tbExampleShtNumCurrent"
 							Grid.Column="0"
 							Grid.Row="2"
 							Grid.ColumnSpan="3"
@@ -754,8 +732,7 @@
 							/>
 
 
-					<TextBox
-							x:Name="tbExampleShtNameCurent"
+					<TextBox x:Name="tbExampleShtNameCurent"
 							Grid.Column="4"
 							Grid.Row="2"
 							Grid.ColumnSpan="3"
@@ -768,8 +745,7 @@
 
 				</Grid>
 
-				<Grid
-						x:Name="gridSamplesAndExamples"
+				<Grid x:Name="gridSamplesAndExamples"
 						Grid.Column="0"
 						Grid.Row="3"
 						Grid.ColumnSpan="4"
@@ -802,8 +778,7 @@
 					<!--#endregion-->
 
 					<!--#region +Sample and Example-->
-					<Line
-							x:Name="divider3"
+					<Line x:Name="divider3"
 							Grid.Column="0"
 							Grid.Row="0"
 							Grid.ColumnSpan="7"
@@ -812,8 +787,7 @@
 							Style="{StaticResource dividerLine}"
 							/>
 
-					<TextBox
-							x:Name="tbSampleTitle"
+					<TextBox x:Name="tbSampleTitle"
 							Grid.Column="0"
 							Grid.Row="1"
 							Grid.ColumnSpan="3"
@@ -831,8 +805,7 @@
 							Style="{StaticResource tbLblStyleOrig}"
 							/>
 
-					<TextBox
-							x:Name="tbSampleSeq"
+					<TextBox x:Name="tbSampleSeq"
 							Grid.Column="6"
 							Grid.Row="1"
 							HorizontalAlignment="Stretch"
@@ -843,38 +816,35 @@
 							/>
 					<!--  LostKeyboardFocus="TbSampleSeq_LostKeyboardFocus"  -->
 
-					<TextBox
-							x:Name="tbSampleShtNum"
+					<TextBox x:Name="tbSampleShtNum"
 							Grid.Column="0"
 							Grid.Row="2"
 							Grid.ColumnSpan="3"
 							Margin="0,3"
 							HorizontalAlignment="Stretch"
-							Text="{Binding SampleShtNumber,
-														 Mode=TwoWay}"
 							IsEnabled="{Binding IsChecked,
 																	ElementName=rbFromCurrent}"
+							Text="{Binding SampleShtNumber,
+														 Mode=TwoWay}"
 							Style="{StaticResource tbLblStyleSample}"
 							/>
 					<!--  LostKeyboardFocus="TbSampleShtNum_LostKeyboardFocus"  -->
 
-					<TextBox
-							x:Name="tbSampleShtName"
+					<TextBox x:Name="tbSampleShtName"
 							Grid.Column="4"
 							Grid.Row="2"
 							Grid.ColumnSpan="3"
 							Margin="0,3"
 							HorizontalAlignment="Stretch"
-							Text="{Binding SampleShtName,
-														 Mode=TwoWay}"
 							IsEnabled="{Binding IsChecked,
 																	ElementName=rbFromCurrent}"
+							Text="{Binding SampleShtName,
+														 Mode=TwoWay}"
 							Style="{StaticResource tbLblStyleSample}"
 							/>
 					<!--  LostKeyboardFocus="TbSampleShtName_LostKeyboardFocus"  -->
 
-					<Line
-							x:Name="divider4"
+					<Line x:Name="divider4"
 							Grid.Column="0"
 							Grid.Row="3"
 							Grid.ColumnSpan="7"
@@ -883,8 +853,7 @@
 							Style="{StaticResource dividerLine}"
 							/>
 
-					<TextBox
-							x:Name="tbExampleTitle"
+					<TextBox x:Name="tbExampleTitle"
 							Grid.Column="0"
 							Grid.Row="4"
 							Grid.ColumnSpan="3"
@@ -893,8 +862,7 @@
 							Style="{StaticResource tbLblStyle}"
 							/>
 
-					<TextBox
-							x:Name="tbExampleShtNum"
+					<TextBox x:Name="tbExampleShtNum"
 							Grid.Column="0"
 							Grid.Row="5"
 							Grid.ColumnSpan="3"
@@ -905,8 +873,7 @@
 							Style="{StaticResource tbLblStyleExample}"
 							/>
 
-					<TextBox
-							x:Name="tbExampleShtName"
+					<TextBox x:Name="tbExampleShtName"
 							Grid.Column="4"
 							Grid.Row="5"
 							Grid.ColumnSpan="3"
@@ -919,8 +886,7 @@
 
 				</Grid>
 
-				<Grid
-						x:Name="gridFromCurrentNumFormat"
+				<Grid x:Name="gridFromCurrentNumFormat"
 						Grid.Column="0"
 						Grid.Row="1"
 						Grid.ColumnSpan="4"
@@ -950,26 +916,23 @@
 
 					<!--#region +New Number Format-->
 
-					<Line
-							x:Name="divider1"
+					<Line x:Name="divider1"
 							Grid.Column="0"
 							Grid.Row="0"
 							Grid.ColumnSpan="7"
 							Style="{StaticResource dividerLine}"
 							/>
 
-					<Button
-							x:Name="btnHelpShtNumFmt"
+					<Button x:Name="btnHelpShtNumFmt"
 							Content="?"
+							Tag="HelpFromCurrNumFmt"
 							Grid.Column="0"
 							Grid.Row="1"
 							Margin="0,2"
-							Tag="HelpFromCurrNumFmt"
 							Style="{StaticResource btnHelpStyle}"
 							/>
 
-					<TextBox
-							x:Name="tbShtNumberSuffix"
+					<TextBox x:Name="tbShtNumberSuffix"
 							Grid.Column="1"
 							Grid.Row="1"
 							Grid.ColumnSpan="6"
@@ -1026,8 +989,7 @@
 							Style="{StaticResource tbLblStyleOrig}"
 							/>
 
-					<ComboBox
-							x:Name="cbxCurNumDvChars"
+					<ComboBox x:Name="cbxCurNumDvChars"
 							Grid.Column="4"
 							Grid.Row="3"
 							Margin="0,3"
@@ -1038,8 +1000,7 @@
 							Style="{DynamicResource ComboBoxStyle}"
 							/>
 
-					<ComboBox
-							x:Name="cbxCurNumSx"
+					<ComboBox x:Name="cbxCurNumSx"
 							Grid.Column="6"
 							Grid.Row="3"
 							Margin="0,3"
@@ -1051,8 +1012,7 @@
 
 				</Grid>
 
-				<Grid
-						x:Name="gridFromCurrentNameFormat"
+				<Grid x:Name="gridFromCurrentNameFormat"
 						Grid.Column="0"
 						Grid.Row="2"
 						Grid.ColumnSpan="4"
@@ -1081,26 +1041,23 @@
 
 					<!--#region +New Name Format-->
 
-					<Line
-							x:Name="divider2"
+					<Line x:Name="divider2"
 							Grid.Column="0"
 							Grid.Row="0"
 							Grid.ColumnSpan="7"
 							Style="{StaticResource dividerLine}"
 							/>
 
-					<Button
-							x:Name="btnHelpShtNameFmt"
+					<Button x:Name="btnHelpShtNameFmt"
 							Content="?"
+							Tag="HelpFromCurrNameFmt"
 							Grid.Column="0"
 							Grid.Row="1"
 							Margin="0,2"
-							Tag="HelpFromCurrNameFmt"
 							Style="{StaticResource btnHelpStyle}"
 							/>
 
-					<TextBox
-							x:Name="tbShtNameSuffix"
+					<TextBox x:Name="tbShtNameSuffix"
 							Grid.Column="1"
 							Grid.Row="1"
 							Grid.ColumnSpan="6"
@@ -1156,8 +1113,7 @@
 							Style="{StaticResource tbLblStyleOrig}"
 							/>
 
-					<ComboBox
-							x:Name="cbxCurNamDvChars"
+					<ComboBox x:Name="cbxCurNamDvChars"
 							Grid.Column="4"
 							Grid.Row="3"
 							Margin="0,3"
@@ -1178,8 +1134,7 @@
 						</ComboBox.Tag>
 					</ComboBox>
 
-					<ComboBox
-							x:Name="cbxCurNamSx"
+					<ComboBox x:Name="cbxCurNamSx"
 							Grid.Column="6"
 							Grid.Row="3"
 							Margin="0,3"
@@ -1205,8 +1160,7 @@
 		</GroupBox>
 		<!--#endregion GroupBox New Sheet Options-->
 
-		<GroupBox
-				x:Name="availableSheets"
+		<GroupBox x:Name="availableSheets"
 				Grid.Column="3"
 				Grid.Row="0"
 				Grid.RowSpan="3"
@@ -1221,18 +1175,17 @@
 
 			<!--  SelectedItem="{Binding SelectedSheet, Mode=TwoWay, Source={x:Static Shared:SheetDataList.SheetList}}"  -->
 
-			<!--  d:DataContext="{d:DesignData Type=sheetData}"  -->
+			<!--  d:DataContext="{d:DesignData Type=SheetData}"  -->
+			<!--  d:DataContext="{d:DesignData Type=SheetData}"  -->
 
-			<ListBox
-					x:Name="lbxSheets"
+			<ListBox x:Name="lbxSheets"
 					Margin="0,4,2,4"
 					HorizontalContentAlignment="Stretch"
-					d:DataContext="{d:DesignData Type=sheetData}"
+					BorderThickness="0"
+					IsSynchronizedWithCurrentItem="True"
 					SelectedItem="{Binding SelectedSheet,
 																 Mode=TwoWay}"
 					SelectionMode="Single"
-					BorderThickness="0"
-					IsSynchronizedWithCurrentItem="True"
 					ItemContainerStyle="{DynamicResource listBoxItemStyle1}"
 					ItemsSource="{Binding Source={x:Static shared:ShSheetDataList.SheetList}}"
 					>
@@ -1270,8 +1223,8 @@
 						<DockPanel
 								HorizontalAlignment="Stretch"
 								VerticalAlignment="Stretch"
-								LastChildFill="True"
 								Background="{StaticResource ComboBox.Static.Background}"
+								LastChildFill="True"
 								>
 							<Grid
 									Height="20"
@@ -1309,8 +1262,7 @@
 
 		</GroupBox>
 
-		<GroupBox
-				x:Name="opOptions"
+		<GroupBox x:Name="opOptions"
 				Grid.Column="1"
 				Grid.Row="2"
 				Grid.ColumnSpan="2"
@@ -1360,8 +1312,7 @@
 						Style="{StaticResource tbLblStyle}"
 						/>
 
-				<ComboBox
-						x:Name="cbxNumOfCopies"
+				<ComboBox x:Name="cbxNumOfCopies"
 						Grid.Column="2"
 						Grid.Row="0"
 						Margin="7,6,0,4"
@@ -1374,14 +1325,13 @@
 						Style="{DynamicResource ComboBoxStyle}"
 						/>
 
-				<Button
-						x:Name="btnHelpUseThisTitleBlock"
+				<Button x:Name="btnHelpUseThisTitleBlock"
 						Content="?"
+						Tag="HelpUseThisTblk"
 						Grid.Column="0"
 						Grid.Row="1"
 						Margin="0,6,0,0"
 						VerticalAlignment="top"
-						Tag="HelpUseThisTblk"
 						Style="{StaticResource btnHelpStyle}"
 						/>
 				<TextBox
@@ -1394,8 +1344,7 @@
 						Style="{StaticResource tbLblStyle}"
 						/>
 
-				<ComboBox
-						x:Name="cbxTitleBlock"
+				<ComboBox x:Name="cbxTitleBlock"
 						Grid.Column="2"
 						Grid.Row="1"
 						Grid.ColumnSpan="3"
@@ -1408,12 +1357,11 @@
 						Style="{DynamicResource ComboBoxStyle}"
 						/>
 
-				<Button
-						x:Name="btnHelpUseParameters"
+				<Button x:Name="btnHelpUseParameters"
 						Content="?"
+						Tag="HelpUseParams"
 						Grid.Column="0"
 						Grid.Row="2"
-						Tag="HelpUseParams"
 						Style="{StaticResource btnHelpStyle}"
 						/>
 
@@ -1440,14 +1388,13 @@
 						Style="{StaticResource tbLblStyle}"
 						/>
 
-				<Button
-						x:Name="btnHelpOneClickReuseSheet"
+				<Button x:Name="btnHelpOneClickReuseSheet"
 						Content="?"
+						Tag="HelpUseAsTemplate"
 						Grid.Column="0"
 						Grid.Row="3"
 						Margin="0,0,0,2"
 						VerticalAlignment="Bottom"
-						Tag="HelpUseAsTemplate"
 						Style="{StaticResource btnHelpStyle}"
 						/>
 
@@ -1474,8 +1421,7 @@
 						Style="{StaticResource tbLblStyle}"
 						/>
 
-				<TextBlock
-						x:Name="tblkTemplateSheet"
+				<TextBlock x:Name="tblkTemplateSheet"
 						Grid.Column="2"
 						Grid.Row="4"
 						Grid.ColumnSpan="3"

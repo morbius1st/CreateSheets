@@ -79,6 +79,15 @@ namespace CreateSheets2021.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CrteSht 2021.
+        /// </summary>
+        public static string RL_AppNameAbbv {
+            get {
+                return ResourceManager.GetString("RL_AppNameAbbv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command.
         /// </summary>
         public static string RL_Command {

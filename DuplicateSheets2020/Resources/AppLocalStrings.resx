@@ -129,4 +129,7 @@
   <data name="RL_AppName" xml:space="preserve">
     <value>Duplicate Sheets 2020</value>
   </data>
+  <data name="RL_AppNameAbbv" xml:space="preserve">
+    <value>DupSht2020</value>
+  </data>
 </root>

@@ -19,6 +19,7 @@ using static SharedCode.ShNamePartType;
 using static SharedCode.ShNamePartItemCode;
 using static SharedCode.ShSheetDataList;
 using static SharedCode.ShNewSheetMgr;
+
 using Binding = System.Windows.Data.Binding;
 using static UtilityLibrary.MessageUtilities2;
 using static UtilityLibrary.Balloon;
@@ -32,6 +33,8 @@ namespace CreateSheets2019
 	/// </summary>
 	public partial class WpfSelViewSheet : Window, INotifyPropertyChanged
 	{
+		internal static readonly  string APP_NAME = "CreateSht 2019| ";
+
 	#region + Data
 
 		// elements to track per custom string
@@ -59,6 +62,7 @@ namespace CreateSheets2019
 	#endregion
 
 	#region + Constructor
+
 
 		/// <summary>
 		/// Entry point
@@ -1088,7 +1092,7 @@ namespace CreateSheets2019
 
 			string resource = (string) ((Button) sender).Tag;
 
-			ShUtil.ShowHelpMessage(resource);
+			ShHelpDialog.ShowHelpMessage(resource);
 		}
 
 

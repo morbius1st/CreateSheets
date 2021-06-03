@@ -32,6 +32,8 @@ namespace DuplicateSheets2019
 	/// </summary>
 	public partial class WpfSelViewSheet : Window, INotifyPropertyChanged
 	{
+		internal static readonly  string APP_NAME = "DupSht 2019| ";
+
 	#region + Data
 
 		// elements to track per custom string
@@ -1073,7 +1075,7 @@ namespace DuplicateSheets2019
 
 			string resource = (string) ((Button) sender).Tag;
 
-			ShUtil.ShowHelpMessage(resource);
+			ShHelpDialog.ShowHelpMessage(resource);
 		}
 
 

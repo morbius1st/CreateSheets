@@ -755,4 +755,52 @@ Please make a sheet view as the current view and select One Click again.</value>
   <data name="R_ShtOpCurExampleDesc" xml:space="preserve">
     <value>Example based on selected sheet</value>
   </data>
+  <data name="R_Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="R_Trace_Show" xml:space="preserve">
+    <value>Show Trace
+File</value>
+  </data>
+  <data name="R_Trace_Start" xml:space="preserve">
+    <value>Start Trace</value>
+  </data>
+  <data name="R_Trace_Stop" xml:space="preserve">
+    <value>Stop Trace</value>
+  </data>
+  <data name="R_Trace_ToolTip" xml:space="preserve">
+    <value>Show the trace dialog box
+used to help diagnose program problems</value>
+  </data>
+  <data name="R_Trace_FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="R_Trace_Status" xml:space="preserve">
+    <value>Trace Status</value>
+  </data>
+  <data name="R_Trace_Status_Active" xml:space="preserve">
+    <value>Active Status</value>
+  </data>
+  <data name="R_Trace_Status_Process" xml:space="preserve">
+    <value>Process Status</value>
+  </data>
+  <data name="R_Trace_File_Count" xml:space="preserve">
+    <value>Trace Files</value>
+  </data>
+  <data name="R_Trace_Show_Folder" xml:space="preserve">
+    <value>Open Trace
+Folder</value>
+  </data>
+  <data name="R_Trace_Help" xml:space="preserve">
+    <value>You have gotten here due to some unforeseen issue with the software.  This dialog box will allow the collection of detailed information about what is happening so I may analyze and, hopefully, resolve the issue.
+ 
+To use, please press the Start Trace button and go through the normal steps that is causing the problem.  If the app crashes, the data is automatically saved to a Log File otherwise, press the Stop Trace button.  The log file can then be emailed to me.  
+ 
+I ask you email the file so you may look at the file contents and know what is being sent before it is emailed.
+ 
+Thank you in advance for your help.</value>
+  </data>
+  <data name="R_Trace_HelpTitle" xml:space="preserve">
+    <value>Log File</value>
+  </data>
 </root>

@@ -19,6 +19,6 @@ namespace SharedCode
 {
 	public static class LocalResMgr
 	{
-		public static string AppName = "SharedResources";
+		public static string AppName { get; set; } = "SharedResources";
 	}
 }

@@ -22,5 +22,6 @@
       <Link>CsExtensions.cs</Link>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)SettingsMgr-v26.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShTraceLogging.cs" />
   </ItemGroup>
 </Project>

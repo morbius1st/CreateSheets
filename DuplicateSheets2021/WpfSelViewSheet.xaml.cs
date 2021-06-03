@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Interop;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -11,9 +12,11 @@ using System.Windows.Input;
 using ComboBox = System.Windows.Controls.ComboBox;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using DuplicateSheets2021.Resources;
 using static DuplicateSheets2021.SettingsUser;
 using SharedCode;
 using SharedCode.Resources;
+using SharedLibrary;
 using SharedResources;
 using UtilityLibrary;
 using static SharedCode.ShNamePartType;
@@ -22,9 +25,37 @@ using static SharedCode.ShSheetDataList;
 using static SharedCode.ShNewSheetMgr;
 using static DuplicateSheets2021.Command;
 using Binding = System.Windows.Data.Binding;
-using static UtilityLibrary.MessageUtilities2;
 using static UtilityLibrary.Balloon;
 
+
+
+/*
+file changes:
+changes relate to 2021 files
+
+WpfSelViewSheet.xaml.cs
+has changes
+
+WpfSelViewSheet.xaml
+a few changes
+
+SettingsUser.cs
+line 92 added
+
+
+
+
+no actual differences
+Command.cs
+
+
+common file - ignore
+ListBoxItem.xaml
+ComboBox.xaml
+GroupBox.xaml
+ShWpfResource.xaml
+
+*/
 
 namespace DuplicateSheets2021
 {
@@ -53,9 +84,13 @@ namespace DuplicateSheets2021
 
 		public SharedCode.ShData shData = new SharedCode.ShData();
 
+		private string traceAppName;
+		private ShTraceLogging logger;
 
 		private string exampleSheetNumber;
 		private string exampleSheetName;
+
+		private DialogTrace dt;
 
 	#endregion
 
@@ -67,6 +102,10 @@ namespace DuplicateSheets2021
 		/// <param name="commandData"></param>
 		public WpfSelViewSheet(ExternalCommandData commandData)
 		{
+			traceAppName = nameof(WpfSelViewSheet);
+
+			logger = ShTraceLogging.Instance;
+
 			// keep track of window up and running
 			_initalized = false;
 
@@ -81,6 +120,8 @@ namespace DuplicateSheets2021
 			InitializeComponent();
 
 			InitWinLocation();
+
+			
 		}
 
 	#endregion
@@ -235,6 +276,8 @@ namespace DuplicateSheets2021
 			get => SheetList.SelectedSheet;
 			set
 			{
+				logger.TraceEvent(TraceEventType.Information, 1,
+					traceAppName, "SelectedSheet:set", "Selected set| " + value);
 				if (value != null)
 				{
 					SheetList.SelectedSheet = value;
@@ -399,6 +442,9 @@ namespace DuplicateSheets2021
 			{
 				USet.Basic.OperationOption = value;
 				OnPropertyChange();
+
+				logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, "OperationOpts:set", "OperOpType set| " + value);
 			}
 		}
 
@@ -409,6 +455,9 @@ namespace DuplicateSheets2021
 			{
 				USet.Basic.NewSheetOption = value;
 				OnUiPropertyChange();
+
+				logger.TraceEvent(TraceEventType.Information, 1,
+					traceAppName, "NewShtOpts:set", "NewShtOptions set| " + value);
 
 				UpdateShtNumExample();
 				UpdateShtNameExample();
@@ -716,39 +765,72 @@ namespace DuplicateSheets2021
 
 		private void SaveSettings()
 		{
+			string me = nameof(SaveSettings);
+
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, me, "start");
+
+			logger.TraceEvent(TraceEventType.Information, 3,
+				traceAppName, me, "save cbx current");
 			// ************
 			// save "from current" settings
 			SaveCbxSettings(ShNamePartItemsTables.CBX_CURR_START,
 				ShNamePartItemsTables.CBX_CURR_END, USet.Basic.SheetFormatFc);
 
+			logger.TraceEvent(TraceEventType.Information, 5,
+				traceAppName, me, "save cbx by settings");
 			// *************
 			// save "per settings" settings
 			SaveCbxSettings(ShNamePartItemsTables.CBX_SET_START,
 				ShNamePartItemsTables.CBX_SET_END, USet.Basic.SheetFormatPs);
 
+			logger.TraceEvent(TraceEventType.Information, 7,
+				traceAppName, me, "save to setting file");
 			// save the settings
 			USettings.Save();
 
+			logger.TraceEvent(TraceEventType.Information, 9,
+				traceAppName, me, "settings saved in settng file");
+
 //			Debug.Print(USet.Basic.ToString());
 //			Debug.Print(USet.OneClick.ToString());
+
+			logger.TraceEvent(TraceEventType.Information, 10,
+				traceAppName, me, "complete");
 		}
 
 		private void SaveCbxSettings(int start, int end, BaseInfo stgInfo)
 		{
+			string me = nameof(SaveCbxSettings);
+
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, me, $"start| {start}| end| {end}" );
+
 			// represents the index in the settings array (stgInfo)
-			int i = 0;
+			// int i = 0;
+
+			logger.TraceEvent(TraceEventType.Information, 3,
+				traceAppName, me,
+				$"stgInfo| namePart count| {(stgInfo?.NamePartSelItem.Length.ToString() ?? "in null")}");
+
+			logger.TraceEvent(TraceEventType.Information, 5,
+				traceAppName, me,
+				$"stgInfo| customText count| {(stgInfo?.CustomText.Length.ToString() ?? "in null")}");
 
 			// save from current info
 			// cbxIdx = combobox number
 			for (int cbxIdx = start; cbxIdx <= end; cbxIdx++)
 			{
-				i = cbxIdx - start;
+				int i = cbxIdx - start;
 
 				stgInfo.NamePartSelItem[i] =
 					((ShNamePartItem) _comboBoxes[cbxIdx].SelectedItem).Code;
 
 				stgInfo.CustomText[i] = _customText[cbxIdx];
 			}
+
+			logger.TraceEvent(TraceEventType.Information, 10,
+				traceAppName, me, "complete");
 		}
 
 		private int GetSelectedRadioButton(params RadioButton[] rbs)
@@ -962,6 +1044,18 @@ namespace DuplicateSheets2021
 			UpdateShtNameExample();
 		}
 
+		private void showTraceDialog()
+		{
+			dt = new DialogTrace(this);
+
+			dt.ProcessStatus = "Configured";
+
+			dt.Config(USet.SettingsPath);
+
+			// open the dialog as modal
+			dt.Show();
+		}
+
 	#endregion
 
 	#region + Control routines
@@ -969,12 +1063,10 @@ namespace DuplicateSheets2021
 		// *******************  control routines ************************ //
 
 
-		private void winSelViewSheet_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+
+		private void BtnTrace_OnClick(object sender, RoutedEventArgs e)
 		{
-			if (e.Key == Key.F1)
-			{
-				System.Diagnostics.Process.Start(@"http://www.cyberstudioapps.com/index.html");
-			}
+			showTraceDialog();
 		}
 
 		private void btnAbout_Click(object sender, RoutedEventArgs e)
@@ -986,8 +1078,16 @@ namespace DuplicateSheets2021
 
 		private void btnProceed_Click(object sender, RoutedEventArgs e)
 		{
+			dt.ProcessStatus = "Proceeding - Part 1";
+
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, "btnProceed_Click", "Start");
+
 			// save the current settings first
 			SaveSettings();
+
+			logger.TraceEvent(TraceEventType.Information, 3,
+				traceAppName, "btnProceed_Click", "settings saved");
 
 			// must verify if it ok to proceed
 
@@ -1000,6 +1100,9 @@ namespace DuplicateSheets2021
 			// if no sheet selected then
 			// 	operation must be "create empty sheets" and
 			//	the title block setting cannot be "from selected sheet"
+
+			logger.TraceEvent(TraceEventType.Information, 5,
+				traceAppName, "btnProceed_Click", $"selected item count| {lbxSheets.SelectedItems.Count}");
 
 			if (lbxSheets.SelectedItems.Count == 0)
 			{
@@ -1016,6 +1119,10 @@ namespace DuplicateSheets2021
 					return;
 				}
 			}
+
+			logger.TraceEvent(TraceEventType.Information, 7,
+				traceAppName, "btnProceed_Click", 
+				$"set DialogResult| true");
 
 			DialogResult = true;
 		}
@@ -1073,7 +1180,7 @@ namespace DuplicateSheets2021
 
 			string resource = (string) ((Button) sender).Tag;
 
-			ShUtil.ShowHelpMessage(resource);
+			ShHelpDialog.ShowHelpMessage(resource);
 		}
 
 
@@ -1115,6 +1222,22 @@ namespace DuplicateSheets2021
 			UpdateShtNameExample();
 		}
 
+		
+		private void winSelViewSheet_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			if (e.Key == Key.F1)
+			{
+				e.Handled = true;
+				
+				System.Diagnostics.Process.Start(@"http://www.cyberstudio.pro/?page_id=658");
+				
+			} 
+			else if (e.Key == Key.F2 && (Keyboard.Modifiers & ModifierKeys.Control)>0)
+			{
+				showTraceDialog();
+			}
+		}
+
 		private void winSelViewSheet_Loaded(object sender, RoutedEventArgs e)
 		{
 			// setup the copies combobox
@@ -1153,26 +1276,65 @@ namespace DuplicateSheets2021
 
 		private void winSelViewSheet_Unloaded(object sender, RoutedEventArgs e)
 		{
+			dt.ProcessStatus = "Proceeding - part 3";
+			string me = nameof(winSelViewSheet_Unloaded);
+
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, me, $"begin| unloading| save settings first" );
+
 			USet.WinLocMainWin.Top = (int) Top;
 			USet.WinLocMainWin.Left = (int) Left;
 			USet.WinLocMainWin.Width = Width;
 			USettings.Save();
+
+			logger.TraceEvent(TraceEventType.Information, 10,
+				traceAppName, me, $"complete|" );
+
+			dt.ProcessStatus = "Done";
 		}
 
 		private void winSelViewSheet_Closing(object sender, CancelEventArgs e)
 		{
+			dt.ProcessStatus = "Proceeding - part 2";
+
+			string me = nameof(winSelViewSheet_Closing);
+
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, me, $"begin| DialogResult| {DialogResult}" );
+
+			logger.TabUp();
+
 			if (!(DialogResult ?? false)) return;
 
 			// if here - ready to proceed
 
 			// hand-off to db mgr to complete the processing
 
+			logger.TraceEvent(TraceEventType.Information, 3,
+				traceAppName, me, $"pre handoff to DB Mgr| copies| {Copies}| "
+				+ $"selected title block| {SelectedTitleBlock}| "
+				+ $"Selected Sheet| {SelectedSheet}" );
+
 			USet.Basic.Copies = Copies;
 			USet.Basic.TitleBlockName = SelectedTitleBlock;
 			USet.Basic.SelectedSheet = SelectedSheet;
 
 			// process the selected operation - return the result
+
+
+			logger.TraceEvent(TraceEventType.Information, 5,
+				traceAppName, me, $"hand-off (send) to _DBMgr.Process2" );
+			
+			_DBMgr.TraceDialog = dt;
+
 			DialogResult = _DBMgr.Process2(USet.Basic);
+
+			logger.TabDn();
+
+			logger.TraceEvent(TraceEventType.Information, 10,
+				traceAppName, me, $"Returned from process2" );
+
+			dt.ProcessStatus = "Complete";
 		}
 
 	#endregion

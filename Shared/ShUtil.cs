@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -8,6 +9,7 @@ using System.Windows.Media.Imaging;
 using Autodesk.Revit.UI;
 
 using SharedCode.Resources;
+using SharedLibrary;
 using SharedResources;
 
 using static UtilityLibrary.MessageUtilities;
@@ -16,6 +18,11 @@ namespace SharedCode
 {
 	internal static class ShUtil
 	{
+#pragma warning disable CS0414 // The field 'ShUtil.traceAppName' is assigned but its value is never used
+		private static string traceAppName;
+#pragma warning restore CS0414 // The field 'ShUtil.traceAppName' is assigned but its value is never used
+		private static ShTraceLogging logger;
+
 		public static string nl = Environment.NewLine;
 
 		// load an image from embeded resource
@@ -27,6 +34,9 @@ namespace SharedCode
 		// load an image from embeded resource
 		public static BitmapImage GetBitmapImage(string imageName, string folder)
 		{
+			traceAppName = nameof(ShUtil);
+			logger = ShTraceLogging.Instance;
+
 			Assembly b = Assembly.GetExecutingAssembly();
 
 			Stream s = Assembly.GetExecutingAssembly().
@@ -89,6 +99,7 @@ namespace SharedCode
 
 		public static void ShowExceptionDialog(Exception e, NewSheetFormat nsf, double parentLeft, double parentTop)
 		{
+
 			ErrorReport errorReport = new ErrorReport();
 
 			errorReport.ParentLeft = parentLeft;
@@ -105,6 +116,7 @@ namespace SharedCode
 			sb.Append(logMsgDbS("root exception")).AppendLine(AppStrings.R_ErrCreateSheetFailDesc ?? "none");
 			sb.Append(logMsgDbS("primary exception")).AppendLine(e.Message ?? "none");
 			sb.Append(logMsgDbS("inner exception")).AppendLine(e.InnerException?.Message ?? "none");
+			sb.Append(logMsgDbS("source")).AppendLine(e.Source ?? "is null");
 			sb.AppendLine(logMsgDbS("stack trace")).AppendLine(e.StackTrace ?? "none").AppendLine();
 			sb.AppendLine(logMsgDbS("nsf")).Append(nsf?.ToString() ?? "is null").AppendLine();
 
@@ -112,26 +124,5 @@ namespace SharedCode
 
 			errorReport.ShowDialog();
 		}
-
-		public static void ShowHelpMessage(string resourceName)
-		{
-			string helpSubject = AppStrings.ResourceManager.GetString("R_" + resourceName + "Title") + " Help";
-
-//			TaskDialog help = new TaskDialog(LocalResMgr.AppIdentifier + ", " + helpSubject);
-			TaskDialog help = new TaskDialog(AppStrings.R_HelpTitle);
-
-			help.MainInstruction = helpSubject;
-			help.MainContent = AppStrings.ResourceManager.GetString("R_" + resourceName);
-
-			help.CommonButtons = TaskDialogCommonButtons.Close;
-			help.DefaultButton = TaskDialogResult.Close;
-			help.MainIcon = TaskDialogIcon.TaskDialogIconNone;
-			help.TitleAutoPrefix = false;
-			help.FooterText = ShConst.WebSiteReference;
-
-			help.Show();
-
-		}
-
 	}
 }

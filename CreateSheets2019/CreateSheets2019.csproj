@@ -138,9 +138,17 @@
       <Link>Resources\About.xaml.cs</Link>
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="..\SharedResources\DialogTrace.xaml.cs">
+      <Link>Resources\DialogTrace.xaml.cs</Link>
+      <DependentUpon>DialogTrace.xaml</DependentUpon>
+    </Compile>
     <Compile Include="..\SharedResources\ErrorReport.xaml.cs">
       <Link>Resources\ErrorReport.xaml.cs</Link>
       <DependentUpon>ErrorReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\SharedResources\Privacy.xaml.cs">
+      <Link>Resources\Privacy.xaml.cs</Link>
+      <DependentUpon>Privacy.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\SharedResources\Resources\AppStrings.Designer.cs">
       <Link>Resources\AppStrings.Designer.cs</Link>
@@ -202,8 +210,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="..\SharedResources\DialogTrace.xaml">
+      <Link>Resources\DialogTrace.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\SharedResources\ErrorReport.xaml">
       <Link>Resources\ErrorReport.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\SharedResources\Privacy.xaml">
+      <Link>Resources\Privacy.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -5,8 +5,10 @@ using System.Diagnostics;
 using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
 using SharedCode.Resources;
+using SharedLibrary;
+using SharedResources;
+using UtilityLibrary;
 using View = Autodesk.Revit.DB.View;
 
 using static UtilityLibrary.MessageUtilities2;
@@ -25,6 +27,8 @@ namespace SharedCode
 
 		private const char TBlkSeperator = (char) 0x00A0;
 
+		private string traceAppName;
+		private ShTraceLogging logger;
 
 		internal enum FmtViewName { NONE = 0, GROUP = 1, DIVIDE = 2 }
 
@@ -47,12 +51,18 @@ namespace SharedCode
 		private static double _parentLeft;
 		private static double _parentTop;
 
+		private DialogTrace dt;
+
 		#endregion
 
 		#region + Constructor
 
 		public ShDbMgr(ExternalCommandData commandData)
 		{
+			traceAppName = nameof(ShDbMgr);
+
+			logger = ShTraceLogging.Instance;
+
 			UIApplication uiapp = commandData.Application;
 			_uidoc = commandData.Application.ActiveUIDocument;
 			_doc = _uidoc.Document;
@@ -64,10 +74,27 @@ namespace SharedCode
 
 		#endregion
 
+			// public string AppNameAbbreviated { get; set; } 
+
+			public DialogTrace TraceDialog
+			{
+				set => dt = value;
+			}
+
 		#region + Procedures
 
 		public bool Process2(NewSheetFormat nsf)
 		{
+			dt.ProcessStatus = "Coping start";
+
+			string me = nameof(Process2);
+
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, me, 
+				$"hand-off (received) to _DBMgr.Process2" );
+
+			logger.TabUp();
+
 			bool result = false;
 			int seq = 0;
 
@@ -79,6 +106,7 @@ namespace SharedCode
 
 				for (int i = 1; i < nsf.Copies + 1; i++)
 				{
+					dt.ProcessStatus = $"Coping {i} of {nsf.Copies}";
 					// part A - determine the new sheet number depending
 					// on newsheetformat
 					// find sheet number and determine the sequence number
@@ -115,16 +143,38 @@ namespace SharedCode
 					// make sure that the list of sheet numbers is current
 					// and includes the sheet just created
 					GetAllSheetNumbers();
+					dt.ProcessStatus = "Coping complete";
 				}
 			}
 			catch (Exception e)
 			{
+				logger.TabUp();
+
+				logger.TraceEvent(TraceEventType.Error, 100,
+					traceAppName, me, 
+					$"got exception");
+				logger.TraceEvent(TraceEventType.Error, 101,
+					traceAppName, me, 
+					$"exception| " + e.Message );
+
+				if (e.InnerException != null)
+				{
+					logger.TraceEvent(TraceEventType.Error, 102,
+						traceAppName, me, 
+						$"Inner|" + e.InnerException.Message );
+				}
+
 				ShUtil.ShowExceptionDialog(e, nsf, _parentLeft, _parentTop);
 
-				
+				logger.TabDn();
 
 				return false;
 			}
+
+			logger.TabDn();
+
+			logger.TraceEvent(TraceEventType.Information, 10,
+				traceAppName, me, $"complete" );
 
 			return result;
 		}
@@ -137,6 +187,10 @@ namespace SharedCode
 		// selected sheet if wanted
 		public ViewSheet CreateOneEmptySheet(NewSheetFormat nsf)
 		{
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, "CreateOneEmptySheet", 
+				$"begin" );
+
 			ViewSheet vsDestinationSheet;
 
 			ElementId tbId = ElementId.InvalidElementId;
@@ -146,8 +200,21 @@ namespace SharedCode
 				tbId = GetTitleBlockFs(nsf.TitleBlockName).Id;
 			}
 
+			logger.TraceEvent(TraceEventType.Information, 3,
+				traceAppName, "CreateOneEmptySheet", 
+				$"got tbId| " + (tbId?.IntegerValue ?? -1).ToString() );
+
 			// create a sheet
+			logger.TraceEvent(TraceEventType.Information, 5,
+				traceAppName, "CreateOneEmptySheet", 
+				$"creating a sheet" );
+
 			vsDestinationSheet = ViewSheet.Create(_doc, tbId);
+
+			logger.TraceEvent(TraceEventType.Information, 7,
+				traceAppName, "CreateOneEmptySheet", 
+				$"sheet created| number| { (vsDestinationSheet?.SheetNumber ?? "is null")}"
+				+ $"  name| {(vsDestinationSheet?.Name ?? "is null")}");
 
 			if (vsDestinationSheet == null)
 			{
@@ -163,6 +230,10 @@ namespace SharedCode
 			{
 				CopyParameters(nsf.FcSelViewSht, vsDestinationSheet);
 			}
+
+			logger.TraceEvent(TraceEventType.Information, 10,
+				traceAppName, "CreateOneEmptySheet", 
+				$"complete" );
 
 			return vsDestinationSheet;
 		}
@@ -181,8 +252,15 @@ namespace SharedCode
 //		public void DuplicateOneSheet(string shtNumber, string shtName, string tbName, ViewSheet vsSourceSheet)
 		public void DuplicateOneSheet(NewSheetFormat nsf)
 		{
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, "DuplicateOneSheet", 
+				$"begin" );
 
 			ViewSheet vsDestinationSheet;
+
+			logger.TraceEvent(TraceEventType.Information, 3,
+				traceAppName, "DuplicateOneSheet", 
+				$"creating a sheet" );
 
 			try
 			{
@@ -194,6 +272,11 @@ namespace SharedCode
 			{
 				throw new Exception(e.Message);
 			}
+
+			logger.TraceEvent(TraceEventType.Information, 5,
+				traceAppName, "DuplicateOneSheet", 
+				$"sheet created" );
+
 
 			// at this point we have a source and destination ViewSheet
 			// here we copy the elements on the source ViewSheet and
@@ -211,6 +294,10 @@ namespace SharedCode
 			// this may fail, prepare for the failure and capture the failure message
 			try
 			{
+				logger.TraceEvent(TraceEventType.Information, 7,
+					traceAppName, "DuplicateOneSheet", 
+					$"duplicate sheet elements| create list" );
+
 				// in order to copy detail lines directly onto the sheet, we need to 
 				// setup a SketchPlane on the "blank" sheet
 
@@ -257,12 +344,29 @@ namespace SharedCode
 					copyIds.Add(sourceElem.Id);
 				}
 
+				logger.TraceEvent(TraceEventType.Information, 9,
+					traceAppName, "DuplicateOneSheet", 
+					$"duplicate sheet elements| list created| count| {copyIds.Count} elements" );
+
+				logger.TraceEvent(TraceEventType.Information, 11,
+					traceAppName, "DuplicateOneSheet", 
+					$"preform the duplication" );
+
+
 				// preform the actual copy of the elements
 				if (copyIds.Count > 0)
 				{
 					ElementTransformUtils.CopyElements((ViewSheet) nsf.SelectedSheet.SheetView, copyIds, vsDestinationSheet,
 						Transform.Identity, new CopyPasteOptions());
 				}
+
+				logger.TraceEvent(TraceEventType.Information, 13,
+					traceAppName, "DuplicateOneSheet", 
+					$"duplication complete" );
+
+				logger.TraceEvent(TraceEventType.Information, 15,
+					traceAppName, "DuplicateOneSheet", 
+					$"viewports to copy| {vpList.Count}| begin copy");
 
 				// processed all of the items on the view sheet except for the viewports
 				// we have a list of viewports we can copy and place onto the sheet
@@ -278,6 +382,10 @@ namespace SharedCode
 
 					}
 				}
+
+				logger.TraceEvent(TraceEventType.Information, 17,
+					traceAppName, "DuplicateOneSheet", 
+					$"viewports copied");
 
 				if (vpListNoCopy.Count > 0 && nsf.OperationOption == OperOpType.DupSheetAndViews)
 				{
@@ -322,6 +430,10 @@ namespace SharedCode
 			{
 				throw new Exception(AppStrings.R_ErrDupSheetFailDesc + nl + e.Message);
 			}
+
+			logger.TraceEvent(TraceEventType.Information, 99,
+				traceAppName, "DuplicateOneSheet", 
+				$"complete" );
 
 		}
 
@@ -674,6 +786,10 @@ namespace SharedCode
 		// create a sorted list of sheet numbers
 		private void GetAllSheetNumbers()
 		{
+			logger.TraceEvent(TraceEventType.Information, 1,
+				traceAppName, "GetAllSheetNumbers", 
+				$"begin" );
+
 			int i = 0;
 
 			GetAllSheetViews();
@@ -686,6 +802,10 @@ namespace SharedCode
 			}
 
 			Array.Sort(_sheetNumberList);
+
+			logger.TraceEvent(TraceEventType.Information, 10,
+				traceAppName, "GetAllSheetNumbers", 
+				$"complete" );
 		}
 
 		// get the names for all of the views in the model - why??

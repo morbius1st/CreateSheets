@@ -129,4 +129,7 @@
   <data name="RL_AppName" xml:space="preserve">
     <value>Create Sheets 2021</value>
   </data>
+  <data name="RL_AppNameAbbv" xml:space="preserve">
+    <value>CrteSht 2021</value>
+  </data>
 </root>

@@ -421,6 +421,15 @@ namespace SharedCode.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Done.
+        /// </summary>
+        public static string R_Done {
+            get {
+                return ResourceManager.GetString("R_Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate Sheet.
         /// </summary>
         public static string R_DupSheet {
@@ -1561,6 +1570,121 @@ namespace SharedCode.Resources {
         public static string R_TBlkNone {
             get {
                 return ResourceManager.GetString("R_TBlkNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trace Files.
+        /// </summary>
+        public static string R_Trace_File_Count {
+            get {
+                return ResourceManager.GetString("R_Trace_File_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Name.
+        /// </summary>
+        public static string R_Trace_FileName {
+            get {
+                return ResourceManager.GetString("R_Trace_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have gotten here due to some unforeseen issue with the software.  This dialog box will allow the collection of detailed information about what is happening so I may analyze and, hopefully, resolve the issue.
+        /// 
+        ///To use, please press the Start Trace button and go through the normal steps that is causing the problem.  If the app crashes, the data is automatically saved to a Log File otherwise, press the Stop Trace button.  The log file can then be emailed to me.  
+        /// 
+        ///I ask you email the file so you may l [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string R_Trace_Help {
+            get {
+                return ResourceManager.GetString("R_Trace_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log File.
+        /// </summary>
+        public static string R_Trace_HelpTitle {
+            get {
+                return ResourceManager.GetString("R_Trace_HelpTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Trace
+        ///File.
+        /// </summary>
+        public static string R_Trace_Show {
+            get {
+                return ResourceManager.GetString("R_Trace_Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Trace
+        ///Folder.
+        /// </summary>
+        public static string R_Trace_Show_Folder {
+            get {
+                return ResourceManager.GetString("R_Trace_Show_Folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Trace.
+        /// </summary>
+        public static string R_Trace_Start {
+            get {
+                return ResourceManager.GetString("R_Trace_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trace Status.
+        /// </summary>
+        public static string R_Trace_Status {
+            get {
+                return ResourceManager.GetString("R_Trace_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active Status.
+        /// </summary>
+        public static string R_Trace_Status_Active {
+            get {
+                return ResourceManager.GetString("R_Trace_Status_Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process Status.
+        /// </summary>
+        public static string R_Trace_Status_Process {
+            get {
+                return ResourceManager.GetString("R_Trace_Status_Process", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop Trace.
+        /// </summary>
+        public static string R_Trace_Stop {
+            get {
+                return ResourceManager.GetString("R_Trace_Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show the trace dialog box
+        ///used to help diagnose program problems.
+        /// </summary>
+        public static string R_Trace_ToolTip {
+            get {
+                return ResourceManager.GetString("R_Trace_ToolTip", resourceCulture);
             }
         }
         

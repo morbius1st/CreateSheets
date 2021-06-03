@@ -27,6 +27,7 @@ namespace DuplicateSheets2021
 		{
 			USettings = new SettingsMgr<UserSettings>(ResetData);
 			USet = USettings.Settings;
+
 		}
 
 		// reset the settings data to their current value
@@ -88,12 +89,14 @@ namespace DuplicateSheets2021
 			Basic    = new NewSheetFormat(true, NewSheetFormat.BasicName);
 			OneClick = new NewSheetFormat(false, NewSheetFormat.OneClickName);
 
+			Init();
 		}
 
 		[OnDeserializing]
 		void OnDeserializing(StreamingContext context)
 		{
 			SetDefaultValues();
+
 		}
 	}
 

@@ -57,7 +57,8 @@ namespace DuplicateSheets2020
 					//				Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr");
 					//				Debug.WriteLine("hello? " + AppStrings.Hello);
 
-					System.Windows.Window w = (System.Windows.Window) HwndSource.FromHwnd(_uiapp.MainWindowHandle).RootVisual;
+					System.Windows.Window w = 
+						(System.Windows.Window) HwndSource.FromHwnd(_uiapp.MainWindowHandle).RootVisual;
 
 					WpfSelViewSheetWin.Owner = w;
 
